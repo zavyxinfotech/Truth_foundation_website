@@ -1,0 +1,34 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignoreRegExpList": [
+    "className=\"[^\"]*\"",
+    "class=\"[^\"]*\""
+  ],
+  "words": [
+    "f8fafc",
+    "da8a24",
+    "0a2240",
+    "071b34",
+    "163863",
+    "lucide",
+    "Vyasarpadi",
+    "Perungavoor",
+    "Vichoor",
+    "Surapattu",
+    "Periyapalem",
+    "Athipattu",
+    "Thirumullaivoyal",
+    "Redhills",
+    "Thiruvallur",
+    "Vilagadupakkam",
+    "Mallima",
+    "Kolathur",
+    "ZAVYX",
+    "NetBank",
+    "NetBanking",
+    "Razorpay",
+    "PhonePe",
+    "Paytm"
+  ]
+}
