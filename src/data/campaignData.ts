@@ -13,6 +13,15 @@ import schoolKitsImg from '../assets/images/img125.jpg?w=400;800&format=webp;jpg
 import happyChildrenMealsImg from '../assets/images/img71.jpg?w=400;800&format=webp;jpg&as=picture';
 import sandhiyaAvatar from '../assets/images/sandhiya_avatar.jpg?w=96&format=webp';
 
+import sponsorMealImg from '../assets/images/Sponsor_meal.jpeg?w=400;800&format=webp;jpg&as=picture';
+import sponsorVegDinnerImg from '../assets/images/Sponsor_veg_dinner.jpeg?w=400;800&format=webp;jpg&as=picture';
+import sponsorVegMealImg from '../assets/images/Sponsor_veg_meal.jpeg?w=400;800&format=webp;jpg&as=picture';
+import educationSupportImg from '../assets/images/Education_support.jpeg?w=400;800&format=webp;jpg&as=picture';
+import healthcareSupportImg from '../assets/images/Healthcare_support.jpeg?w=400;800&format=webp;jpg&as=picture';
+import clothingSupportImg from '../assets/images/clothing_support.jpeg?w=400;800&format=webp;jpg&as=picture';
+import organicMealImg from '../assets/images/trust_section_organic_meal.jpg?w=400;800&format=webp;jpg&as=picture';
+import specialNeedsCareImg from '../assets/images/hero_special_needs_care.jpg?w=400;800&format=webp;jpg&as=picture';
+
 export const DEFAULT_MONTHLY_GIVING: MonthlyGivingOptions = {
   enabled: true,
   suggestedAmounts: [300, 500, 1000, 2500],
@@ -320,6 +329,126 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     beneficiaries: '4 Districts in TN',
     readTime: '3 min read',
     storyDetails: 'During COVID-19 lockdowns, Truth Foundation deployed emergency teams across Thiruvallur, Kanchipuram, Chengalpattu, and Chennai. We supplied food packets, water bottles, sanitation kits, rice bags, provision kits, and clothing specifically prioritizing visually impaired individuals, elderly persons, leprosy-affected families, gypsy communities, and transgender persons.'
+  },
+  {
+    id: 'g8',
+    title: 'Daily Nutritious Meal Drives for Orphaned Children',
+    category: 'Meals',
+    image: sponsorMealImg,
+    location: 'Redhills Orphanage Home, Chennai',
+    date: 'Daily Kitchen Drive',
+    description: 'Serving hot, protein-rich sambar rice, fresh vegetables, lentils, and eggs to 45 resident boys and girls.',
+    quote: '“No child under our care sleeps on an empty stomach. Every meal brings warmth and strength.”',
+    aspectRatio: 'square',
+    impactStat: { label: 'Daily Meals', value: '135 Cooked Meals' },
+    beneficiaries: '45 Resident Children',
+    readTime: '2 min read',
+    storyDetails: 'Our central kitchen at Redhills Orphanage prepares three freshly cooked meals daily. Managed under strict hygiene standards, the kitchen utilizes donor contributions to provide balanced nutrition including grains, lentils, fresh milk, and seasonal fruits.'
+  },
+  {
+    id: 'g9',
+    title: 'Special Weekend Veg Dinner & Feast for Elders',
+    category: 'Meals',
+    image: sponsorVegDinnerImg,
+    location: 'Redhills Senior Care Home',
+    date: 'Weekend Special Feast',
+    description: 'Weekend celebratory meals prepared with love for 20 senior citizens residing at our Redhills shelter.',
+    quote: '“Bringing dignity, comfort, and festive joy to abandoned elderly mothers and fathers.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Senior Meals', value: '60 Meals Served' },
+    beneficiaries: '20 Senior Residents',
+    readTime: '2 min read',
+    storyDetails: 'Every weekend, donors sponsor special multi-course vegetarian feasts for our senior residents. For many abandoned elders, these communal meals recreate the warmth of family celebrations and foster deep emotional bonding.'
+  },
+  {
+    id: 'g10',
+    title: 'Fresh Grocery & Grain Provisions Distribution',
+    category: 'Meals',
+    image: sponsorVegMealImg,
+    location: 'Kolathur & Redhills Centers',
+    date: 'Monthly Provision Drive',
+    description: 'Bulk distribution of rice bags, wheat flour, pulses, cooking oil, and spice kits to impoverished single mothers.',
+    quote: '“Sustaining fragile rural households with monthly ration security during tough times.”',
+    aspectRatio: 'tall',
+    impactStat: { label: 'Ration Kits', value: '150 Families Supported' },
+    beneficiaries: 'Single Mother Households',
+    readTime: '3 min read',
+    storyDetails: 'Truth Foundation identifies vulnerable rural families, single mothers, and destitute widows to provide monthly grocery hampers containing 25kg rice, lentils, cooking oil, and essential spices to prevent child hunger.'
+  },
+  {
+    id: 'g11',
+    title: 'School Textbook, Bag & Notebook Distribution',
+    category: 'Education',
+    image: educationSupportImg,
+    location: 'Thiruvallur Evening Learning Centers',
+    date: 'Academic Term Launch',
+    description: 'Distributing new school bags, notebooks, geometry boxes, and textbooks to 346 evening tuition students.',
+    quote: '“Education is the ultimate key to breaking generational poverty in Dalit and Tribal hamlets.”',
+    aspectRatio: 'square',
+    impactStat: { label: 'School Kits', value: '346 Kits Distributed' },
+    beneficiaries: '8 Tuition Centers',
+    readTime: '2 min read',
+    storyDetails: 'At the start of each academic term, Truth Foundation distributes complete educational kits. Each kit contains sturdy backpacks, notebooks for all subjects, pens, pencils, geometry sets, and reference books.'
+  },
+  {
+    id: 'g12',
+    title: 'Free Health Screening & Pediatric Care Camp',
+    category: 'Medical',
+    image: healthcareSupportImg,
+    location: 'Surapattu & Vyasarpadi Centers',
+    date: 'Quarterly Medical Camp',
+    description: 'Pediatric checkups, eye examinations, deworming drives, and vitamin syrup distribution for center children.',
+    quote: '“Early medical intervention guarantees that children remain healthy, active, and present in school.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Children Screened', value: '300+ Kids' },
+    beneficiaries: 'Pediatric Specialists',
+    readTime: '3 min read',
+    storyDetails: 'Partnering with volunteer doctors and pediatric nurses, Truth Foundation conducts quarterly health screening camps. Children receive free blood tests, vision checks, dental checkups, and necessary prescription medicines.'
+  },
+  {
+    id: 'g13',
+    title: 'Festival Dress & Warm Clothing Distribution Drive',
+    category: 'Volunteers',
+    image: clothingSupportImg,
+    location: 'Vichoor & Perungavoor Villages',
+    date: 'Diwali & Christmas Drive',
+    description: 'Volunteers distributing brand-new festival dresses, sweaters, and footwear to orphaned children and seniors.',
+    quote: '“Wrapping every child and senior in warmth, dignity, and celebratory happiness.”',
+    aspectRatio: 'tall',
+    impactStat: { label: 'Clothes Distributed', value: '500+ Outfits' },
+    beneficiaries: 'Orphaned Kids & Seniors',
+    readTime: '2 min read',
+    storyDetails: 'During major festivals, our volunteer network coordinates nationwide clothing drives. Every resident child and elderly senior receives tailor-fitted new clothes and footwear to celebrate with joy.'
+  },
+  {
+    id: 'g14',
+    title: 'Organic Food & Hygiene Provisions Support',
+    category: 'Meals',
+    image: organicMealImg,
+    location: 'Redhills & Pulianthope Hamlets',
+    date: 'Monthly Drive',
+    description: 'Wholesome organic meals, fresh vegetables, and personal hygiene kits distributed to rural hamlets.',
+    quote: '“Nourishing communities with clean, wholesome food and essential hygiene products.”',
+    aspectRatio: 'square',
+    impactStat: { label: 'Hygiene Kits', value: '250 Kits' },
+    beneficiaries: 'Rural Hamlets',
+    readTime: '2 min read',
+    storyDetails: 'Truth Foundation provides regular nutritional supplements and hygiene care packages containing soaps, toothbrushes, towels, and sanitary items to prevent skin and waterborne infections in rural settlements.'
+  },
+  {
+    id: 'g15',
+    title: 'Special Needs Care & Skill Training Workshop',
+    category: 'Education',
+    image: specialNeedsCareImg,
+    location: 'Thiruvallur Special School',
+    date: 'Daily Care & Therapy',
+    description: 'Sensory training, speech therapy, vocational crafts, and free van transport for 23 special-needs children.',
+    quote: '“Every child possesses unique abilities. We nurture their independence with love and patience.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Special Needs Kids', value: '23 Students' },
+    beneficiaries: 'Dedicated Van Transport',
+    readTime: '3 min read',
+    storyDetails: 'Our Thiruvallur Special School caters to 23 mentally retarded and neurodivergent children. Special educators conduct daily sensory integration, motor skill development, art workshops, and speech exercises while providing doorstep van transit.'
   }
 ];
 

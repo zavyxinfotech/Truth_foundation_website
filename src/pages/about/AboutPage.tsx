@@ -32,7 +32,7 @@ import { DarkToLightDivider, LightToDarkDivider } from '../../components/Section
 import { pixelTracker } from '../../utils/pixelTracker';
 
 // Real Project Image Imports
-import aboutHeroImage from '../../assets/images/Our_image.jpeg?w=900&format=webp';
+import aboutHeroImage from '../../assets/images/About_page_hero_bg_img.jpg?w=900&format=webp';
 import storyImage from '../../assets/images/hero_redhills_orphanage.jpg?w=800&format=webp';
 import ctaImage from '../../assets/images/trust_section_organic_meal.jpg?w=800&format=webp';
 
@@ -307,7 +307,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
               {/* Hero Paragraph */}
               <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-[620px]">
-                TRUTH FOUNDATION is a non-profit registered Public Charitable Trust established on <strong>5th July 2010</strong> in Chennai. We are dedicated to creating a social order rooted in social justice, human rights, equal access to education, and compassionate care for orphaned children, abandoned elders, and special-needs individuals across Tamil Nadu.
+                TRUTH FOUNDATION is a non-profit registered Public Charitable Trust established on <span className="font-semibold text-white">5th July 2010</span> in Chennai. We are dedicated to creating a social order rooted in social justice, human rights, equal access to education, and compassionate care for orphaned children, abandoned elders, and special-needs individuals across Tamil Nadu.
               </p>
 
               {/* Action Buttons in One Line */}
@@ -337,7 +337,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               </div>
             </motion.div>
 
-            {/* HERO RIGHT (~43%): IMAGE FRAME */}
+            {/* HERO RIGHT (~43%): DYNAMIC ASYMMETRIC IMAGE FRAME */}
             <motion.div
               initial={{ opacity: 0, scale: 0.94, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -346,8 +346,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             >
               <div className="relative w-full max-w-[520px] mx-auto p-3 sm:p-5">
                 
-                {/* Main Image Container - No Rounded Borders, No Shadow */}
-                <div className="relative w-full aspect-[4/3] sm:aspect-[5/4] overflow-hidden border-0 shadow-none rounded-none bg-[#071b34] group">
+                {/* Decorative Gold Accent Backdrop Frame */}
+                <div className="absolute -inset-2 sm:-inset-3 bg-[#da8a24]/20 border border-[#da8a24]/40 rounded-tl-[100px] rounded-br-[100px] rounded-tr-[30px] rounded-bl-[30px] sm:rounded-tl-[140px] sm:rounded-br-[140px] sm:rounded-tr-[44px] sm:rounded-bl-[44px] -rotate-3 pointer-events-none" />
+
+                {/* Main Image Container - Asymmetric Curved Architectural Shape */}
+                <div className="relative w-full aspect-[4/3] sm:aspect-[5/4] overflow-hidden border-2 border-[#da8a24]/40 shadow-2xl rounded-tl-[90px] rounded-br-[90px] rounded-tr-[24px] rounded-bl-[24px] sm:rounded-tl-[130px] sm:rounded-br-[130px] sm:rounded-tr-[36px] sm:rounded-bl-[36px] bg-[#071b34] group">
                   <img
                     src={aboutHeroImage}
                     alt="Truth Foundation - Empowering Lives"
@@ -362,16 +365,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="absolute -bottom-3 left-0 bg-[#0a2240]/95 backdrop-blur-md border-0 shadow-none rounded-none px-4 py-2.5 flex items-center gap-3 z-20"
+                  className="absolute -bottom-3 left-0 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/30 shadow-xl rounded-2xl px-4 py-2.5 flex items-center gap-3 z-20"
                 >
-                  <div className="w-9 h-9 bg-[#da8a24]/20 border-0 rounded-none flex items-center justify-center text-[#da8a24] shrink-0">
+                  <div className="w-9 h-9 bg-[#da8a24]/20 rounded-xl flex items-center justify-center text-[#da8a24] shrink-0">
                     <Calendar className="w-4 h-4 text-[#da8a24]" />
                   </div>
                   <div className="text-left">
-                    <div className="text-sm font-semibold text-white leading-none">
+                    <div className="text-sm sm:text-base font-semibold text-white leading-none">
                       <span className="text-[#da8a24]">14+</span> Years
                     </div>
-                    <div className="text-[11px] text-slate-300 font-medium pt-0.5">
+                    <div className="text-xs text-slate-300 font-medium pt-0.5">
                       Dedicated Service
                     </div>
                   </div>
@@ -382,16 +385,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   initial={{ opacity: 0, y: -15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  className="absolute -top-3 right-0 bg-[#0a2240]/95 backdrop-blur-md border-0 shadow-none rounded-none px-4 py-2.5 flex items-center gap-3 z-20"
+                  className="absolute -top-3 right-0 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/30 shadow-xl rounded-2xl px-4 py-2.5 flex items-center gap-3 z-20"
                 >
-                  <div className="w-9 h-9 bg-[#da8a24]/20 border-0 rounded-none flex items-center justify-center text-[#da8a24] shrink-0">
+                  <div className="w-9 h-9 bg-[#da8a24]/20 rounded-xl flex items-center justify-center text-[#da8a24] shrink-0">
                     <Users className="w-4 h-4 text-[#da8a24]" />
                   </div>
                   <div className="text-left">
-                    <div className="text-sm font-semibold text-white leading-none">
+                    <div className="text-sm sm:text-base font-semibold text-white leading-none">
                       <span className="text-[#da8a24]">434+</span>
                     </div>
-                    <div className="text-[11px] text-slate-300 font-medium pt-0.5">
+                    <div className="text-xs text-slate-300 font-medium pt-0.5">
                       Beneficiaries
                     </div>
                   </div>
@@ -408,7 +411,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       {/* 3. ORGANIC SECTION DIVIDER (Dark to Light) */}
       <DarkToLightDivider bgFrom="#0a2240" bgTo="#ffffff" />
 
-      {/* 4. IMPACT AT A GLANCE (White #ffffff Section) */}
+      {/* 4. IMPACT AT A GLANCE (3D Animated Cards, Borderless Mobile View with Increased Font Size) */}
       <section className="py-16 sm:py-20 bg-white text-slate-900 relative">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12">
           
@@ -421,57 +424,58 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             </h2>
           </div>
 
-          {/* Desktop Display: Horizontal strip with divider lines */}
-          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-0 lg:divide-x lg:divide-slate-200">
+          {/* Desktop Display: Borderless & Shadowless Interactive Cards Grid */}
+          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
             {STATS_CARDS.map((stat, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className={`flex flex-col items-center text-center p-4 lg:px-6 space-y-2 ${
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20, delay: idx * 0.05 }}
+                className={`bg-[#f8fafc] hover:bg-[#0a2240] p-4 sm:p-5 rounded-2xl border-0 shadow-none flex flex-col items-center text-center space-y-2 transition-all duration-300 cursor-pointer group ${
                   idx === STATS_CARDS.length - 1 ? 'col-span-2 md:col-span-1 lg:col-span-1' : ''
                 }`}
               >
-                <div className="flex items-center justify-center text-[#da8a24] mb-1">
-                  <stat.icon className="w-7 h-7 text-[#da8a24]" />
+                <div className="w-14 h-14 rounded-2xl bg-[#da8a24]/15 group-hover:bg-[#da8a24] text-[#da8a24] group-hover:text-[#0a2240] flex items-center justify-center mb-1 transition-colors duration-300">
+                  <stat.icon className="w-7 h-7" />
                 </div>
-                <div className="text-3xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
+                <div className="text-3xl sm:text-4xl font-semibold text-[#0a2240] group-hover:text-white tracking-tight transition-colors duration-300">
                   {stat.value}
                 </div>
-                <div className="text-sm font-semibold text-[#0a2240]">
+                <div className="text-sm sm:text-base font-semibold text-[#0a2240]/90 group-hover:text-slate-200 transition-colors duration-300">
                   {stat.label}
                 </div>
-                <div className="text-xs font-medium text-[#da8a24]">
+                <div className="text-xs sm:text-sm font-medium text-[#da8a24] group-hover:text-[#da8a24] transition-colors duration-300">
                   {stat.subtitle}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track */}
+          {/* Mobile Display: Borderless & Shadowless Auto-Scrolling Track */}
           <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-2">
             <motion.div
               animate={{ x: ['0%', '-50%'] }}
               transition={{ repeat: Infinity, duration: 16, ease: 'linear' }}
-              className="flex gap-4 w-max"
+              className="flex gap-6 w-max"
             >
               {[...STATS_CARDS, ...STATS_CARDS].map((stat, idx) => (
                 <div
                   key={idx}
-                  className="w-[180px] shrink-0 flex flex-col items-center text-center p-4 bg-[#f8fafc] rounded-2xl border border-slate-200/80 shadow-sm space-y-1.5"
+                  className="w-[200px] shrink-0 flex flex-col items-center text-center p-5 bg-[#f8fafc] rounded-3xl border-0 shadow-none space-y-2"
                 >
-                  <div className="flex items-center justify-center text-[#da8a24] mb-0.5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#da8a24]/15 flex items-center justify-center text-[#da8a24] mb-0.5">
                     <stat.icon className="w-6 h-6 text-[#da8a24]" />
                   </div>
-                  <div className="text-2xl font-bold text-[#0a2240] tracking-tight">
+                  <div className="text-3xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
                     {stat.value}
                   </div>
-                  <div className="text-xs font-bold text-[#0a2240]">
+                  <div className="text-sm sm:text-base font-semibold text-[#0a2240]">
                     {stat.label}
                   </div>
-                  <div className="text-[11px] font-semibold text-[#da8a24]">
+                  <div className="text-xs sm:text-sm font-medium text-[#da8a24]">
                     {stat.subtitle}
                   </div>
                 </div>
@@ -496,11 +500,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               transition={{ duration: 0.6 }}
               className="lg:col-span-6 space-y-6"
             >
-              <span className="text-[#da8a24] font-bold text-xs sm:text-sm uppercase tracking-widest block">
+              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
                 OUR ORIGIN & FOUNDATION STORY
               </span>
 
-              <h2 className="text-2xl sm:text-4xl font-bold text-[#0a2240] tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight leading-tight">
                 Established on 5th July 2010 to Serve the Underprivileged
               </h2>
 
@@ -521,22 +525,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
                 {/* Floating Gold Stat Badge */}
                 <div className="absolute -bottom-4 right-4 bg-[#0a2240] text-white px-4 py-2.5 rounded-2xl border border-[#da8a24]/40 shadow-xl flex items-center gap-3 z-20">
-                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 text-[#da8a24] flex items-center justify-center font-bold">
+                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 text-[#da8a24] flex items-center justify-center font-semibold">
                     <Calendar className="w-4 h-4 text-[#da8a24]" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-[#da8a24]">Est. 5th July 2010</div>
-                    <div className="text-[11px] text-slate-300">Registered NGO Trust</div>
+                    <div className="text-xs sm:text-sm font-semibold text-[#da8a24]">Est. 5th July 2010</div>
+                    <div className="text-xs text-slate-300">Registered NGO Trust</div>
                   </div>
                 </div>
               </div>
               
-              <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+              <div className="space-y-4 text-slate-700 text-base sm:text-lg leading-relaxed font-normal">
                 <p>
-                  <strong>TRUTH FOUNDATION</strong> was established as a registered non-governmental Public Charitable Trust under the leadership of visionary trustees in Tamil Nadu. The trust was born with a profound commitment to uplift marginalized rural communities, with a strong focus on Dalit and Tribal families, women, abandoned elderly citizens, and orphaned children.
+                  <span className="font-semibold text-[#0a2240]">TRUTH FOUNDATION</span> was established as a registered non-governmental Public Charitable Trust under the leadership of visionary trustees in Tamil Nadu. The trust was born with a profound commitment to uplift marginalized rural communities, with a strong focus on Dalit and Tribal families, women, abandoned elderly citizens, and orphaned children.
                 </p>
                 <p>
-                  Over the past 14 years, our operations have grown from local community support into a comprehensive social service infrastructure spanning an <strong>Orphanage Home in Redhills</strong>, an <strong>Old Age Senior Care Center</strong>, a <strong>Special Needs School in Thiruvallur</strong>, and <strong>8 Free Evening Tuition Centers</strong> across Chennai and Thiruvallur districts.
+                  Over the past 14 years, our operations have grown from local community support into a comprehensive social service infrastructure spanning an <span className="font-semibold text-[#0a2240]">Orphanage Home in Redhills</span>, an <span className="font-semibold text-[#0a2240]">Old Age Senior Care Center</span>, a <span className="font-semibold text-[#0a2240]">Special Needs School in Thiruvallur</span>, and <span className="font-semibold text-[#0a2240]">8 Free Evening Tuition Centers</span> across Chennai and Thiruvallur districts.
                 </p>
               </div>
 
@@ -561,10 +565,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-6 space-y-6"
             >
-              <span className="text-[#da8a24] font-bold text-xs sm:text-sm uppercase tracking-widest block">
+              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
                 OUR JOURNEY
               </span>
-              <h2 className="text-2xl sm:text-4xl font-bold text-[#0a2240] tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
                 14-Year Timeline of Growth & Impact
               </h2>
 
@@ -581,14 +585,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     {/* Gold Timeline Node */}
                     <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-[#da8a24] ring-4 ring-[#f8fafc]" />
 
-                    <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-1.5 transition-all hover:shadow-md">
-                      <span className="text-xs font-bold text-[#da8a24] uppercase tracking-wider bg-[#da8a24]/15 px-3 py-1 rounded-full inline-block">
+                    <div className="bg-transparent border-0 shadow-none p-0 space-y-1.5 transition-all">
+                      <span className="text-xs font-semibold text-[#da8a24] uppercase tracking-wider bg-[#da8a24]/15 px-3 py-1 rounded-full inline-block">
                         {milestone.year}
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold text-[#0a2240]">
+                      <h3 className="text-lg sm:text-xl font-semibold text-[#0a2240]">
                         {milestone.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                         {milestone.desc}
                       </p>
                     </div>
@@ -608,10 +612,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         <div className="max-w-[960px] mx-auto px-4 sm:px-8 space-y-8">
           
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-[#da8a24] font-bold text-xs sm:text-sm uppercase tracking-widest block">
+            <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
               OUR FOUNDATIONAL PILLARS
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-[#0a2240] tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
               Vision, Mission & Core Values
             </h2>
           </div>
@@ -630,10 +634,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               >
                 <div className="flex items-center gap-4">
                   {/* Gold Circle Badge with Dark Navy Icon */}
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#da8a24] border-2 border-[#071b34] text-[#071b34] flex items-center justify-center font-bold shrink-0 shadow-md">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#da8a24] border-2 border-[#071b34] text-[#071b34] flex items-center justify-center font-semibold shrink-0 shadow-md">
                     <Compass className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
                   </div>
-                  <span className="text-lg sm:text-xl font-bold tracking-tight text-white">
+                  <span className="text-lg sm:text-xl font-semibold tracking-tight text-white">
                     Our Vision
                   </span>
                 </div>
@@ -653,7 +657,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
                     <div className="bg-[#071b34] text-white p-6 sm:p-8 rounded-b-[28px] border-t border-[#163863] space-y-4">
-                      <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                      <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
                         To establish a just and equitable social order where every child, elder, and special-needs individual lives with dignity, freedom, equal opportunity, and complete access to education, nutrition, and healthcare.
                       </p>
                       <div className="pt-3 border-t border-[#163863] text-xs sm:text-sm text-[#da8a24] font-semibold flex items-center gap-2">
@@ -677,10 +681,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               >
                 <div className="flex items-center gap-4">
                   {/* White Circle Badge with Gold Icon */}
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-[#da8a24] flex items-center justify-center font-bold shrink-0 shadow-md">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-[#da8a24] flex items-center justify-center font-semibold shrink-0 shadow-md">
                     <Heart className="w-5 h-5 sm:w-6 sm:h-6 fill-[#da8a24]" />
                   </div>
-                  <span className="text-lg sm:text-xl font-bold tracking-tight text-[#071b34]">
+                  <span className="text-lg sm:text-xl font-semibold tracking-tight text-[#071b34]">
                     Our Mission
                   </span>
                 </div>
@@ -700,7 +704,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
                     <div className="bg-[#da8a24] text-[#071b34] p-6 sm:p-8 rounded-b-[28px] border-t border-[#071b34]/20 space-y-4">
-                      <p className="text-sm sm:text-base text-[#071b34]/90 leading-relaxed font-medium">
+                      <p className="text-base sm:text-lg text-[#071b34]/90 leading-relaxed font-medium">
                         Empowering rural communities through free education, evening tuition centers, specialized therapy for children with disabilities, shelter and food for abandoned seniors, and health awareness campaigns.
                       </p>
                       <div className="pt-3 border-t border-[#071b34]/20 text-xs sm:text-sm text-[#071b34] font-semibold flex items-center gap-2">
@@ -724,10 +728,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               >
                 <div className="flex items-center gap-4">
                   {/* White Circle Badge with Gold Outline */}
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#da8a24] text-[#da8a24] flex items-center justify-center font-bold shrink-0 shadow-sm">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#da8a24] text-[#da8a24] flex items-center justify-center font-semibold shrink-0 shadow-sm">
                     <Users className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
                   </div>
-                  <span className="text-lg sm:text-xl font-bold tracking-tight text-[#071b34]">
+                  <span className="text-lg sm:text-xl font-semibold tracking-tight text-[#071b34]">
                     Our Values
                   </span>
                 </div>
@@ -747,7 +751,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
                     <div className="bg-[#f4f7fb] text-slate-900 p-6 sm:p-8 rounded-b-[28px] border-t border-slate-200 space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700 font-medium">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base text-slate-700 font-medium">
                         <div className="flex items-center gap-2 bg-white p-3 rounded-xl border border-slate-200/60 shadow-sm">
                           <CheckCircle2 className="w-4 h-4 text-[#da8a24] shrink-0" />
                           <span>Transparency & Annual Audits</span>
@@ -790,13 +794,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           {/* Section Header: Left Eyebrow & Title, Right Small Navigation Circular Arrow Buttons */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2">
             <div className="space-y-1.5 max-w-2xl text-left">
-              <span className="text-[#da8a24] font-bold text-xs sm:text-sm uppercase tracking-widest block">
+              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
                 WHAT WE DO
               </span>
-              <h2 className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-semibold text-white tracking-tight">
                 Our Programs
               </h2>
-              <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-300 font-medium leading-relaxed">
                 Comprehensive care and support for children, elderly, and communities across Tamil Nadu.
               </p>
             </div>
@@ -844,20 +848,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
-                className="w-[56%] -ml-16 relative z-20 bg-white text-slate-900 rounded-[30px] p-6 lg:p-8 shadow-2xl border border-slate-100 flex flex-col justify-between space-y-4"
+                className="w-[56%] -ml-16 relative z-20 bg-white text-slate-900 rounded-[30px] p-6 lg:p-8 border-0 shadow-none flex flex-col justify-between space-y-4"
               >
                 {/* Header Row: Big 01 Number, Icon, Title, Badge */}
                 <div className="space-y-3">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl lg:text-5xl font-extrabold text-[#da8a24]/80 tracking-tighter">
+                      <span className="text-4xl lg:text-5xl font-semibold text-[#da8a24]/80 tracking-tighter">
                         0{currentProgramIndex + 1}
                       </span>
                       <div className="w-10 h-10 rounded-xl bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
                         {React.createElement(PROGRAMS[currentProgramIndex].icon, { className: "w-5 h-5" })}
                       </div>
                       <div>
-                        <h3 className="text-lg lg:text-2xl font-bold text-[#0a2240] leading-snug">
+                        <h3 className="text-lg lg:text-2xl font-semibold text-[#0a2240] leading-snug">
                           {PROGRAMS[currentProgramIndex].title}
                         </h3>
                         <p className="text-xs text-slate-500 font-medium">
@@ -900,18 +904,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   alt={PROGRAMS[(currentProgramIndex + 1) % PROGRAMS.length].title}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3 bg-[#0a2240]/90 backdrop-blur-sm text-[#da8a24] text-lg font-bold px-2.5 py-0.5 rounded-lg border border-[#da8a24]/30">
+                <div className="absolute top-3 left-3 bg-[#0a2240]/90 backdrop-blur-sm text-[#da8a24] text-lg font-semibold px-2.5 py-0.5 rounded-lg border border-[#da8a24]/30">
                   0{(currentProgramIndex + 1) % PROGRAMS.length + 1}
                 </div>
               </div>
 
             </div>
 
-            {/* Mobile Stage (No background card, no side arrows) */}
+            {/* Mobile Stage (No background card, borderless transparent container with increased text size) */}
             <div className="block md:hidden relative overflow-hidden">
               <div className="relative flex items-center">
                 
-                {/* Main Card Content Area */}
+                {/* Main Content Area */}
                 <div className="w-full pr-4">
                   
                   {/* Top Image */}
@@ -923,46 +927,46 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     />
                   </div>
 
-                  {/* Overlapping Content Box */}
+                  {/* Overlapping Content Box (Borderless, No Background on Mobile) */}
                   <motion.div
                     key={`mobile-${currentProgramIndex}`}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="-mt-8 relative z-20 bg-white text-slate-900 rounded-[22px] p-4 sm:p-5 shadow-2xl border border-slate-100 space-y-3"
+                    className="pt-4 relative z-20 bg-transparent text-white border-0 shadow-none space-y-3"
                   >
                     {/* Number + Title + Tag */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <span className="text-3xl font-extrabold text-[#da8a24]">
+                          <span className="text-3xl font-semibold text-[#da8a24]">
                             0{currentProgramIndex + 1}
                           </span>
                           <div className="w-8 h-8 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
                             {React.createElement(PROGRAMS[currentProgramIndex].icon, { className: "w-4 h-4" })}
                           </div>
                         </div>
-                        <span className="text-[10px] font-semibold text-[#da8a24] bg-[#da8a24]/15 px-2.5 py-0.5 rounded-full">
+                        <span className="text-xs font-semibold text-[#da8a24] bg-[#da8a24]/15 px-2.5 py-0.5 rounded-full">
                           {PROGRAMS[currentProgramIndex].tag}
                         </span>
                       </div>
 
-                      <h3 className="text-base font-bold text-[#0a2240] leading-snug">
+                      <h3 className="text-lg sm:text-xl font-semibold text-white leading-snug">
                         {PROGRAMS[currentProgramIndex].title}
                       </h3>
-                      <p className="text-[11px] text-slate-500 font-medium">
+                      <p className="text-xs sm:text-sm text-slate-300 font-medium">
                         {PROGRAMS[currentProgramIndex].location}
                       </p>
                     </div>
 
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                    <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                       {PROGRAMS[currentProgramIndex].description}
                     </p>
 
-                    <div className="pt-2 border-t border-slate-100 space-y-1.5">
+                    <div className="pt-2 border-t border-slate-700/60 space-y-2">
                       {PROGRAMS[currentProgramIndex].details.map((detail, dIdx) => (
-                        <div key={dIdx} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                          <div className="w-4 h-4 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
+                        <div key={dIdx} className="flex items-center gap-2 text-sm sm:text-base text-slate-200 font-medium">
+                          <div className="w-4.5 h-4.5 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
                             <CheckCircle2 className="w-3 h-3 stroke-[3]" />
                           </div>
                           <span>{detail}</span>
@@ -1029,39 +1033,44 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             </p>
           </div>
 
-          {/* Desktop Display: Horizontal Credibility Strip */}
-          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-0 lg:divide-x lg:divide-slate-200">
+          {/* Desktop Display: Borderless & Shadowless Credibility Grid */}
+          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
             {STATUTORY_CREDENTIALS.map((cred, idx) => (
-              <div key={idx} className="flex flex-col p-5 lg:px-6 space-y-3 bg-[#f8fafc] lg:bg-transparent rounded-none border-0 shadow-none">
-                <div className="w-10 h-10 rounded-none bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold">
-                  <cred.icon className="w-5 h-5 text-[#da8a24]" />
+              <motion.div
+                key={idx}
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="flex flex-col p-4 sm:p-5 bg-[#f8fafc] hover:bg-[#0a2240] rounded-2xl border-0 shadow-none space-y-2.5 cursor-pointer transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-[#0a2240] text-[#da8a24] group-hover:bg-[#da8a24] group-hover:text-[#0a2240] flex items-center justify-center font-semibold transition-colors duration-300">
+                  <cred.icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#0a2240] text-base sm:text-lg">{cred.title}</h4>
-                  <p className="text-xs text-slate-600 pt-1 leading-relaxed font-normal">{cred.desc}</p>
+                  <h4 className="font-semibold text-[#0a2240] group-hover:text-white text-base sm:text-lg transition-colors duration-300">{cred.title}</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 group-hover:text-slate-200 pt-1 leading-relaxed font-normal transition-colors duration-300">{cred.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track */}
+          {/* Mobile Display: Borderless & Shadowless Auto-Scrolling Track */}
           <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-2">
             <motion.div
               animate={{ x: ['0%', '-50%'] }}
               transition={{ repeat: Infinity, duration: 22, ease: 'linear' }}
-              className="flex gap-4 w-max"
+              className="flex gap-6 w-max"
             >
               {[...STATUTORY_CREDENTIALS, ...STATUTORY_CREDENTIALS].map((cred, idx) => (
                 <div
                   key={idx}
-                  className="w-[240px] shrink-0 flex flex-col p-4 bg-[#f8fafc] rounded-2xl border border-slate-200/80 shadow-sm space-y-2.5"
+                  className="w-[260px] shrink-0 flex flex-col p-5 bg-[#f8fafc] rounded-3xl border-0 shadow-none space-y-2.5"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shrink-0">
-                    <cred.icon className="w-4.5 h-4.5 text-[#da8a24]" />
+                  <div className="w-11 h-11 rounded-2xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shrink-0">
+                    <cred.icon className="w-5 h-5 text-[#da8a24]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#0a2240] text-sm">{cred.title}</h4>
-                    <p className="text-xs text-slate-600 pt-1 leading-relaxed font-normal">{cred.desc}</p>
+                    <h4 className="font-semibold text-[#0a2240] text-base sm:text-lg">{cred.title}</h4>
+                    <p className="text-xs sm:text-sm text-slate-600 pt-1 leading-relaxed font-normal">{cred.desc}</p>
                   </div>
                 </div>
               ))}
@@ -1100,10 +1109,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           
           {/* Header: Left Aligned as per reference image */}
           <div className="text-left max-w-3xl space-y-1.5">
-            <span className="text-[#da8a24] font-bold text-xs sm:text-sm uppercase tracking-widest block">
+            <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
               SPONSOR A CAUSE
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-[#0a2240] tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
               Make a Direct Impact
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
@@ -1121,7 +1130,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   pixelTracker.trackDonateClick(cause.amount, `Sponsor Cause - ${cause.title}`);
                   onOpenDonateModal(cause.amount);
                 }}
-                className="bg-white rounded-[22px] p-2.5 sm:p-3 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
+                className="bg-transparent border-0 shadow-none rounded-[22px] p-2.5 sm:p-3 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
               >
                 <div>
                   {/* Image Container with Rounded Corners */}
@@ -1131,17 +1140,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       alt={cause.title}
                       className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-2 right-2 bg-[#0a2240]/85 backdrop-blur-md text-[#da8a24] font-bold text-[10px] sm:text-xs px-2 py-0.5 rounded-full shadow-sm">
+                    <div className="absolute top-2 right-2 bg-[#0a2240]/85 backdrop-blur-md text-[#da8a24] font-semibold text-[10px] sm:text-xs px-2 py-0.5 rounded-full shadow-sm">
                       {cause.amountLabel}
                     </div>
                   </div>
 
                   {/* Title & Description Below Image */}
                   <div className="pt-3 pb-1 px-1 flex flex-col items-center text-center space-y-1">
-                    <h3 className="font-bold text-[#0a2240] text-xs sm:text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
+                    <h3 className="font-semibold text-[#0a2240] text-sm sm:text-base leading-snug group-hover:text-[#da8a24] transition-colors">
                       {cause.title}
                     </h3>
-                    <p className="text-[11px] text-slate-500 font-normal leading-tight line-clamp-2 text-center">
+                    <p className="text-xs sm:text-sm text-slate-500 font-normal leading-tight line-clamp-2 text-center">
                       {cause.description}
                     </p>
                   </div>
@@ -1149,7 +1158,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
                 {/* Bottom CTA Button */}
                 <div className="pt-2">
-                  <span className="inline-flex items-center justify-center gap-1 w-full bg-[#da8a24]/10 group-hover:bg-[#da8a24] text-[#0a2240] font-semibold text-[11px] sm:text-xs py-1.5 px-2 rounded-full transition-colors">
+                  <span className="inline-flex items-center justify-center gap-1 w-full bg-[#da8a24]/10 group-hover:bg-[#da8a24] text-[#0a2240] font-semibold text-xs sm:text-sm py-1.5 px-2 rounded-full transition-colors">
                     <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
                     <span>Donate ({cause.amountLabel})</span>
                   </span>
@@ -1162,18 +1171,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       </section>
 
       {/* 12. FINAL SUPPORT A CAUSE / DONATE CTA (ORGANIC WAVED BANNER MATCHING REFERENCE IMAGE) */}
-      <section className="py-12 sm:py-20 bg-[#faf8f5] text-white relative overflow-hidden">
+      <section className="py-8 sm:py-12 bg-[#faf8f5] text-white relative overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
           
           {/* Main Fluid Organic Banner Container */}
-          <div className="relative bg-[#071b34] rounded-[36px] sm:rounded-[48px] overflow-hidden border border-[#da8a24]/30 shadow-2xl p-6 sm:p-10 lg:p-14">
+          <div className="relative bg-[#071b34] rounded-[28px] sm:rounded-[36px] overflow-hidden border border-[#da8a24]/30 shadow-2xl p-6 sm:p-8 lg:p-10">
             
             {/* Ambient Gold Glows */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
 
             {/* Top-Right Botanical Leaf Accent */}
-            <svg className="absolute top-4 right-4 w-32 sm:w-44 h-auto text-[#da8a24]/20 pointer-events-none" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="absolute top-4 right-4 w-28 sm:w-36 h-auto text-[#da8a24]/20 pointer-events-none" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 150Q40 100 130 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
               <path d="M130 30Q100 20 80 40Q110 50 130 30Z" fill="currentColor"/>
               <path d="M100 55Q75 40 55 60Q85 70 100 55Z" fill="currentColor"/>
@@ -1182,19 +1191,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             </svg>
 
             {/* Floating Gold Line Art Heart Graphic on Right */}
-            <div className="hidden lg:block absolute right-12 bottom-20 text-[#da8a24]/40 pointer-events-none">
-              <svg className="w-20 h-20" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
+            <div className="hidden lg:block absolute right-10 bottom-16 text-[#da8a24]/40 pointer-events-none">
+              <svg className="w-16 h-16" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
                 <path d="M50 88 C20 60 5 40 15 20 C25 5 45 10 50 25 C55 10 75 5 85 20 C95 40 80 60 50 88 Z" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M50 88 C55 95 60 100 65 105" strokeLinecap="round"/>
               </svg>
             </div>
 
             {/* Top Grid: Image on Left (Desktop), Content on Right */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
               
-              {/* Left Column: Organic Wavy Image Frame (~45% / 5 cols) */}
+              {/* Left Column: Compact Image Frame (~40% / 5 cols) */}
               <div className="lg:col-span-5 relative">
-                <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] overflow-hidden rounded-[28px] sm:rounded-[36px] border-2 border-[#da8a24]/50 shadow-2xl bg-[#0a2240] group">
+                <div className="relative w-full h-[220px] sm:h-[260px] lg:h-[250px] overflow-hidden rounded-[20px] sm:rounded-[28px] border-2 border-[#da8a24]/50 shadow-xl bg-[#0a2240] group">
                   <img
                     src={ctaImage}
                     alt="Support Truth Foundation Community"
@@ -1204,29 +1213,29 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 </div>
 
                 {/* Overlapping Botanical Leaf Accent between Image and Content */}
-                <div className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 text-[#da8a24]/60 pointer-events-none z-20">
-                  <svg className="w-16 h-28" viewBox="0 0 60 120" fill="currentColor">
+                <div className="hidden lg:block absolute -right-5 top-1/2 -translate-y-1/2 text-[#da8a24]/60 pointer-events-none z-20">
+                  <svg className="w-12 h-20" viewBox="0 0 60 120" fill="currentColor">
                     <path d="M10 10Q30 40 10 70Q40 50 50 20Z"/>
                     <path d="M20 50Q40 80 20 110Q50 90 55 60Z"/>
                   </svg>
                 </div>
               </div>
 
-              {/* Right Column: Title, Subtitle, Golden Pill Donate Button (~55% / 7 cols) */}
-              <div className="lg:col-span-7 space-y-5 text-left">
+              {/* Right Column: Title, Subtitle, Golden Pill Donate Button (~60% / 7 cols) */}
+              <div className="lg:col-span-7 space-y-3.5 text-left">
                 
                 {/* Heading */}
-                <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-tight">
+                <h2 className="text-xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight leading-tight">
                   Support a Cause. <span className="text-[#da8a24]">Change a Life.</span>
                 </h2>
 
                 {/* Subtitle Paragraph */}
-                <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-xl">
+                <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed max-w-xl">
                   Your contribution brings hope, education, nourishment, and care to children, elderly, and special-needs individuals across Tamil Nadu.
                 </p>
 
                 {/* Golden Pill Donate Button */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <motion.button
                     whileHover={{ scale: 1.04, y: -2 }}
                     whileTap={{ scale: 0.96 }}
@@ -1234,9 +1243,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       pixelTracker.trackDonateClick(500, 'About Page Final CTA');
                       onOpenDonateModal(500);
                     }}
-                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-bold px-8 py-3.5 sm:py-4 rounded-full shadow-xl transition-all flex items-center justify-center gap-2.5 cursor-pointer text-sm sm:text-base uppercase tracking-wider min-h-[48px]"
+                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-7 py-3 rounded-full shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider min-h-[44px]"
                   >
-                    <Heart className="w-5 h-5 fill-[#0a2240]" />
+                    <Heart className="w-4.5 h-4.5 fill-[#0a2240]" />
                     <span>Donate Now</span>
                   </motion.button>
                 </div>
@@ -1246,35 +1255,35 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             </div>
 
             {/* Bottom Trust Credentials Strip (4 Items in 1 Row on Desktop, 2x2 Grid on Mobile) */}
-            <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10 relative z-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 md:divide-x md:divide-white/10 text-slate-200">
+            <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10 relative z-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 md:divide-x md:divide-white/10 text-slate-200">
                 
-                <div className="flex items-center gap-3 md:justify-center px-2">
-                  <div className="w-9 h-9 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Lock className="w-4 h-4" />
+                <div className="flex items-center gap-2.5 md:justify-center px-1">
+                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
+                    <Lock className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold leading-tight">Safe & Secure Donations</span>
+                  <span className="text-xs font-semibold leading-tight">Safe & Secure Donations</span>
                 </div>
 
-                <div className="flex items-center gap-3 md:justify-center px-2 md:pl-6">
-                  <div className="w-9 h-9 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Camera className="w-4 h-4" />
+                <div className="flex items-center gap-2.5 md:justify-center px-1 md:pl-4">
+                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
+                    <Camera className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold leading-tight">Direct Impact Delivery</span>
+                  <span className="text-xs font-semibold leading-tight">Direct Impact Delivery</span>
                 </div>
 
-                <div className="flex items-center gap-3 md:justify-center px-2 md:pl-6">
-                  <div className="w-9 h-9 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <ShieldCheck className="w-4 h-4" />
+                <div className="flex items-center gap-2.5 md:justify-center px-1 md:pl-4">
+                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold leading-tight">80G Tax Exemption</span>
+                  <span className="text-xs font-semibold leading-tight">80G Tax Exemption</span>
                 </div>
 
-                <div className="flex items-center gap-3 md:justify-center px-2 md:pl-6">
-                  <div className="w-9 h-9 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Award className="w-4 h-4" />
+                <div className="flex items-center gap-2.5 md:justify-center px-1 md:pl-4">
+                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
+                    <Award className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold leading-tight">Trusted by Communities</span>
+                  <span className="text-xs font-semibold leading-tight">Trusted by Communities</span>
                 </div>
 
               </div>

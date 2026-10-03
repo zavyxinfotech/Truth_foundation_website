@@ -222,25 +222,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               </div>
             </motion.div>
 
-            {/* HERO RIGHT (~45%): ORGANIC IMAGE FRAME */}
+            {/* HERO RIGHT (~45%): CIRCULAR COLLOIDAL IMAGE FRAME */}
             <motion.div
               initial={{ opacity: 0, scale: 0.94, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="lg:col-span-5 flex items-center justify-center relative w-full"
             >
-              <div className="relative w-full max-w-[480px] mx-auto p-3 sm:p-4">
+              <div className="relative w-full max-w-[460px] mx-auto p-4 sm:p-6 flex items-center justify-center">
                 
-                {/* Layered Outer Offset Frame */}
+                {/* Layered Outer Colloidal Offset Frame */}
                 <div 
-                  className="absolute inset-1 sm:inset-0 border-2 border-[#da8a24]/40 pointer-events-none transition-transform duration-700 -rotate-2"
-                  style={{ borderRadius: '120px 35px 120px 35px' }}
+                  className="absolute inset-2 sm:inset-1 border-2 border-[#da8a24]/40 pointer-events-none transition-all duration-700 -rotate-3"
+                  style={{ borderRadius: '62% 38% 58% 42% / 46% 54% 46% 54%' }}
                 />
 
-                {/* Main Organic Shaped Image Container */}
+                {/* Main Circular Colloidal Shaped Image Container */}
                 <div
-                  className="relative w-full aspect-[4/3] sm:aspect-[16/11] overflow-hidden border-2 border-[#da8a24] shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-[#071b34] group"
-                  style={{ borderRadius: '120px 35px 120px 35px' }}
+                  className="relative w-full aspect-square sm:aspect-[4/3] overflow-hidden border-2 border-[#da8a24] shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-[#071b34] group transition-all duration-700"
+                  style={{ borderRadius: '56% 44% 64% 36% / 44% 56% 44% 56%' }}
                 >
                   <img
                     src={ourImage}
@@ -256,7 +256,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   initial={{ opacity: 0, y: -15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="absolute -top-3 right-0 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/60 px-4 py-2 rounded-2xl shadow-2xl flex items-center gap-2.5 z-20"
+                  className="absolute -top-1 right-2 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/60 px-4 py-2 rounded-2xl shadow-2xl flex items-center gap-2.5 z-20"
                 >
                   <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
                     <Heart className="w-4 h-4 text-[#da8a24] fill-[#da8a24]" />
