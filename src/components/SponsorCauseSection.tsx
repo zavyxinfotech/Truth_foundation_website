@@ -112,56 +112,61 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
           </p>
         </div>
 
-        {/* Desktop Display: 6 Cause Items Grid */}
-        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
+        {/* Desktop Display: 6 Cause Items Grid (Hover shows Donate button) */}
+        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-2.5 lg:gap-3">
           {SPONSOR_CAUSES.map((cause) => (
             <motion.div
               key={cause.id}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -4 }}
               onClick={() => {
                 pixelTracker.trackDonateClick(cause.amount, `Sponsor Cause - ${cause.title}`);
                 onOpenDonateModal(cause.amount);
               }}
-              className="bg-transparent border-0 shadow-none rounded-[24px] p-3 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
+              className="bg-transparent border-0 p-0 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
             >
               <div>
-                {/* Rounded Frame for Image */}
-                <div className="relative w-full aspect-[4/5] rounded-[22px] overflow-hidden p-1 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/40 shadow-sm ring-2 ring-[#da8a24]/10 shrink-0">
+                {/* Taller Image Container (No card borders/gradients/shadows) */}
+                <div className="relative w-full aspect-[3/4.2] rounded-2xl overflow-hidden bg-slate-100">
                   <img
                     src={cause.image}
                     alt={cause.title}
-                    className="w-full h-full object-cover object-center rounded-[18px] transform transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-2 right-2 bg-[#0a2240] text-[#da8a24] font-normal text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
-                    {cause.amountLabel}
+                  
+                  {/* Glassmorphism Price Header Above Image with Bigger & Bolder Price */}
+                  <div className="absolute top-2.5 inset-x-2.5 px-3 py-1.5 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
+                    <span className="text-xs text-slate-300 font-normal">Cause</span>
+                    <span className="text-base sm:text-lg font-bold text-[#da8a24] tracking-tight">
+                      {cause.amountLabel}
+                    </span>
+                  </div>
+
+                  {/* Desktop Hover Only: Shows Donate Button */}
+                  <div className="absolute bottom-2.5 inset-x-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-xs sm:text-sm py-2.5 px-3 rounded-xl uppercase tracking-wider">
+                      <Heart className="w-4 h-4 fill-[#0a2240]" />
+                      <span>Donate</span>
+                    </span>
                   </div>
                 </div>
 
-                {/* Title Below Image: Strictly Normal Font (Not Bold) */}
-                <div className="pt-3.5 pb-2 px-1 flex flex-col items-center text-center">
-                  <h3 className="font-normal text-[#0a2240] text-base lg:text-lg leading-snug group-hover:text-[#da8a24] transition-colors">
+                {/* Title Below Image: Strictly Normal Font (No Bold) */}
+                <div className="pt-2.5 pb-1 px-1 flex flex-col items-center text-center">
+                  <h3 className="font-normal text-[#0a2240] text-sm sm:text-base leading-snug group-hover:text-[#da8a24] transition-colors">
                     {cause.title}
                   </h3>
                 </div>
-              </div>
-
-              {/* Donate Button: Text Only "Donate" (No Price inside Button) */}
-              <div className="pt-2">
-                <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-medium text-xs sm:text-sm py-2.5 px-3.5 rounded-full shadow-md transition-colors uppercase tracking-wider min-h-[40px]">
-                  <Heart className="w-4 h-4 fill-[#0a2240]" />
-                  <span>Donate</span>
-                </span>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track */}
+        {/* Mobile Display: Smooth Horizontal Track (Click redirects directly to donate modal) */}
         <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-1">
           <motion.div
             animate={{ x: ['0%', '-50%'] }}
             transition={{ repeat: Infinity, duration: 16, ease: 'linear' }}
-            className="flex gap-4 w-max"
+            className="flex gap-2.5 w-max"
           >
             {[...SPONSOR_CAUSES, ...SPONSOR_CAUSES].map((cause, idx) => (
               <div
@@ -170,35 +175,32 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                   pixelTracker.trackDonateClick(cause.amount, `Sponsor Cause - ${cause.title}`);
                   onOpenDonateModal(cause.amount);
                 }}
-                className="w-[210px] shrink-0 bg-transparent border-0 shadow-none rounded-[22px] p-2.5 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
+                className="w-[190px] shrink-0 bg-transparent border-0 p-0 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
               >
                 <div>
-                  {/* Rounded Frame for Mobile */}
-                  <div className="relative w-full aspect-square rounded-[20px] overflow-hidden p-1 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/40 shadow-sm ring-2 ring-[#da8a24]/10 shrink-0">
+                  {/* Taller Image Container with Glassmorphism Overlay */}
+                  <div className="relative w-full aspect-[3/4.2] rounded-2xl overflow-hidden bg-slate-100">
                     <img
                       src={cause.image}
                       alt={cause.title}
-                      className="w-full h-full object-cover object-center rounded-[16px]"
+                      className="w-full h-full object-cover object-center"
                     />
-                    <div className="absolute top-1.5 right-1.5 bg-[#0a2240] text-[#da8a24] font-normal text-[10px] px-2 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
-                      {cause.amountLabel}
+                    
+                    {/* Glassmorphism Price Header Above Image */}
+                    <div className="absolute top-2 inset-x-2 px-2.5 py-1 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
+                      <span className="text-[10px] text-slate-300 font-normal">Cause</span>
+                      <span className="text-sm font-bold text-[#da8a24] tracking-tight">
+                        {cause.amountLabel}
+                      </span>
                     </div>
                   </div>
 
                   {/* Title Below Image: Strictly Normal Font */}
-                  <div className="pt-3 pb-1 px-1 flex flex-col items-center text-center">
-                    <h3 className="font-normal text-[#0a2240] text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
+                  <div className="pt-2 pb-1 px-1 flex flex-col items-center text-center">
+                    <h3 className="font-normal text-[#0a2240] text-xs sm:text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
                       {cause.title}
                     </h3>
                   </div>
-                </div>
-
-                {/* Donate Button: Text Only "Donate" (No Price inside Button) */}
-                <div className="pt-2">
-                  <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-medium text-xs py-2.5 px-3 rounded-full shadow-md transition-colors uppercase tracking-wider min-h-[38px]">
-                    <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
-                    <span>Donate</span>
-                  </span>
                 </div>
               </div>
             ))}
