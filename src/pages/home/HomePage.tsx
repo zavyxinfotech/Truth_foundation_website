@@ -49,11 +49,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       />
 
       {/* Why Your Donation Matters Section (Light #f8fafc) */}
-      <ScrollSection id="why-donate">
+      <div id="why-donate">
         <WhyDonate
           onOpenDonateModal={onOpenDonateModal}
         />
-      </ScrollSection>
+      </div>
 
       <Suspense fallback={<FallbackLoader />}>
         {/* Sponsor a Cause Section */}

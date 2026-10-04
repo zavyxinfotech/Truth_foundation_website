@@ -29,13 +29,7 @@ export const DarkToLightDivider: React.FC<DividerProps> = ({
       {/* Ambient glow strip */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-16 bg-[#da8a24]/8 rounded-full blur-3xl pointer-events-none" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.15 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full block leading-none"
-      >
+      <div className="relative w-full block leading-none">
         <svg
           viewBox="0 0 1440 120"
           preserveAspectRatio="none"
@@ -53,7 +47,7 @@ export const DarkToLightDivider: React.FC<DividerProps> = ({
             fill={targetFill}
           />
         </svg>
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -79,13 +73,7 @@ export const LightToDarkDivider: React.FC<DividerProps> = ({
       {/* Ambient glow strip */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-16 bg-[#da8a24]/8 rounded-full blur-3xl pointer-events-none" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.15 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full block leading-none"
-      >
+      <div className="relative w-full block leading-none">
         <svg
           viewBox="0 0 1440 120"
           preserveAspectRatio="none"
@@ -103,7 +91,7 @@ export const LightToDarkDivider: React.FC<DividerProps> = ({
             fill={targetFill}
           />
         </svg>
-      </motion.div>
+      </div>
     </div>
   );
 };
