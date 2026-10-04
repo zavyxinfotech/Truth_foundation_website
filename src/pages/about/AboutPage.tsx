@@ -406,10 +406,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           </div>
 
         </div>
-      </section>
 
-      {/* 3. ORGANIC SECTION DIVIDER (Dark to Light) */}
-      <DarkToLightDivider bgFrom="#0a2240" bgTo="#ffffff" />
+        {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+          <DarkToLightDivider bgFrom="transparent" bgTo="#ffffff" />
+        </div>
+      </section>
 
       {/* 4. IMPACT AT A GLANCE (3D Animated Cards, Borderless Mobile View with Increased Font Size) */}
       <section className="py-16 sm:py-20 bg-white text-slate-900 relative">

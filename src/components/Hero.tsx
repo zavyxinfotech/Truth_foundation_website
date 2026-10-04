@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Campaign } from '../types';
 import { pixelTracker } from '../utils/pixelTracker';
 import { Picture } from './Picture';
+import { DarkToLightDivider } from './SectionDividers';
 
 import heroChildLongingMeal from '../assets/images/hero_child_longing_meal.jpg?w=640;960;1376&format=webp;jpg&as=picture';
 import heroRedhillsOrphanage from '../assets/images/hero_redhills_orphanage.jpg?w=640;960;1376&format=webp;jpg&as=picture';
@@ -251,6 +252,11 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+        <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
+      </div>
 
     </section>
   );

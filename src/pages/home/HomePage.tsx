@@ -48,9 +48,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         onSelectCampaign={onSelectCampaign}
       />
 
-      {/* Transition: Dark Hero -> Light WhyDonate */}
-      <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
-
       {/* Why Your Donation Matters Section (Light #f8fafc) */}
       <ScrollSection id="why-donate">
         <WhyDonate

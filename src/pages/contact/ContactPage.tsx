@@ -239,10 +239,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
           </div>
 
         </div>
-      </section>
 
-      {/* ORGANIC WAVES SECTION DIVIDER (Dark #0a2240 to Light #f8fafc) */}
-      <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
+        {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+          <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
+        </div>
+      </section>
 
 
 

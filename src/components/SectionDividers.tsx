@@ -14,7 +14,7 @@ interface DividerProps {
  * No icon — clean pure wave.
  */
 export const DarkToLightDivider: React.FC<DividerProps> = ({ 
-  bgFrom = '#0a2240', 
+  bgFrom = 'transparent', 
   bgTo = '#f8fafc', 
   fillColor,
   className = '' 
@@ -24,7 +24,7 @@ export const DarkToLightDivider: React.FC<DividerProps> = ({
   return (
     <div 
       className={`w-full relative overflow-hidden leading-none pointer-events-none select-none block -mb-px ${className}`}
-      style={{ backgroundColor: bgFrom }}
+      style={{ backgroundColor: bgFrom === 'transparent' ? 'transparent' : bgFrom }}
     >
       {/* Ambient glow strip */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-16 bg-[#da8a24]/8 rounded-full blur-3xl pointer-events-none" />

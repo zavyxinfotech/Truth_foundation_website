@@ -174,10 +174,12 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
           </div>
 
         </div>
-      </section>
 
-      {/* 3. ORGANIC SECTION DIVIDER (Dark to Light) */}
-      <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
+        {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+          <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
+        </div>
+      </section>
 
       {/* 5. PHOTO GALLERY HEADER & FILTERABLE GRID (#f8fafc Light Section) */}
       <section className="py-16 sm:py-24 bg-[#f8fafc] text-slate-900 relative border-t border-slate-200">
