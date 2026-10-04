@@ -122,21 +122,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-4">
+          <div className="max-w-3xl space-y-6">
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="space-y-4"
+              className="space-y-5"
             >
-              {/* Main Heading: All White */}
-              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
+              {/* Main Heading: All White & Enlarged */}
+              <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-semibold text-white tracking-tight leading-[1.1]">
                 We Are Here to Listen, Guide & Partner
               </h1>
 
-              {/* Concise Paragraph Description */}
-              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-[600px] drop-shadow-sm">
+              {/* Concise Paragraph Description & Enlarged */}
+              <p className="text-base sm:text-xl lg:text-2xl text-slate-200 font-normal leading-relaxed max-w-[660px] drop-shadow-sm">
                 Get in touch with our team for donation inquiries, 80G tax exemption receipts, volunteering opportunities, or scheduling a visit to our Redhills campus.
               </p>
 
@@ -146,9 +146,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.96 }}
                   onClick={handleDirectWhatsApp}
-                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-7 py-3.5 rounded-2xl shadow-xl transition flex items-center gap-2.5 cursor-pointer text-sm uppercase tracking-wider"
+                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-8 py-4 rounded-2xl shadow-xl transition flex items-center gap-3 cursor-pointer text-base sm:text-lg uppercase tracking-wider"
                 >
-                  <WhatsAppIcon className="w-5 h-5 text-[#0a2240]" />
+                  <WhatsAppIcon className="w-5.5 h-5.5 text-[#0a2240]" />
                   <span>WhatsApp Chat Now</span>
                 </motion.button>
 
@@ -159,9 +159,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                     pixelTracker.trackDonateClick(500, 'Contact Hero Secondary CTA');
                     onOpenDonateModal(500);
                   }}
-                  className="bg-[#071b34] hover:bg-[#163863] text-white font-semibold border border-[#da8a24]/50 px-7 py-3.5 rounded-2xl shadow-md transition flex items-center gap-2 cursor-pointer text-sm backdrop-blur-md"
+                  className="bg-[#071b34] hover:bg-[#163863] text-white font-semibold border border-[#da8a24]/50 px-8 py-4 rounded-2xl shadow-md transition flex items-center gap-2.5 cursor-pointer text-base sm:text-lg backdrop-blur-md"
                 >
-                  <Heart className="w-4 h-4 text-[#da8a24] fill-[#da8a24]" />
+                  <Heart className="w-5 h-5 text-[#da8a24] fill-[#da8a24]" />
                   <span>Donate Now</span>
                 </motion.button>
               </div>
@@ -193,14 +193,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               transition={{ duration: 0.6 }}
               className="lg:col-span-7 space-y-8"
             >
-              <div className="space-y-2 border-b border-slate-200/80 pb-6">
-                <span className="text-[#da8a24] font-semibold text-xs uppercase tracking-widest block">
+              <div className="space-y-3 border-b border-slate-200/80 pb-6">
+                <span className="text-[#da8a24] font-semibold text-sm sm:text-base uppercase tracking-widest block">
                   GET IN TOUCH DIRECTLY
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-semibold text-[#0a2240] tracking-tight">
+                <h2 className="text-3xl sm:text-5xl lg:text-5xl font-semibold text-[#0a2240] tracking-tight">
                   Direct Helplines & Office Locations
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-600 font-normal">
+                <p className="text-sm sm:text-lg text-slate-600 font-normal">
                   Our team is dedicated to serving you. Feel free to call, chat, or visit our offices anytime.
                 </p>
               </div>
@@ -209,52 +209,52 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
                 {/* 1. Call Our Helpline */}
-                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
-                      <PhoneCall className="w-5 h-5 text-[#da8a24]" />
+                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
+                      <PhoneCall className="w-6 h-6 text-[#da8a24]" />
                     </div>
                     <div className="space-y-1">
-                      <h3 className="font-semibold text-[#0a2240] text-base">Call Our Helpline</h3>
-                      <p className="text-xs text-slate-500 font-medium">Mon – Sat, 9:00 AM – 6:00 PM</p>
+                      <h3 className="font-semibold text-[#0a2240] text-lg sm:text-xl">Call Our Helpline</h3>
+                      <p className="text-sm text-slate-500 font-medium">Mon – Sat, 9:00 AM – 6:00 PM</p>
                     </div>
                   </div>
                   <a
                     href="tel:+919962294949"
-                    className="inline-block text-base sm:text-lg font-semibold text-[#da8a24] hover:underline pt-1"
+                    className="inline-block text-lg sm:text-xl font-semibold text-[#da8a24] hover:underline pt-1"
                   >
                     +91 99622 94949
                   </a>
                 </div>
 
                 {/* 2. WhatsApp Chat */}
-                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
-                      <WhatsAppIcon className="w-5 h-5 text-[#da8a24]" />
+                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
+                      <WhatsAppIcon className="w-6 h-6 text-[#da8a24]" />
                     </div>
                     <div className="space-y-1">
-                      <h3 className="font-semibold text-[#0a2240] text-base">WhatsApp Chat</h3>
-                      <p className="text-xs text-slate-500 font-normal">Instant response from coordinators</p>
+                      <h3 className="font-semibold text-[#0a2240] text-lg sm:text-xl">WhatsApp Chat</h3>
+                      <p className="text-sm text-slate-500 font-normal">Instant response from coordinators</p>
                     </div>
                   </div>
                   <button
                     onClick={handleDirectWhatsApp}
-                    className="w-full mt-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-xs py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-sm uppercase tracking-wider"
+                    className="w-full mt-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-sm py-3 px-5 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-sm uppercase tracking-wider"
                   >
-                    <WhatsAppIcon className="w-4 h-4 text-[#0a2240]" />
+                    <WhatsAppIcon className="w-4.5 h-4.5 text-[#0a2240]" />
                     <span>Chat Now</span>
                   </button>
                 </div>
 
                 {/* 3. Redhills Home Office */}
-                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
-                      <MapPin className="w-5 h-5 text-[#da8a24]" />
+                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
+                      <MapPin className="w-6 h-6 text-[#da8a24]" />
                     </div>
-                    <h3 className="font-semibold text-[#0a2240] text-base">Redhills Home Office</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                    <h3 className="font-semibold text-[#0a2240] text-lg sm:text-xl">Redhills Home Office</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
                       #244, Mallima Nagar, Vilagadupakkam, Redhills, Chennai - 600052
                     </p>
                   </div>
@@ -262,21 +262,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                     href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+244+Mallima+Nagar+Vilagadupakkam+Redhills+Chennai+600052"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#da8a24] hover:underline pt-2"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#da8a24] hover:underline pt-2"
                   >
                     <span>View Google Map</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
 
                 {/* 4. Corporate Office */}
-                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
-                      <Building2 className="w-5 h-5 text-[#da8a24]" />
+                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
+                      <Building2 className="w-6 h-6 text-[#da8a24]" />
                     </div>
-                    <h3 className="font-semibold text-[#0a2240] text-base">Corporate Office</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                    <h3 className="font-semibold text-[#0a2240] text-lg sm:text-xl">Corporate Office</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
                       #49, Venus Nagar Main Road, Kolathur, Chennai - 600099
                     </p>
                   </div>
@@ -284,10 +284,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                     href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+49+Venus+Nagar+Main+Road+Kolathur+Chennai+600099"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#da8a24] hover:underline pt-2"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#da8a24] hover:underline pt-2"
                   >
                     <span>View Google Map</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
 
@@ -305,24 +305,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               className="lg:col-span-5 space-y-6"
             >
               {/* Google Map Panel */}
-              <div className="bg-white p-5 rounded-3xl space-y-4">
+              <div className="bg-white p-6 rounded-3xl space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-[#0a2240] text-sm uppercase tracking-wider">
-                    <MapPin className="w-4 h-4 text-[#da8a24]" />
+                  <div className="flex items-center gap-2 font-semibold text-[#0a2240] text-base uppercase tracking-wider">
+                    <MapPin className="w-4.5 h-4.5 text-[#da8a24]" />
                     <span>Corporate Office Map</span>
                   </div>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+49+Venus+Nagar+Main+Road+Kolathur+Chennai+600099"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-[#da8a24] hover:underline flex items-center gap-1"
+                    className="text-sm font-semibold text-[#da8a24] hover:underline flex items-center gap-1"
                   >
                     <span>Full Map</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
 
-                <div className="w-full h-64 rounded-2xl overflow-hidden relative bg-slate-100">
+                <div className="w-full h-72 rounded-2xl overflow-hidden relative bg-slate-100">
                   <iframe
                     title="Truth Foundation Office Location"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.642940251147!2d80.2078603!3d13.1221764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5264ff9c5a15bd%3A0x429671d18bb76211!2s49%2C%20Venus%20Nagar%20Main%20Rd%2C%20Venus%20Nagar%2C%20Kolathur%2C%20Chennai%2C%20Tamil%20Nadu%20600099!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -337,18 +337,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               </div>
 
               {/* Working Hours & Visit Info Card (Dark Navy #0a2240) */}
-              <div className="bg-[#0a2240] text-white p-6 sm:p-7 rounded-3xl space-y-4">
+              <div className="bg-[#0a2240] text-white p-6 sm:p-8 rounded-3xl space-y-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-semibold">
-                    <Clock className="w-5 h-5 text-[#0a2240]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-semibold">
+                    <Clock className="w-6 h-6 text-[#0a2240]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">Center Visit Hours</h3>
-                    <p className="text-xs text-[#da8a24] font-medium">Redhills & Thiruvallur Campuses</p>
+                    <h3 className="text-xl sm:text-2xl font-semibold text-white">Center Visit Hours</h3>
+                    <p className="text-sm text-[#da8a24] font-medium">Redhills & Thiruvallur Campuses</p>
                   </div>
                 </div>
 
-                <div className="space-y-2 text-xs text-slate-300">
+                <div className="space-y-3 text-sm sm:text-base text-slate-300">
                   <div className="flex items-center justify-between py-2 border-b border-[#163863]">
                     <span>Monday – Saturday</span>
                     <span className="font-semibold text-white">9:00 AM – 6:00 PM</span>
@@ -359,7 +359,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-300 leading-relaxed font-normal pt-1">
+                <p className="text-sm text-slate-300 leading-relaxed font-normal pt-1">
                   We encourage donors to spend time with children and elders. Prior confirmation via phone or WhatsApp is recommended.
                 </p>
               </div>
@@ -400,13 +400,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
               {/* Right Column: Heading & CTA Button (7 cols) */}
               <div className="lg:col-span-7 space-y-5">
-                <span className="text-[#da8a24] font-semibold text-xs uppercase tracking-widest block">
+                <span className="text-[#da8a24] font-semibold text-sm sm:text-base uppercase tracking-widest block">
                   MAKE AN IMMEDIATE IMPACT
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-semibold text-white tracking-tight">
+                <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight">
                   Support a Cause. <span className="text-[#da8a24]">Change a Life.</span>
                 </h2>
-                <p className="text-xs sm:text-base text-slate-300 font-normal leading-relaxed">
+                <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed">
                   Every contribution directly provides warm nutritious meals, school textbooks, medical care, and dignity to orphaned children and elderly seniors across Chennai.
                 </p>
 
@@ -418,9 +418,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                       pixelTracker.trackDonateClick(500, 'Contact Final Support CTA');
                       onOpenDonateModal(500);
                     }}
-                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-8 py-4 rounded-2xl shadow-xl transition flex items-center gap-2 cursor-pointer text-sm uppercase tracking-wider min-h-[48px]"
+                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-9 py-4.5 rounded-2xl shadow-xl transition flex items-center gap-2.5 cursor-pointer text-base sm:text-lg uppercase tracking-wider min-h-[52px]"
                   >
-                    <Heart className="w-5 h-5 fill-[#0a2240]" />
+                    <Heart className="w-5.5 h-5.5 fill-[#0a2240]" />
                     <span>Donate Now</span>
                   </motion.button>
                 </div>
@@ -429,21 +429,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
             </div>
 
             {/* Horizontal Trust Indicators Strip */}
-            <div className="pt-6 border-t border-[#163863] grid grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-semibold text-slate-300">
-              <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-[#da8a24] shrink-0" />
+            <div className="pt-6 border-t border-[#163863] grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm sm:text-base font-semibold text-slate-300">
+              <div className="flex items-center gap-2.5">
+                <Lock className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
                 <span>Safe & Secure Donations</span>
               </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#da8a24] shrink-0" />
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
                 <span>Direct Impact Delivery</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#da8a24] shrink-0" />
+              <div className="flex items-center gap-2.5">
+                <Award className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
                 <span>80G Tax Exemption</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-[#da8a24] shrink-0" />
+              <div className="flex items-center gap-2.5">
+                <Users className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
                 <span>Trusted by Communities</span>
               </div>
             </div>
@@ -472,14 +472,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               <CheckCircle2 className="w-8 h-8 text-[#da8a24]" />
             </div>
 
-            <h3 className="text-2xl font-semibold text-white">Message Received!</h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+            <h3 className="text-3xl font-semibold text-white">Message Received!</h3>
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
               Thank you for contacting Truth Foundation. Our coordinator has received your message and will respond to your phone or email within 24 hours.
             </p>
 
             <button
               onClick={() => setIsSubmitted(false)}
-              className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold py-3 rounded-xl transition cursor-pointer text-xs uppercase tracking-wider"
+              className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold py-3.5 rounded-xl transition cursor-pointer text-sm uppercase tracking-wider"
             >
               Close Window
             </button>

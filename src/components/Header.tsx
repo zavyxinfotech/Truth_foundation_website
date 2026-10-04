@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="hidden sm:inline font-medium">WhatsApp</span>
           </motion.button>
 
-          {/* Donate Now button (Hidden on mobile, visible on sm and up) */}
+          {/* Donate Now button (Hidden on mobile, visible on sm and up) - ENLARGED */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
@@ -151,11 +151,11 @@ export const Header: React.FC<HeaderProps> = ({
               pixelTracker.trackDonateClick(500, 'Header Donate Button');
               onOpenDonateModal(500);
             }}
-            className="hidden sm:flex items-center justify-center gap-1.5 sm:gap-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] rounded-xl font-semibold shadow-md cursor-pointer transition-all shrink-0 uppercase tracking-wider
-              px-3.5 py-2 sm:px-4.5 sm:py-2.5 lg:px-6 lg:py-2.5 text-xs sm:text-sm lg:text-base"
+            className="hidden sm:flex items-center justify-center gap-2 sm:gap-2.5 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] rounded-xl font-semibold shadow-md cursor-pointer transition-all shrink-0 uppercase tracking-wider
+              px-5 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-3.5 text-sm sm:text-base lg:text-lg"
             aria-label="Donate Now"
           >
-            <Heart className="w-4 h-4 lg:w-5 lg:h-5 fill-[#0a2240] shrink-0 animate-pulse" />
+            <Heart className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 fill-[#0a2240] shrink-0 animate-pulse" />
             <span className="inline font-semibold">Donate</span>
           </motion.button>
 
