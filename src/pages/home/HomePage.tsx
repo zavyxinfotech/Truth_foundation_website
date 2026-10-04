@@ -10,7 +10,6 @@ import { CURRENT_CAMPAIGN, FUTURE_CAMPAIGNS } from '../../data/campaignData';
 import { SponsorCauseSection } from '../../components/SponsorCauseSection';
 
 const AboutSection = lazy(() => import('../../components/AboutSection').then(m => ({ default: m.AboutSection })));
-const TrustSection = lazy(() => import('../../components/TrustSection').then(m => ({ default: m.TrustSection })));
 const TestimonialsSection = lazy(() => import('../../components/TestimonialsSection').then(m => ({ default: m.TestimonialsSection })));
 const FAQSection = lazy(() => import('../../components/FAQSection').then(m => ({ default: m.FAQSection })));
 const Footer = lazy(() => import('../../components/Footer').then(m => ({ default: m.Footer })));
@@ -70,12 +69,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <AboutSection />
         </ScrollSection>
 
-        {/* Trust & Accreditations Section (Dark #0a2240) */}
-        <ScrollSection id="trust">
-          <TrustSection />
-        </ScrollSection>
-
-        {/* Transition: Dark TrustSection -> Light TestimonialsSection */}
+        {/* Transition: Dark AboutSection -> Light TestimonialsSection */}
         <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
 
         {/* Testimonials (Light #f8fafc) */}

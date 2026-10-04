@@ -42,12 +42,12 @@ import elderlyFoodCareDrive from '../../assets/images/elderly_food_care_drive.jp
 import heroSpecialNeedsCare from '../../assets/images/hero_special_needs_care.jpg?w=800&format=webp';
 import heroTuitionSchoolMeals from '../../assets/images/hero_tuition_school_meals.jpg?w=800&format=webp';
 
-import sponsorMealImg from '../../assets/images/Sponsor_meal.jpeg?w=600&format=webp';
-import sponsorVegMealImg from '../../assets/images/Sponsor_veg_meal.jpeg?w=600&format=webp';
-import sponsorVegDinnerImg from '../../assets/images/Sponsor_veg_dinner.jpeg?w=600&format=webp';
-import sponsorEducationImg from '../../assets/images/Education_support.jpeg?w=600&format=webp';
-import sponsorHealthcareImg from '../../assets/images/Healthcare_support.jpeg?w=600&format=webp';
-import sponsorClothingImg from '../../assets/images/clothing_support.jpeg?w=600&format=webp';
+import sponsorBreakfastImg from '../../images/veg_beakfast.png?w=600&format=webp';
+import sponsorLunchImg from '../../images/lunch_high_rate.png?w=600&format=webp';
+import sponsorDinnerImg from '../../images/veg_dinner.png?w=600&format=webp';
+import sponsorEducationImg from '../../images/education_support.png?w=600&format=webp';
+import sponsorHealthcareImg from '../../images/medical_support.png?w=600&format=webp';
+import sponsorClothingImg from '../../images/clothing_support.png?w=600&format=webp';
 
 interface AboutPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -163,7 +163,7 @@ const SPONSOR_CAUSES = [
     title: 'Breakfast Support',
     amount: 300,
     amountLabel: '₹300',
-    image: sponsorMealImg,
+    image: sponsorBreakfastImg,
     icon: Utensils,
     description: 'Provide wholesome morning breakfast meals to orphaned children and elders to start their day with energy.'
   },
@@ -172,7 +172,7 @@ const SPONSOR_CAUSES = [
     title: 'Hot Lunch & Meals',
     amount: 500,
     amountLabel: '₹500',
-    image: sponsorVegMealImg,
+    image: sponsorLunchImg,
     icon: Utensils,
     description: 'Sponsor protein-rich hot lunches for 45 orphanage kids and 20 abandoned seniors at our Redhills campus.'
   },
@@ -181,7 +181,7 @@ const SPONSOR_CAUSES = [
     title: 'Wholesome Dinner',
     amount: 1000,
     amountLabel: '₹1,000',
-    image: sponsorVegDinnerImg,
+    image: sponsorDinnerImg,
     icon: Utensils,
     description: 'Provide freshly cooked warm dinner meals for resident children and evening tuition students.'
   },
@@ -1064,7 +1064,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             </p>
           </div>
 
-          {/* Desktop Display: 6 Cause Items Grid with Larger Images and No Description Text */}
+          {/* Desktop Display: 6 Cause Items Grid with Round Frames & Increased Donate Button Size */}
           <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
             {SPONSOR_CAUSES.map((cause) => (
               <motion.div
@@ -1077,29 +1077,29 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 className="bg-transparent border-0 shadow-none rounded-[24px] p-3 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
               >
                 <div>
-                  {/* Image Container: Larger Aspect Ratio on Desktop */}
-                  <div className="relative w-full aspect-[4/5] rounded-[20px] overflow-hidden bg-slate-100 shadow-xs">
+                  {/* Circular / Round Frame for the Image */}
+                  <div className="relative w-36 h-36 sm:w-40 sm:h-40 mx-auto rounded-full overflow-hidden p-1.5 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/50 shadow-md ring-4 ring-[#da8a24]/10 shrink-0">
                     <img
                       src={cause.image}
                       alt={cause.title}
-                      className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover object-center rounded-full transform transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-2.5 right-2.5 bg-[#0a2240]/85 backdrop-blur-md text-[#da8a24] font-semibold text-xs px-2.5 py-1 rounded-full shadow-sm">
+                    <div className="absolute top-1 right-1 bg-[#0a2240] text-[#da8a24] font-medium text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
                       {cause.amountLabel}
                     </div>
                   </div>
 
-                  {/* Title Only Below Image */}
+                  {/* Title Below Image: Non-bold Font */}
                   <div className="pt-3.5 pb-2 px-1 flex flex-col items-center text-center">
-                    <h3 className="font-semibold text-[#0a2240] text-base lg:text-lg leading-snug group-hover:text-[#da8a24] transition-colors">
+                    <h3 className="font-medium text-[#0a2240] text-base lg:text-lg leading-snug group-hover:text-[#da8a24] transition-colors">
                       {cause.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Bottom CTA Button */}
-                <div className="pt-1">
-                  <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24]/10 group-hover:bg-[#da8a24] text-[#0a2240] font-semibold text-xs sm:text-sm py-2 px-3 rounded-full transition-colors">
+                {/* Increased Size Donate Button */}
+                <div className="pt-2">
+                  <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-medium text-xs sm:text-sm py-2.5 px-3.5 rounded-full shadow-md transition-colors uppercase tracking-wider min-h-[40px]">
                     <Heart className="w-4 h-4 fill-[#0a2240]" />
                     <span>Donate ({cause.amountLabel})</span>
                   </span>
@@ -1108,7 +1108,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             ))}
           </div>
 
-          {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track with Larger Images and No Description Text */}
+          {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track with Round Frames */}
           <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-1">
             <motion.div
               animate={{ x: ['0%', '-50%'] }}
@@ -1125,29 +1125,29 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   className="w-[210px] shrink-0 bg-transparent border-0 shadow-none rounded-[22px] p-2.5 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
                 >
                   <div>
-                    {/* Image Container: Larger Image */}
-                    <div className="relative w-full aspect-square rounded-[18px] overflow-hidden bg-slate-100">
+                    {/* Round Frame for Mobile */}
+                    <div className="relative w-36 h-36 mx-auto rounded-full overflow-hidden p-1.5 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/50 shadow-md ring-4 ring-[#da8a24]/10 shrink-0">
                       <img
                         src={cause.image}
                         alt={cause.title}
-                        className="w-full h-full object-cover object-center"
+                        className="w-full h-full object-cover object-center rounded-full"
                       />
-                      <div className="absolute top-2 right-2 bg-[#0a2240]/85 backdrop-blur-md text-[#da8a24] font-semibold text-[10px] px-2 py-0.5 rounded-full shadow-sm">
+                      <div className="absolute top-1 right-1 bg-[#0a2240] text-[#da8a24] font-medium text-[10px] px-2 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
                         {cause.amountLabel}
                       </div>
                     </div>
 
-                    {/* Title Only Below Image */}
+                    {/* Title Below Image: Non-bold Font */}
                     <div className="pt-3 pb-1 px-1 flex flex-col items-center text-center">
-                      <h3 className="font-semibold text-[#0a2240] text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
+                      <h3 className="font-medium text-[#0a2240] text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
                         {cause.title}
                       </h3>
                     </div>
                   </div>
 
-                  {/* Bottom CTA Button */}
-                  <div className="pt-1">
-                    <span className="inline-flex items-center justify-center gap-1 w-full bg-[#da8a24]/10 group-hover:bg-[#da8a24] text-[#0a2240] font-semibold text-xs py-1.5 px-2 rounded-full transition-colors">
+                  {/* Increased Size Donate Button */}
+                  <div className="pt-2">
+                    <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-medium text-xs py-2.5 px-3 rounded-full shadow-md transition-colors uppercase tracking-wider min-h-[38px]">
                       <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
                       <span>Donate ({cause.amountLabel})</span>
                     </span>

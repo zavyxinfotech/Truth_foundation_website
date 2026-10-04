@@ -100,16 +100,16 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Center: Desktop Navigation Links (No background, underline only for active) */}
-        <nav className="hidden md:flex items-center gap-3 lg:gap-7">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-8">
           {navLinks.map((link) => {
             const isActive = currentPage === link.page;
             return (
               <button
                 key={link.page}
                 onClick={() => handleNavClick(link.page)}
-                className={`px-1 py-2 text-sm lg:text-base font-medium transition-colors cursor-pointer relative bg-transparent border-none ${
+                className={`px-1 py-2 text-base lg:text-lg font-normal transition-colors cursor-pointer relative bg-transparent border-none ${
                   isActive
-                    ? 'text-[#da8a24] font-semibold'
+                    ? 'text-[#da8a24] font-medium'
                     : 'text-slate-200 hover:text-[#da8a24]'
                 }`}
               >
