@@ -30,6 +30,8 @@ import { pixelTracker } from '../../utils/pixelTracker';
 
 // Real Project Image Imports
 import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
+import galleryHeroBgDesktop from '../../assets/images/about_page_hero_section_desktop_view.jpeg';
+import galleryHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
 
 interface GalleryPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -83,9 +85,24 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         onNavigate={onNavigate}
       />
 
-      {/* 2. GALLERY HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT) */}
+      {/* 2. GALLERY HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT WITH HERO BACKGROUND IMAGES) */}
       <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         
+        {/* Desktop Background Image (Hidden on Mobile) */}
+        <div 
+          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-85"
+          style={{ backgroundImage: `url(${galleryHeroBgDesktop})` }}
+        />
+
+        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
+        <div 
+          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-85"
+          style={{ backgroundImage: `url(${galleryHeroBgMobile})` }}
+        />
+
+        {/* Ambient Dark Gradient Overlay for optimal readability & crisp photo display */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/60 to-transparent pointer-events-none" />
+
         {/* Subtle Ambient Background Glows */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
