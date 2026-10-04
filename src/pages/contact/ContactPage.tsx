@@ -24,13 +24,12 @@ import {
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { FloatingWhatsApp } from '../../components/FloatingWhatsApp';
-import { DarkToLightDivider, LightToDarkDivider } from '../../components/SectionDividers';
+import { DarkToLightDivider } from '../../components/SectionDividers';
 import { WhatsAppIcon } from '../../components/WhatsAppIcon';
 import { pixelTracker } from '../../utils/pixelTracker';
 
 // Real Project Image Imports
 import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
-import trustSectionOrganicMeal from '../../assets/images/trust_section_organic_meal.jpg?w=800&format=webp';
 import contactHeroBgDesktop from '../../assets/images/contact_page_hero_background_image_desktop_view.jpg';
 import contactHeroBgMobile from '../../assets/images/contact_page_hero_background_image_mobile_view.jpeg';
 
@@ -48,63 +47,6 @@ const INQUIRY_SUBJECTS = [
   'Corporate Sponsorship / CSR Partnership'
 ];
 
-const CONTACT_FAQS = [
-  {
-    q: 'How can I visit the Redhills Orphanage or Special School?',
-    a: 'Visitors are warmly welcome! You can visit our Redhills campus or Thiruvallur Special School between Monday and Saturday (9:00 AM – 6:00 PM). Please call us at +91 99622 94949 or submit the contact form to confirm timing.'
-  },
-  {
-    q: 'How do I obtain my 80G tax exemption certificate?',
-    a: 'When you donate online or via bank transfer, an official receipt with 80G tax exemption details is automatically emailed and sent on WhatsApp. If you need a duplicate receipt, select "80G Tax Exemption Receipt Request" in our form above.'
-  },
-  {
-    q: 'Can I donate rice, stationery, or clothes instead of money?',
-    a: 'Yes! We gratefully accept bulk rice bags, grocery provisions, school stationery kits (notebooks, bags, pens), hygiene items, and new clothes at both our Redhills and Kolathur offices.'
-  },
-  {
-    q: 'How can I sign up as a volunteer educator or event helper?',
-    a: 'We welcome volunteers to teach at our 8 evening tuition centers, conduct art workshops, or help at health camps. Simply fill out the form selecting "Volunteer Application" or WhatsApp us directly.'
-  }
-];
-
-const MORE_WAYS_ITEMS = [
-  {
-    title: 'Phone Support',
-    subtitle: '+91 99622 94949',
-    description: 'Mon - Sat, 9am - 6pm hotline for immediate assistance.',
-    icon: Phone,
-    action: 'tel:+919962294949'
-  },
-  {
-    title: 'WhatsApp Chat',
-    subtitle: 'Instant WhatsApp',
-    description: 'Connect directly with our helpline coordinators.',
-    icon: MessageSquare,
-    action: 'https://wa.me/919962294949'
-  },
-  {
-    title: 'Email Us',
-    subtitle: 'truthfoundationngo@gmail.com',
-    description: 'Send official CSR proposals, 80G queries, or media inquiries.',
-    icon: Mail,
-    action: 'mailto:truthfoundationngo@gmail.com'
-  },
-  {
-    title: 'Visit Our Centers',
-    subtitle: 'Redhills & Kolathur',
-    description: 'Schedule a visit to spend time with children and seniors.',
-    icon: MapPin,
-    action: '#map-section'
-  },
-  {
-    title: 'Volunteer',
-    subtitle: 'Teach or Assist',
-    description: 'Join our evening tuition centers or medical drive teams.',
-    icon: Users,
-    action: '#form-section'
-  }
-];
-
 export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onNavigate }) => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -115,7 +57,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -430,134 +371,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
         </div>
       </section>
 
-      {/* 5. ORGANIC SECTION DIVIDER (Light to Dark) */}
-      <LightToDarkDivider bgFrom="#f8fafc" bgTo="#0a2240" />
 
-      {/* 6. MORE WAYS TO CONNECT SECTION (Dark Navy #0a2240 Section) */}
-      <section className="py-16 sm:py-24 bg-[#0a2240] text-white relative overflow-hidden">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-12">
-          
-          {/* Header */}
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-[#da8a24] font-semibold text-xs uppercase tracking-widest block">
-              MORE WAYS TO CONNECT
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-semibold text-white tracking-tight">
-              Together, We Create Brighter Futures
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-              Explore the multiple channels available to partner, donate provisions, volunteer as an educator, or request official receipts.
-            </p>
-          </div>
-
-          {/* Grid Layout: 5 Connection Items + Organic Image */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* 5 Editorial Connection Items (8 cols) */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {MORE_WAYS_ITEMS.map((item, idx) => {
-                const IconComp = item.icon;
-                return (
-                  <motion.a
-                    key={idx}
-                    href={item.action}
-                    whileHover={{ y: -3 }}
-                    className={`p-5 rounded-2xl bg-[#071b34] border border-[#163863] space-y-2 hover:border-[#da8a24] transition-all group ${
-                      idx === MORE_WAYS_ITEMS.length - 1 ? 'sm:col-span-2' : ''
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-[#da8a24]/15 border border-[#da8a24]/30 flex items-center justify-center text-[#da8a24]">
-                        <IconComp className="w-4 h-4 text-[#da8a24]" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-white text-sm group-hover:text-[#da8a24] transition-colors">
-                          {item.title}
-                        </h3>
-                        <div className="text-[11px] text-[#da8a24] font-medium">
-                          {item.subtitle}
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-xs text-slate-300 leading-relaxed font-normal pt-1">
-                      {item.description}
-                    </p>
-                  </motion.a>
-                );
-              })}
-            </div>
-
-            {/* Organic Small Community Image (5 cols) */}
-            <div className="lg:col-span-5 flex items-center justify-center">
-              <div className="relative w-full max-w-[400px] p-2">
-                <div 
-                  className="w-full aspect-[4/3] overflow-hidden border-2 border-[#da8a24] shadow-2xl bg-[#071b34]"
-                  style={{ borderRadius: '80px 20px 80px 20px' }}
-                >
-                  <img
-                    src={trustSectionOrganicMeal}
-                    alt="Truth Foundation Community Support"
-                    className="w-full h-full object-cover object-center"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Contact FAQs Accordion */}
-          <div className="pt-8 border-t border-[#163863] space-y-6">
-            <div className="text-center space-y-2">
-              <span className="text-[#da8a24] font-semibold text-xs uppercase tracking-widest block">
-                FREQUENTLY ASKED QUESTIONS
-              </span>
-              <h3 className="text-xl sm:text-2xl font-semibold text-white">Visit & Donation FAQs</h3>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-5xl mx-auto">
-              {CONTACT_FAQS.map((faq, idx) => {
-                const isOpen = openFaqIndex === idx;
-                return (
-                  <div
-                    key={idx}
-                    className="bg-[#071b34] rounded-2xl border border-[#163863] overflow-hidden transition-all"
-                  >
-                    <button
-                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                      className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-semibold text-white text-xs sm:text-sm hover:text-[#da8a24] transition cursor-pointer"
-                    >
-                      <span className="flex items-center gap-2.5">
-                        <HelpCircle className="w-4 h-4 text-[#da8a24] shrink-0" />
-                        {faq.q}
-                      </span>
-                      <ChevronRight className={`w-4 h-4 text-[#da8a24] transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-90' : ''}`} />
-                    </button>
-
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="px-5 pb-5 text-xs text-slate-300 leading-relaxed font-normal border-t border-[#163863]/60 pt-3 pl-11"
-                        >
-                          {faq.a}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 7. ORGANIC SECTION DIVIDER (Dark to Light) */}
-      <DarkToLightDivider bgFrom="#0a2240" bgTo="#ffffff" />
 
       {/* 8. SUPPORT A CAUSE / FINAL DONATION CTA SECTION (White Section) */}
       <section className="py-16 sm:py-24 bg-white text-slate-900 relative">
