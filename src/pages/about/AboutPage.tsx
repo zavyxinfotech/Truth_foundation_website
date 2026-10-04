@@ -418,7 +418,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       <section className="py-12 sm:py-16 bg-[#f8fafc] text-slate-900 relative overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
             {/* LEFT COLUMN: FOUNDATION HEADING, FOUNDERS IN ROUND FRAMES & INCREASED TEXT SIZE */}
             <motion.div
@@ -438,38 +438,38 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 </h2>
               </div>
 
-              {/* Founders Section with Round Frames & Inline Name/Role */}
-              <div className="space-y-3.5 max-w-[520px]">
+              {/* Founders Section with Enlarged Round Frames & No Card Background/Shadow */}
+              <div className="space-y-5 max-w-[560px]">
                 {/* 1st Founder: Round Frame Aligned on Left */}
-                <div className="flex items-center gap-4 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 shadow-sm transition-all hover:shadow-md">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
+                <div className="flex items-center gap-5 sm:gap-6 bg-transparent p-0 border-0 shadow-none">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
                     <img
                       src={storyImage}
                       alt="Dr. D.Dayanandam"
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
-                  <div className="space-y-0.5">
-                    <div className="text-base sm:text-xl font-normal text-[#0a2240]">
+                  <div className="space-y-1">
+                    <div className="text-lg sm:text-2xl font-normal text-[#0a2240]">
                       Dr. D.Dayanandam
                     </div>
-                    <div className="text-xs sm:text-sm font-normal text-slate-600">
+                    <div className="text-sm sm:text-base font-normal text-slate-600">
                       Founder & President of TRUTH FOUNDATION
                     </div>
                   </div>
                 </div>
 
                 {/* 2nd Founder: Round Frame Aligned on Right */}
-                <div className="flex items-center justify-between gap-4 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 shadow-sm transition-all hover:shadow-md">
-                  <div className="space-y-0.5 text-left">
-                    <div className="text-base sm:text-xl font-normal text-[#0a2240]">
+                <div className="flex items-center justify-between gap-5 sm:gap-6 bg-transparent p-0 border-0 shadow-none">
+                  <div className="space-y-1 text-left">
+                    <div className="text-lg sm:text-2xl font-normal text-[#0a2240]">
                       Mrs. Shara Daya
                     </div>
-                    <div className="text-xs sm:text-sm font-normal text-slate-600">
+                    <div className="text-sm sm:text-base font-normal text-slate-600">
                       Managing Trustee
                     </div>
                   </div>
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
                     <img
                       src={elderlyFoodCareDrive}
                       alt="Mrs. Shara Daya"
@@ -513,10 +513,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-6 space-y-6"
             >
-              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
+              <span className="text-[#da8a24] font-normal text-xs sm:text-sm uppercase tracking-widest block">
                 OUR JOURNEY
               </span>
-              <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-normal text-[#0a2240] tracking-tight">
                 14-Year Timeline of Growth & Impact
               </h2>
 
