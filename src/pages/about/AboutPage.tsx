@@ -715,20 +715,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       {/* 7. ORGANIC SECTION DIVIDER (Light to Dark) */}
       <LightToDarkDivider bgFrom="#ffffff" bgTo="#071b34" />
 
-      {/* 8. OUR PROGRAMS / INITIATIVES SECTION (Dark Blue #071b34 Section) */}
-      <section className="py-16 sm:py-24 bg-[#071b34] text-white relative overflow-hidden">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
+      {/* 8. OUR PROGRAMS / INITIATIVES SECTION (Dark Blue #071b34 Section with White Glassmorphism Card) */}
+      <section className="py-8 sm:py-12 bg-[#071b34] text-white relative overflow-hidden">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-6 relative z-10">
           
-          {/* Section Header: Left Eyebrow & Title, Right Small Navigation Circular Arrow Buttons */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2">
-            <div className="space-y-1.5 max-w-2xl text-left">
-              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-1">
+            <div className="space-y-1 max-w-2xl text-left">
+              <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
                 WHAT WE DO
               </span>
-              <h2 className="text-2xl sm:text-4xl font-semibold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-normal text-white tracking-tight">
                 Our Programs
               </h2>
-              <p className="text-sm sm:text-base text-slate-300 font-medium leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
                 Comprehensive care and support for children, elderly, and communities across Tamil Nadu.
               </p>
             </div>
@@ -757,11 +757,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           {/* Carousel Stage Container */}
           <div className="relative w-full max-w-[1240px] mx-auto">
             
-            {/* Desktop Stage (No background card, no side arrows) */}
-            <div className="hidden md:flex items-center justify-between relative overflow-hidden min-h-[440px]">
+            {/* Desktop Stage: Center Card with White Glassmorphism & No Numbers */}
+            <div className="hidden md:flex items-center justify-between relative overflow-hidden min-h-[380px]">
               
               {/* Left Side: Active Program Image */}
-              <div className="w-[44%] h-[380px] lg:h-[420px] rounded-[28px] overflow-hidden relative shadow-2xl shrink-0 bg-[#0a2240]">
+              <div className="w-[44%] h-[340px] lg:h-[380px] rounded-[28px] overflow-hidden relative shadow-xl shrink-0 bg-[#0a2240]">
                 <img
                   src={PROGRAMS[currentProgramIndex].image}
                   alt={PROGRAMS[currentProgramIndex].title}
@@ -770,35 +770,32 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Center Overlapping White Content Panel */}
+              {/* Center Overlapping White Glassmorphism Content Panel (No 01, 02, 03, 04 numbers) */}
               <motion.div
                 key={currentProgramIndex}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
-                className="w-[56%] -ml-16 relative z-20 bg-white text-slate-900 rounded-[30px] p-6 lg:p-8 border-0 shadow-none flex flex-col justify-between space-y-4"
+                className="w-[56%] -ml-16 relative z-20 bg-white/90 backdrop-blur-md border border-white/60 text-slate-900 rounded-[30px] p-5 lg:p-7 shadow-2xl flex flex-col justify-between space-y-3"
               >
-                {/* Header Row: Big 01 Number, Icon, Title, Badge */}
-                <div className="space-y-3">
+                {/* Header Row */}
+                <div className="space-y-2.5">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl lg:text-5xl font-semibold text-[#da8a24]/80 tracking-tighter">
-                        0{currentProgramIndex + 1}
-                      </span>
-                      <div className="w-10 h-10 rounded-xl bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
+                      <div className="w-9 h-9 rounded-xl bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
                         {React.createElement(PROGRAMS[currentProgramIndex].icon, { className: "w-5 h-5" })}
                       </div>
                       <div>
-                        <h3 className="text-lg lg:text-2xl font-semibold text-[#0a2240] leading-snug">
+                        <h3 className="text-lg lg:text-2xl font-normal text-[#0a2240] leading-snug">
                           {PROGRAMS[currentProgramIndex].title}
                         </h3>
-                        <p className="text-xs text-slate-500 font-medium">
+                        <p className="text-xs text-slate-500 font-normal">
                           {PROGRAMS[currentProgramIndex].location}
                         </p>
                       </div>
                     </div>
                     
-                    <span className="text-xs font-semibold text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
+                    <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
                       {PROGRAMS[currentProgramIndex].tag}
                     </span>
                   </div>
@@ -810,11 +807,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 </div>
 
                 {/* Feature Bullet List */}
-                <div className="pt-3 border-t border-slate-100 space-y-2">
+                <div className="pt-2.5 border-t border-slate-200/60 space-y-2">
                   {PROGRAMS[currentProgramIndex].details.map((detail, dIdx) => (
-                    <div key={dIdx} className="flex items-center gap-2.5 text-xs lg:text-sm text-slate-700 font-medium">
-                      <div className="w-5 h-5 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="w-3.5 h-3.5 stroke-[3]" />
+                    <div key={dIdx} className="flex items-center gap-2.5 text-xs lg:text-sm text-slate-700 font-normal">
+                      <div className="w-4.5 h-4.5 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
                       </div>
                       <span>{detail}</span>
                     </div>
@@ -822,24 +819,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 </div>
               </motion.div>
 
-              {/* Right Side: Peek of Next Program Image */}
+              {/* Right Side: Peek of Next Program Image (No number overlay) */}
               <div
                 onClick={handleNextProgram}
-                className="w-[20%] h-[340px] lg:h-[380px] rounded-[24px] overflow-hidden relative opacity-75 scale-95 shrink-0 shadow-lg border border-slate-700/50 cursor-pointer hover:opacity-95 transition-all group"
+                className="w-[20%] h-[300px] lg:h-[340px] rounded-[24px] overflow-hidden relative opacity-75 scale-95 shrink-0 shadow-lg border border-slate-700/50 cursor-pointer hover:opacity-95 transition-all group"
               >
                 <img
                   src={PROGRAMS[(currentProgramIndex + 1) % PROGRAMS.length].image}
                   alt={PROGRAMS[(currentProgramIndex + 1) % PROGRAMS.length].title}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3 bg-[#0a2240]/90 backdrop-blur-sm text-[#da8a24] text-lg font-semibold px-2.5 py-0.5 rounded-lg border border-[#da8a24]/30">
-                  0{(currentProgramIndex + 1) % PROGRAMS.length + 1}
-                </div>
               </div>
 
             </div>
 
-            {/* Mobile Stage (No background card, borderless transparent container with increased text size) */}
+            {/* Mobile Stage */}
             <div className="block md:hidden relative overflow-hidden">
               <div className="relative flex items-center">
                 
@@ -847,7 +841,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 <div className="w-full pr-4">
                   
                   {/* Top Image */}
-                  <div className="w-full h-48 sm:h-56 rounded-[22px] overflow-hidden relative shadow-lg bg-[#0a2240]">
+                  <div className="w-full h-44 sm:h-52 rounded-[22px] overflow-hidden relative shadow-lg bg-[#0a2240]">
                     <img
                       src={PROGRAMS[currentProgramIndex].image}
                       alt={PROGRAMS[currentProgramIndex].title}
@@ -855,47 +849,41 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     />
                   </div>
 
-                  {/* Overlapping Content Box (Borderless, No Background on Mobile) */}
+                  {/* Overlapping Content Box */}
                   <motion.div
                     key={`mobile-${currentProgramIndex}`}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="pt-4 relative z-20 bg-transparent text-white border-0 shadow-none space-y-3"
+                    className="pt-3 relative z-20 bg-transparent text-white border-0 shadow-none space-y-2.5"
                   >
-                    {/* Number + Title + Tag */}
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-3xl font-semibold text-[#da8a24]">
-                            0{currentProgramIndex + 1}
-                          </span>
-                          <div className="w-8 h-8 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
-                            {React.createElement(PROGRAMS[currentProgramIndex].icon, { className: "w-4 h-4" })}
-                          </div>
+                        <div className="w-7 h-7 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
+                          {React.createElement(PROGRAMS[currentProgramIndex].icon, { className: "w-4 h-4" })}
                         </div>
-                        <span className="text-xs font-semibold text-[#da8a24] bg-[#da8a24]/15 px-2.5 py-0.5 rounded-full">
+                        <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-2.5 py-0.5 rounded-full">
                           {PROGRAMS[currentProgramIndex].tag}
                         </span>
                       </div>
 
-                      <h3 className="text-lg sm:text-xl font-semibold text-white leading-snug">
+                      <h3 className="text-base sm:text-lg font-normal text-white leading-snug">
                         {PROGRAMS[currentProgramIndex].title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-slate-300 font-medium">
+                      <p className="text-xs text-slate-300 font-normal">
                         {PROGRAMS[currentProgramIndex].location}
                       </p>
                     </div>
 
-                    <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
                       {PROGRAMS[currentProgramIndex].description}
                     </p>
 
-                    <div className="pt-2 border-t border-slate-700/60 space-y-2">
+                    <div className="pt-2 border-t border-slate-700/60 space-y-1.5">
                       {PROGRAMS[currentProgramIndex].details.map((detail, dIdx) => (
-                        <div key={dIdx} className="flex items-center gap-2 text-sm sm:text-base text-slate-200 font-medium">
-                          <div className="w-4.5 h-4.5 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
-                            <CheckCircle2 className="w-3 h-3 stroke-[3]" />
+                        <div key={dIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 font-normal">
+                          <div className="w-4 h-4 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
+                            <CheckCircle2 className="w-3 h-3" />
                           </div>
                           <span>{detail}</span>
                         </div>
@@ -908,7 +896,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 {/* Right Peek Image on Mobile */}
                 <div
                   onClick={handleNextProgram}
-                  className="w-7 h-48 rounded-r-xl overflow-hidden opacity-60 absolute right-0 top-3 border-l border-slate-700 shrink-0 cursor-pointer"
+                  className="w-7 h-44 rounded-r-xl overflow-hidden opacity-60 absolute right-0 top-2 border-l border-slate-700 shrink-0 cursor-pointer"
                 >
                   <img
                     src={PROGRAMS[(currentProgramIndex + 1) % PROGRAMS.length].image}
@@ -921,7 +909,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             </div>
 
             {/* Pagination Indicator Dots */}
-            <div className="flex justify-center items-center gap-2 mt-6">
+            <div className="flex justify-center items-center gap-2 mt-4">
               {PROGRAMS.map((_, idx) => (
                 <button
                   key={idx}
@@ -930,7 +918,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`transition-all duration-300 rounded-full cursor-pointer ${
                     currentProgramIndex === idx
-                      ? 'bg-[#da8a24] w-7 h-2.5'
+                      ? 'bg-[#da8a24] w-6 h-2.5'
                       : 'bg-slate-500/50 hover:bg-slate-400 w-2.5 h-2.5'
                   }`}
                 />
