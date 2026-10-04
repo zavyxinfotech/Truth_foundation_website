@@ -276,11 +276,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         onNavigate={onNavigate}
       />
 
-      {/* 2. HERO SECTION (Dark Navy #0a2240 with subtle background NGO image) */}
-      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 bg-[#0a2240] text-white relative overflow-hidden">
+      {/* 2. HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT) */}
+      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         {/* Subtle Integrated NGO Background Overlay */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none mix-blend-luminosity"
+          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-15 pointer-events-none mix-blend-luminosity"
           style={{ backgroundImage: `url(${aboutHeroImage})` }}
         />
 
@@ -288,10 +288,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
           {/* 12-Column Hero Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center min-h-[70vh] lg:min-h-[75vh]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
             {/* HERO LEFT (~57%) */}
             <motion.div

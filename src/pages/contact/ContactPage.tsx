@@ -161,23 +161,23 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
         onNavigate={onNavigate}
       />
 
-      {/* 2. DARK NAVY HERO SECTION (#0a2240) WITH RESPONSIVE HERO BACKGROUND IMAGES */}
-      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 bg-[#0a2240] text-white relative overflow-hidden min-h-[50vh] flex items-center">
+      {/* 2. DARK NAVY HERO SECTION (#0a2240) WITH RESPONSIVE HERO BACKGROUND IMAGES (FULL DESKTOP HEIGHT) */}
+      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         
-        {/* Desktop Background Image (Hidden on Mobile) - Vivid & Clear with Minimum Transparency */}
+        {/* Desktop Background Image (Hidden on Mobile) - Full Screen Coverage & Vivid Clarity */}
         <div 
-          className="hidden md:block absolute inset-0 bg-cover bg-center opacity-80 pointer-events-none"
+          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-90"
           style={{ backgroundImage: `url(${contactHeroBgDesktop})` }}
         />
 
-        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) - Vivid & Clear */}
+        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) - Full Coverage */}
         <div 
-          className="block md:hidden absolute inset-0 bg-cover bg-center opacity-85 pointer-events-none"
+          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-90"
           style={{ backgroundImage: `url(${contactHeroBgMobile})` }}
         />
 
-        {/* Light Ambient Dark Gradient Overlay for maximum image sharpness + text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/65 to-[#0a2240]/30 pointer-events-none" />
+        {/* Light Ambient Dark Gradient Overlay for maximum image sharpness & text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/60 to-transparent pointer-events-none" />
 
         {/* Subtle Ambient Background Glows */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />

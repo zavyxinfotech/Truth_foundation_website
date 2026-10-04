@@ -115,7 +115,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
   }, [campaign.id]);
 
   return (
-    <section className="w-full bg-[#0a2240] text-white relative overflow-hidden min-h-[580px] sm:min-h-[650px] md:min-h-[720px] lg:h-[780px] lg:min-h-[780px] flex flex-col justify-end pt-16 sm:pt-20">
+    <section className="w-full bg-[#0a2240] text-white relative overflow-hidden min-h-[85vh] lg:min-h-screen lg:h-screen flex flex-col justify-end pt-20 sm:pt-24">
       
       {/* Background Slideshow with Horizontal Motion */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
