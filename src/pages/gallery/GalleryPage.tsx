@@ -443,8 +443,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       {/* 11. Footer (EXACT EXISTING FOOTER - UNCHANGED) */}
       <Footer onNavigateHome={(anchor) => onNavigate('home', anchor)} />
 
-      {/* 12. Floating WhatsApp Widget (EXACT UNCHANGED) */}
-      <FloatingWhatsApp />
+      {/* 12. Floating WhatsApp & Donate Widget */}
+      <FloatingWhatsApp onOpenDonateModal={onOpenDonateModal} />
 
     </div>
   );

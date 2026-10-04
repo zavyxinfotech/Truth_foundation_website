@@ -1250,8 +1250,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       {/* 13. Footer (EXACT EXISTING FOOTER - UNCHANGED) */}
       <Footer onNavigateHome={(anchor) => onNavigate('home', anchor)} />
 
-      {/* 14. Floating WhatsApp Widget (EXACT UNCHANGED) */}
-      <FloatingWhatsApp />
+      {/* 14. Floating WhatsApp & Donate Widget */}
+      <FloatingWhatsApp onOpenDonateModal={onOpenDonateModal} />
 
     </div>
   );

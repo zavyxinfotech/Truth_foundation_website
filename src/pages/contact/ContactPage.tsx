@@ -490,8 +490,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
       {/* 10. Footer (EXACT EXISTING FOOTER - UNCHANGED) */}
       <Footer onNavigateHome={(anchor) => onNavigate('home', anchor)} />
 
-      {/* 11. Floating WhatsApp Widget (EXACT UNCHANGED) */}
-      <FloatingWhatsApp />
+      {/* 11. Floating WhatsApp & Donate Widget */}
+      <FloatingWhatsApp onOpenDonateModal={onOpenDonateModal} />
 
     </div>
   );

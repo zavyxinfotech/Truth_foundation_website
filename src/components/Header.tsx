@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Heart, Menu, X as CloseIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { pixelTracker } from '../utils/pixelTracker';
@@ -171,88 +172,68 @@ export const Header: React.FC<HeaderProps> = ({
 
       </div>
 
-      {/* Mobile Slide-in Drawer from Right Side (Occupies Half Screen Width) */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Backdrop overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm md:hidden"
-            />
+      {/* Mobile Slide-in Drawer Portal from Right Side (Rendered in document.body to stay above all sections) */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <>
+              {/* Backdrop overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="fixed inset-0 z-[999990] bg-black/60 backdrop-blur-sm md:hidden"
+              />
 
-            {/* Right Drawer Panel */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-              className="fixed top-0 right-0 bottom-0 z-[100] w-[60%] xs:w-1/2 max-w-xs h-full bg-[#071b34]/98 backdrop-blur-2xl p-5 pt-6 flex flex-col justify-between shadow-2xl md:hidden overflow-y-auto"
-            >
-              <div className="space-y-6">
-                {/* Header row in mobile menu */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <span className="text-xs font-normal text-[#da8a24] uppercase tracking-wider">Navigation</span>
-                  <button
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-1.5 text-slate-300 hover:text-white bg-white/10 rounded-lg border-0 cursor-pointer"
-                    aria-label="Close menu"
-                  >
-                    <CloseIcon className="w-5 h-5 text-white" />
-                  </button>
+              {/* Right Drawer Panel (Occupies Half Screen Width, Highest Z-Index) */}
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 280 }}
+                className="fixed top-0 right-0 bottom-0 z-[999999] w-[60%] xs:w-1/2 max-w-xs h-full bg-[#071b34] p-5 pt-6 flex flex-col justify-between shadow-2xl md:hidden overflow-y-auto"
+              >
+                <div className="space-y-6">
+                  {/* Header row in mobile menu: Close button aligned right (No Navigation text) */}
+                  <div className="flex items-center justify-end border-b border-white/10 pb-4">
+                    <button
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="p-2 text-slate-300 hover:text-white bg-white/10 rounded-lg border-0 cursor-pointer"
+                      aria-label="Close menu"
+                    >
+                      <CloseIcon className="w-5 h-5 text-white" />
+                    </button>
+                  </div>
+
+                  {/* Nav Links (font-normal, non-bold, enlarged font size) */}
+                  <div className="flex flex-col gap-2">
+                    {navLinks.map((link) => {
+                      const isActive = currentPage === link.page;
+                      return (
+                        <button
+                          key={link.page}
+                          onClick={() => handleNavClick(link.page)}
+                          className={`w-full text-left px-4 py-3.5 rounded-xl text-base sm:text-lg font-normal transition-all cursor-pointer flex items-center justify-between border-0 ${
+                            isActive
+                              ? 'bg-[#da8a24] text-[#0a2240]'
+                              : 'text-slate-200 hover:bg-[#0a2240] hover:text-white'
+                          }`}
+                        >
+                          <span className="font-normal">{link.label}</span>
+                          {isActive && <div className="w-2 h-2 rounded-full bg-[#0a2240]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-
-                {/* Nav Links (font-normal, non-bold, enlarged font size) */}
-                <div className="flex flex-col gap-2">
-                  {navLinks.map((link) => {
-                    const isActive = currentPage === link.page;
-                    return (
-                      <button
-                        key={link.page}
-                        onClick={() => handleNavClick(link.page)}
-                        className={`w-full text-left px-4 py-3 rounded-xl text-base sm:text-lg font-normal transition-all cursor-pointer flex items-center justify-between border-0 ${
-                          isActive
-                            ? 'bg-[#da8a24] text-[#0a2240]'
-                            : 'text-slate-200 hover:bg-[#0a2240] hover:text-white'
-                        }`}
-                      >
-                        <span className="font-normal">{link.label}</span>
-                        {isActive && <div className="w-2 h-2 rounded-full bg-[#0a2240]" />}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Mobile Drawer Action Buttons */}
-              <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
-                <button
-                  onClick={handleWhatsAppClick}
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-normal py-3 rounded-xl flex items-center justify-center gap-2 text-sm border-0 cursor-pointer"
-                >
-                  <WhatsAppIcon className="w-4 h-4 text-white" />
-                  <span className="font-normal">WhatsApp Us</span>
-                </button>
-
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onOpenDonateModal(500);
-                  }}
-                  className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal py-3 rounded-xl flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-sm border-0 cursor-pointer"
-                >
-                  <Heart className="w-4 h-4 fill-[#0a2240]" />
-                  <span className="font-normal">Donate Now</span>
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
     </header>
   );

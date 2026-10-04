@@ -92,8 +92,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         <Footer onNavigateHome={(anchor) => onNavigate('home', anchor)} />
       </Suspense>
 
-      {/* Floating WhatsApp Widget */}
-      <FloatingWhatsApp />
+      {/* Floating WhatsApp & Donate Widget */}
+      <FloatingWhatsApp onOpenDonateModal={onOpenDonateModal} />
 
     </div>
   );
