@@ -252,15 +252,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             
-            {/* Left Side: Direct Contact Details Card (Replacing Form) */}
+            {/* Left Side: Direct Contact Details (Borderless & Transparent Card Background) */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl space-y-8 shadow-sm border border-slate-100"
+              className="lg:col-span-7 space-y-8"
             >
-              <div className="space-y-2 border-b border-slate-100 pb-6">
+              <div className="space-y-2 border-b border-slate-200/80 pb-6">
                 <span className="text-[#da8a24] font-semibold text-xs uppercase tracking-widest block">
                   GET IN TOUCH DIRECTLY
                 </span>
@@ -272,13 +272,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                 </p>
               </div>
 
-              {/* Grid of Contact Information Cards */}
+              {/* Grid of Contact Information Cards - Transparent & Dark Navy Icons */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
                 {/* 1. Call Our Helpline */}
-                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
                   <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center font-semibold">
+                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
                       <PhoneCall className="w-5 h-5 text-[#da8a24]" />
                     </div>
                     <div className="space-y-1">
@@ -295,10 +295,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                 </div>
 
                 {/* 2. WhatsApp Chat */}
-                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
                   <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center font-semibold">
-                      <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
+                      <WhatsAppIcon className="w-5 h-5 text-[#da8a24]" />
                     </div>
                     <div className="space-y-1">
                       <h3 className="font-semibold text-[#0a2240] text-base">WhatsApp Chat</h3>
@@ -307,17 +307,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   </div>
                   <button
                     onClick={handleDirectWhatsApp}
-                    className="w-full mt-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-xs py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-sm uppercase tracking-wider"
+                    className="w-full mt-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-xs py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-sm uppercase tracking-wider"
                   >
-                    <WhatsAppIcon className="w-4 h-4 text-white" />
+                    <WhatsAppIcon className="w-4 h-4 text-[#0a2240]" />
                     <span>Chat Now</span>
                   </button>
                 </div>
 
                 {/* 3. Redhills Home Office */}
-                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
                   <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold">
+                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
                       <MapPin className="w-5 h-5 text-[#da8a24]" />
                     </div>
                     <h3 className="font-semibold text-[#0a2240] text-base">Redhills Home Office</h3>
@@ -337,9 +337,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                 </div>
 
                 {/* 4. Corporate Office */}
-                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                <div className="p-5 rounded-2xl space-y-3 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
                   <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold">
+                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold shadow-sm">
                       <Building2 className="w-5 h-5 text-[#da8a24]" />
                     </div>
                     <h3 className="font-semibold text-[#0a2240] text-base">Corporate Office</h3>
