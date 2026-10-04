@@ -1173,10 +1173,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               
               {/* Left Column: Image Frame with Cartoon Illustration */}
               <div className="lg:col-span-5 relative">
-                <div className="relative w-full h-[180px] sm:h-[200px] lg:h-[210px] overflow-hidden rounded-2xl bg-transparent flex items-center justify-center">
+                <div className="relative w-full h-[180px] sm:h-[220px] lg:h-[230px] overflow-hidden rounded-2xl bg-transparent flex items-center justify-center">
                   <img
-                    src={charityCauseIllustration}
-                    alt="Support Truth Foundation Community Illustration"
+                    src={sponsorLunchImg}
+                    alt="Support Truth Foundation Community"
                     className="w-full h-full object-contain object-center"
                   />
                 </div>
