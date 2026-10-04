@@ -141,7 +141,7 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
         {/* Mobile Display: Smooth Horizontal Track (Click redirects directly to donate modal) */}
         <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-1">
           <motion.div
-            animate={{ x: ['0%', '-50%'] }}
+            animate={{ x: ['-50%', '0%'] }}
             transition={{ repeat: Infinity, duration: 16, ease: 'linear' }}
             className="flex gap-2.5 w-max"
           >
