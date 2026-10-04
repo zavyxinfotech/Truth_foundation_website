@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center min-w-0 shrink">
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 md:gap-4 group min-w-0 text-left cursor-pointer border-none bg-transparent"
+            className="flex items-center gap-2.5 sm:gap-4 group min-w-0 text-left cursor-pointer border-none bg-transparent"
           >
             <motion.div
               whileHover={{ scale: 1.08, rotate: 3 }}
@@ -82,16 +82,16 @@ export const Header: React.FC<HeaderProps> = ({
                 width={160}
                 height={160}
                 fetchPriority="high"
-                className="relative w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full object-cover border-2 lg:border-3 border-[#da8a24] shadow-lg shrink-0"
+                className="relative w-13 h-13 xs:w-14 xs:h-14 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full object-cover border-2 lg:border-3 border-[#da8a24] shadow-lg shrink-0"
               />
             </motion.div>
 
             <div className="min-w-0 text-left">
-              <span className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white tracking-tight leading-none block group-hover:text-[#da8a24] transition-colors whitespace-nowrap drop-shadow-sm">
+              <span className="text-lg xs:text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold text-white tracking-tight leading-none block group-hover:text-[#da8a24] transition-colors whitespace-nowrap drop-shadow-sm">
                 TRUTH FOUNDATION
               </span>
               <div className="flex items-center gap-1.5 pt-0.5">
-                <p className="text-[10px] xs:text-[11px] sm:text-xs md:text-xs lg:text-sm font-normal text-slate-300 uppercase tracking-normal sm:tracking-widest whitespace-nowrap drop-shadow-xs">
+                <p className="text-[11px] xs:text-xs sm:text-xs md:text-xs lg:text-sm font-normal text-slate-300 uppercase tracking-normal sm:tracking-widest whitespace-nowrap drop-shadow-xs">
                   Registered NGO &bull; Chennai, India
                 </p>
               </div>
@@ -158,69 +158,99 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="inline font-semibold">Donate</span>
           </motion.button>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Toggle Button (No border color, outline-none) */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-slate-200 hover:text-white bg-[#071b34]/80 backdrop-blur-md rounded-xl border border-[#163863] cursor-pointer"
+            className="md:hidden p-2.5 text-slate-200 hover:text-white bg-[#071b34]/80 backdrop-blur-md rounded-xl border-0 outline-none cursor-pointer"
             aria-label="Toggle navigation menu"
           >
-            {isMobileMenuOpen ? <CloseIcon className="w-5 h-5 text-[#da8a24]" /> : <Menu className="w-5 h-5 text-white" />}
+            {isMobileMenuOpen ? <CloseIcon className="w-6 h-6 text-[#da8a24]" /> : <Menu className="w-6 h-6 text-white" />}
           </button>
 
         </div>
 
       </div>
 
-      {/* Mobile Slide-Down Menu Drawer */}
+      {/* Mobile Slide-in Drawer from Right Side (Occupies Half Screen Width) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden bg-[#071b34]/95 backdrop-blur-xl border-b border-[#163863] px-4 py-4 space-y-2 shadow-2xl overflow-hidden"
-          >
-            {navLinks.map((link) => {
-              const isActive = currentPage === link.page;
-              return (
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm md:hidden"
+            />
+
+            {/* Right Drawer Panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 280 }}
+              className="fixed top-0 right-0 bottom-0 z-[100] w-[60%] xs:w-1/2 max-w-xs h-full bg-[#071b34]/98 backdrop-blur-2xl p-5 pt-6 flex flex-col justify-between shadow-2xl md:hidden overflow-y-auto"
+            >
+              <div className="space-y-6">
+                {/* Header row in mobile menu */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <span className="text-xs font-normal text-[#da8a24] uppercase tracking-wider">Navigation</span>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-1.5 text-slate-300 hover:text-white bg-white/10 rounded-lg border-0 cursor-pointer"
+                    aria-label="Close menu"
+                  >
+                    <CloseIcon className="w-5 h-5 text-white" />
+                  </button>
+                </div>
+
+                {/* Nav Links (font-normal, non-bold, enlarged font size) */}
+                <div className="flex flex-col gap-2">
+                  {navLinks.map((link) => {
+                    const isActive = currentPage === link.page;
+                    return (
+                      <button
+                        key={link.page}
+                        onClick={() => handleNavClick(link.page)}
+                        className={`w-full text-left px-4 py-3 rounded-xl text-base sm:text-lg font-normal transition-all cursor-pointer flex items-center justify-between border-0 ${
+                          isActive
+                            ? 'bg-[#da8a24] text-[#0a2240]'
+                            : 'text-slate-200 hover:bg-[#0a2240] hover:text-white'
+                        }`}
+                      >
+                        <span className="font-normal">{link.label}</span>
+                        {isActive && <div className="w-2 h-2 rounded-full bg-[#0a2240]" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Mobile Drawer Action Buttons */}
+              <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
                 <button
-                  key={link.page}
-                  onClick={() => handleNavClick(link.page)}
-                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all cursor-pointer flex items-center justify-between ${
-                    isActive
-                      ? 'bg-[#da8a24] text-[#0a2240] font-semibold'
-                      : 'text-slate-200 hover:bg-[#0a2240] hover:text-white'
-                  }`}
+                  onClick={handleWhatsAppClick}
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-normal py-3 rounded-xl flex items-center justify-center gap-2 text-sm border-0 cursor-pointer"
                 >
-                  <span>{link.label}</span>
-                  {isActive && <div className="w-2 h-2 rounded-full bg-[#0a2240]" />}
+                  <WhatsAppIcon className="w-4 h-4 text-white" />
+                  <span className="font-normal">WhatsApp Us</span>
                 </button>
-              );
-            })}
 
-            {/* Mobile Drawer Action Buttons: WhatsApp Button on top, Donate Button stacked directly below */}
-            <div className="pt-2 flex flex-col gap-2">
-              <button
-                onClick={handleWhatsAppClick}
-                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 rounded-xl flex items-center justify-center gap-2 text-xs"
-              >
-                <WhatsAppIcon className="w-4 h-4 text-white" />
-                <span>WhatsApp Us</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onOpenDonateModal(500);
-                }}
-                className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold py-3 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-sm"
-              >
-                <Heart className="w-4 h-4 fill-[#0a2240]" />
-                <span>Donate Now</span>
-              </button>
-            </div>
-          </motion.div>
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenDonateModal(500);
+                  }}
+                  className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal py-3 rounded-xl flex items-center justify-center gap-2 text-sm uppercase tracking-wider shadow-sm border-0 cursor-pointer"
+                >
+                  <Heart className="w-4 h-4 fill-[#0a2240]" />
+                  <span className="font-normal">Donate Now</span>
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 

@@ -86,7 +86,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       />
 
       {/* 2. GALLERY HERO SECTION WITH BACKGROUND IMAGES */}
-      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
+      <section className="pt-32 sm:pt-36 pb-16 sm:pb-20 bg-slate-950 text-white relative overflow-hidden min-h-[85vh] md:min-h-[75vh] lg:min-h-screen flex items-center">
         
         {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
@@ -101,11 +101,11 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         />
 
         {/* Neutral Dark Gradient Overlay (No Blue Mask) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent pointer-events-none" />
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-4">
+          <div className="max-w-3xl space-y-5">
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -122,6 +122,32 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
               <p className="text-base sm:text-lg lg:text-xl text-slate-200 font-normal leading-relaxed max-w-[640px] drop-shadow-sm">
                 Visual moments of warm meals, educational supplies, healthcare support, and care delivered across our centers in Tamil Nadu.
               </p>
+
+              {/* Hero CTA Buttons matching other pages */}
+              <div className="pt-2 flex flex-row items-center justify-start gap-3 sm:gap-4 flex-wrap xs:flex-nowrap">
+                <motion.button
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => {
+                    pixelTracker.trackDonateClick(500, 'Gallery Page Hero CTA');
+                    onOpenDonateModal(500);
+                  }}
+                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-5 sm:px-7 py-3.5 sm:py-4 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base uppercase tracking-wider min-h-[44px] sm:min-h-[48px] whitespace-nowrap"
+                >
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-[#0a2240] shrink-0" />
+                  <span>Support Our Cause</span>
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => onNavigate('contact')}
+                  className="bg-[#071b34] hover:bg-[#163863] text-white font-normal border border-[#da8a24]/50 px-5 sm:px-7 py-3.5 sm:py-4 rounded-2xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base min-h-[44px] sm:min-h-[48px] whitespace-nowrap"
+                >
+                  <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#da8a24] shrink-0" />
+                  <span>Contact Our Team</span>
+                </motion.button>
+              </div>
             </motion.div>
 
           </div>
