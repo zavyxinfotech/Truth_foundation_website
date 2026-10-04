@@ -138,22 +138,23 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       <section className="py-16 sm:py-24 bg-[#f8fafc] text-slate-900 relative border-t border-slate-200">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
           
-          {/* Header & Horizontal Filter Rail */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200 pb-8">
-            <div className="space-y-2 max-w-xl">
+          {/* Header & Horizontal Filter Rail (Options Below Text) */}
+          <div className="flex flex-col gap-6 border-b border-slate-200 pb-8">
+            <div className="space-y-2">
               <span className="text-[#da8a24] font-normal text-sm sm:text-base uppercase tracking-widest block">
                 PHOTO GALLERY
               </span>
               <h2 className="text-3xl sm:text-5xl font-normal text-[#0a2240] tracking-tight">
                 Our Journey in Pictures
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 font-normal">
+              {/* Single Line Subtext with Increased Font Size */}
+              <p className="text-base sm:text-lg text-slate-600 font-normal whitespace-nowrap overflow-x-auto">
                 Real stories. Real people. Real change. Click any photo to open full field details.
               </p>
             </div>
 
-            {/* Category Filter Rail */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none [scrollbar-width:none]">
+            {/* Category Filter Rail (Placed Below Header Text) */}
+            <div className="flex items-center gap-2.5 overflow-x-auto pb-1 scrollbar-none [scrollbar-width:none]">
               {CATEGORY_ITEMS.map((cat) => {
                 const IconComponent = cat.icon;
                 const isSelected = selectedCategory === cat.label;
@@ -161,7 +162,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   <button
                     key={cat.label}
                     onClick={() => setSelectedCategory(cat.label)}
-                    className={`px-4 py-2.5 rounded-none text-sm sm:text-base font-normal transition-all cursor-pointer flex items-center gap-2 shrink-0 border-0 ${
+                    className={`px-4 py-2.5 rounded-lg text-sm sm:text-base font-normal transition-all cursor-pointer flex items-center gap-2 shrink-0 border-0 ${
                       isSelected
                         ? 'bg-[#da8a24] text-[#0a2240]'
                         : 'bg-white text-[#0a2240] hover:bg-slate-100'
@@ -189,20 +190,19 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
                     onClick={() => setActiveStoryItem(item)}
-                    className="bg-white rounded-none overflow-hidden border-0 shadow-none hover:shadow-none transition-all group cursor-pointer flex flex-col justify-between relative"
+                    className="bg-white rounded-xl overflow-hidden border-0 shadow-none hover:shadow-none transition-all group cursor-pointer flex flex-col justify-between relative"
                   >
-                    {/* Image Tile - Clean in default state */}
-                    <div className="relative aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-none border-0 shadow-none">
+                    {/* Image Tile - Minimal Rounded Corners */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-xl border-0 shadow-none">
                       <Picture
                         picture={item.image}
                         sizes="(min-width: 1024px) 300px, (min-width: 640px) 320px, 50vw"
                         alt={item.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out"
+                        className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out rounded-xl"
                       />
 
-                      {/* Clean Category Badge (Top Corner) */}
-                      <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#0a2240]/85 backdrop-blur-md text-white font-normal text-xs uppercase tracking-wider px-2.5 py-1 rounded-none border-0 flex items-center gap-1 z-10">
-                        <Sparkles className="w-3 h-3 text-[#da8a24]" />
+                      {/* Glassmorphism Category Label (No Icon) */}
+                      <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 bg-[#0a2240]/40 backdrop-blur-md border border-white/25 text-white font-normal text-xs uppercase tracking-wider px-3 py-1 rounded-md z-10">
                         {item.category}
                       </span>
 
@@ -226,7 +226,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                             pixelTracker.trackDonateClick(donateAmount, `Gallery Card (${item.category})`);
                             onOpenDonateModal(donateAmount);
                           }}
-                          className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal text-xs sm:text-sm py-1.5 px-2 rounded-none transition-all flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
+                          className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal text-xs sm:text-sm py-1.5 px-2 rounded-lg transition-all flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
                         >
                           <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
                           <span>Donate ₹{donateAmount}</span>
@@ -234,8 +234,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                       </div>
                     </div>
 
-                    {/* Tile Bottom Action Bar */}
-                    <div className="p-2.5 sm:p-3.5 bg-white border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm font-normal text-[#0a2240] group-hover:text-[#da8a24] transition-colors">
+                    {/* Tile Bottom Action Bar - No Border, No Shadow */}
+                    <div className="p-2.5 sm:p-3.5 bg-white border-0 shadow-none flex items-center justify-between text-xs sm:text-sm font-normal text-[#0a2240] group-hover:text-[#da8a24] transition-colors">
                       <span className="flex items-center gap-1 truncate">
                         <Eye className="w-3.5 h-3.5 text-[#da8a24] shrink-0" />
                         <span className="truncate">View Details</span>
