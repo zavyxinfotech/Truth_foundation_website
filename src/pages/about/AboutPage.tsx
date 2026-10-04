@@ -344,6 +344,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           </div>
 
         </div>
+
+        {/* ORGANIC WAVES SECTION DIVIDER */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+          <DarkToLightDivider bgFrom="transparent" bgTo="#ffffff" />
+        </div>
       </section>
 
       {/* 4. IMPACT AT A GLANCE (Heading Removed, No Background Color for Cards/Text, Centered with Professional Colored Icons) */}
