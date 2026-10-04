@@ -420,67 +420,82 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* LEFT COLUMN: STORY & ORGANIC SHAPED IMAGE (~50%) */}
+            {/* LEFT COLUMN: TWO FOUNDERS & SHORT WHO WE ARE DESCRIPTION */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-6 space-y-6"
+              className="lg:col-span-6 space-y-5"
             >
-              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
-                OUR ORIGIN & FOUNDATION STORY
-              </span>
-
-              <h2 className="text-2xl sm:text-4xl font-normal text-[#0a2240] tracking-tight leading-tight">
-                Established on 5th July 2010 to Serve the Underprivileged
-              </h2>
-
-              {/* Increased Height Founder / Story Image Container */}
-              <div className="relative w-full h-[360px] sm:h-[460px] lg:h-[520px] my-6 max-w-[560px]">
-                {/* Decorative Accent Backdrop Shape */}
-                <div className="absolute -inset-3 bg-[#da8a24]/20 rounded-tr-[90px] rounded-bl-[90px] rounded-tl-[30px] rounded-br-[30px] -rotate-2 pointer-events-none" />
-                
-                {/* Asymmetric Curved Organic Image Frame (Taller Height for Founders) */}
-                <div className="relative w-full h-full rounded-tr-[80px] rounded-bl-[80px] rounded-tl-[24px] rounded-br-[24px] overflow-hidden shadow-2xl border-2 border-[#da8a24]/40 bg-[#0a2240] group">
-                  <img
-                    src={storyImage}
-                    alt="Truth Foundation Leadership & Campus"
-                    className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/50 via-transparent to-transparent pointer-events-none" />
+              {/* Stacked Founders Cards (Matching reference image layout) */}
+              <div className="space-y-4 max-w-[440px]">
+                {/* Founder 1: Dr. D. Dayanandam */}
+                <div className="bg-white rounded-xl overflow-hidden border border-slate-200/80 shadow-md">
+                  <div className="w-full h-44 sm:h-52 bg-slate-100 overflow-hidden">
+                    <img
+                      src={storyImage}
+                      alt="Dr. D.Dayanandam - Founder & President of TRUTH FOUNDATION"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="p-2.5 bg-[#f8fafc] text-center space-y-0.5 border-t border-slate-200/60">
+                    <div className="text-base sm:text-lg font-normal text-[#0a2240]">
+                      Dr. D.Dayanandam
+                    </div>
+                    <div className="text-xs sm:text-sm font-normal text-slate-700">
+                      Founder & President of TRUTH FOUNDATION
+                    </div>
+                  </div>
                 </div>
 
-                {/* Floating Gold Stat Badge */}
-                <div className="absolute -bottom-4 right-4 bg-[#0a2240] text-white px-4 py-2.5 rounded-2xl border border-[#da8a24]/40 shadow-xl flex items-center gap-3 z-20">
-                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 text-[#da8a24] flex items-center justify-center font-normal">
-                    <Calendar className="w-4 h-4 text-[#da8a24]" />
+                {/* Founder 2: Mrs. Shara Daya */}
+                <div className="bg-white rounded-xl overflow-hidden border border-slate-200/80 shadow-md">
+                  <div className="w-full h-44 sm:h-52 bg-slate-100 overflow-hidden">
+                    <img
+                      src={elderlyFoodCareDrive}
+                      alt="Mrs. Shara Daya - Managing Trustee"
+                      className="w-full h-full object-cover object-center"
+                    />
                   </div>
-                  <div>
-                    <div className="text-xs sm:text-sm font-normal text-[#da8a24]">Est. 5th July 2010</div>
-                    <div className="text-xs text-slate-300 font-normal">Registered NGO Trust</div>
+                  <div className="p-2.5 bg-[#f8fafc] text-center space-y-0.5 border-t border-slate-200/60">
+                    <div className="text-base sm:text-lg font-normal text-[#0a2240]">
+                      Mrs. Shara Daya
+                    </div>
+                    <div className="text-xs sm:text-sm font-normal text-slate-700">
+                      Managing Trustee
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              {/* Shortened Content Text */}
-              <div className="space-y-3 text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
-                <p>
-                  TRUTH FOUNDATION is a registered Public Charitable Trust established on 5th July 2010 in Tamil Nadu. We are dedicated to uplifting orphaned children, abandoned elders, and rural communities through shelter, food, healthcare, and free education.
-                </p>
-                <p>
-                  Operating on an acre campus in Redhills, Chennai, our infrastructure includes an Orphanage Home, Senior Care Center, Special Needs School, and 8 Evening Tuition Centers across Tamil Nadu.
-                </p>
+
+              {/* Shorter Version Description Below Founders */}
+              <div className="space-y-2 pt-1 max-w-[480px]">
+                <span className="text-[#da8a24] font-normal text-xs uppercase tracking-widest block">
+                  WHO WE ARE?
+                </span>
+
+                <div className="space-y-2 text-slate-700 text-xs sm:text-sm leading-relaxed font-normal">
+                  <p>
+                    TRUTH FOUNDATION is a volunteer public charitable trust doing dedicated service for orphan, semi-orphan, and destitute children since 2010.
+                  </p>
+                  <p>
+                    We support 45+ resident children and 20+ seniors with nutritious food, education, clothing, medical care, and shelter. Over 150+ children have benefited, with many graduating and standing on their own feet.
+                  </p>
+                  <p>
+                    Operating on a 1-acre campus at Redhills, Chennai, our facilities include separate dormitories, dining halls, prayer halls, study halls, and a special needs school.
+                  </p>
+                </div>
               </div>
 
               {/* Verification Badges */}
-              <div className="pt-2 flex flex-wrap items-center gap-3 text-xs sm:text-sm font-normal">
-                <div className="flex items-center gap-2 bg-[#da8a24]/15 text-[#0a2240] border border-[#da8a24]/30 rounded-xl px-4 py-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#da8a24]" />
+              <div className="pt-1 flex flex-wrap items-center gap-3 text-xs font-normal">
+                <div className="flex items-center gap-2 bg-[#da8a24]/15 text-[#0a2240] border border-[#da8a24]/30 rounded-xl px-3 py-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#da8a24]" />
                   <span>100% Direct Impact Delivery</span>
                 </div>
-                <div className="flex items-center gap-2 bg-[#0a2240]/10 text-[#0a2240] border border-[#0a2240]/20 rounded-xl px-4 py-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#da8a24]" />
+                <div className="flex items-center gap-2 bg-[#0a2240]/10 text-[#0a2240] border border-[#0a2240]/20 rounded-xl px-3 py-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#da8a24]" />
                   <span>80G Tax Exemption Certified</span>
                 </div>
               </div>
