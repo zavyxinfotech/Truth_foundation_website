@@ -32,7 +32,8 @@ import { DarkToLightDivider, LightToDarkDivider } from '../../components/Section
 import { pixelTracker } from '../../utils/pixelTracker';
 
 // Real Project Image Imports
-import aboutHeroImage from '../../assets/images/About_page_hero_bg_img.jpg?w=900&format=webp';
+import aboutHeroBgDesktop from '../../assets/images/about_page_hero_section_desktop_view.jpeg';
+import aboutHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
 import storyImage from '../../assets/images/hero_redhills_orphanage.jpg?w=800&format=webp';
 import ctaImage from '../../assets/images/trust_section_organic_meal.jpg?w=800&format=webp';
 
@@ -278,11 +279,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
       {/* 2. HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT) */}
       <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
-        {/* Subtle Integrated NGO Background Overlay */}
+        {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-15 pointer-events-none mix-blend-luminosity"
-          style={{ backgroundImage: `url(${aboutHeroImage})` }}
+          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-85"
+          style={{ backgroundImage: `url(${aboutHeroBgDesktop})` }}
         />
+
+        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
+        <div 
+          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-85"
+          style={{ backgroundImage: `url(${aboutHeroBgMobile})` }}
+        />
+
+        {/* Ambient Dark Gradient Overlay for maximum text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/65 to-transparent pointer-events-none" />
 
         {/* Ambient Brand Glows */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
@@ -290,15 +300,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          {/* 12-Column Hero Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="max-w-3xl space-y-6">
             
-            {/* HERO LEFT (~57%) */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 space-y-6"
+              className="space-y-6"
             >
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-semibold text-white tracking-tight leading-[1.1]">
@@ -334,72 +342,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#da8a24] shrink-0" />
                   <span>Contact Our Team</span>
                 </motion.button>
-              </div>
-            </motion.div>
-
-            {/* HERO RIGHT (~43%): DYNAMIC ASYMMETRIC IMAGE FRAME */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="lg:col-span-5 flex items-center justify-center relative w-full"
-            >
-              <div className="relative w-full max-w-[520px] mx-auto p-3 sm:p-5">
-                
-                {/* Decorative Gold Accent Backdrop Frame */}
-                <div className="absolute -inset-2 sm:-inset-3 bg-[#da8a24]/20 border border-[#da8a24]/40 rounded-tl-[100px] rounded-br-[100px] rounded-tr-[30px] rounded-bl-[30px] sm:rounded-tl-[140px] sm:rounded-br-[140px] sm:rounded-tr-[44px] sm:rounded-bl-[44px] -rotate-3 pointer-events-none" />
-
-                {/* Main Image Container - Asymmetric Curved Architectural Shape */}
-                <div className="relative w-full aspect-[4/3] sm:aspect-[5/4] overflow-hidden border-2 border-[#da8a24]/40 shadow-2xl rounded-tl-[90px] rounded-br-[90px] rounded-tr-[24px] rounded-bl-[24px] sm:rounded-tl-[130px] sm:rounded-br-[130px] sm:rounded-tr-[36px] sm:rounded-bl-[36px] bg-[#071b34] group">
-                  <img
-                    src={aboutHeroImage}
-                    alt="Truth Foundation - Empowering Lives"
-                    className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/50 via-transparent to-transparent pointer-events-none" />
-                </div>
-
-                {/* Info Badge 1: 14+ Years Service */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="absolute -bottom-3 left-0 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/30 shadow-xl rounded-2xl px-4 py-2.5 flex items-center gap-3 z-20"
-                >
-                  <div className="w-9 h-9 bg-[#da8a24]/20 rounded-xl flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Calendar className="w-4 h-4 text-[#da8a24]" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm sm:text-base font-semibold text-white leading-none">
-                      <span className="text-[#da8a24]">14+</span> Years
-                    </div>
-                    <div className="text-xs text-slate-300 font-medium pt-0.5">
-                      Dedicated Service
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Info Badge 2: 434+ Beneficiaries */}
-                <motion.div
-                  initial={{ opacity: 0, y: -15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="absolute -top-3 right-0 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/30 shadow-xl rounded-2xl px-4 py-2.5 flex items-center gap-3 z-20"
-                >
-                  <div className="w-9 h-9 bg-[#da8a24]/20 rounded-xl flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Users className="w-4 h-4 text-[#da8a24]" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm sm:text-base font-semibold text-white leading-none">
-                      <span className="text-[#da8a24]">434+</span>
-                    </div>
-                    <div className="text-xs text-slate-300 font-medium pt-0.5">
-                      Beneficiaries
-                    </div>
-                  </div>
-                </motion.div>
-
               </div>
             </motion.div>
 

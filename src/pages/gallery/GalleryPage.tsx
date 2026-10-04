@@ -30,8 +30,6 @@ import { pixelTracker } from '../../utils/pixelTracker';
 
 // Real Project Image Imports
 import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
-import galleryHeroBgDesktop from '../../assets/images/about_page_hero_section_desktop_view.jpeg';
-import galleryHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
 
 interface GalleryPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -85,46 +83,89 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         onNavigate={onNavigate}
       />
 
-      {/* 2. GALLERY HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT WITH HERO BACKGROUND IMAGES) */}
+      {/* 2. GALLERY HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT) */}
       <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         
-        {/* Desktop Background Image (Hidden on Mobile) */}
-        <div 
-          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-85"
-          style={{ backgroundImage: `url(${galleryHeroBgDesktop})` }}
-        />
-
-        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
-        <div 
-          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-85"
-          style={{ backgroundImage: `url(${galleryHeroBgMobile})` }}
-        />
-
-        {/* Ambient Dark Gradient Overlay for optimal readability & crisp photo display */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/60 to-transparent pointer-events-none" />
-
         {/* Subtle Ambient Background Glows */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full text-center">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto space-y-6"
-          >
-            {/* Main Heading */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
-              A Glimpse into <span className="text-[#da8a24]">Lives We Touch</span>
-            </h1>
+          {/* 12-Column Hero Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            {/* HERO LEFT (~55%) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 space-y-5"
+            >
+              {/* Main Heading */}
+              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
+                A Glimpse into <span className="text-[#da8a24]">Lives We Touch</span>
+              </h1>
 
-            {/* Paragraph Description */}
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
-              Visual evidence of warm meals delivered, educational supplies distributed, and care provided across Redhills, Thiruvallur, Vyasarpadi, and surrounding rural communities in Tamil Nadu.
-            </p>
-          </motion.div>
+              {/* Paragraph Description */}
+              <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-[580px]">
+                Visual evidence of warm meals delivered, educational supplies distributed, and care provided across Redhills, Thiruvallur, Vyasarpadi, and surrounding rural communities in Tamil Nadu.
+              </p>
+            </motion.div>
+
+            {/* HERO RIGHT (~45%): CIRCULAR COLLOIDAL IMAGE FRAME */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="lg:col-span-5 flex items-center justify-center relative w-full"
+            >
+              <div className="relative w-full max-w-[460px] mx-auto p-4 sm:p-6 flex items-center justify-center">
+                
+                {/* Outer Colloidal Accent Glow & Offset Frame */}
+                <div 
+                  className="absolute inset-2 sm:inset-1 border-2 border-[#da8a24]/40 pointer-events-none transition-all duration-700 -rotate-3"
+                  style={{ borderRadius: '64% 36% 56% 44% / 48% 52% 48% 52%' }}
+                />
+
+                {/* Main Circular Colloidal Shaped Image Container */}
+                <div
+                  className="relative w-full aspect-square sm:aspect-[4/3] overflow-hidden border-2 border-[#da8a24] shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-[#071b34] group transition-all duration-700"
+                  style={{ borderRadius: '58% 42% 66% 34% / 46% 54% 46% 54%' }}
+                >
+                  <img
+                    src={heroChildLongingMeal}
+                    alt="Truth Foundation Field Moments"
+                    className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/50 via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Info Badge: Real People Real Impact */}
+                <motion.div
+                  initial={{ opacity: 0, y: -15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="absolute -top-1 right-2 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/60 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2.5 z-20"
+                >
+                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
+                    <Camera className="w-4 h-4 text-[#da8a24]" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-xs font-semibold text-white leading-none">
+                      Real People
+                    </div>
+                    <div className="text-[10px] text-[#da8a24] font-medium pt-0.5">
+                      Real Impact
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
+            </motion.div>
+
+          </div>
 
         </div>
 
