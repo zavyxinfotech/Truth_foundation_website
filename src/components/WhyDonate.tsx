@@ -72,7 +72,7 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
   }, []);
 
   return (
-    <section id="why-donate" className="py-12 sm:py-18 bg-[#f8fafc] relative overflow-hidden">
+    <section id="why-donate" className="py-6 sm:py-10 bg-[#f8fafc] relative overflow-hidden">
       {/* Ambient background soft glow blobs */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl pointer-events-none" />
@@ -85,7 +85,7 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.15 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2"
+          className="text-center max-w-3xl mx-auto mb-4 sm:mb-6 space-y-2"
         >
           <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
             Make an Impact Today
@@ -99,12 +99,12 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
         </motion.div>
 
         {/* Reference Design Centered Minimal Cards Carousel */}
-        <div className="relative py-2 sm:py-4">
+        <div className="relative py-1 sm:py-2">
           <div
             ref={scrollContainerRef}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto py-6 px-2 sm:px-8 scrollbar-none snap-x snap-mandatory scroll-smooth items-center justify-start lg:justify-center"
+            className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto py-2 px-2 sm:px-6 scrollbar-none snap-x snap-mandatory scroll-smooth items-center justify-start lg:justify-center"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {cards.map((card, idx) => {
