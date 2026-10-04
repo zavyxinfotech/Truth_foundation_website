@@ -9,7 +9,7 @@ import { CURRENT_CAMPAIGN, FUTURE_CAMPAIGNS } from '../../data/campaignData';
 
 import { SponsorCauseSection } from '../../components/SponsorCauseSection';
 
-const GallerySection = lazy(() => import('../../components/GallerySection').then(m => ({ default: m.GallerySection })));
+const AboutSection = lazy(() => import('../../components/AboutSection').then(m => ({ default: m.AboutSection })));
 const TrustSection = lazy(() => import('../../components/TrustSection').then(m => ({ default: m.TrustSection })));
 const TestimonialsSection = lazy(() => import('../../components/TestimonialsSection').then(m => ({ default: m.TestimonialsSection })));
 const FAQSection = lazy(() => import('../../components/FAQSection').then(m => ({ default: m.FAQSection })));
@@ -62,13 +62,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           <SponsorCauseSection onOpenDonateModal={onOpenDonateModal} />
         </ScrollSection>
 
-        {/* Field Gallery (Light #ffffff) */}
-        <ScrollSection id="gallery">
-          <GallerySection onOpenDonateModal={onOpenDonateModal} />
-        </ScrollSection>
+        {/* Transition: Light SponsorCause -> Dark AboutSection */}
+        <LightToDarkDivider bgFrom="#f8fafc" bgTo="#0a2240" />
 
-        {/* Transition: Light GallerySection -> Dark TrustSection */}
-        <LightToDarkDivider bgFrom="#ffffff" bgTo="#0a2240" />
+        {/* About Truth Foundation (Dark #0a2240) */}
+        <ScrollSection id="about">
+          <AboutSection />
+        </ScrollSection>
 
         {/* Trust & Accreditations Section (Dark #0a2240) */}
         <ScrollSection id="trust">

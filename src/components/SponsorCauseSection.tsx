@@ -73,7 +73,7 @@ interface SponsorCauseSectionProps {
 
 export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpenDonateModal }) => {
   return (
-    <section className="py-10 sm:py-16 bg-[#f8fafc] text-slate-900 relative border-t border-slate-200/80 overflow-hidden">
+    <section className="py-10 sm:py-16 bg-[#f8fafc] text-slate-900 relative overflow-hidden">
       
       {/* Top-Left Botanical Leaf Accent */}
       <svg className="absolute top-0 left-0 w-24 sm:w-36 lg:w-44 h-auto text-[#da8a24]/20 pointer-events-none z-0" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,59 +99,56 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
 
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 sm:space-y-10 relative z-10">
         
-        {/* Header: Left Aligned */}
-        <div className="text-left max-w-3xl space-y-1.5">
-          <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
+        {/* Header: Left Aligned with Larger Font Size matching other sections */}
+        <div className="text-left max-w-3xl space-y-2">
+          <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
             SPONSOR A CAUSE
           </span>
-          <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
+          <h2 className="text-[22px] xs:text-[26px] sm:text-[38px] lg:text-[44px] font-semibold text-[#0a2240] tracking-tight leading-tight">
             Make a Direct Impact
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+          <p className="text-sm sm:text-lg lg:text-[18px] text-slate-600 font-normal leading-relaxed">
             Your support helps us provide nutrition, education, healthcare, and care for children, elderly, and special-needs individuals.
           </p>
         </div>
 
-        {/* Desktop Display: 6 Cause Items Grid (lg:grid-cols-6) */}
-        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
+        {/* Desktop Display: 6 Cause Items Grid with Larger Images and No Description Text */}
+        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
           {SPONSOR_CAUSES.map((cause) => (
             <motion.div
               key={cause.id}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -6 }}
               onClick={() => {
                 pixelTracker.trackDonateClick(cause.amount, `Sponsor Cause - ${cause.title}`);
                 onOpenDonateModal(cause.amount);
               }}
-              className="bg-transparent border-0 shadow-none rounded-[22px] p-2.5 sm:p-3 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
+              className="bg-transparent border-0 shadow-none rounded-[24px] p-3 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
             >
               <div>
-                {/* Image Container with Rounded Corners */}
-                <div className="relative w-full aspect-square rounded-[16px] sm:rounded-[18px] overflow-hidden bg-slate-100">
+                {/* Image Container: Larger Aspect Ratio on Desktop */}
+                <div className="relative w-full aspect-[4/5] rounded-[20px] overflow-hidden bg-slate-100 shadow-xs">
                   <img
                     src={cause.image}
                     alt={cause.title}
                     className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-2 right-2 bg-[#0a2240]/85 backdrop-blur-md text-[#da8a24] font-semibold text-[10px] sm:text-xs px-2 py-0.5 rounded-full shadow-sm">
+                  <div className="absolute top-2.5 right-2.5 bg-[#0a2240]/85 backdrop-blur-md text-[#da8a24] font-semibold text-xs px-2.5 py-1 rounded-full shadow-sm">
                     {cause.amountLabel}
                   </div>
                 </div>
 
-                {/* Title & Description Below Image */}
-                <div className="pt-3 pb-1 px-1 flex flex-col items-center text-center space-y-1">
-                  <h3 className="font-semibold text-[#0a2240] text-sm sm:text-base leading-snug group-hover:text-[#da8a24] transition-colors">
+                {/* Title Only Below Image */}
+                <div className="pt-3.5 pb-2 px-1 flex flex-col items-center text-center">
+                  <h3 className="font-semibold text-[#0a2240] text-base lg:text-lg leading-snug group-hover:text-[#da8a24] transition-colors">
                     {cause.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 font-normal leading-tight line-clamp-2 text-center">
-                    {cause.description}
-                  </p>
                 </div>
               </div>
 
               {/* Bottom CTA Button */}
-              <div className="pt-2">
-                <span className="inline-flex items-center justify-center gap-1 w-full bg-[#da8a24]/10 group-hover:bg-[#da8a24] text-[#0a2240] font-semibold text-xs sm:text-sm py-1.5 px-2 rounded-full transition-colors">
-                  <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
+              <div className="pt-1">
+                <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24]/10 group-hover:bg-[#da8a24] text-[#0a2240] font-semibold text-xs sm:text-sm py-2 px-3 rounded-full transition-colors">
+                  <Heart className="w-4 h-4 fill-[#0a2240]" />
                   <span>Donate ({cause.amountLabel})</span>
                 </span>
               </div>
@@ -159,7 +156,7 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
           ))}
         </div>
 
-        {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track */}
+        {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track with Larger Images and No Description Text */}
         <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-1">
           <motion.div
             animate={{ x: ['0%', '-50%'] }}
@@ -173,11 +170,11 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                   pixelTracker.trackDonateClick(cause.amount, `Sponsor Cause - ${cause.title}`);
                   onOpenDonateModal(cause.amount);
                 }}
-                className="w-[200px] shrink-0 bg-transparent border-0 shadow-none rounded-[22px] p-2.5 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
+                className="w-[210px] shrink-0 bg-transparent border-0 shadow-none rounded-[22px] p-2.5 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
               >
                 <div>
-                  {/* Image Container */}
-                  <div className="relative w-full aspect-square rounded-[16px] overflow-hidden bg-slate-100">
+                  {/* Image Container: Larger Image */}
+                  <div className="relative w-full aspect-square rounded-[18px] overflow-hidden bg-slate-100">
                     <img
                       src={cause.image}
                       alt={cause.title}
@@ -188,19 +185,16 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                     </div>
                   </div>
 
-                  {/* Title & Description Below Image */}
-                  <div className="pt-2.5 pb-1 px-1 flex flex-col items-center text-center space-y-1">
+                  {/* Title Only Below Image */}
+                  <div className="pt-3 pb-1 px-1 flex flex-col items-center text-center">
                     <h3 className="font-semibold text-[#0a2240] text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
                       {cause.title}
                     </h3>
-                    <p className="text-xs text-slate-500 font-normal leading-tight line-clamp-2 text-center">
-                      {cause.description}
-                    </p>
                   </div>
                 </div>
 
                 {/* Bottom CTA Button */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <span className="inline-flex items-center justify-center gap-1 w-full bg-[#da8a24]/10 group-hover:bg-[#da8a24] text-[#0a2240] font-semibold text-xs py-1.5 px-2 rounded-full transition-colors">
                     <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
                     <span>Donate ({cause.amountLabel})</span>
