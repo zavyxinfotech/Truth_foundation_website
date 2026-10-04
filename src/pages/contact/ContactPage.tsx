@@ -31,7 +31,8 @@ import { pixelTracker } from '../../utils/pixelTracker';
 // Real Project Image Imports
 import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
 import trustSectionOrganicMeal from '../../assets/images/trust_section_organic_meal.jpg?w=800&format=webp';
-import ourImage from '../../assets/images/Our_image.jpeg?w=900&format=webp';
+import contactHeroBgDesktop from '../../assets/images/contact_page_hero_background_image_desktop_view.jpg';
+import contactHeroBgMobile from '../../assets/images/contact_page_hero_background_image_mobile_view.jpeg';
 
 interface ContactPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -160,27 +161,40 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
         onNavigate={onNavigate}
       />
 
-      {/* 2. DARK NAVY HERO SECTION (#0a2240) */}
-      <section className="pt-24 sm:pt-32 pb-24 sm:pb-32 bg-[#0a2240] text-white relative overflow-hidden">
+      {/* 2. DARK NAVY HERO SECTION (#0a2240) WITH RESPONSIVE HERO BACKGROUND IMAGES */}
+      <section className="pt-24 sm:pt-32 pb-20 sm:pb-28 bg-[#0a2240] text-white relative overflow-hidden min-h-[50vh] flex items-center">
         
+        {/* Desktop Background Image (Hidden on Mobile) */}
+        <div 
+          className="hidden md:block absolute inset-0 bg-cover bg-center opacity-25 pointer-events-none mix-blend-luminosity"
+          style={{ backgroundImage: `url(${contactHeroBgDesktop})` }}
+        />
+
+        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
+        <div 
+          className="block md:hidden absolute inset-0 bg-cover bg-center opacity-35 pointer-events-none mix-blend-luminosity"
+          style={{ backgroundImage: `url(${contactHeroBgMobile})` }}
+        />
+
+        {/* Dark Gradient Overlay for optimal text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240] via-[#0a2240]/90 to-[#0a2240]/75 pointer-events-none" />
+
         {/* Subtle Ambient Background Glows */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          {/* 12-Column Hero Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center min-h-[340px] lg:min-h-[400px]">
+          <div className="max-w-3xl space-y-6">
             
-            {/* HERO LEFT (~55%) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 space-y-6"
+              className="space-y-6"
             >
               {/* Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#da8a24]/10 border border-[#da8a24]/30">
+              <div className="inline-flex items-center gap-2 text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#da8a24]/10 border border-[#da8a24]/30 backdrop-blur-md">
                 <Sparkles className="w-3.5 h-3.5 text-[#da8a24]" />
                 <span>GET IN TOUCH WITH TRUTH FOUNDATION</span>
               </div>
@@ -191,7 +205,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               </h1>
 
               {/* Paragraph Description */}
-              <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-[620px]">
+              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-[660px]">
                 Have questions about donations, 80G tax exemption receipts, volunteering opportunities, or scheduling a visit to our Redhills Orphanage or Special Needs School? Our team is dedicated to serving you.
               </p>
 
@@ -214,63 +228,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                     pixelTracker.trackDonateClick(500, 'Contact Hero Secondary CTA');
                     onOpenDonateModal(500);
                   }}
-                  className="bg-[#071b34] hover:bg-[#163863] text-white font-semibold border border-[#da8a24]/50 px-7 py-3.5 rounded-2xl shadow-md transition flex items-center gap-2 cursor-pointer text-sm"
+                  className="bg-[#071b34] hover:bg-[#163863] text-white font-semibold border border-[#da8a24]/50 px-7 py-3.5 rounded-2xl shadow-md transition flex items-center gap-2 cursor-pointer text-sm backdrop-blur-md"
                 >
                   <Heart className="w-4 h-4 text-[#da8a24] fill-[#da8a24]" />
                   <span>Donate Now</span>
                 </motion.button>
-              </div>
-            </motion.div>
-
-            {/* HERO RIGHT (~45%): CIRCULAR COLLOIDAL IMAGE FRAME */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="lg:col-span-5 flex items-center justify-center relative w-full"
-            >
-              <div className="relative w-full max-w-[460px] mx-auto p-4 sm:p-6 flex items-center justify-center">
-                
-                {/* Layered Outer Colloidal Offset Frame */}
-                <div 
-                  className="absolute inset-2 sm:inset-1 border-2 border-[#da8a24]/40 pointer-events-none transition-all duration-700 -rotate-3"
-                  style={{ borderRadius: '62% 38% 58% 42% / 46% 54% 46% 54%' }}
-                />
-
-                {/* Main Circular Colloidal Shaped Image Container */}
-                <div
-                  className="relative w-full aspect-square sm:aspect-[4/3] overflow-hidden border-2 border-[#da8a24] shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-[#071b34] group transition-all duration-700"
-                  style={{ borderRadius: '56% 44% 64% 36% / 44% 56% 44% 56%' }}
-                >
-                  <img
-                    src={ourImage}
-                    alt="Truth Foundation Community Team"
-                    className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/50 via-transparent to-transparent pointer-events-none" />
-                </div>
-
-                {/* Floating Info Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: -15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="absolute -top-1 right-2 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/60 px-4 py-2 rounded-2xl shadow-2xl flex items-center gap-2.5 z-20"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Heart className="w-4 h-4 text-[#da8a24] fill-[#da8a24]" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-xs font-semibold text-white leading-none">
-                      Always Ready
-                    </div>
-                    <div className="text-[10px] text-[#da8a24] font-medium pt-0.5">
-                      To Help & Serve
-                    </div>
-                  </div>
-                </motion.div>
-
               </div>
             </motion.div>
 
