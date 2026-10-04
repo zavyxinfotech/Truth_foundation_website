@@ -432,20 +432,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 OUR ORIGIN & FOUNDATION STORY
               </span>
 
-              <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-4xl font-normal text-[#0a2240] tracking-tight leading-tight">
                 Established on 5th July 2010 to Serve the Underprivileged
               </h2>
 
-              {/* Custom Organic Shaped Image Container (Asymmetric Leaf / Arch Shape) */}
-              <div className="relative w-full aspect-[16/10] my-8 max-w-[560px]">
-                {/* Decorative Gold Accent Backdrop Shape */}
+              {/* Increased Height Founder / Story Image Container */}
+              <div className="relative w-full h-[360px] sm:h-[460px] lg:h-[520px] my-6 max-w-[560px]">
+                {/* Decorative Accent Backdrop Shape */}
                 <div className="absolute -inset-3 bg-[#da8a24]/20 rounded-tr-[90px] rounded-bl-[90px] rounded-tl-[30px] rounded-br-[30px] -rotate-2 pointer-events-none" />
                 
-                {/* Asymmetric Curved Organic Image Frame */}
+                {/* Asymmetric Curved Organic Image Frame (Taller Height for Founders) */}
                 <div className="relative w-full h-full rounded-tr-[80px] rounded-bl-[80px] rounded-tl-[24px] rounded-br-[24px] overflow-hidden shadow-2xl border-2 border-[#da8a24]/40 bg-[#0a2240] group">
                   <img
                     src={storyImage}
-                    alt="Truth Foundation Redhills Campus"
+                    alt="Truth Foundation Leadership & Campus"
                     className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/50 via-transparent to-transparent pointer-events-none" />
@@ -453,27 +453,28 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
                 {/* Floating Gold Stat Badge */}
                 <div className="absolute -bottom-4 right-4 bg-[#0a2240] text-white px-4 py-2.5 rounded-2xl border border-[#da8a24]/40 shadow-xl flex items-center gap-3 z-20">
-                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 text-[#da8a24] flex items-center justify-center font-semibold">
+                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 text-[#da8a24] flex items-center justify-center font-normal">
                     <Calendar className="w-4 h-4 text-[#da8a24]" />
                   </div>
                   <div>
-                    <div className="text-xs sm:text-sm font-semibold text-[#da8a24]">Est. 5th July 2010</div>
-                    <div className="text-xs text-slate-300">Registered NGO Trust</div>
+                    <div className="text-xs sm:text-sm font-normal text-[#da8a24]">Est. 5th July 2010</div>
+                    <div className="text-xs text-slate-300 font-normal">Registered NGO Trust</div>
                   </div>
                 </div>
               </div>
               
-              <div className="space-y-4 text-slate-700 text-base sm:text-lg leading-relaxed font-normal">
+              {/* Shortened Content Text */}
+              <div className="space-y-3 text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
                 <p>
-                  <span className="font-semibold text-[#0a2240]">TRUTH FOUNDATION</span> was established as a registered non-governmental Public Charitable Trust under the leadership of visionary trustees in Tamil Nadu. The trust was born with a profound commitment to uplift marginalized rural communities, with a strong focus on Dalit and Tribal families, women, abandoned elderly citizens, and orphaned children.
+                  TRUTH FOUNDATION is a registered Public Charitable Trust established on 5th July 2010 in Tamil Nadu. We are dedicated to uplifting orphaned children, abandoned elders, and rural communities through shelter, food, healthcare, and free education.
                 </p>
                 <p>
-                  Over the past 14 years, our operations have grown from local community support into a comprehensive social service infrastructure spanning an <span className="font-semibold text-[#0a2240]">Orphanage Home in Redhills</span>, an <span className="font-semibold text-[#0a2240]">Old Age Senior Care Center</span>, a <span className="font-semibold text-[#0a2240]">Special Needs School in Thiruvallur</span>, and <span className="font-semibold text-[#0a2240]">8 Free Evening Tuition Centers</span> across Chennai and Thiruvallur districts.
+                  Operating on an acre campus in Redhills, Chennai, our infrastructure includes an Orphanage Home, Senior Care Center, Special Needs School, and 8 Evening Tuition Centers across Tamil Nadu.
                 </p>
               </div>
 
               {/* Verification Badges */}
-              <div className="pt-2 flex flex-wrap items-center gap-3 text-xs sm:text-sm font-semibold">
+              <div className="pt-2 flex flex-wrap items-center gap-3 text-xs sm:text-sm font-normal">
                 <div className="flex items-center gap-2 bg-[#da8a24]/15 text-[#0a2240] border border-[#da8a24]/30 rounded-xl px-4 py-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#da8a24]" />
                   <span>100% Direct Impact Delivery</span>
