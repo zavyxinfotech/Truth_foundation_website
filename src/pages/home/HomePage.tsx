@@ -7,7 +7,8 @@ import { ScrollSection } from '../../components/ScrollSection';
 import { DarkToLightDivider, LightToDarkDivider } from '../../components/SectionDividers';
 import { CURRENT_CAMPAIGN, FUTURE_CAMPAIGNS } from '../../data/campaignData';
 
-const AboutSection = lazy(() => import('../../components/AboutSection').then(m => ({ default: m.AboutSection })));
+import { SponsorCauseSection } from '../../components/SponsorCauseSection';
+
 const GallerySection = lazy(() => import('../../components/GallerySection').then(m => ({ default: m.GallerySection })));
 const TrustSection = lazy(() => import('../../components/TrustSection').then(m => ({ default: m.TrustSection })));
 const TestimonialsSection = lazy(() => import('../../components/TestimonialsSection').then(m => ({ default: m.TestimonialsSection })));
@@ -55,17 +56,11 @@ export const HomePage: React.FC<HomePageProps> = ({
         />
       </ScrollSection>
 
-      {/* Transition: Light WhyDonate -> Dark AboutSection */}
-      <LightToDarkDivider bgFrom="#f8fafc" bgTo="#0a2240" />
-
       <Suspense fallback={<FallbackLoader />}>
-        {/* About Truth Foundation (Dark #0a2240) */}
-        <ScrollSection id="about">
-          <AboutSection />
+        {/* Sponsor a Cause Section */}
+        <ScrollSection id="sponsor-cause">
+          <SponsorCauseSection onOpenDonateModal={onOpenDonateModal} />
         </ScrollSection>
-
-        {/* Transition: Dark AboutSection -> Light GallerySection */}
-        <DarkToLightDivider bgFrom="#0a2240" bgTo="#ffffff" />
 
         {/* Field Gallery (Light #ffffff) */}
         <ScrollSection id="gallery">

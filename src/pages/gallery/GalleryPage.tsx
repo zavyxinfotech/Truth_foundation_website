@@ -293,45 +293,42 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       </section>
 
       {/* 6. ORGANIC SECTION DIVIDER (Light #f8fafc to Dark #071b34) */}
-      <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />
-
-      {/* 7. SUPPORT OUR CAUSE CTA - Compact, Borderless & Shadowless with Integrated Image */}
-      <section className="py-8 sm:py-12 bg-[#071b34] text-white relative overflow-hidden">
+      <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />      {/* 7. SUPPORT OUR CAUSE CTA - Compact, Transparent, Reduced Height & Width */}
+      <section className="py-6 sm:py-8 bg-[#071b34] text-white relative overflow-hidden">
         {/* Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#da8a24]/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#da8a24]/8 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           
-          {/* Card Container: Borderless & Shadowless, Compact Padding */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center bg-[#0a2240] rounded-2xl sm:rounded-3xl border-0 shadow-none p-4 sm:p-6 lg:p-7 relative overflow-hidden">
+          {/* Card Container: Transparent Background, Reduced Width & Height */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center bg-transparent border-0 shadow-none p-0 relative overflow-hidden">
             
-            {/* 1. Featured Image Column (~25% / 3 cols) */}
-            <div className="md:col-span-3 relative aspect-[4/3] sm:aspect-square w-full rounded-xl sm:rounded-2xl overflow-hidden border-0 shadow-none bg-[#071b34] shrink-0">
+            {/* 1. Featured Image Column (Compact Height) */}
+            <div className="md:col-span-3 relative h-36 sm:h-40 w-full rounded-xl overflow-hidden border-0 shadow-none bg-[#071b34] shrink-0">
               <img
                 src={heroChildLongingMeal}
                 alt="Truth Foundation - Happy Moments"
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/40 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* 2. Content Column (~42% / 5 cols) */}
-            <div className="md:col-span-5 space-y-2 sm:space-y-3">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-semibold shadow-none">
-                <Heart className="w-5 h-5 fill-[#0a2240]" />
+            {/* 2. Content Column */}
+            <div className="md:col-span-5 space-y-2">
+              <div className="w-8 h-8 rounded-lg bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-semibold shadow-none">
+                <Heart className="w-4 h-4 fill-[#0a2240]" />
               </div>
               
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white tracking-tight leading-snug">
+              <h2 className="text-lg sm:text-xl font-semibold text-white tracking-tight leading-snug">
                 Be a Part of More Happy Moments
               </h2>
               
-              <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+              <p className="text-xs text-slate-300 font-normal leading-relaxed">
                 Every contribution directly funds wholesome daily meals, educational books, special needs therapy, and shelter for children and seniors across Chennai & Thiruvallur.
               </p>
             </div>
 
-            {/* 3. CTA Buttons Column (~33% / 4 cols) */}
-            <div className="md:col-span-4 flex flex-col sm:flex-row md:flex-col gap-2.5 justify-center">
+            {/* 3. CTA Buttons Column */}
+            <div className="md:col-span-4 flex flex-col gap-2 justify-center">
               <motion.button
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
@@ -339,9 +336,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   pixelTracker.trackDonateClick(500, 'Gallery Page Support CTA');
                   onOpenDonateModal(500);
                 }}
-                className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-6 py-3 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider min-h-[42px]"
+                className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-5 py-2.5 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider"
               >
-                <Heart className="w-4 h-4 fill-[#0a2240]" />
+                <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
                 <span>Donate Now</span>
               </motion.button>
 
@@ -349,11 +346,11 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onNavigate('contact')}
-                className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/30 font-semibold px-6 py-3 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm min-h-[42px]"
+                className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/30 font-semibold px-5 py-2.5 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs"
               >
-                <Users className="w-4 h-4 text-[#da8a24]" />
+                <Users className="w-3.5 h-3.5 text-[#da8a24]" />
                 <span>Contact Our Team</span>
-                <ArrowRight className="w-4 h-4 text-[#da8a24]" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#da8a24]" />
               </motion.button>
             </div>
 
