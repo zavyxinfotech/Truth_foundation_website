@@ -192,8 +192,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                     onClick={() => setActiveStoryItem(item)}
                     className="bg-white rounded-xl overflow-hidden border-0 shadow-none hover:shadow-none transition-all group cursor-pointer flex flex-col justify-between relative"
                   >
-                    {/* Image Tile - Minimal Rounded Corners */}
-                    <div className="relative aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-xl border-0 shadow-none">
+                    {/* Image Tile - Increased height on mobile (aspect-square) */}
+                    <div className="relative aspect-square sm:aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-xl border-0 shadow-none">
                       <Picture
                         picture={item.image}
                         sizes="(min-width: 1024px) 300px, (min-width: 640px) 320px, 50vw"
@@ -234,9 +234,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                       </div>
                     </div>
 
-                    {/* Tile Bottom Action Bar - No Border, No Shadow */}
-                    <div className="p-2.5 sm:p-3.5 bg-white border-0 shadow-none flex items-center justify-between text-xs sm:text-sm font-normal text-[#0a2240] group-hover:text-[#da8a24] transition-colors">
-                      <span className="flex items-center gap-1 truncate">
+                    {/* Tile Bottom Action Bar - Mobile: Only Arrow Aligned to Right. Desktop: View Details + Arrow */}
+                    <div className="p-2 sm:p-3.5 bg-white border-0 shadow-none flex items-center justify-end sm:justify-between text-xs sm:text-sm font-normal text-[#0a2240] group-hover:text-[#da8a24] transition-colors">
+                      <span className="hidden sm:flex items-center gap-1 truncate">
                         <Eye className="w-3.5 h-3.5 text-[#da8a24] shrink-0" />
                         <span className="truncate">View Details</span>
                       </span>
@@ -323,14 +323,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       {/* 8. ORGANIC SECTION DIVIDER */}
       <DarkToLightDivider bgFrom="#071b34" bgTo="#0a2240" />
 
-      {/* 7. FULL STORY LIGHTBOX MODAL */}
+      {/* 7. FULL STORY LIGHTBOX MODAL (GLASSMORPHISM & RESPONSIVE MOBILE ALIGNMENT) */}
       {activeStoryItem && createPortal(
         <AnimatePresence>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[99999] bg-[#040f1a]/98 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 lg:p-8 overflow-hidden"
+            className="fixed inset-0 z-[99999] bg-[#040f1a]/85 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 lg:p-8 overflow-hidden"
             onClick={() => setActiveStoryItem(null)}
           >
             <motion.div
@@ -339,73 +339,73 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
               exit={{ scale: 0.88, opacity: 0, y: 24 }}
               transition={{ type: 'spring', damping: 26, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#071b34] text-white border-0 rounded-none max-w-2xl sm:max-w-3xl lg:max-w-5xl w-full overflow-hidden shadow-none relative flex flex-col lg:grid lg:grid-cols-12 max-h-[85vh] my-auto"
+              className="bg-[#071b34]/80 backdrop-blur-xl border border-white/15 rounded-2xl max-w-2xl sm:max-w-3xl lg:max-w-5xl w-full overflow-hidden shadow-2xl relative flex flex-col lg:grid lg:grid-cols-12 max-h-[90vh] my-auto"
             >
               {/* Close button */}
               <button
                 onClick={() => setActiveStoryItem(null)}
-                className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-50 bg-[#da8a24] text-[#0a2240] hover:bg-rose-600 hover:text-white p-2.5 sm:p-3 rounded-none border-0 shadow-none transition-all transform hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 bg-[#da8a24] text-[#0a2240] hover:bg-rose-600 hover:text-white p-2 sm:p-2.5 rounded-full border-0 shadow-lg transition-all transform hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
               </button>
 
               {/* Image side */}
-              <div className="lg:col-span-5 relative bg-[#06172a] p-3 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[#163863] min-h-[200px] lg:min-h-[420px] max-h-[35vh] lg:max-h-[85vh] overflow-hidden shrink-0">
+              <div className="lg:col-span-5 relative bg-[#040f1a]/40 backdrop-blur-md p-3 sm:p-4 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 shrink-0 max-h-[30vh] sm:max-h-[40vh] lg:max-h-none">
                 <Picture
                   picture={activeStoryItem.image}
                   sizes="(min-width: 1024px) 420px, calc(100vw - 2rem)"
                   alt={activeStoryItem.title}
                   loading="eager"
-                  className="w-full h-full max-h-[32vh] lg:max-h-[75vh] object-cover rounded-none shadow-none"
+                  className="w-full h-full max-h-[28vh] sm:max-h-[38vh] lg:max-h-[75vh] object-cover rounded-xl shadow-lg"
                 />
               </div>
 
-              {/* Narrative details side */}
-              <div className="lg:col-span-7 p-4 sm:p-7 space-y-4 overflow-y-auto max-h-[50vh] lg:max-h-[85vh] flex flex-col justify-between">
+              {/* Narrative details side (Glassmorphism + Responsive Scroll) */}
+              <div className="lg:col-span-7 p-4 sm:p-7 space-y-4 overflow-y-auto max-h-[60vh] lg:max-h-[85vh] flex flex-col justify-between scrollbar-thin">
                 <div className="space-y-3.5 pr-1 sm:pr-2">
                   <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm pt-1">
-                    <span className="bg-[#da8a24] text-[#0a2240] font-normal px-3 py-1 rounded-none uppercase tracking-wider text-xs flex items-center gap-1 border-0">
+                    <span className="bg-[#da8a24] text-[#0a2240] font-normal px-3 py-1 rounded-full uppercase tracking-wider text-xs flex items-center gap-1 border-0 shadow-sm">
                       <Sparkles className="w-3.5 h-3.5" />{activeStoryItem.category}
                     </span>
-                    <span className="text-slate-200 flex items-center gap-1 bg-[#0a2240] px-3 py-1 rounded-none border-0 font-normal">
+                    <span className="text-slate-200 flex items-center gap-1 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 font-normal">
                       <MapPin className="w-3.5 h-3.5 text-[#da8a24]" />
                       {activeStoryItem.location}
                     </span>
                     {activeStoryItem.impactStat && (
-                      <span className="text-[#da8a24] flex items-center gap-1 bg-[#da8a24]/10 px-3 py-1 rounded-none border-0 font-normal">
+                      <span className="text-[#da8a24] flex items-center gap-1 bg-[#da8a24]/15 backdrop-blur-md px-3 py-1 rounded-full border border-[#da8a24]/30 font-normal">
                         <Users className="w-3.5 h-3.5" />
                         {activeStoryItem.impactStat.label}: {activeStoryItem.impactStat.value}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-normal text-white leading-tight">{activeStoryItem.title}</h3>
-                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">{activeStoryItem.description}</p>
+                  <h3 className="text-xl sm:text-3xl font-normal text-white leading-tight">{activeStoryItem.title}</h3>
+                  <p className="text-xs sm:text-base text-slate-200 leading-relaxed font-normal">{activeStoryItem.description}</p>
 
                   {activeStoryItem.storyDetails && (
-                    <div className="bg-[#0a2240] p-4 rounded-none border-0 text-sm text-slate-200 leading-relaxed space-y-1">
+                    <div className="bg-white/5 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs sm:text-sm text-slate-200 leading-relaxed space-y-1">
                       <span className="text-[#da8a24] font-normal block text-xs uppercase tracking-wider">Field Narrative & Impact</span>
-                      <p className="font-normal">{activeStoryItem.storyDetails}</p>
+                      <p className="font-normal text-slate-300">{activeStoryItem.storyDetails}</p>
                     </div>
                   )}
 
                   {activeStoryItem.quote && (
-                    <div className="bg-[#da8a24]/10 border-0 p-3.5 rounded-none flex items-start gap-3">
+                    <div className="bg-[#da8a24]/10 backdrop-blur-md border border-[#da8a24]/20 p-3.5 rounded-xl flex items-start gap-3">
                       <Quote className="w-4 h-4 text-[#da8a24] shrink-0 mt-0.5" />
                       <p className="text-xs sm:text-sm italic font-normal text-amber-200">{activeStoryItem.quote}</p>
                     </div>
                   )}
                 </div>
 
-                <div className="pt-3 border-t border-[#163863] mt-2">
+                <div className="pt-3 border-t border-white/10 mt-2">
                   <button
                     onClick={() => {
                       pixelTracker.trackDonateClick(500, `Gallery Page: ${activeStoryItem.title}`);
                       setActiveStoryItem(null);
                       onOpenDonateModal(500);
                     }}
-                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-6 py-3.5 rounded-none shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-sm uppercase tracking-wider"
+                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-6 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider active:scale-95"
                   >
                     <Heart className="w-4 h-4 fill-[#0a2240] animate-pulse" />
                     <span>Sponsor Meals for This Drive (₹500)</span>
