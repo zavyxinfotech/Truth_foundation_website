@@ -30,6 +30,8 @@ import { pixelTracker } from '../../utils/pixelTracker';
 
 // Real Project Image Imports
 import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
+import galleryHeroBgDesktop from '../../assets/images/Gallery_page_hero_section_desktop_view.jpeg';
+import galleryHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
 
 interface GalleryPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -83,92 +85,50 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         onNavigate={onNavigate}
       />
 
-      {/* 2. GALLERY HERO SECTION */}
+      {/* 2. GALLERY HERO SECTION WITH BACKGROUND IMAGES */}
       <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         
-        {/* Subtle Ambient Background Glows */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Desktop Background Image (Hidden on Mobile) */}
+        <div 
+          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-90"
+          style={{ backgroundImage: `url(${galleryHeroBgDesktop})` }}
+        />
+
+        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
+        <div 
+          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-90"
+          style={{ backgroundImage: `url(${galleryHeroBgMobile})` }}
+        />
+
+        {/* Neutral Dark Gradient Overlay (No Blue Mask) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent pointer-events-none" />
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          {/* 12-Column Hero Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="max-w-3xl space-y-4">
             
-            {/* HERO LEFT (~55%) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="lg:col-span-7 space-y-4"
+              className="space-y-4"
             >
-              {/* Main Heading: All White */}
-              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
+              {/* Main Heading: All White, Non-bold & Enlarged */}
+              <h1 className="text-4xl sm:text-6xl lg:text-[62px] font-normal text-white tracking-tight leading-[1.1]">
                 A Glimpse into Lives We Touch
               </h1>
 
-              {/* Concise Paragraph Description */}
-              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-[540px]">
+              {/* Concise Paragraph Description: Non-bold & Enlarged */}
+              <p className="text-base sm:text-lg lg:text-xl text-slate-200 font-normal leading-relaxed max-w-[640px] drop-shadow-sm">
                 Visual moments of warm meals, educational supplies, healthcare support, and care delivered across our centers in Tamil Nadu.
               </p>
-            </motion.div>
-
-            {/* HERO RIGHT (~45%): CIRCULAR COLLOIDAL IMAGE FRAME */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="lg:col-span-5 flex items-center justify-center relative w-full"
-            >
-              <div className="relative w-full max-w-[460px] mx-auto p-4 sm:p-6 flex items-center justify-center">
-                
-                {/* Outer Colloidal Accent Glow & Offset Frame */}
-                <div 
-                  className="absolute inset-2 sm:inset-1 border-2 border-[#da8a24]/40 pointer-events-none transition-all duration-700 -rotate-3"
-                  style={{ borderRadius: '64% 36% 56% 44% / 48% 52% 48% 52%' }}
-                />
-
-                {/* Main Circular Colloidal Shaped Image Container */}
-                <div
-                  className="relative w-full aspect-square sm:aspect-[4/3] overflow-hidden border-2 border-[#da8a24] shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-[#071b34] group transition-all duration-700"
-                  style={{ borderRadius: '58% 42% 66% 34% / 46% 54% 46% 54%' }}
-                >
-                  <img
-                    src={heroChildLongingMeal}
-                    alt="Truth Foundation Field Moments"
-                    className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/50 via-transparent to-transparent pointer-events-none" />
-                </div>
-
-                {/* Info Badge: Real People Real Impact */}
-                <motion.div
-                  initial={{ opacity: 0, y: -15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="absolute -top-1 right-2 bg-[#0a2240]/95 backdrop-blur-md border border-[#da8a24]/60 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2.5 z-20"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Camera className="w-4 h-4 text-[#da8a24]" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-xs font-semibold text-white leading-none">
-                      Real People
-                    </div>
-                    <div className="text-[10px] text-[#da8a24] font-medium pt-0.5">
-                      Real Impact
-                    </div>
-                  </div>
-                </motion.div>
-
-              </div>
             </motion.div>
 
           </div>
 
         </div>
 
-        {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
+        {/* ORGANIC WAVES SECTION DIVIDER */}
         <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
           <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
         </div>
@@ -181,13 +141,13 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
           {/* Header & Horizontal Filter Rail */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-200 pb-8">
             <div className="space-y-2 max-w-xl">
-              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
+              <span className="text-[#da8a24] font-normal text-sm sm:text-base uppercase tracking-widest block">
                 PHOTO GALLERY
               </span>
-              <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
+              <h2 className="text-3xl sm:text-5xl font-normal text-[#0a2240] tracking-tight">
                 Our Journey in Pictures
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 font-normal">
+              <p className="text-sm sm:text-base text-slate-600 font-normal">
                 Real stories. Real people. Real change. Click any photo to open full field details.
               </p>
             </div>
@@ -201,7 +161,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   <button
                     key={cat.label}
                     onClick={() => setSelectedCategory(cat.label)}
-                    className={`px-4 py-2.5 rounded-none text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-2 shrink-0 border-0 ${
+                    className={`px-4 py-2.5 rounded-none text-sm sm:text-base font-normal transition-all cursor-pointer flex items-center gap-2 shrink-0 border-0 ${
                       isSelected
                         ? 'bg-[#da8a24] text-[#0a2240]'
                         : 'bg-white text-[#0a2240] hover:bg-slate-100'
@@ -241,20 +201,20 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                       />
 
                       {/* Clean Category Badge (Top Corner) */}
-                      <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#0a2240]/85 backdrop-blur-md text-white font-semibold text-[9px] sm:text-[10px] uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-none border-0 flex items-center gap-1 z-10">
-                        <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#da8a24]" />
+                      <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#0a2240]/85 backdrop-blur-md text-white font-normal text-xs uppercase tracking-wider px-2.5 py-1 rounded-none border-0 flex items-center gap-1 z-10">
+                        <Sparkles className="w-3 h-3 text-[#da8a24]" />
                         {item.category}
                       </span>
 
-                      {/* Half-Size Hover Pop-Up Overlay (Covers only bottom 50% of the image) */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#071b34]/95 backdrop-blur-md p-2 sm:p-3 flex flex-col justify-between translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-20">
+                      {/* Half-Size Hover Pop-Up Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#071b34]/95 backdrop-blur-md p-2.5 sm:p-3.5 flex flex-col justify-between translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-20">
                         {/* Title & Location */}
-                        <div className="space-y-0.5 sm:space-y-1">
-                          <div className="flex items-center gap-1 text-[9px] sm:text-[11px] text-[#da8a24] font-medium truncate">
-                            <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-1 text-xs sm:text-sm text-[#da8a24] font-normal truncate">
+                            <MapPin className="w-3 h-3 shrink-0" />
                             <span className="truncate">{item.location}</span>
                           </div>
-                          <h3 className="font-semibold text-white text-[11px] sm:text-xs line-clamp-1 leading-tight">
+                          <h3 className="font-normal text-white text-xs sm:text-sm line-clamp-1 leading-tight">
                             {item.title}
                           </h3>
                         </div>
@@ -266,21 +226,21 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                             pixelTracker.trackDonateClick(donateAmount, `Gallery Card (${item.category})`);
                             onOpenDonateModal(donateAmount);
                           }}
-                          className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-[9px] sm:text-[11px] py-1 sm:py-1.5 px-2 rounded-none transition-all flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
+                          className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal text-xs sm:text-sm py-1.5 px-2 rounded-none transition-all flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
                         >
-                          <Heart className="w-3 h-3 fill-[#0a2240]" />
+                          <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
                           <span>Donate ₹{donateAmount}</span>
                         </button>
                       </div>
                     </div>
 
                     {/* Tile Bottom Action Bar */}
-                    <div className="p-2 sm:p-3 bg-white border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-xs font-semibold text-[#0a2240] group-hover:text-[#da8a24] transition-colors">
+                    <div className="p-2.5 sm:p-3.5 bg-white border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm font-normal text-[#0a2240] group-hover:text-[#da8a24] transition-colors">
                       <span className="flex items-center gap-1 truncate">
-                        <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#da8a24] shrink-0" />
+                        <Eye className="w-3.5 h-3.5 text-[#da8a24] shrink-0" />
                         <span className="truncate">View Details</span>
                       </span>
-                      <ChevronRightIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#da8a24] transform group-hover:translate-x-1 transition-transform shrink-0" />
+                      <ChevronRightIcon className="w-4 h-4 text-[#da8a24] transform group-hover:translate-x-1 transition-transform shrink-0" />
                     </div>
                   </motion.div>
                 );
@@ -291,18 +251,20 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         </div>
       </section>
 
-      {/* 6. ORGANIC SECTION DIVIDER (Light #f8fafc to Dark #071b34) */}
-      <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />      {/* 7. SUPPORT OUR CAUSE CTA - Compact, Transparent, Reduced Height & Width */}
-      <section className="py-6 sm:py-8 bg-[#071b34] text-white relative overflow-hidden">
+      {/* 6. ORGANIC SECTION DIVIDER */}
+      <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />
+
+      {/* 7. SUPPORT OUR CAUSE CTA */}
+      <section className="py-8 sm:py-10 bg-[#071b34] text-white relative overflow-hidden">
         {/* Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#da8a24]/8 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           
-          {/* Card Container: Transparent Background, Reduced Width & Height */}
+          {/* Card Container */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center bg-transparent border-0 shadow-none p-0 relative overflow-hidden">
             
-            {/* 1. Featured Image Column (Compact Height) */}
+            {/* 1. Featured Image Column */}
             <div className="md:col-span-3 relative h-36 sm:h-40 w-full rounded-xl overflow-hidden border-0 shadow-none bg-[#071b34] shrink-0">
               <img
                 src={heroChildLongingMeal}
@@ -313,15 +275,15 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
 
             {/* 2. Content Column */}
             <div className="md:col-span-5 space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-semibold shadow-none">
+              <div className="w-8 h-8 rounded-lg bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-normal shadow-none">
                 <Heart className="w-4 h-4 fill-[#0a2240]" />
               </div>
               
-              <h2 className="text-lg sm:text-xl font-semibold text-white tracking-tight leading-snug">
+              <h2 className="text-xl sm:text-2xl font-normal text-white tracking-tight leading-snug">
                 Be a Part of More Happy Moments
               </h2>
               
-              <p className="text-xs text-slate-300 font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
                 Every contribution directly funds wholesome daily meals, educational books, special needs therapy, and shelter for children and seniors across Chennai & Thiruvallur.
               </p>
             </div>
@@ -335,7 +297,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   pixelTracker.trackDonateClick(500, 'Gallery Page Support CTA');
                   onOpenDonateModal(500);
                 }}
-                className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-5 py-2.5 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider"
+                className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-5 py-2.5 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider"
               >
                 <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
                 <span>Donate Now</span>
@@ -345,7 +307,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onNavigate('contact')}
-                className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/30 font-semibold px-5 py-2.5 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs"
+                className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/30 font-normal px-5 py-2.5 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm"
               >
                 <Users className="w-3.5 h-3.5 text-[#da8a24]" />
                 <span>Contact Our Team</span>
@@ -358,10 +320,10 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         </div>
       </section>
 
-      {/* 8. ORGANIC SECTION DIVIDER (Dark to Light/Footer) */}
+      {/* 8. ORGANIC SECTION DIVIDER */}
       <DarkToLightDivider bgFrom="#071b34" bgTo="#0a2240" />
 
-      {/* 7. FULL STORY LIGHTBOX MODAL (PORTAL - Borderless & Shadowless) */}
+      {/* 7. FULL STORY LIGHTBOX MODAL */}
       {activeStoryItem && createPortal(
         <AnimatePresence>
           <motion.div
@@ -402,36 +364,36 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
               {/* Narrative details side */}
               <div className="lg:col-span-7 p-4 sm:p-7 space-y-4 overflow-y-auto max-h-[50vh] lg:max-h-[85vh] flex flex-col justify-between">
                 <div className="space-y-3.5 pr-1 sm:pr-2">
-                  <div className="flex flex-wrap items-center gap-2 text-xs pt-1">
-                    <span className="bg-[#da8a24] text-[#0a2240] font-semibold px-3 py-1 rounded-none uppercase tracking-wider text-[10px] flex items-center gap-1 border-0">
-                      <Sparkles className="w-3 h-3" />{activeStoryItem.category}
+                  <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm pt-1">
+                    <span className="bg-[#da8a24] text-[#0a2240] font-normal px-3 py-1 rounded-none uppercase tracking-wider text-xs flex items-center gap-1 border-0">
+                      <Sparkles className="w-3.5 h-3.5" />{activeStoryItem.category}
                     </span>
-                    <span className="text-slate-200 flex items-center gap-1 bg-[#0a2240] px-3 py-1 rounded-none border-0">
+                    <span className="text-slate-200 flex items-center gap-1 bg-[#0a2240] px-3 py-1 rounded-none border-0 font-normal">
                       <MapPin className="w-3.5 h-3.5 text-[#da8a24]" />
                       {activeStoryItem.location}
                     </span>
                     {activeStoryItem.impactStat && (
-                      <span className="text-[#da8a24] flex items-center gap-1 bg-[#da8a24]/10 px-3 py-1 rounded-none border-0 font-medium">
+                      <span className="text-[#da8a24] flex items-center gap-1 bg-[#da8a24]/10 px-3 py-1 rounded-none border-0 font-normal">
                         <Users className="w-3.5 h-3.5" />
                         {activeStoryItem.impactStat.label}: {activeStoryItem.impactStat.value}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white leading-tight">{activeStoryItem.title}</h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">{activeStoryItem.description}</p>
+                  <h3 className="text-2xl sm:text-3xl font-normal text-white leading-tight">{activeStoryItem.title}</h3>
+                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">{activeStoryItem.description}</p>
 
                   {activeStoryItem.storyDetails && (
-                    <div className="bg-[#0a2240] p-4 rounded-none border-0 text-xs text-slate-200 leading-relaxed space-y-1">
-                      <span className="text-[#da8a24] font-semibold block text-[11px] uppercase tracking-wider">Field Narrative & Impact</span>
-                      <p>{activeStoryItem.storyDetails}</p>
+                    <div className="bg-[#0a2240] p-4 rounded-none border-0 text-sm text-slate-200 leading-relaxed space-y-1">
+                      <span className="text-[#da8a24] font-normal block text-xs uppercase tracking-wider">Field Narrative & Impact</span>
+                      <p className="font-normal">{activeStoryItem.storyDetails}</p>
                     </div>
                   )}
 
                   {activeStoryItem.quote && (
                     <div className="bg-[#da8a24]/10 border-0 p-3.5 rounded-none flex items-start gap-3">
                       <Quote className="w-4 h-4 text-[#da8a24] shrink-0 mt-0.5" />
-                      <p className="text-xs italic text-amber-200">{activeStoryItem.quote}</p>
+                      <p className="text-xs sm:text-sm italic font-normal text-amber-200">{activeStoryItem.quote}</p>
                     </div>
                   )}
                 </div>
@@ -443,7 +405,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                       setActiveStoryItem(null);
                       onOpenDonateModal(500);
                     }}
-                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-6 py-3.5 rounded-none shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider"
+                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-6 py-3.5 rounded-none shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-sm uppercase tracking-wider"
                   >
                     <Heart className="w-4 h-4 fill-[#0a2240] animate-pulse" />
                     <span>Sponsor Meals for This Drive (₹500)</span>
