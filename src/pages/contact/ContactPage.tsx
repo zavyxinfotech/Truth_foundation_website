@@ -193,12 +193,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              {/* Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5 text-[#da8a24]" />
-                <span>GET IN TOUCH WITH TRUTH FOUNDATION</span>
-              </div>
-
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
                 We Are Here to Listen, Guide & <span className="text-[#da8a24]">Partner</span>

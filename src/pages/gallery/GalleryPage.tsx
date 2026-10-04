@@ -102,12 +102,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
               transition={{ duration: 0.6 }}
               className="lg:col-span-7 space-y-5"
             >
-              {/* Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#da8a24]/10 border border-[#da8a24]/30">
-                <Camera className="w-3.5 h-3.5 text-[#da8a24]" />
-                <span>OUR MOMENTS</span>
-              </div>
-
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
                 A Glimpse into <span className="text-[#da8a24]">Lives We Touch</span>
