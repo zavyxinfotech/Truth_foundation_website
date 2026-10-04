@@ -135,7 +135,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       </section>
 
       {/* 5. PHOTO GALLERY HEADER & FILTERABLE GRID (#f8fafc Light Section) */}
-      <section className="py-16 sm:py-24 bg-[#f8fafc] text-slate-900 relative border-t border-slate-200">
+      <section className="py-16 sm:py-24 bg-[#f8fafc] text-slate-900 relative">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
           
           {/* Header & Horizontal Filter Rail (Options Below Text) */}
@@ -350,31 +350,34 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 <X className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
               </button>
 
-              {/* Image side */}
-              <div className="lg:col-span-5 relative bg-[#040f1a]/40 backdrop-blur-md p-3 sm:p-4 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 shrink-0 max-h-[30vh] sm:max-h-[40vh] lg:max-h-none">
+              {/* Image side - Category aligned UPON the image */}
+              <div className="lg:col-span-5 relative bg-[#040f1a]/40 backdrop-blur-md p-3 sm:p-4 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 shrink-0">
                 <Picture
                   picture={activeStoryItem.image}
                   sizes="(min-width: 1024px) 420px, calc(100vw - 2rem)"
                   alt={activeStoryItem.title}
                   loading="eager"
-                  className="w-full h-full max-h-[28vh] sm:max-h-[38vh] lg:max-h-[75vh] object-cover rounded-xl shadow-lg"
+                  className="w-full h-full max-h-[32vh] sm:max-h-[42vh] lg:max-h-[75vh] object-cover rounded-xl shadow-lg"
                 />
+
+                {/* Category Label Overlay UPON the Image */}
+                <span className="absolute top-5 left-5 bg-[#da8a24] text-[#0a2240] font-semibold text-xs uppercase tracking-wider px-3 py-1 rounded-md shadow-md z-10">
+                  {activeStoryItem.category}
+                </span>
               </div>
 
-              {/* Narrative details side (Glassmorphism + Responsive Scroll) */}
+              {/* Details side (No background color for Location/Person, No Field Narrative Section) */}
               <div className="lg:col-span-7 p-4 sm:p-7 space-y-4 overflow-y-auto max-h-[60vh] lg:max-h-[85vh] flex flex-col justify-between scrollbar-thin">
                 <div className="space-y-3.5 pr-1 sm:pr-2">
-                  <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm pt-1">
-                    <span className="bg-[#da8a24] text-[#0a2240] font-normal px-3 py-1 rounded-full uppercase tracking-wider text-xs flex items-center gap-1 border-0 shadow-sm">
-                      <Sparkles className="w-3.5 h-3.5" />{activeStoryItem.category}
-                    </span>
-                    <span className="text-slate-200 flex items-center gap-1 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 font-normal">
+                  {/* Location & Impact Stats (Clean Text - No Pill Backgrounds) */}
+                  <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm pt-1">
+                    <span className="text-[#da8a24] flex items-center gap-1 font-normal">
                       <MapPin className="w-3.5 h-3.5 text-[#da8a24]" />
                       {activeStoryItem.location}
                     </span>
                     {activeStoryItem.impactStat && (
-                      <span className="text-[#da8a24] flex items-center gap-1 bg-[#da8a24]/15 backdrop-blur-md px-3 py-1 rounded-full border border-[#da8a24]/30 font-normal">
-                        <Users className="w-3.5 h-3.5" />
+                      <span className="text-amber-200/90 flex items-center gap-1 font-normal">
+                        <Users className="w-3.5 h-3.5 text-[#da8a24]" />
                         {activeStoryItem.impactStat.label}: {activeStoryItem.impactStat.value}
                       </span>
                     )}
@@ -382,13 +385,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
 
                   <h3 className="text-xl sm:text-3xl font-normal text-white leading-tight">{activeStoryItem.title}</h3>
                   <p className="text-xs sm:text-base text-slate-200 leading-relaxed font-normal">{activeStoryItem.description}</p>
-
-                  {activeStoryItem.storyDetails && (
-                    <div className="bg-white/5 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs sm:text-sm text-slate-200 leading-relaxed space-y-1">
-                      <span className="text-[#da8a24] font-normal block text-xs uppercase tracking-wider">Field Narrative & Impact</span>
-                      <p className="font-normal text-slate-300">{activeStoryItem.storyDetails}</p>
-                    </div>
-                  )}
 
                   {activeStoryItem.quote && (
                     <div className="bg-[#da8a24]/10 backdrop-blur-md border border-[#da8a24]/20 p-3.5 rounded-xl flex items-start gap-3">
