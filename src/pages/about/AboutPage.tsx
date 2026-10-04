@@ -438,11 +438,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 </h2>
               </div>
 
-              {/* Founders Section with Enlarged Round Frames & No Card Background/Shadow */}
-              <div className="space-y-5 max-w-[560px]">
+              {/* Founders Section with Significantly Enlarged Round Frames & Text Near Image */}
+              <div className="space-y-6 max-w-[580px]">
                 {/* 1st Founder: Round Frame Aligned on Left */}
                 <div className="flex items-center gap-5 sm:gap-6 bg-transparent p-0 border-0 shadow-none">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
+                  <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
                     <img
                       src={storyImage}
                       alt="Dr. D.Dayanandam"
@@ -450,7 +450,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     />
                   </div>
                   <div className="space-y-1">
-                    <div className="text-lg sm:text-2xl font-normal text-[#0a2240]">
+                    <div className="text-xl sm:text-2xl font-normal text-[#0a2240]">
                       Dr. D.Dayanandam
                     </div>
                     <div className="text-sm sm:text-base font-normal text-slate-600">
@@ -459,17 +459,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   </div>
                 </div>
 
-                {/* 2nd Founder: Round Frame Aligned on Right */}
-                <div className="flex items-center justify-between gap-5 sm:gap-6 bg-transparent p-0 border-0 shadow-none">
-                  <div className="space-y-1 text-left">
-                    <div className="text-lg sm:text-2xl font-normal text-[#0a2240]">
+                {/* 2nd Founder: Round Frame Aligned with Text Near Image */}
+                <div className="flex items-center gap-5 sm:gap-6 justify-end bg-transparent p-0 border-0 shadow-none">
+                  <div className="space-y-1 text-right">
+                    <div className="text-xl sm:text-2xl font-normal text-[#0a2240]">
                       Mrs. Shara Daya
                     </div>
                     <div className="text-sm sm:text-base font-normal text-slate-600">
                       Managing Trustee
                     </div>
                   </div>
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
+                  <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
                     <img
                       src={elderlyFoodCareDrive}
                       alt="Mrs. Shara Daya"
@@ -513,12 +513,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-6 space-y-6"
             >
-              <span className="text-[#da8a24] font-normal text-xs sm:text-sm uppercase tracking-widest block">
-                OUR JOURNEY
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-normal text-[#0a2240] tracking-tight">
-                14-Year Timeline of Growth & Impact
-              </h2>
+              <div className="space-y-1">
+                <span className="text-[#da8a24] font-normal text-xs sm:text-sm uppercase tracking-widest block">
+                  OUR JOURNEY
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-normal text-[#0a2240] tracking-tight leading-tight">
+                  14-Year Timeline of Growth & Impact
+                </h2>
+              </div>
 
               <div className="relative pl-6 sm:pl-8 space-y-8 border-l-2 border-[#da8a24] pt-2">
                 {JOURNEY_MILESTONES.map((milestone, idx) => (
