@@ -73,41 +73,18 @@ interface SponsorCauseSectionProps {
 
 export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpenDonateModal }) => {
   return (
-    <section className="py-10 sm:py-16 bg-[#f8fafc] text-slate-900 relative overflow-hidden">
-      
-      {/* Top-Left Botanical Leaf Accent */}
-      <svg className="absolute top-0 left-0 w-24 sm:w-36 lg:w-44 h-auto text-[#da8a24]/20 pointer-events-none z-0" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 150Q40 100 130 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-        <path d="M130 30Q100 20 80 40Q110 50 130 30Z" fill="currentColor"/>
-        <path d="M100 55Q75 40 55 60Q85 70 100 55Z" fill="currentColor"/>
-        <path d="M70 80Q45 65 25 85Q55 95 70 80Z" fill="currentColor"/>
-        <path d="M40 105Q20 95 5 110Q30 120 40 105Z" fill="currentColor"/>
-        <path d="M115 42Q125 75 100 90Q105 60 115 42Z" fill="currentColor"/>
-        <path d="M85 68Q95 100 70 115Q75 85 85 68Z" fill="currentColor"/>
-      </svg>
-
-      {/* Top-Right Botanical Leaf Accent */}
-      <svg className="absolute top-0 right-0 w-24 sm:w-36 lg:w-44 h-auto text-[#da8a24]/20 pointer-events-none z-0 transform -scale-x-100" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 150Q40 100 130 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-        <path d="M130 30Q100 20 80 40Q110 50 130 30Z" fill="currentColor"/>
-        <path d="M100 55Q75 40 55 60Q85 70 100 55Z" fill="currentColor"/>
-        <path d="M70 80Q45 65 25 85Q55 95 70 80Z" fill="currentColor"/>
-        <path d="M40 105Q20 95 5 110Q30 120 40 105Z" fill="currentColor"/>
-        <path d="M115 42Q125 75 100 90Q105 60 115 42Z" fill="currentColor"/>
-        <path d="M85 68Q95 100 70 115Q75 85 85 68Z" fill="currentColor"/>
-      </svg>
-
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 sm:space-y-10 relative z-10">
+    <section className="py-6 sm:py-8 bg-[#f8fafc] text-slate-900 relative overflow-hidden">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-4 sm:space-y-6 relative z-10">
         
-        {/* Header: Left Aligned */}
-        <div className="text-left max-w-3xl space-y-2">
+        {/* Header: Left Aligned Single Line */}
+        <div className="text-left max-w-4xl space-y-1">
           <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
             SPONSOR A CAUSE
           </span>
-          <h2 className="text-[22px] xs:text-[26px] sm:text-[38px] lg:text-[44px] font-semibold text-[#0a2240] tracking-tight leading-tight">
+          <h2 className="text-[20px] xs:text-[24px] sm:text-[32px] md:text-[38px] lg:text-[40px] font-semibold text-[#0a2240] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
             Make a Direct Impact
           </h2>
-          <p className="text-sm sm:text-lg lg:text-[18px] text-slate-600 font-normal leading-relaxed">
+          <p className="text-xs sm:text-base lg:text-[16px] text-slate-600 font-normal leading-relaxed">
             Your support helps us provide nutrition, education, healthcare, and care for children, elderly, and special-needs individuals.
           </p>
         </div>

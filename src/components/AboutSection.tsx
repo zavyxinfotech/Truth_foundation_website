@@ -48,7 +48,7 @@ export const AboutSection: React.FC = () => {
     }
   };
 
-  // Automatic 3D horizontal step-scroll timer
+  // Automatic horizontal step-scroll timer
   useEffect(() => {
     if (isPaused) return;
 
@@ -64,40 +64,36 @@ export const AboutSection: React.FC = () => {
   }, [isPaused]);
 
   return (
-    <section id="about" className="py-12 sm:py-20 bg-[#0a2240] text-white relative overflow-hidden">
-      {/* Background Soft Ambient Glows matching TrustSection */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="about" className="py-6 sm:py-10 bg-[#0a2240] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Section Header & Narrative */}
+        {/* Top Section Header: Aligned in a Single Line on Desktop */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="max-w-3xl space-y-3 mb-8 sm:mb-12"
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="max-w-4xl space-y-2 mb-5 sm:mb-8"
         >
           <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
             About Truth Foundation
           </span>
-          <h2 className="text-[20px] xs:text-[24px] sm:text-[36px] lg:text-[44px] font-semibold text-white tracking-tight leading-tight">
+          <h2 className="text-[18px] xs:text-[22px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-semibold text-white tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
             <span className="text-[#da8a24]">TRUTH FOUNDATION</span> (Public Charitable Trust)
           </h2>
 
-          <p className="text-sm sm:text-lg lg:text-[18px] text-slate-300 leading-relaxed font-normal">
+          <p className="text-xs sm:text-base lg:text-[16px] text-slate-300 leading-relaxed font-normal">
             Launched on <strong className="text-white font-medium">5th July 2010</strong>, Truth Foundation empowers marginalized rural communities through education, skills development, and advocacy for social justice, equality, and dignity.
           </p>
         </motion.div>
 
-        {/* Responsive 4-Card Showcase: Grid on Desktop (0 cropping), Auto-Scroll Carousel on Mobile */}
-        <div className="relative py-2">
+        {/* Responsive 4-Card Showcase: Thin Borders, No Gradients */}
+        <div className="relative py-1">
           <div
             ref={scrollContainerRef}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="flex lg:grid lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-5 overflow-x-auto lg:overflow-x-visible py-6 px-1 sm:px-2 scrollbar-none snap-x snap-mandatory scroll-smooth items-stretch justify-start w-full [perspective:1000px]"
+            className="flex lg:grid lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-4 overflow-x-auto lg:overflow-x-visible py-3 px-1 sm:px-2 scrollbar-none snap-x snap-mandatory scroll-smooth items-stretch justify-start w-full"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {FEATURES.map((feature, idx) => {
@@ -106,28 +102,30 @@ export const AboutSection: React.FC = () => {
                 <motion.div
                   key={idx}
                   onClick={() => scrollToCard(idx)}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.15 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className={`w-[82vw] max-w-[280px] sm:w-[310px] lg:w-full lg:max-w-none shrink-0 lg:shrink snap-center rounded-3xl p-6 sm:p-7 bg-[#071b34] backdrop-blur-md border transition-all duration-500 transform-gpu cursor-pointer space-y-4 flex flex-col justify-between group ${
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className={`w-[82vw] max-w-[280px] sm:w-[310px] lg:w-full lg:max-w-none shrink-0 lg:shrink snap-center rounded-2xl p-5 sm:p-6 bg-[#071b34] border transition-all duration-300 transform-gpu cursor-pointer space-y-3 flex flex-col justify-between group ${
                     isActive
-                      ? 'scale-105 lg:scale-[1.02] border-[#da8a24] shadow-2xl z-20 ring-4 ring-[#da8a24]/20 [transform:rotateY(0deg)_translateZ(20px)]'
-                      : 'border-[#163863]/80 opacity-100 hover:border-[#da8a24]/90 z-10 [transform:rotateY(0deg)] lg:hover:scale-[1.02]'
+                      ? 'border-[#da8a24]/80 z-20'
+                      : 'border-[#163863]/60 hover:border-[#da8a24]/60 z-10'
                   }`}
                 >
-                  <div className="space-y-3">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-md transition-all duration-300 ${
-                      isActive ? 'bg-[#da8a24] text-[#0a2240] scale-110' : 'bg-[#0a2240] border border-[#163863] text-[#da8a24]'
+                  <div className="space-y-2.5">
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isActive ? 'bg-[#da8a24] text-[#0a2240]' : 'bg-[#0a2240] border border-[#163863] text-[#da8a24]'
                     }`}>
-                      <feature.icon className="w-6 h-6" />
+                      <feature.icon className="w-5 h-5" />
                     </div>
 
-                    <h3 className="font-semibold text-white text-lg sm:text-xl lg:text-2xl tracking-tight group-hover:text-[#da8a24] transition-colors leading-snug">
+                    {/* Card Title: Non-bold Font */}
+                    <h3 className="font-normal text-white text-base sm:text-lg lg:text-xl tracking-tight group-hover:text-[#da8a24] transition-colors leading-snug">
                       {feature.title}
                     </h3>
 
-                    <p className="text-sm sm:text-base text-slate-200 group-hover:text-white leading-relaxed font-normal">
+                    {/* Card Description: Non-bold Font */}
+                    <p className="text-xs sm:text-sm text-slate-300 group-hover:text-white leading-relaxed font-normal">
                       {feature.description}
                     </p>
                   </div>
@@ -137,14 +135,14 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* Pagination Indicators on Mobile */}
-          <div className="flex lg:hidden items-center justify-center pt-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-[#071b34] backdrop-blur-md rounded-full border border-[#163863]">
+          <div className="flex lg:hidden items-center justify-center pt-3">
+            <div className="flex items-center gap-2 px-3 py-1 bg-[#071b34] rounded-full border border-[#163863]">
               {FEATURES.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => scrollToCard(i)}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === i ? 'w-8 bg-[#da8a24] shadow-xs' : 'w-2.5 bg-slate-600 hover:bg-slate-500'
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeIndex === i ? 'w-6 bg-[#da8a24]' : 'w-2 bg-slate-600 hover:bg-slate-500'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />

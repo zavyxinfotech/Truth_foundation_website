@@ -72,34 +72,30 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
   }, []);
 
   return (
-    <section id="why-donate" className="py-6 sm:py-10 bg-[#f8fafc] relative overflow-hidden">
-      {/* Ambient background soft glow blobs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="why-donate" className="py-4 sm:py-6 bg-[#f8fafc] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* Section Header: Aligned in a Single Line on Desktop */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-center max-w-3xl mx-auto mb-4 sm:mb-6 space-y-2"
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="text-center max-w-4xl mx-auto mb-3 sm:mb-4 space-y-1"
         >
           <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
             Make an Impact Today
           </span>
-          <h2 className="text-[22px] xs:text-[26px] sm:text-[38px] lg:text-[44px] font-semibold text-[#0a2240] tracking-tight leading-tight">
+          <h2 className="text-[20px] xs:text-[24px] sm:text-[32px] md:text-[38px] lg:text-[40px] font-semibold text-[#0a2240] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
             Transforming Lives, One Plate at a Time
           </h2>
-          <p className="text-sm sm:text-lg lg:text-[18px] text-slate-600 leading-relaxed font-normal">
+          <p className="text-xs sm:text-base lg:text-[16px] text-slate-600 leading-relaxed font-normal">
             Your small contribution creates a massive ripple effect in the life of a child. Here is how your ₹100 turns into health, dignity, and education.
           </p>
         </motion.div>
 
-        {/* Reference Design Centered Minimal Cards Carousel */}
-        <div className="relative py-1 sm:py-2">
+        {/* Minimal Cards Carousel with Thin Border and No Gradient */}
+        <div className="relative py-1">
           <div
             ref={scrollContainerRef}
             onMouseEnter={() => setIsPaused(true)}
@@ -115,32 +111,32 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
                 <motion.div
                   key={idx}
                   onClick={() => scrollToCard(idx)}
-                  initial={{ opacity: 0, y: 35, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 25, scale: 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: false, amount: 0.15 }}
-                  transition={{ duration: 0.5, delay: idx * 0.12 }}
-                  className={`w-[85vw] max-w-[310px] sm:w-[330px] lg:w-[360px] shrink-0 snap-center p-4 sm:p-6 transition-all duration-300 transform-gpu cursor-pointer flex flex-col items-center text-center relative group ${
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className={`w-[85vw] max-w-[310px] sm:w-[330px] lg:w-[360px] shrink-0 snap-center p-4 sm:p-5 transition-all duration-300 transform-gpu cursor-pointer flex flex-col items-center text-center relative group rounded-2xl border ${
                     isActive
-                      ? 'scale-100 sm:scale-105 z-20 opacity-100'
-                      : 'scale-95 opacity-80 z-10'
+                      ? 'scale-100 sm:scale-105 z-20 opacity-100 border-[#da8a24]/60 bg-white'
+                      : 'scale-95 opacity-80 z-10 border-slate-200/80 bg-white/70 hover:border-slate-300'
                   }`}
                 >
                   {/* Top Centered Circular Icon Badge */}
-                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-5 sm:mb-6 transition-all duration-300 shrink-0 ${
+                  <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-300 shrink-0 ${
                     isActive 
-                      ? 'bg-[#da8a24] text-[#0a2240] scale-110 shadow-lg shadow-[#da8a24]/30' 
-                      : 'bg-[#0a2240] text-[#da8a24] group-hover:bg-[#da8a24] group-hover:text-[#0a2240] shadow-md'
+                      ? 'bg-[#da8a24] text-[#0a2240] scale-105' 
+                      : 'bg-[#0a2240] text-[#da8a24] group-hover:bg-[#da8a24] group-hover:text-[#0a2240]'
                   }`}>
-                    <Icon className="w-7 h-7 sm:w-9 sm:h-9" />
+                    <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>
 
-                  {/* Card Title Centered */}
-                  <h3 className="text-xl sm:text-2xl font-semibold text-[#0a2240] mb-3 tracking-tight">
+                  {/* Card Title Centered: Non-bold Font */}
+                  <h3 className="text-lg sm:text-xl font-normal text-[#0a2240] mb-2 tracking-tight">
                     {card.title}
                   </h3>
 
-                  {/* Card Description Centered */}
-                  <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal text-center">
+                  {/* Card Description Centered: Non-bold Font */}
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal text-center">
                     {card.description}
                   </p>
                 </motion.div>
@@ -149,14 +145,14 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
           </div>
 
           {/* Pagination Indicators */}
-          <div className="flex items-center justify-center pt-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-white/80 backdrop-blur-md rounded-full border border-slate-200/80 shadow-xs">
+          <div className="flex items-center justify-center pt-3">
+            <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-full border border-slate-200/80">
               {cards.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => scrollToCard(i)}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === i ? 'w-8 bg-[#da8a24] shadow-xs' : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeIndex === i ? 'w-6 bg-[#da8a24]' : 'w-2 bg-slate-300 hover:bg-slate-400'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
