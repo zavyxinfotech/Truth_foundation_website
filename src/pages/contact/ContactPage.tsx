@@ -162,22 +162,22 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
       />
 
       {/* 2. DARK NAVY HERO SECTION (#0a2240) WITH RESPONSIVE HERO BACKGROUND IMAGES */}
-      <section className="pt-24 sm:pt-32 pb-20 sm:pb-28 bg-[#0a2240] text-white relative overflow-hidden min-h-[50vh] flex items-center">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 bg-[#0a2240] text-white relative overflow-hidden min-h-[50vh] flex items-center">
         
-        {/* Desktop Background Image (Hidden on Mobile) */}
+        {/* Desktop Background Image (Hidden on Mobile) - Vivid & Clear with Minimum Transparency */}
         <div 
-          className="hidden md:block absolute inset-0 bg-cover bg-center opacity-25 pointer-events-none mix-blend-luminosity"
+          className="hidden md:block absolute inset-0 bg-cover bg-center opacity-80 pointer-events-none"
           style={{ backgroundImage: `url(${contactHeroBgDesktop})` }}
         />
 
-        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
+        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) - Vivid & Clear */}
         <div 
-          className="block md:hidden absolute inset-0 bg-cover bg-center opacity-35 pointer-events-none mix-blend-luminosity"
+          className="block md:hidden absolute inset-0 bg-cover bg-center opacity-85 pointer-events-none"
           style={{ backgroundImage: `url(${contactHeroBgMobile})` }}
         />
 
-        {/* Dark Gradient Overlay for optimal text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240] via-[#0a2240]/90 to-[#0a2240]/75 pointer-events-none" />
+        {/* Light Ambient Dark Gradient Overlay for maximum image sharpness + text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/65 to-[#0a2240]/30 pointer-events-none" />
 
         {/* Subtle Ambient Background Glows */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
@@ -194,7 +194,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               className="space-y-6"
             >
               {/* Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#da8a24]/10 border border-[#da8a24]/30 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 backdrop-blur-md">
                 <Sparkles className="w-3.5 h-3.5 text-[#da8a24]" />
                 <span>GET IN TOUCH WITH TRUTH FOUNDATION</span>
               </div>
@@ -205,7 +205,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               </h1>
 
               {/* Paragraph Description */}
-              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-[660px]">
+              <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed max-w-[660px] drop-shadow-sm">
                 Have questions about donations, 80G tax exemption receipts, volunteering opportunities, or scheduling a visit to our Redhills Orphanage or Special Needs School? Our team is dedicated to serving you.
               </p>
 
@@ -240,6 +240,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
         </div>
       </section>
+
+      {/* ORGANIC WAVES SECTION DIVIDER (Dark #0a2240 to Light #f8fafc) */}
+      <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
 
       {/* 3. QUICK CONTACT FLOATING CARDS SECTION (Light #f8fafc Section) */}
       <section className="py-12 bg-[#f8fafc] text-slate-900 relative">
@@ -354,126 +357,113 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             
-            {/* Left Side: Contact Form (7 cols ~60%) */}
+            {/* Left Side: Direct Contact Details Card (Replacing Form) */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl space-y-6"
+              className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl space-y-8 shadow-sm border border-slate-100"
             >
-              <div className="space-y-2">
+              <div className="space-y-2 border-b border-slate-100 pb-6">
                 <span className="text-[#da8a24] font-semibold text-xs uppercase tracking-widest block">
-                  SEND US A DIRECT MESSAGE
+                  GET IN TOUCH DIRECTLY
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-semibold text-[#0a2240] tracking-tight">How Can We Help You Today?</h2>
-                <p className="text-xs sm:text-sm text-slate-600 font-normal">Fill in your details below and our coordinator will respond within 24 hours.</p>
+                <h2 className="text-2xl sm:text-3xl font-semibold text-[#0a2240] tracking-tight">
+                  Direct Helplines & Office Locations
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 font-normal">
+                  Our team is dedicated to serving you. Feel free to call, chat, or visit our offices anytime.
+                </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Full Name */}
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#0a2240] uppercase tracking-wider block">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="fullName"
-                      required
-                      placeholder="e.g. Ramesh Kumar"
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#f8fafc] border border-slate-200 focus:border-[#da8a24] focus:bg-white focus:ring-2 focus:ring-[#da8a24]/20 outline-none text-sm font-medium text-slate-800 transition"
-                    />
-                  </div>
+              {/* Grid of Contact Information Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-                  {/* Phone Number */}
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#0a2240] uppercase tracking-wider block">
-                      Phone / Mobile *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      placeholder="e.g. 9876543210"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#f8fafc] border border-slate-200 focus:border-[#da8a24] focus:bg-white focus:ring-2 focus:ring-[#da8a24]/20 outline-none text-sm font-medium text-slate-800 transition"
-                    />
+                {/* 1. Call Our Helpline */}
+                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-xl bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center font-semibold">
+                      <PhoneCall className="w-5 h-5 text-[#da8a24]" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="font-semibold text-[#0a2240] text-base">Call Our Helpline</h3>
+                      <p className="text-xs text-slate-500 font-medium">Mon – Sat, 9:00 AM – 6:00 PM</p>
+                    </div>
                   </div>
+                  <a
+                    href="tel:+919962294949"
+                    className="inline-block text-base sm:text-lg font-semibold text-[#da8a24] hover:underline pt-1"
+                  >
+                    +91 99622 94949
+                  </a>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Email */}
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#0a2240] uppercase tracking-wider block">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="e.g. ramesh@example.com"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#f8fafc] border border-slate-200 focus:border-[#da8a24] focus:bg-white focus:ring-2 focus:ring-[#da8a24]/20 outline-none text-sm font-medium text-slate-800 transition"
-                    />
+                {/* 2. WhatsApp Chat */}
+                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center font-semibold">
+                      <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="font-semibold text-[#0a2240] text-base">WhatsApp Chat</h3>
+                      <p className="text-xs text-slate-500 font-normal">Instant response from coordinators</p>
+                    </div>
                   </div>
-
-                  {/* Subject Dropdown */}
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#0a2240] uppercase tracking-wider block">
-                      Inquiry Category *
-                    </label>
-                    <select
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#f8fafc] border border-slate-200 focus:border-[#da8a24] focus:bg-white focus:ring-2 focus:ring-[#da8a24]/20 outline-none text-sm font-medium text-slate-800 transition"
-                    >
-                      {INQUIRY_SUBJECTS.map((subj, idx) => (
-                        <option key={idx} value={subj}>{subj}</option>
-                      ))}
-                    </select>
-                  </div>
+                  <button
+                    onClick={handleDirectWhatsApp}
+                    className="w-full mt-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-xs py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-sm uppercase tracking-wider"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 text-white" />
+                    <span>Chat Now</span>
+                  </button>
                 </div>
 
-                {/* Message */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-[#0a2240] uppercase tracking-wider block">
-                    Message Details *
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    required
-                    placeholder="Tell us more about how you would like to support or your query..."
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-[#f8fafc] border border-slate-200 focus:border-[#da8a24] focus:bg-white focus:ring-2 focus:ring-[#da8a24]/20 outline-none text-sm font-medium text-slate-800 transition resize-none"
-                  />
+                {/* 3. Redhills Home Office */}
+                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold">
+                      <MapPin className="w-5 h-5 text-[#da8a24]" />
+                    </div>
+                    <h3 className="font-semibold text-[#0a2240] text-base">Redhills Home Office</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      #244, Mallima Nagar, Vilagadupakkam, Redhills, Chennai - 600052
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+244+Mallima+Nagar+Vilagadupakkam+Redhills+Chennai+600052"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#da8a24] hover:underline pt-2"
+                  >
+                    <span>View Google Map</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold py-4 px-6 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider text-sm sm:text-base min-h-[52px]"
-                >
-                  {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-[#0a2240] border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5 text-[#0a2240]" />
-                      <span>Submit Inquiry</span>
-                    </>
-                  )}
-                </motion.button>
+                {/* 4. Corporate Office */}
+                <div className="bg-[#f8fafc] p-5 rounded-2xl space-y-3 border border-slate-100 hover:border-[#da8a24]/40 transition-colors flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-semibold">
+                      <Building2 className="w-5 h-5 text-[#da8a24]" />
+                    </div>
+                    <h3 className="font-semibold text-[#0a2240] text-base">Corporate Office</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      #49, Venus Nagar Main Road, Kolathur, Chennai - 600099
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+49+Venus+Nagar+Main+Road+Kolathur+Chennai+600099"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#da8a24] hover:underline pt-2"
+                  >
+                    <span>View Google Map</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
 
-              </form>
+              </div>
 
             </motion.div>
 
