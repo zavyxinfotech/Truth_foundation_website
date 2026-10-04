@@ -1064,7 +1064,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             </p>
           </div>
 
-          {/* Desktop Display: 6 Cause Items Grid with Round Frames & Increased Donate Button Size */}
+          {/* Desktop Display: 6 Cause Items Grid */}
           <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
             {SPONSOR_CAUSES.map((cause) => (
               <motion.div
@@ -1077,38 +1077,38 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 className="bg-transparent border-0 shadow-none rounded-[24px] p-3 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
               >
                 <div>
-                  {/* Circular / Round Frame for the Image */}
-                  <div className="relative w-36 h-36 sm:w-40 sm:h-40 mx-auto rounded-full overflow-hidden p-1.5 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/50 shadow-md ring-4 ring-[#da8a24]/10 shrink-0">
+                  {/* Rounded Frame for Image */}
+                  <div className="relative w-full aspect-[4/5] rounded-[22px] overflow-hidden p-1 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/40 shadow-sm ring-2 ring-[#da8a24]/10 shrink-0">
                     <img
                       src={cause.image}
                       alt={cause.title}
-                      className="w-full h-full object-cover object-center rounded-full transform transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover object-center rounded-[18px] transform transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-1 right-1 bg-[#0a2240] text-[#da8a24] font-medium text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
+                    <div className="absolute top-2 right-2 bg-[#0a2240] text-[#da8a24] font-normal text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
                       {cause.amountLabel}
                     </div>
                   </div>
 
-                  {/* Title Below Image: Non-bold Font */}
+                  {/* Title Below Image: Strictly Normal Font (Not Bold) */}
                   <div className="pt-3.5 pb-2 px-1 flex flex-col items-center text-center">
-                    <h3 className="font-medium text-[#0a2240] text-base lg:text-lg leading-snug group-hover:text-[#da8a24] transition-colors">
+                    <h3 className="font-normal text-[#0a2240] text-base lg:text-lg leading-snug group-hover:text-[#da8a24] transition-colors">
                       {cause.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Increased Size Donate Button */}
+                {/* Donate Button: Text Only "Donate" (No Price inside Button) */}
                 <div className="pt-2">
                   <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-medium text-xs sm:text-sm py-2.5 px-3.5 rounded-full shadow-md transition-colors uppercase tracking-wider min-h-[40px]">
                     <Heart className="w-4 h-4 fill-[#0a2240]" />
-                    <span>Donate ({cause.amountLabel})</span>
+                    <span>Donate</span>
                   </span>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track with Round Frames */}
+          {/* Mobile Display: Smooth Horizontal Auto-Scrolling Track */}
           <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-1">
             <motion.div
               animate={{ x: ['0%', '-50%'] }}
@@ -1125,31 +1125,31 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   className="w-[210px] shrink-0 bg-transparent border-0 shadow-none rounded-[22px] p-2.5 transition-all duration-300 flex flex-col justify-between cursor-pointer group text-center"
                 >
                   <div>
-                    {/* Round Frame for Mobile */}
-                    <div className="relative w-36 h-36 mx-auto rounded-full overflow-hidden p-1.5 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/50 shadow-md ring-4 ring-[#da8a24]/10 shrink-0">
+                    {/* Rounded Frame for Mobile */}
+                    <div className="relative w-full aspect-square rounded-[20px] overflow-hidden p-1 bg-gradient-to-b from-[#da8a24]/30 via-white to-[#0a2240]/10 border-2 border-[#da8a24]/40 shadow-sm ring-2 ring-[#da8a24]/10 shrink-0">
                       <img
                         src={cause.image}
                         alt={cause.title}
-                        className="w-full h-full object-cover object-center rounded-full"
+                        className="w-full h-full object-cover object-center rounded-[16px]"
                       />
-                      <div className="absolute top-1 right-1 bg-[#0a2240] text-[#da8a24] font-medium text-[10px] px-2 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
+                      <div className="absolute top-1.5 right-1.5 bg-[#0a2240] text-[#da8a24] font-normal text-[10px] px-2 py-0.5 rounded-full border border-[#da8a24]/40 shadow-sm">
                         {cause.amountLabel}
                       </div>
                     </div>
 
-                    {/* Title Below Image: Non-bold Font */}
+                    {/* Title Below Image: Strictly Normal Font */}
                     <div className="pt-3 pb-1 px-1 flex flex-col items-center text-center">
-                      <h3 className="font-medium text-[#0a2240] text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
+                      <h3 className="font-normal text-[#0a2240] text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
                         {cause.title}
                       </h3>
                     </div>
                   </div>
 
-                  {/* Increased Size Donate Button */}
+                  {/* Donate Button: Text Only "Donate" (No Price inside Button) */}
                   <div className="pt-2">
                     <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-medium text-xs py-2.5 px-3 rounded-full shadow-md transition-colors uppercase tracking-wider min-h-[38px]">
                       <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
-                      <span>Donate ({cause.amountLabel})</span>
+                      <span>Donate</span>
                     </span>
                   </div>
                 </div>
