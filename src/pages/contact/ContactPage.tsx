@@ -162,45 +162,41 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
       />
 
       {/* 2. DARK NAVY HERO SECTION (#0a2240) WITH RESPONSIVE HERO BACKGROUND IMAGES (FULL DESKTOP HEIGHT) */}
-      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
+      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         
-        {/* Desktop Background Image (Hidden on Mobile) - Full Screen Coverage & Vivid Clarity */}
+        {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
           className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-90"
           style={{ backgroundImage: `url(${contactHeroBgDesktop})` }}
         />
 
-        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) - Full Coverage */}
+        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
         <div 
           className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-90"
           style={{ backgroundImage: `url(${contactHeroBgMobile})` }}
         />
 
-        {/* Light Ambient Dark Gradient Overlay for maximum image sharpness & text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/60 to-transparent pointer-events-none" />
-
-        {/* Subtle Ambient Background Glows */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Neutral Dark Gradient Overlay (No Blue Mask) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent pointer-events-none" />
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl space-y-4">
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
+              transition={{ duration: 0.5 }}
+              className="space-y-4"
             >
-              {/* Main Heading */}
+              {/* Main Heading: All White */}
               <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
-                We Are Here to Listen, Guide & <span className="text-[#da8a24]">Partner</span>
+                We Are Here to Listen, Guide & Partner
               </h1>
 
-              {/* Paragraph Description */}
-              <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed max-w-[660px] drop-shadow-sm">
-                Have questions about donations, 80G tax exemption receipts, volunteering opportunities, or scheduling a visit to our Redhills Orphanage or Special Needs School? Our team is dedicated to serving you.
+              {/* Concise Paragraph Description */}
+              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-[600px] drop-shadow-sm">
+                Get in touch with our team for donation inquiries, 80G tax exemption receipts, volunteering opportunities, or scheduling a visit to our Redhills campus.
               </p>
 
               {/* Hero CTA Buttons */}

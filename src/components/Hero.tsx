@@ -116,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
   }, [campaign.id]);
 
   return (
-    <section className="w-full bg-[#0a2240] text-white relative overflow-hidden min-h-[85vh] lg:min-h-screen lg:h-screen flex flex-col justify-end pt-20 sm:pt-24">
+    <section className="w-full bg-slate-950 text-white relative overflow-hidden min-h-[85vh] lg:min-h-screen lg:h-screen flex flex-col justify-end pt-20 sm:pt-24">
       
       {/* Background Slideshow with Horizontal Motion */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -149,12 +149,9 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Soft, Lightened Gradient Overlays for Vivid Photography & Crystal Clear Text */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a2240]/75 via-[#0a2240]/25 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/55 via-transparent to-transparent"></div>
-
-        {/* Ambient Radial Accent Light */}
-        <div className="absolute top-1/4 -right-10 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
+        {/* Soft, Neutral Vignette Overlays for Vivid Photography & Crystal Clear Text */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
       </div>
 
       {/* Main Hero Content - Container Aligned within max-w-7xl */}
@@ -171,7 +168,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
             >
               <h1 className="text-[32px] xs:text-[38px] sm:text-5xl lg:text-[56px] font-semibold leading-tight tracking-tight text-white drop-shadow-md">
                 {heroSlides[currentSlide].title}<br />
-                <span className="text-[#da8a24] font-medium italic text-xl xs:text-2xl sm:text-2xl lg:text-3xl block pt-1 drop-shadow-sm">
+                <span className="text-white font-normal italic text-xl xs:text-2xl sm:text-2xl lg:text-3xl block pt-1 drop-shadow-sm">
                   {heroSlides[currentSlide].tagline}
                 </span>
               </h1>

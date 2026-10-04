@@ -83,12 +83,11 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         onNavigate={onNavigate}
       />
 
-      {/* 2. GALLERY HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT) */}
-      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
+      {/* 2. GALLERY HERO SECTION */}
+      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         
         {/* Subtle Ambient Background Glows */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
@@ -99,17 +98,17 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-7 space-y-5"
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-7 space-y-4"
             >
-              {/* Main Heading */}
+              {/* Main Heading: All White */}
               <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
-                A Glimpse into <span className="text-[#da8a24]">Lives We Touch</span>
+                A Glimpse into Lives We Touch
               </h1>
 
-              {/* Paragraph Description */}
-              <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-[580px]">
-                Visual evidence of warm meals delivered, educational supplies distributed, and care provided across Redhills, Thiruvallur, Vyasarpadi, and surrounding rural communities in Tamil Nadu.
+              {/* Concise Paragraph Description */}
+              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-[540px]">
+                Visual moments of warm meals, educational supplies, healthcare support, and care delivered across our centers in Tamil Nadu.
               </p>
             </motion.div>
 

@@ -55,11 +55,11 @@ interface AboutPageProps {
 }
 
 const STATS_CARDS = [
-  { label: 'Years of Service', value: '14+', subtitle: 'Est. 5th July 2010', icon: Calendar },
-  { label: 'Orphanage Children', value: '45', subtitle: 'Resident Boys & Girls', icon: Home },
-  { label: 'Elderly Seniors', value: '20', subtitle: 'Day Care & Shelter', icon: HeartHandshake },
-  { label: 'Special Needs Kids', value: '23', subtitle: 'Free Van Transportation', icon: GraduationCap },
-  { label: 'Tuition Students', value: '346', subtitle: 'Across 8 Centers', icon: BookOpen }
+  { label: 'Years of Service', value: '14+', subtitle: 'Est. 5th July 2010', icon: Calendar, iconBg: 'bg-amber-500/15 text-amber-600' },
+  { label: 'Orphanage Children', value: '45', subtitle: 'Resident Boys & Girls', icon: Home, iconBg: 'bg-emerald-500/15 text-emerald-600' },
+  { label: 'Elderly Seniors', value: '20', subtitle: 'Day Care & Shelter', icon: HeartHandshake, iconBg: 'bg-rose-500/15 text-rose-600' },
+  { label: 'Special Needs Kids', value: '23', subtitle: 'Free Van Transportation', icon: GraduationCap, iconBg: 'bg-blue-500/15 text-blue-600' },
+  { label: 'Tuition Students', value: '346', subtitle: 'Across 8 Centers', icon: BookOpen, iconBg: 'bg-indigo-500/15 text-indigo-600' }
 ];
 
 const PROGRAMS = [
@@ -277,48 +277,44 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         onNavigate={onNavigate}
       />
 
-      {/* 2. HERO SECTION (Dark Navy #0a2240 - FULL DESKTOP HEIGHT) */}
-      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-[#0a2240] text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
+      {/* 2. HERO SECTION (Dark Neutral Overlay for vivid clear image) */}
+      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
         {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
-          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-85"
+          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-90"
           style={{ backgroundImage: `url(${aboutHeroBgDesktop})` }}
         />
 
         {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
         <div 
-          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-85"
+          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-90"
           style={{ backgroundImage: `url(${aboutHeroBgMobile})` }}
         />
 
-        {/* Ambient Dark Gradient Overlay for maximum text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2240]/90 via-[#0a2240]/65 to-transparent pointer-events-none" />
-
-        {/* Ambient Brand Glows */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#da8a24]/12 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Neutral Dark Gradient Overlay (No Blue Mask) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent pointer-events-none" />
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl space-y-5">
             
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
+              transition={{ duration: 0.5 }}
+              className="space-y-4"
             >
-              {/* Main Heading */}
-              <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-semibold text-white tracking-tight leading-[1.1]">
-                Empowering Lives with <span className="text-[#da8a24]">Dignity, Equality</span> & Hope
+              {/* Main Heading: All White Color */}
+              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
+                Empowering Lives with Dignity, Equality & Hope
               </h1>
 
-              {/* Hero Paragraph */}
-              <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-[620px]">
-                TRUTH FOUNDATION is a non-profit registered Public Charitable Trust established on <span className="font-semibold text-white">5th July 2010</span> in Chennai. We are dedicated to creating a social order rooted in social justice, human rights, equal access to education, and compassionate care for orphaned children, abandoned elders, and special-needs individuals across Tamil Nadu.
+              {/* Concise Hero Paragraph */}
+              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-[600px]">
+                TRUTH FOUNDATION is a registered Public Charitable Trust established on 5th July 2010 in Chennai, dedicated to creating equal opportunities, education, shelter, and compassionate care for orphaned children and elders across Tamil Nadu.
               </p>
 
-              {/* Action Buttons in One Line */}
+              {/* Action Buttons */}
               <div className="pt-2 flex flex-row items-center justify-center sm:justify-start gap-3 sm:gap-4 flex-wrap xs:flex-nowrap">
                 <motion.button
                   whileHover={{ scale: 1.03, y: -2 }}
@@ -348,78 +344,61 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           </div>
 
         </div>
-
-        {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-          <DarkToLightDivider bgFrom="transparent" bgTo="#ffffff" />
-        </div>
       </section>
 
-      {/* 4. IMPACT AT A GLANCE (3D Animated Cards, Borderless Mobile View with Increased Font Size) */}
-      <section className="py-16 sm:py-20 bg-white text-slate-900 relative">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12">
+      {/* 4. IMPACT AT A GLANCE (Heading Removed, No Background Color for Cards/Text, Centered with Professional Colored Icons) */}
+      <section className="py-10 sm:py-14 bg-white text-slate-900 relative">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col items-center justify-center">
           
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-            <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
-              OUR IMPACT AT A GLANCE
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
-              14 Years of Compassionate Social Work
-            </h2>
-          </div>
-
-          {/* Desktop Display: Borderless & Shadowless Interactive Cards Grid */}
-          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
+          {/* Desktop Display: Centered Borderless & Backgroundless Cards Grid */}
+          <div className="hidden md:flex flex-wrap items-center justify-center gap-6 lg:gap-8 w-full max-w-5xl mx-auto">
             {STATS_CARDS.map((stat, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20, delay: idx * 0.05 }}
-                className={`bg-[#f8fafc] hover:bg-[#0a2240] p-4 sm:p-5 rounded-2xl border-0 shadow-none flex flex-col items-center text-center space-y-2 transition-all duration-300 cursor-pointer group ${
-                  idx === STATS_CARDS.length - 1 ? 'col-span-2 md:col-span-1 lg:col-span-1' : ''
-                }`}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="bg-transparent border-0 shadow-none p-3 flex flex-col items-center text-center space-y-1.5 cursor-default min-w-[170px]"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#da8a24]/15 group-hover:bg-[#da8a24] text-[#da8a24] group-hover:text-[#0a2240] flex items-center justify-center mb-1 transition-colors duration-300">
-                  <stat.icon className="w-7 h-7" />
+                <div className={`w-13 h-13 sm:w-14 sm:h-14 rounded-2xl ${stat.iconBg} flex items-center justify-center mb-1 shrink-0`}>
+                  <stat.icon className="w-6 h-6 sm:w-7 sm:h-7" />
                 </div>
-                <div className="text-3xl sm:text-4xl font-semibold text-[#0a2240] group-hover:text-white tracking-tight transition-colors duration-300">
+                <div className="text-3xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
                   {stat.value}
                 </div>
-                <div className="text-sm sm:text-base font-semibold text-[#0a2240]/90 group-hover:text-slate-200 transition-colors duration-300">
+                <div className="text-sm font-medium text-slate-700">
                   {stat.label}
                 </div>
-                <div className="text-xs sm:text-sm font-medium text-[#da8a24] group-hover:text-[#da8a24] transition-colors duration-300">
+                <div className="text-xs text-[#da8a24] font-medium">
                   {stat.subtitle}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Mobile Display: Borderless & Shadowless Auto-Scrolling Track */}
+          {/* Mobile Display: Centered Track */}
           <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-2">
             <motion.div
-              animate={{ x: ['0%', '-50%'] }}
+              animate={{ x: ['-50%', '0%'] }}
               transition={{ repeat: Infinity, duration: 16, ease: 'linear' }}
-              className="flex gap-6 w-max"
+              className="flex gap-4 w-max items-center justify-center"
             >
               {[...STATS_CARDS, ...STATS_CARDS].map((stat, idx) => (
                 <div
                   key={idx}
-                  className="w-[200px] shrink-0 flex flex-col items-center text-center p-5 bg-[#f8fafc] rounded-3xl border-0 shadow-none space-y-2"
+                  className="w-[180px] shrink-0 flex flex-col items-center text-center p-3 bg-transparent border-0 shadow-none space-y-1"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-[#da8a24]/15 flex items-center justify-center text-[#da8a24] mb-0.5">
-                    <stat.icon className="w-6 h-6 text-[#da8a24]" />
+                  <div className={`w-12 h-12 rounded-2xl ${stat.iconBg} flex items-center justify-center mb-0.5 shrink-0`}>
+                    <stat.icon className="w-6 h-6" />
                   </div>
-                  <div className="text-3xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
+                  <div className="text-2xl sm:text-3xl font-semibold text-[#0a2240] tracking-tight">
                     {stat.value}
                   </div>
-                  <div className="text-sm sm:text-base font-semibold text-[#0a2240]">
+                  <div className="text-xs sm:text-sm font-medium text-slate-700">
                     {stat.label}
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-[#da8a24]">
+                  <div className="text-[11px] font-medium text-[#da8a24]">
                     {stat.subtitle}
                   </div>
                 </div>
@@ -430,8 +409,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         </div>
       </section>
 
-      {/* 5. OUR ORIGIN & FOUNDATION STORY + JOURNEY TIMELINE (#f8fafc Light Section) */}
-      <section className="py-16 sm:py-24 bg-[#f8fafc] text-slate-900 relative border-t border-slate-100 overflow-hidden">
+      {/* 5. OUR ORIGIN & FOUNDATION STORY + JOURNEY TIMELINE */}
+      <section className="py-12 sm:py-16 bg-[#f8fafc] text-slate-900 relative overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
