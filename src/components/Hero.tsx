@@ -23,23 +23,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
   const [selectedAmount, setSelectedAmount] = useState<number>(campaign.suggestedAmounts[1] || campaign.minAmount || 500);
   const [isCustom, setIsCustom] = useState<boolean>(false);
   const [customVal, setCustomVal] = useState<string>('');
-  const [showFloatingCta, setShowFloatingCta] = useState<boolean>(false);
-
   const activeAmount = isCustom ? (parseInt(customVal, 10) || campaign.minAmount || 100) : selectedAmount;
-
-  // Track scroll position to show floating donate button ONLY after scrolling down past hero section
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 350) {
-        setShowFloatingCta(true);
-      } else {
-        setShowFloatingCta(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Hero Image Slideshow collection with realistic documentary photography
   const heroSlides = [
@@ -224,31 +208,6 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
           </button>
         </div>
       </div>
-
-      {/* Floating Donate Now CTA Button */}
-      <AnimatePresence>
-        {showFloatingCta && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            transition={{ duration: 0.25 }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 md:hidden"
-          >
-            <button
-              onClick={() => {
-                pixelTracker.trackDonateClick(500, 'Floating Donate Button');
-                onOpenDonateModal(500);
-              }}
-              className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-5 py-3 sm:px-6 sm:py-3.5 rounded-full shadow-2xl border-2 border-white flex items-center gap-2 text-xs sm:text-sm cursor-pointer ring-4 ring-[#da8a24]/30 uppercase tracking-wider transition-all active:scale-95"
-              aria-label="Donate Now Floating Button"
-            >
-              <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-[#0a2240] text-[#0a2240] shrink-0 animate-pulse" />
-              <span className="font-semibold">Donate Now</span>
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
       <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
