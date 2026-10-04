@@ -36,6 +36,7 @@ import aboutHeroBgDesktop from '../../assets/images/about_page_hero_section_desk
 import aboutHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
 import storyImage from '../../assets/images/hero_redhills_orphanage.jpg?w=800&format=webp';
 import ctaImage from '../../assets/images/trust_section_organic_meal.jpg?w=800&format=webp';
+import charityCauseIllustration from '../../assets/images/charity_cause_illustration.png';
 
 import heroRedhillsOrphanage from '../../assets/images/hero_redhills_orphanage.jpg?w=800&format=webp';
 import elderlyFoodCareDrive from '../../assets/images/elderly_food_care_drive.jpg?w=800&format=webp';
@@ -1156,71 +1157,45 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         </div>
       </section>
 
-      {/* 12. FINAL SUPPORT A CAUSE / DONATE CTA (ORGANIC WAVED BANNER MATCHING REFERENCE IMAGE) */}
-      <section className="py-8 sm:py-12 bg-[#f8fafc] text-white relative overflow-hidden">
+      {/* 12. FINAL SUPPORT A CAUSE / DONATE CTA */}
+      <section className="py-4 sm:py-6 bg-[#f8fafc] text-white relative overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
           
-          {/* Main Fluid Organic Banner Container */}
-          <div className="relative bg-[#071b34] rounded-[28px] sm:rounded-[36px] overflow-hidden border border-[#da8a24]/30 shadow-2xl p-6 sm:p-8 lg:p-10">
+          {/* Main Fluid Banner Container - No Card Border, No Shadow, Compact Height */}
+          <div className="relative bg-[#071b34] rounded-2xl sm:rounded-3xl overflow-hidden border-0 shadow-none p-5 sm:p-7 lg:p-8">
             
             {/* Ambient Gold Glows */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Top-Right Botanical Leaf Accent */}
-            <svg className="absolute top-4 right-4 w-28 sm:w-36 h-auto text-[#da8a24]/20 pointer-events-none" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 150Q40 100 130 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M130 30Q100 20 80 40Q110 50 130 30Z" fill="currentColor"/>
-              <path d="M100 55Q75 40 55 60Q85 70 100 55Z" fill="currentColor"/>
-              <path d="M70 80Q45 65 25 85Q55 95 70 80Z" fill="currentColor"/>
-              <path d="M40 105Q20 95 5 110Q30 120 40 105Z" fill="currentColor"/>
-            </svg>
-
-            {/* Floating Gold Line Art Heart Graphic on Right */}
-            <div className="hidden lg:block absolute right-10 bottom-16 text-[#da8a24]/40 pointer-events-none">
-              <svg className="w-16 h-16" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
-                <path d="M50 88 C20 60 5 40 15 20 C25 5 45 10 50 25 C55 10 75 5 85 20 C95 40 80 60 50 88 Z" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M50 88 C55 95 60 100 65 105" strokeLinecap="round"/>
-              </svg>
-            </div>
-
-            {/* Top Grid: Image on Left (Desktop), Content on Right */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
+            {/* Top Grid: Professional Cartoon Illustration on Left, Content on Right */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
               
-              {/* Left Column: Compact Image Frame (~40% / 5 cols) */}
+              {/* Left Column: Image Frame with Cartoon Illustration */}
               <div className="lg:col-span-5 relative">
-                <div className="relative w-full h-[220px] sm:h-[260px] lg:h-[250px] overflow-hidden rounded-[20px] sm:rounded-[28px] border-2 border-[#da8a24]/50 shadow-xl bg-[#0a2240] group">
+                <div className="relative w-full h-[180px] sm:h-[200px] lg:h-[210px] overflow-hidden rounded-2xl bg-transparent flex items-center justify-center">
                   <img
-                    src={ctaImage}
-                    alt="Support Truth Foundation Community"
-                    className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                    src={charityCauseIllustration}
+                    alt="Support Truth Foundation Community Illustration"
+                    className="w-full h-full object-contain object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071b34]/60 via-transparent to-transparent pointer-events-none" />
-                </div>
-
-                {/* Overlapping Botanical Leaf Accent between Image and Content */}
-                <div className="hidden lg:block absolute -right-5 top-1/2 -translate-y-1/2 text-[#da8a24]/60 pointer-events-none z-20">
-                  <svg className="w-12 h-20" viewBox="0 0 60 120" fill="currentColor">
-                    <path d="M10 10Q30 40 10 70Q40 50 50 20Z"/>
-                    <path d="M20 50Q40 80 20 110Q50 90 55 60Z"/>
-                  </svg>
                 </div>
               </div>
 
-              {/* Right Column: Title, Subtitle, Golden Pill Donate Button (~60% / 7 cols) */}
-              <div className="lg:col-span-7 space-y-3.5 text-left">
+              {/* Right Column: Non-bold Enlarged Title, Subtitle & Donate Button */}
+              <div className="lg:col-span-7 space-y-3 text-left">
                 
-                {/* Heading */}
-                <h2 className="text-xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight leading-tight">
-                  Support a Cause. <span className="text-[#da8a24]">Change a Life.</span>
+                {/* Heading: Non-bold & Enlarged */}
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-tight leading-tight">
+                  Support a Cause. <span className="text-[#da8a24] font-normal">Change a Life.</span>
                 </h2>
 
-                {/* Subtitle Paragraph */}
-                <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed max-w-xl">
+                {/* Subtitle Paragraph: Non-bold & Enlarged */}
+                <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed max-w-xl">
                   Your contribution brings hope, education, nourishment, and care to children, elderly, and special-needs individuals across Tamil Nadu.
                 </p>
 
-                {/* Golden Pill Donate Button */}
+                {/* Golden Pill Donate Button: Non-bold */}
                 <div className="pt-1">
                   <motion.button
                     whileHover={{ scale: 1.04, y: -2 }}
@@ -1229,7 +1204,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       pixelTracker.trackDonateClick(500, 'About Page Final CTA');
                       onOpenDonateModal(500);
                     }}
-                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-7 py-3 rounded-full shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider min-h-[44px]"
+                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-7 py-2.5 rounded-full shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer text-sm sm:text-base uppercase tracking-wider min-h-[42px]"
                   >
                     <Heart className="w-4.5 h-4.5 fill-[#0a2240]" />
                     <span>Donate Now</span>
@@ -1240,36 +1215,28 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
             </div>
 
-            {/* Bottom Trust Credentials Strip (4 Items in 1 Row on Desktop, 2x2 Grid on Mobile) */}
-            <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10 relative z-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 md:divide-x md:divide-white/10 text-slate-200">
+            {/* Bottom Trust Credentials Strip (No Divider Lines, No Icon Background Colors, Non-bold & Enlarged Text) */}
+            <div className="mt-5 sm:mt-6 pt-3 relative z-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 text-slate-200">
                 
-                <div className="flex items-center gap-2.5 md:justify-center px-1">
-                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Lock className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-xs font-semibold leading-tight">Safe & Secure Donations</span>
+                <div className="flex items-center gap-2 md:justify-center px-1">
+                  <Lock className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
+                  <span className="text-xs sm:text-sm font-normal leading-tight">Safe & Secure Donations</span>
                 </div>
 
-                <div className="flex items-center gap-2.5 md:justify-center px-1 md:pl-4">
-                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Camera className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-xs font-semibold leading-tight">Direct Impact Delivery</span>
+                <div className="flex items-center gap-2 md:justify-center px-1">
+                  <Camera className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
+                  <span className="text-xs sm:text-sm font-normal leading-tight">Direct Impact Delivery</span>
                 </div>
 
-                <div className="flex items-center gap-2.5 md:justify-center px-1 md:pl-4">
-                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-xs font-semibold leading-tight">80G Tax Exemption</span>
+                <div className="flex items-center gap-2 md:justify-center px-1">
+                  <ShieldCheck className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
+                  <span className="text-xs sm:text-sm font-normal leading-tight">80G Tax Exemption</span>
                 </div>
 
-                <div className="flex items-center gap-2.5 md:justify-center px-1 md:pl-4">
-                  <div className="w-8 h-8 rounded-full bg-[#da8a24]/20 border border-[#da8a24]/40 flex items-center justify-center text-[#da8a24] shrink-0">
-                    <Award className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-xs font-semibold leading-tight">Trusted by Communities</span>
+                <div className="flex items-center gap-2 md:justify-center px-1">
+                  <Award className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
+                  <span className="text-xs sm:text-sm font-normal leading-tight">Trusted by Communities</span>
                 </div>
 
               </div>
