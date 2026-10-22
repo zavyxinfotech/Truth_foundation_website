@@ -13,14 +13,15 @@ import schoolKitsImg from '../assets/images/img125.jpg?w=400;800&format=webp;jpg
 import happyChildrenMealsImg from '../assets/images/img71.jpg?w=400;800&format=webp;jpg&as=picture';
 import sandhiyaAvatar from '../assets/images/sandhiya_avatar.jpg?w=96&format=webp';
 
-import sponsorMealImg from '../assets/images/Sponsor_meal.jpeg?w=400;800&format=webp;jpg&as=picture';
-import sponsorVegDinnerImg from '../assets/images/Sponsor_veg_dinner.jpeg?w=400;800&format=webp;jpg&as=picture';
-import sponsorVegMealImg from '../assets/images/Sponsor_veg_meal.jpeg?w=400;800&format=webp;jpg&as=picture';
-import educationSupportImg from '../assets/images/Education_support.jpeg?w=400;800&format=webp;jpg&as=picture';
-import healthcareSupportImg from '../assets/images/Healthcare_support.jpeg?w=400;800&format=webp;jpg&as=picture';
-import clothingSupportImg from '../assets/images/clothing_support.jpeg?w=400;800&format=webp;jpg&as=picture';
-import organicMealImg from '../assets/images/trust_section_organic_meal.jpg?w=400;800&format=webp;jpg&as=picture';
-import specialNeedsCareImg from '../assets/images/hero_special_needs_care.jpg?w=400;800&format=webp;jpg&as=picture';
+import img56Meal from '../assets/images/img56.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img101Meal from '../assets/images/img101.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img137Meal from '../assets/images/img137.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img188Birthday from '../assets/images/img188.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img236Birthday from '../assets/images/img236.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img170Tuition from '../assets/images/img170.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img179Tuition from '../assets/images/img179.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img212Volunteer from '../assets/images/img212.jpeg?w=400;800&format=webp;jpg&as=picture';
+import img299Medical from '../assets/images/img299.jpg?w=400;800&format=webp;jpg&as=picture';
 
 export const DEFAULT_MONTHLY_GIVING: MonthlyGivingOptions = {
   enabled: true,
@@ -331,124 +332,139 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     storyDetails: 'During COVID-19 lockdowns, Truth Foundation deployed emergency teams across Thiruvallur, Kanchipuram, Chengalpattu, and Chennai. We supplied food packets, water bottles, sanitation kits, rice bags, provision kits, and clothing specifically prioritizing visually impaired individuals, elderly persons, leprosy-affected families, gypsy communities, and transgender persons.'
   },
   {
-    id: 'g8',
-    title: 'Daily Nutritious Meal Drives for Orphaned Children',
+    id: 'g16',
+    title: 'Nutritious Meal Serving for Children',
     category: 'Meals',
-    image: sponsorMealImg,
-    location: 'Redhills Orphanage Home, Chennai',
+    image: img56Meal,
+    location: 'Truth Foundation Campus, Chennai',
     date: 'Daily Kitchen Drive',
-    description: 'Serving hot, protein-rich sambar rice, fresh vegetables, lentils, and eggs to 45 resident boys and girls.',
-    quote: '“No child under our care sleeps on an empty stomach. Every meal brings warmth and strength.”',
-    aspectRatio: 'square',
-    impactStat: { label: 'Daily Meals', value: '135 Cooked Meals' },
-    beneficiaries: '45 Resident Children',
-    readTime: '2 min read',
-    storyDetails: 'Our central kitchen at Redhills Orphanage prepares three freshly cooked meals daily. Managed under strict hygiene standards, the kitchen utilizes donor contributions to provide balanced nutrition including grains, lentils, fresh milk, and seasonal fruits.'
-  },
-  {
-    id: 'g9',
-    title: 'Special Weekend Veg Dinner & Feast for Elders',
-    category: 'Meals',
-    image: sponsorVegDinnerImg,
-    location: 'Redhills Senior Care Home',
-    date: 'Weekend Special Feast',
-    description: 'Weekend celebratory meals prepared with love for 20 senior citizens residing at our Redhills shelter.',
-    quote: '“Bringing dignity, comfort, and festive joy to abandoned elderly mothers and fathers.”',
+    description: 'Providing wholesome, balanced, and freshly prepared hot meals to resident and visiting children.',
+    quote: '“Every hot meal brings a smile and gives our children strength to learn and thrive.”',
     aspectRatio: 'wide',
-    impactStat: { label: 'Senior Meals', value: '60 Meals Served' },
-    beneficiaries: '20 Senior Residents',
+    impactStat: { label: 'Daily Nutrition', value: '100% Wholesome' },
+    beneficiaries: 'Resident Children',
     readTime: '2 min read',
-    storyDetails: 'Every weekend, donors sponsor special multi-course vegetarian feasts for our senior residents. For many abandoned elders, these communal meals recreate the warmth of family celebrations and foster deep emotional bonding.'
+    storyDetails: 'Our kitchen teams prepare balanced meals every single day with fresh ingredients, lentils, and vegetables ensuring that no child ever goes hungry.'
   },
   {
-    id: 'g10',
-    title: 'Fresh Grocery & Grain Provisions Distribution',
+    id: 'g17',
+    title: 'Daily Freshly Cooked Nourishment',
     category: 'Meals',
-    image: sponsorVegMealImg,
-    location: 'Kolathur & Redhills Centers',
-    date: 'Monthly Provision Drive',
-    description: 'Bulk distribution of rice bags, wheat flour, pulses, cooking oil, and spice kits to impoverished single mothers.',
-    quote: '“Sustaining fragile rural households with monthly ration security during tough times.”',
-    aspectRatio: 'tall',
-    impactStat: { label: 'Ration Kits', value: '150 Families Supported' },
-    beneficiaries: 'Single Mother Households',
-    readTime: '3 min read',
-    storyDetails: 'Truth Foundation identifies vulnerable rural families, single mothers, and destitute widows to provide monthly grocery hampers containing 25kg rice, lentils, cooking oil, and essential spices to prevent child hunger.'
+    image: img101Meal,
+    location: 'Truth Foundation Campus, Chennai',
+    date: 'Daily Kitchen Drive',
+    description: 'Freshly prepared, hygienic food served with warmth and love to every child in our care.',
+    quote: '“Good nutrition is the foundation of health, education, and bright futures.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Meals Served', value: 'Daily Care' },
+    beneficiaries: 'Resident Children',
+    readTime: '2 min read',
+    storyDetails: 'Nutritious dietary routines are maintained to foster strong immunity, active minds, and happy smiles for all our young boys and girls.'
   },
   {
-    id: 'g11',
-    title: 'School Textbook, Bag & Notebook Distribution',
+    id: 'g18',
+    title: 'Wholesome Community Food Distribution',
+    category: 'Meals',
+    image: img137Meal,
+    location: 'Redhills & Rural Centers',
+    date: 'Community Outreach',
+    description: 'Community meal drives providing healthy food support to children and seniors in surrounding settlements.',
+    quote: '“Sharing nourishment and joy with our extended community and children.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Outreach', value: 'Community Care' },
+    beneficiaries: 'Children & Families',
+    readTime: '2 min read',
+    storyDetails: 'In addition to our residential care, Truth Foundation extends fresh meal distributions to rural settlements and children in surrounding villages.'
+  },
+  {
+    id: 'g19',
+    title: 'Joyful Birthday Celebration with Children',
+    category: 'Birthday Celebrations',
+    image: img188Birthday,
+    location: 'Truth Foundation Orphanage, Redhills',
+    date: 'Special Event',
+    description: 'Celebrating special birthdays with cakes, festive sweets, and heartwarming smiles for the children.',
+    quote: '“Making every child feel loved, special, and celebrated on their birthday.”',
+    aspectRatio: 'tall',
+    impactStat: { label: 'Celebration', value: 'Birthday Joy' },
+    beneficiaries: 'Orphanage Children',
+    readTime: '2 min read',
+    storyDetails: 'Donors and well-wishers often choose to celebrate their birthdays or sponsor birthdays of our children with cakes, treats, and joyful group activities.'
+  },
+  {
+    id: 'g20',
+    title: 'Birthday Moments & Sweet Memories',
+    category: 'Birthday Celebrations',
+    image: img236Birthday,
+    location: 'Truth Foundation Campus, Chennai',
+    date: 'Birthday Gathering',
+    description: 'Sharing birthday happiness, festive cakes, and joyful cheers with all resident children.',
+    quote: '“Every birthday celebrated brings unmatched happiness and unforgettable memories.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Celebrations', value: 'Smiles & Cheer' },
+    beneficiaries: 'Resident Children',
+    readTime: '2 min read',
+    storyDetails: 'Birthday celebrations bring our community together, creating family-like celebrations where each child feels cherished and cared for.'
+  },
+  {
+    id: 'g21',
+    title: 'Evening Tuition & Homework Guidance',
     category: 'Education',
-    image: educationSupportImg,
-    location: 'Thiruvallur Evening Learning Centers',
-    date: 'Academic Term Launch',
-    description: 'Distributing new school bags, notebooks, geometry boxes, and textbooks to 346 evening tuition students.',
-    quote: '“Education is the ultimate key to breaking generational poverty in Dalit and Tribal hamlets.”',
-    aspectRatio: 'square',
-    impactStat: { label: 'School Kits', value: '346 Kits Distributed' },
+    image: img170Tuition,
+    location: 'Evening Child Care & Tuition Centers',
+    date: 'Daily Study Session',
+    description: 'Dedicated volunteer educators assisting children with homework, school subjects, and exam preparation.',
+    quote: '“Empowering underprivileged children with consistent academic support and strong basics.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Students', value: '346 Enrolled' },
     beneficiaries: '8 Tuition Centers',
     readTime: '2 min read',
-    storyDetails: 'At the start of each academic term, Truth Foundation distributes complete educational kits. Each kit contains sturdy backpacks, notebooks for all subjects, pens, pencils, geometry sets, and reference books.'
+    storyDetails: 'Our evening learning centers provide free tuition, study desks, textbooks, and teacher guidance so children stay confident in school.'
   },
   {
-    id: 'g12',
-    title: 'Free Health Screening & Pediatric Care Camp',
-    category: 'Medical',
-    image: healthcareSupportImg,
-    location: 'Surapattu & Vyasarpadi Centers',
-    date: 'Quarterly Medical Camp',
-    description: 'Pediatric checkups, eye examinations, deworming drives, and vitamin syrup distribution for center children.',
-    quote: '“Early medical intervention guarantees that children remain healthy, active, and present in school.”',
-    aspectRatio: 'wide',
-    impactStat: { label: 'Children Screened', value: '300+ Kids' },
-    beneficiaries: 'Pediatric Specialists',
-    readTime: '3 min read',
-    storyDetails: 'Partnering with volunteer doctors and pediatric nurses, Truth Foundation conducts quarterly health screening camps. Children receive free blood tests, vision checks, dental checkups, and necessary prescription medicines.'
-  },
-  {
-    id: 'g13',
-    title: 'Festival Dress & Warm Clothing Distribution Drive',
-    category: 'Volunteers',
-    image: clothingSupportImg,
-    location: 'Vichoor & Perungavoor Villages',
-    date: 'Diwali & Christmas Drive',
-    description: 'Volunteers distributing brand-new festival dresses, sweaters, and footwear to orphaned children and seniors.',
-    quote: '“Wrapping every child and senior in warmth, dignity, and celebratory happiness.”',
-    aspectRatio: 'tall',
-    impactStat: { label: 'Clothes Distributed', value: '500+ Outfits' },
-    beneficiaries: 'Orphaned Kids & Seniors',
-    readTime: '2 min read',
-    storyDetails: 'During major festivals, our volunteer network coordinates nationwide clothing drives. Every resident child and elderly senior receives tailor-fitted new clothes and footwear to celebrate with joy.'
-  },
-  {
-    id: 'g14',
-    title: 'Organic Food & Hygiene Provisions Support',
-    category: 'Meals',
-    image: organicMealImg,
-    location: 'Redhills & Pulianthope Hamlets',
-    date: 'Monthly Drive',
-    description: 'Wholesome organic meals, fresh vegetables, and personal hygiene kits distributed to rural hamlets.',
-    quote: '“Nourishing communities with clean, wholesome food and essential hygiene products.”',
-    aspectRatio: 'square',
-    impactStat: { label: 'Hygiene Kits', value: '250 Kits' },
-    beneficiaries: 'Rural Hamlets',
-    readTime: '2 min read',
-    storyDetails: 'Truth Foundation provides regular nutritional supplements and hygiene care packages containing soaps, toothbrushes, towels, and sanitary items to prevent skin and waterborne infections in rural settlements.'
-  },
-  {
-    id: 'g15',
-    title: 'Special Needs Care & Skill Training Workshop',
+    id: 'g22',
+    title: 'Interactive Learning & Study Hours',
     category: 'Education',
-    image: specialNeedsCareImg,
-    location: 'Thiruvallur Special School',
-    date: 'Daily Care & Therapy',
-    description: 'Sensory training, speech therapy, vocational crafts, and free van transport for 23 special-needs children.',
-    quote: '“Every child possesses unique abilities. We nurture their independence with love and patience.”',
+    image: img179Tuition,
+    location: 'Evening Child Care & Tuition Centers',
+    date: 'Daily Study Session',
+    description: 'Interactive classroom learning, reading sessions, and concept building for tuition students.',
+    quote: '“Education is the strongest bridge to independence and success.”',
     aspectRatio: 'wide',
-    impactStat: { label: 'Special Needs Kids', value: '23 Students' },
-    beneficiaries: 'Dedicated Van Transport',
-    readTime: '3 min read',
-    storyDetails: 'Our Thiruvallur Special School caters to 23 mentally retarded and neurodivergent children. Special educators conduct daily sensory integration, motor skill development, art workshops, and speech exercises while providing doorstep van transit.'
+    impactStat: { label: 'Centers', value: '8 Rural Centers' },
+    beneficiaries: 'Tuition Students',
+    readTime: '2 min read',
+    storyDetails: 'Students participate in daily reading, mathematics, science concept reviews, and creative writing guided by caring teachers.'
+  },
+  {
+    id: 'g23',
+    title: 'Dedicated Volunteers in Action',
+    category: 'Volunteers',
+    image: img212Volunteer,
+    location: 'Truth Foundation Centers',
+    date: 'Volunteer Drive',
+    description: 'Passionate volunteers dedicating their time and effort to support teaching, games, and care activities.',
+    quote: '“Volunteers are the heartbeat of our foundation, bringing boundless energy and compassion.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Volunteers', value: 'Active Service' },
+    beneficiaries: 'Center Children',
+    readTime: '2 min read',
+    storyDetails: 'Volunteers from colleges, IT companies, and civic groups join hands to spend quality time teaching, mentoring, and playing with our children.'
+  },
+  {
+    id: 'g24',
+    title: 'Healthcare Assistance & Medical Camp',
+    category: 'Medical',
+    image: img299Medical,
+    location: 'Truth Foundation Health Camps',
+    date: 'Periodic Medical Drive',
+    description: 'Health examinations, preventive care, first-aid, and medical support for center children and elders.',
+    quote: '“Ensuring every child and senior has access to timely medical attention and healthy living.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Medical Care', value: 'Health Support' },
+    beneficiaries: 'Children & Seniors',
+    readTime: '2 min read',
+    storyDetails: 'Regular medical checkups, vital health screenings, and necessary medications are provided to keep our children and senior residents hale and hearty.'
   }
 ];
 

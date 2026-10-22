@@ -41,7 +41,7 @@ export interface FAQItem {
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'Meals' | 'Education' | 'Medical' | 'Volunteers' | 'Events' | 'Kitchen' | 'Smiles';
+  category: 'Meals' | 'Education' | 'Medical' | 'Volunteers' | 'Events' | 'Kitchen' | 'Smiles' | 'Birthday Celebrations';
   image: ImagetoolsPicture;
   location: string;
   date: string;

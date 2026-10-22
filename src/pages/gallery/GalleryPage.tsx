@@ -17,7 +17,8 @@ import {
   BookOpen,
   Calendar,
   HeartHandshake,
-  Stethoscope
+  Stethoscope,
+  Cake
 } from 'lucide-react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -29,7 +30,7 @@ import { GalleryItem } from '../../types';
 import { pixelTracker } from '../../utils/pixelTracker';
 
 // Real Project Image Imports
-import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
+import galleryDonateSectionImg from '../../assets/images/gallery_page_donate_section.jpeg?w=600&format=webp';
 import galleryHeroBgDesktop from '../../assets/images/Gallery_page_hero_section_desktop_view.jpeg';
 import galleryHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
 
@@ -44,6 +45,7 @@ const CATEGORY_ITEMS = [
   { label: 'Education', icon: BookOpen },
   { label: 'Medical', icon: Stethoscope },
   { label: 'Volunteers', icon: HeartHandshake },
+  { label: 'Birthday Celebrations', icon: Cake },
   { label: 'Events', icon: Calendar }
 ];
 
@@ -52,6 +54,7 @@ const CATEGORY_DONATION_AMOUNTS: Record<string, number> = {
   Education: 1000,
   Medical: 1500,
   Volunteers: 500,
+  'Birthday Celebrations': 1000,
   Events: 750
 };
 
@@ -281,26 +284,36 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />
 
       {/* 7. SUPPORT OUR CAUSE CTA */}
-      <section className="py-8 sm:py-10 bg-[#071b34] text-white relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-20 min-h-[440px] sm:min-h-[480px] md:min-h-[520px] bg-[#071b34] text-white relative overflow-hidden flex items-center">
+        {/* Left Side Image: occupies full height of section, full width of left side, no crop top/bottom, clear quality */}
+        <div className="absolute inset-y-0 left-0 h-full pointer-events-none overflow-hidden z-0 flex items-center">
+          <div className="relative h-full aspect-square">
+            <img
+              src={galleryDonateSectionImg}
+              alt="Truth Foundation - Happy Moments"
+              className="w-full h-full object-cover"
+            />
+            {/* Clear quality on child; only right side shaded and mingled with section color theme */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent 40%, via-[#071b34]/60 70%, to-[#071b34] 100%" />
+          </div>
+        </div>
+
+        {/* Mobile readability overlay */}
+        <div className="absolute inset-0 bg-[#071b34]/70 md:hidden pointer-events-none z-[1]" />
+
         {/* Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#da8a24]/8 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
           
-          {/* Card Container */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center bg-transparent border-0 shadow-none p-0 relative overflow-hidden">
+          {/* Content & CTA Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center bg-transparent border-0 shadow-none p-0 relative">
             
-            {/* 1. Featured Image Column */}
-            <div className="md:col-span-3 relative h-36 sm:h-40 w-full rounded-xl overflow-hidden border-0 shadow-none bg-[#071b34] shrink-0">
-              <img
-                src={heroChildLongingMeal}
-                alt="Truth Foundation - Happy Moments"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
+            {/* Left space reserved for the left-side image */}
+            <div className="hidden md:block md:col-span-4 lg:col-span-4" />
 
             {/* 2. Content Column */}
-            <div className="md:col-span-5 space-y-2">
+            <div className="md:col-span-5 lg:col-span-5 space-y-2">
               <div className="w-8 h-8 rounded-lg bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-normal shadow-none">
                 <Heart className="w-4 h-4 fill-[#0a2240]" />
               </div>
@@ -315,7 +328,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
             </div>
 
             {/* 3. CTA Buttons Column */}
-            <div className="md:col-span-4 flex flex-col gap-2 justify-center">
+            <div className="md:col-span-3 lg:col-span-3 flex flex-col gap-2 justify-center">
               <motion.button
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}

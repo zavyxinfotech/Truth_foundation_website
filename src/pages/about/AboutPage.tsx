@@ -34,7 +34,6 @@ import { pixelTracker } from '../../utils/pixelTracker';
 // Real Project Image Imports
 import aboutHeroBgDesktop from '../../assets/images/about_page_hero_section_desktop_view.jpeg';
 import aboutHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
-import storyImage from '../../assets/images/hero_redhills_orphanage.jpg?w=800&format=webp';
 import ctaImage from '../../assets/images/trust_section_organic_meal.jpg?w=800&format=webp';
 import charityCauseIllustration from '../../assets/images/charity_cause_illustration.png';
 
@@ -42,6 +41,9 @@ import heroRedhillsOrphanage from '../../assets/images/hero_redhills_orphanage.j
 import elderlyFoodCareDrive from '../../assets/images/elderly_food_care_drive.jpg?w=800&format=webp';
 import heroSpecialNeedsCare from '../../assets/images/hero_special_needs_care.jpg?w=800&format=webp';
 import heroTuitionSchoolMeals from '../../assets/images/hero_tuition_school_meals.jpg?w=800&format=webp';
+
+import founderPresidentImg from '../../images/Founder_President.png?w=600&format=webp';
+import managingTrusteeImg from '../../images/Managing_trustee.png?w=600&format=webp';
 
 import sponsorBreakfastImg from '../../images/veg_beakfast.png?w=600&format=webp';
 import sponsorLunchImg from '../../images/lunch_high_rate.png?w=600&format=webp';
@@ -445,7 +447,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 <div className="flex items-center gap-5 sm:gap-6 bg-transparent p-0 border-0 shadow-none">
                   <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
                     <img
-                      src={storyImage}
+                      src={founderPresidentImg}
                       alt="Dr. D.Dayanandam"
                       className="w-full h-full object-cover object-top"
                     />
@@ -472,7 +474,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   </div>
                   <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full overflow-hidden shrink-0 border-2 border-[#da8a24]/50 shadow-md">
                     <img
-                      src={elderlyFoodCareDrive}
+                      src={managingTrusteeImg}
                       alt="Mrs. Shara Daya"
                       className="w-full h-full object-cover object-center"
                     />

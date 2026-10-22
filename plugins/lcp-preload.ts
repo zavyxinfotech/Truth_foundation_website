@@ -1,5 +1,4 @@
 import type { Plugin } from 'vite';
-import sharp from 'sharp';
 
 interface LcpPreloadOptions {
   source: string;
@@ -15,6 +14,7 @@ export function lcpPreload({ source, widths, sizes }: LcpPreloadOptions): Plugin
     async transformIndexHtml(_html, ctx) {
       if (!ctx.bundle) return;
 
+      const { default: sharp } = await import('sharp');
       const candidates: { url: string; width: number }[] = [];
 
       for (const asset of Object.values(ctx.bundle)) {

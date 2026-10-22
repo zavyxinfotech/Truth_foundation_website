@@ -22,6 +22,13 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, './src'),
       },
     },
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 800,
+        ignored: ['**/dist/**', '**/node_modules/**'],
+      },
+    },
     build: {
       target: 'esnext',
       rollupOptions: {
