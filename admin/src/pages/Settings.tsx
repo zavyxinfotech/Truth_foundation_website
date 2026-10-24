@@ -48,29 +48,29 @@ export const Settings: React.FC<SettingsProps> = ({ user }) => {
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
-        <h3 className="text-lg font-bold text-white">Security & Environment Settings</h3>
+        <h3 className="text-base sm:text-lg font-bold text-white">Security & Environment Settings</h3>
         <p className="text-xs text-slate-400">Manage administrator account and cloud integrations</p>
       </div>
 
       {/* Account Info Box */}
-      <div className="bg-[#071b34]/80 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+      <div className="bg-[#071b34]/80 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 space-y-4">
         <h4 className="text-sm font-semibold text-white flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-[#da8a24]" />
           <span>Superadmin Profile</span>
         </h4>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
+          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800">
             <span className="text-[11px] text-slate-400 block mb-1">Administrator Email</span>
-            <span className="text-xs font-semibold text-white font-mono">{user?.email || 'zavyxindia@gmail.com'}</span>
+            <span className="text-xs font-semibold text-white font-mono break-all">{user?.email || 'zavyxindia@gmail.com'}</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800">
             <span className="text-[11px] text-slate-400 block mb-1">Account Role</span>
             <span className="text-xs font-bold text-[#da8a24]">{user?.role || 'SUPERADMIN'}</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800">
             <span className="text-[11px] text-slate-400 block mb-1">Organization</span>
             <span className="text-xs font-semibold text-white">Truth Foundation</span>
           </div>
@@ -78,7 +78,7 @@ export const Settings: React.FC<SettingsProps> = ({ user }) => {
       </div>
 
       {/* Change Password Form */}
-      <div className="bg-[#071b34]/80 border border-slate-800 rounded-3xl p-6 sm:p-8">
+      <div className="bg-[#071b34]/80 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
         <h4 className="text-sm font-semibold text-white flex items-center gap-2 mb-4">
           <Lock className="w-4 h-4 text-[#da8a24]" />
           <span>Update Admin Password</span>
@@ -92,7 +92,7 @@ export const Settings: React.FC<SettingsProps> = ({ user }) => {
           </div>
         )}
 
-        <form onSubmit={handlePasswordChange} className="space-y-4 max-w-md">
+        <form onSubmit={handlePasswordChange} className="space-y-4 max-w-md w-full">
           <div>
             <label className="block text-xs font-medium text-slate-300 mb-1">Current Password</label>
             <input
@@ -129,7 +129,7 @@ export const Settings: React.FC<SettingsProps> = ({ user }) => {
           <button
             type="submit"
             disabled={loading}
-            className="px-5 py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] font-bold text-xs transition flex items-center gap-2 cursor-pointer shadow-sm"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-sm"
           >
             {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
             <span>Update Password</span>
@@ -138,33 +138,33 @@ export const Settings: React.FC<SettingsProps> = ({ user }) => {
       </div>
 
       {/* Cloud Integrations Status */}
-      <div className="bg-[#071b34]/80 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+      <div className="bg-[#071b34]/80 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 space-y-4">
         <h4 className="text-sm font-semibold text-white mb-2">Connected Cloud Services</h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start justify-between gap-3">
             <div>
               <div className="flex items-center gap-2 text-xs font-bold text-white mb-1">
-                <Database className="w-4 h-4 text-emerald-400" />
+                <Database className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Supabase PostgreSQL</span>
               </div>
-              <p className="text-[11px] text-slate-400">Host: aws-0-ap-northeast-1.pooler.supabase.com</p>
+              <p className="text-[11px] text-slate-400 break-all">Host: aws-0-ap-northeast-1.pooler.supabase.com</p>
               <p className="text-[11px] text-slate-400">Database: postgres (Port 5432)</p>
             </div>
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
               Active
             </span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start justify-between">
+          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start justify-between gap-3">
             <div>
               <div className="flex items-center gap-2 text-xs font-bold text-white mb-1">
-                <Cloud className="w-4 h-4 text-sky-400" />
+                <Cloud className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>Cloudinary Image CDN</span>
               </div>
               <p className="text-[11px] text-slate-400">Cloud Name: xsuj7lkd</p>
               <p className="text-[11px] text-slate-400">Auto WebP & Lossless Optimization</p>
             </div>
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20 shrink-0">
               Active
             </span>
           </div>

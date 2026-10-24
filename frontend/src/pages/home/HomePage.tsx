@@ -62,7 +62,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         </ScrollSection>
 
         {/* Transition: Light SponsorCause -> Dark AboutSection */}
-        <LightToDarkDivider bgFrom="#f8fafc" bgTo="#0a2240" />
+        <div className="w-full relative z-10 -my-[1px]">
+          <LightToDarkDivider bgFrom="#f8fafc" bgTo="#0a2240" />
+        </div>
 
         {/* About Truth Foundation (Dark #0a2240) */}
         <ScrollSection id="about">
@@ -70,7 +72,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         </ScrollSection>
 
         {/* Transition: Dark AboutSection -> Light TestimonialsSection */}
-        <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
+        <div className="w-full relative z-10 -my-[1px]">
+          <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
+        </div>
 
         {/* Testimonials (Light #f8fafc) */}
         <ScrollSection id="testimonials">
@@ -78,7 +82,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         </ScrollSection>
 
         {/* Transition: Light TestimonialsSection -> Dark FAQSection */}
-        <LightToDarkDivider bgFrom="#f8fafc" bgTo="#0a2240" />
+        <div className="w-full relative z-10 -my-[1px]">
+          <LightToDarkDivider bgFrom="#f8fafc" bgTo="#0a2240" />
+        </div>
 
         {/* FAQ Section (Dark #0a2240) */}
         <ScrollSection id="faq">
@@ -86,7 +92,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         </ScrollSection>
 
         {/* Transition: Dark FAQSection -> Light Footer */}
-        <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
+        <div className="w-full relative z-10 -my-[1px]">
+          <DarkToLightDivider bgFrom="#0a2240" bgTo="#f8fafc" />
+        </div>
 
         {/* Footer */}
         <Footer onNavigateHome={(anchor) => onNavigate('home', anchor)} />

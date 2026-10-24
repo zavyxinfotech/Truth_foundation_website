@@ -137,7 +137,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
       />
 
       {/* 2. DARK NAVY HERO SECTION (#0a2240) WITH RESPONSIVE HERO BACKGROUND IMAGES (FULL DESKTOP HEIGHT) */}
-      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
+      <section className="pt-24 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-x-clip min-h-0 sm:min-h-[75vh] lg:min-h-screen flex items-center">
         
         {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
@@ -206,7 +206,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
         </div>
 
         {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+        <div className="absolute -bottom-1 left-0 right-0 z-20 pointer-events-none">
           <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
         </div>
       </section>
@@ -214,7 +214,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
 
       {/* 4. MAIN CONTACT FORM & LOCATION MAP SECTION */}
-      <section id="form-section" className="py-16 sm:py-24 bg-[#f8fafc] text-slate-900 relative">
+      <section id="form-section" className="py-8 sm:py-24 bg-[#f8fafc] text-slate-900 relative">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">

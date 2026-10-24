@@ -40,18 +40,18 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
       {/* Background ambient glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#da8a24]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="w-full max-w-md bg-[#071b34]/80 backdrop-blur-xl border border-slate-700/60 rounded-3xl p-8 sm:p-10 shadow-2xl relative z-10">
+      <div className="w-full max-w-md bg-[#071b34]/80 backdrop-blur-xl border border-slate-700/60 rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-2xl relative z-10">
         
         {/* Brand Header */}
-        <div className="text-center space-y-3 mb-8">
+        <div className="text-center space-y-3 mb-6 sm:mb-8">
           <div className="inline-flex items-center justify-center mb-1">
             <img
               src={truthLogo}
               alt="Truth Foundation Official Logo"
-              className="w-20 h-20 rounded-full object-cover border-2 border-[#da8a24] bg-white shadow-xl"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-[#da8a24] bg-white shadow-xl"
             />
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Truth Foundation</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Truth Foundation</h1>
           <p className="text-xs text-[#da8a24] font-medium uppercase tracking-wider">
             Admin Management Portal
           </p>

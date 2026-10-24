@@ -23,30 +23,33 @@ export const DarkToLightDivider: React.FC<DividerProps> = ({
 
   return (
     <div 
-      className={`w-full relative overflow-hidden leading-none pointer-events-none select-none block -mb-px ${className}`}
+      className={`w-full relative overflow-x-clip leading-none pointer-events-none select-none block -mb-[2px] ${className}`}
       style={{ backgroundColor: bgFrom === 'transparent' ? 'transparent' : bgFrom }}
     >
       {/* Ambient glow strip */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-16 bg-[#da8a24]/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-16 bg-[#da8a24]/8 rounded-full blur-3xl pointer-events-none overflow-hidden" />
 
-      <div className="relative w-full block leading-none">
+      <div className="relative w-full block leading-none overflow-visible">
         <svg
           viewBox="0 0 1440 120"
           preserveAspectRatio="none"
           className="relative block w-full h-10 sm:h-16 lg:h-22"
+          style={{ overflow: 'visible' }}
         >
           {/* Soft background accent wave */}
           <path
-            d="M0,32 C280,96 560,0 840,64 C1120,128 1320,32 1440,48 L1440,120 L0,120 Z"
+            d="M0,32 C280,96 560,0 840,64 C1120,128 1320,32 1440,48 L1440,125 L0,125 Z"
             fill={targetFill}
             fillOpacity="0.35"
           />
           {/* Main organic wave */}
           <path
-            d="M0,48 C320,110 640,-10 960,75 C1200,130 1360,35 1440,55 L1440,120 L0,120 Z"
+            d="M0,48 C320,110 640,-10 960,75 C1200,130 1360,35 1440,55 L1440,125 L0,125 Z"
             fill={targetFill}
           />
         </svg>
+        {/* Seamless fill apron beneath the wave to bridge across any subpixel gap */}
+        <div className="w-full h-1 -mt-px pointer-events-none" style={{ backgroundColor: targetFill }} />
       </div>
     </div>
   );
@@ -67,30 +70,33 @@ export const LightToDarkDivider: React.FC<DividerProps> = ({
 
   return (
     <div 
-      className={`w-full relative overflow-hidden leading-none pointer-events-none select-none block -mb-px ${className}`}
+      className={`w-full relative overflow-x-clip leading-none pointer-events-none select-none block -mb-[2px] ${className}`}
       style={{ backgroundColor: bgFrom }}
     >
       {/* Ambient glow strip */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-16 bg-[#da8a24]/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-16 bg-[#da8a24]/8 rounded-full blur-3xl pointer-events-none overflow-hidden" />
 
-      <div className="relative w-full block leading-none">
+      <div className="relative w-full block leading-none overflow-visible">
         <svg
           viewBox="0 0 1440 120"
           preserveAspectRatio="none"
           className="relative block w-full h-10 sm:h-16 lg:h-22"
+          style={{ overflow: 'visible' }}
         >
           {/* Soft background accent wave */}
           <path
-            d="M0,40 C360,-10 680,105 1000,28 C1240,-10 1360,55 1440,40 L1440,120 L0,120 Z"
+            d="M0,40 C360,-10 680,105 1000,28 C1240,-10 1360,55 1440,40 L1440,125 L0,125 Z"
             fill={targetFill}
             fillOpacity="0.35"
           />
           {/* Main inverted organic wave */}
           <path
-            d="M0,55 C280,-25 560,100 840,28 C1120,-10 1320,70 1440,40 L1440,120 L0,120 Z"
+            d="M0,55 C280,-25 560,100 840,28 C1120,-10 1320,70 1440,40 L1440,125 L0,125 Z"
             fill={targetFill}
           />
         </svg>
+        {/* Seamless fill apron beneath the wave to bridge across any subpixel gap */}
+        <div className="w-full h-1 -mt-px pointer-events-none" style={{ backgroundColor: targetFill }} />
       </div>
     </div>
   );

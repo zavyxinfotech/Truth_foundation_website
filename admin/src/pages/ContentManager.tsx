@@ -343,56 +343,56 @@ export const ContentManager: React.FC = () => {
       )}
 
       {/* Navigation Sub-Tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-slate-800/80 pb-3">
+      <div className="flex flex-wrap gap-1.5 sm:gap-2 border-b border-slate-800/80 pb-3">
         <button
           onClick={() => setActiveTab('hero')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'hero'
               ? 'bg-[#da8a24] text-[#071b34] shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
-          <Home className="w-4 h-4" />
-          <span>Home Page & Hero Slides</span>
-          <span className="px-1.5 py-0.5 text-xs rounded-full bg-slate-900/60 text-slate-200 ml-1">
+          <Home className="w-4 h-4 shrink-0" />
+          <span>Home & Hero Slides</span>
+          <span className="px-1.5 py-0.5 text-[11px] rounded-full bg-slate-900/60 text-slate-200 ml-1">
             {content.home_hero?.slides?.length || 0}
           </span>
         </button>
 
         <button
           onClick={() => setActiveTab('about')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'about'
               ? 'bg-[#da8a24] text-[#071b34] shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
-          <BookOpen className="w-4 h-4" />
-          <span>About Page & Programs</span>
+          <BookOpen className="w-4 h-4 shrink-0" />
+          <span>About & Programs</span>
         </button>
 
         <button
           onClick={() => setActiveTab('gallery')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'gallery'
               ? 'bg-[#da8a24] text-[#071b34] shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
-          <ImageIcon className="w-4 h-4" />
-          <span>Gallery Page Banner</span>
+          <ImageIcon className="w-4 h-4 shrink-0" />
+          <span>Gallery Banner</span>
         </button>
 
         <button
           onClick={() => setActiveTab('contact')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'contact'
               ? 'bg-[#da8a24] text-[#071b34] shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
-          <PhoneCall className="w-4 h-4" />
-          <span>Contact Page & Offices</span>
+          <PhoneCall className="w-4 h-4 shrink-0" />
+          <span>Contact & Offices</span>
         </button>
       </div>
 
@@ -401,14 +401,14 @@ export const ContentManager: React.FC = () => {
       {/* ============================================================== */}
       {activeTab === 'hero' && (
         <div className="space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h2 className="text-lg font-semibold text-white">Hero Slideshow Carousel</h2>
+              <h2 className="text-base sm:text-lg font-semibold text-white">Hero Slideshow Carousel</h2>
               <p className="text-xs text-slate-400">Manage the slides that display on the top of the homepage.</p>
             </div>
             <button
               onClick={handleOpenAddSlide}
-              className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-sm font-bold shadow-md transition"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs sm:text-sm font-bold shadow-md transition shrink-0 cursor-pointer w-full sm:w-auto"
             >
               <Plus className="w-4 h-4 stroke-[2.5]" />
               <span>Add New Slide</span>
@@ -459,21 +459,21 @@ export const ContentManager: React.FC = () => {
                 </div>
 
                 {/* Card Actions */}
-                <div className="p-4 bg-slate-900/60 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                <div className="p-3.5 sm:p-4 bg-slate-900/60 border-t border-slate-800/80 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5">
                   <span className="text-[11px] text-slate-400 font-mono truncate max-w-[180px]">
                     {slide.image_url.includes('cloudinary') ? 'Cloudinary Hosted' : 'Default Asset'}
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0">
                     <button
                       onClick={() => handleOpenEditSlide(idx)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg text-xs font-semibold transition"
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg text-xs font-semibold transition cursor-pointer"
                     >
                       <Edit3 className="w-3.5 h-3.5 text-[#da8a24]" />
                       <span>Edit</span>
                     </button>
                     <button
                       onClick={() => handleDeleteSlide(idx)}
-                      className="p-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-lg text-xs transition"
+                      className="p-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-lg text-xs transition cursor-pointer"
                       title="Delete Slide"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -485,14 +485,14 @@ export const ContentManager: React.FC = () => {
           </div>
 
           {/* Section 2: Home Impact Stats */}
-          <div className="mt-10 p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
+          <div className="mt-8 sm:mt-10 p-4 sm:p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#da8a24]" />
               Home Page Key Impact Metrics
             </h3>
             <p className="text-xs text-slate-400">Update verified numbers shown in cards and counters on the homepage.</p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 pt-2">
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1">Daily Meals Served</label>
                 <input
@@ -578,9 +578,9 @@ export const ContentManager: React.FC = () => {
       {/* TAB 2: ABOUT PAGE & PROGRAMS                                  */}
       {/* ============================================================== */}
       {activeTab === 'about' && (
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {/* About Hero Banner Configuration */}
-          <div className="p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
+          <div className="p-4 sm:p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-[#da8a24]" />
               About Page Hero Banner
@@ -628,7 +628,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('about_page', updatedAbout);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Banner Details</span>
@@ -638,14 +638,14 @@ export const ContentManager: React.FC = () => {
 
           {/* Core Programs Section */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <h3 className="text-base font-bold text-white">Core Programs & Centers</h3>
                 <p className="text-xs text-slate-400">Programs showcased on the About page and across campaigns.</p>
               </div>
               <button
                 onClick={handleOpenAddProgram}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold shadow-md transition"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold shadow-md transition w-full sm:w-auto shrink-0 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Program</span>
@@ -705,7 +705,7 @@ export const ContentManager: React.FC = () => {
           </div>
 
           {/* Vision & Mission Statements */}
-          <div className="p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
+          <div className="p-4 sm:p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <Compass className="w-4 h-4 text-[#da8a24]" />
               Mission & Vision Statements
@@ -743,7 +743,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('about_page', updatedAbout);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Mission & Vision</span>
@@ -752,13 +752,13 @@ export const ContentManager: React.FC = () => {
           </div>
 
           {/* Support a Cause CTA Section */}
-          <div className="p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
+          <div className="p-4 sm:p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#da8a24]" />
               Support a Cause. Change a Life. (About Page CTA Card)
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
               {/* Image Preview with Transparent Cutout */}
               <div className="md:col-span-4 flex flex-col items-center justify-center p-4 bg-slate-900/60 rounded-xl border border-slate-800">
                 <span className="text-xs font-medium text-slate-400 mb-2">Cutout Image (Transparent)</span>
@@ -830,8 +830,8 @@ export const ContentManager: React.FC = () => {
       {/* TAB 3: GALLERY PAGE BANNER                                    */}
       {/* ============================================================== */}
       {activeTab === 'gallery' && (
-        <div className="space-y-6">
-          <div className="p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
+        <div className="space-y-5 sm:space-y-6">
+          <div className="p-4 sm:p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <ImageIcon className="w-4 h-4 text-[#da8a24]" />
               Gallery Page Hero Banner
@@ -869,7 +869,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('gallery_page', updatedGallery);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Gallery Banner</span>
@@ -877,7 +877,7 @@ export const ContentManager: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-5 bg-slate-900/40 border border-slate-800 rounded-2xl flex items-center justify-between">
+          <div className="p-4 sm:p-5 bg-slate-900/40 border border-slate-800 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h4 className="text-sm font-semibold text-white">Looking for Photo Uploads?</h4>
               <p className="text-xs text-slate-400">Use the Gallery Uploader tab in the left sidebar to add, categorize, and delete gallery images.</p>
@@ -889,7 +889,7 @@ export const ContentManager: React.FC = () => {
                 window.location.hash = 'gallery';
                 window.location.reload();
               }}
-              className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl transition"
+              className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl transition text-center shrink-0 w-full sm:w-auto"
             >
               Go to Gallery Uploader
             </a>
@@ -901,15 +901,15 @@ export const ContentManager: React.FC = () => {
       {/* TAB 4: CONTACT PAGE & OFFICES                                 */}
       {/* ============================================================== */}
       {activeTab === 'contact' && (
-        <div className="space-y-6">
-          <div className="p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
+        <div className="space-y-5 sm:space-y-6">
+          <div className="p-4 sm:p-6 bg-[#071b34] border border-slate-800 rounded-2xl space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <PhoneCall className="w-4 h-4 text-[#da8a24]" />
               Official Contact & Office Information
             </h3>
             <p className="text-xs text-slate-400">These details are displayed on the public Contact page and in the footer.</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pt-2">
               {/* Phone & Email */}
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1">Primary Phone (Redhills)</label>
@@ -1022,16 +1022,16 @@ export const ContentManager: React.FC = () => {
       {/* MODAL: ADD / EDIT HERO SLIDE                                  */}
       {/* ============================================================== */}
       {slideModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 space-y-4">
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-4 sm:p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                 <ImageIcon className="w-5 h-5 text-[#da8a24]" />
                 {editingSlideIndex !== null ? 'Edit Hero Slide' : 'Add New Hero Slide'}
               </h3>
               <button
                 onClick={() => setSlideModalOpen(false)}
-                className="text-slate-400 hover:text-white p-1 rounded-lg"
+                className="text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1074,7 +1074,7 @@ export const ContentManager: React.FC = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">Tag Badge (Amber)</label>
                   <input
@@ -1176,16 +1176,16 @@ export const ContentManager: React.FC = () => {
       {/* MODAL: ADD / EDIT ABOUT PROGRAM                                */}
       {/* ============================================================== */}
       {programModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 space-y-4">
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-4 sm:p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-[#da8a24]" />
                 {editingProgramIndex !== null ? 'Edit Core Program' : 'Add New Program'}
               </h3>
               <button
                 onClick={() => setProgramModalOpen(false)}
-                className="text-slate-400 hover:text-white p-1 rounded-lg"
+                className="text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1206,7 +1206,7 @@ export const ContentManager: React.FC = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">Location</label>
                   <input

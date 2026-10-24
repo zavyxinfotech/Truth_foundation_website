@@ -17,6 +17,7 @@ export const App: React.FC = () => {
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [currentTab, setCurrentTab] = useState('overview');
   const [unreadInquiries, setUnreadInquiries] = useState(0);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Check auth session on load
   useEffect(() => {
@@ -95,16 +96,25 @@ export const App: React.FC = () => {
       {/* Navigation Sidebar */}
       <Sidebar
         currentTab={currentTab}
-        onSelectTab={setCurrentTab}
+        onSelectTab={(tab) => {
+          setCurrentTab(tab);
+          setMobileSidebarOpen(false);
+        }}
         onLogout={handleLogout}
         inquiriesCount={unreadInquiries}
+        isOpenMobile={mobileSidebarOpen}
+        onCloseMobile={() => setMobileSidebarOpen(false)}
       />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
-        <Header user={user} title={tabTitles[currentTab] || 'Dashboard'} />
+        <Header
+          user={user}
+          title={tabTitles[currentTab] || 'Dashboard'}
+          onToggleMobileSidebar={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+        />
 
-        <main className="flex-1 p-6 sm:p-8 lg:p-10 overflow-y-auto">
+        <main className="flex-1 p-3.5 sm:p-6 lg:p-8 overflow-y-auto">
           {currentTab === 'overview' && <Overview onNavigate={setCurrentTab} />}
           {currentTab === 'content' && <ContentManager />}
           {currentTab === 'donations' && <Donations />}

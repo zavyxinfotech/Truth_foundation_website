@@ -115,7 +115,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       />
 
       {/* 2. GALLERY HERO SECTION WITH BACKGROUND IMAGES */}
-      <section className="pt-32 sm:pt-36 pb-16 sm:pb-20 bg-slate-950 text-white relative overflow-hidden min-h-[85vh] md:min-h-[75vh] lg:min-h-screen flex items-center">
+      <section className="pt-24 sm:pt-36 pb-12 sm:pb-20 bg-slate-950 text-white relative overflow-x-clip min-h-0 sm:min-h-[75vh] lg:min-h-screen flex items-center">
         
         {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
@@ -143,12 +143,12 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
               className="space-y-4"
             >
               {/* Main Heading: All White, Non-bold & Enlarged */}
-              <h1 className="text-4xl sm:text-6xl lg:text-[62px] font-normal text-white tracking-tight leading-[1.1]">
+              <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-normal text-white tracking-tight leading-[1.1]">
                 A Glimpse into Lives We Touch
               </h1>
 
               {/* Concise Paragraph Description: Non-bold & Enlarged */}
-              <p className="text-base sm:text-lg lg:text-xl text-slate-200 font-normal leading-relaxed max-w-[640px] drop-shadow-sm">
+              <p className="text-base sm:text-xl lg:text-2xl text-slate-200 font-normal leading-relaxed max-w-[660px] drop-shadow-sm">
                 Visual moments of warm meals, educational supplies, healthcare support, and care delivered across our centers in Tamil Nadu.
               </p>
 
@@ -184,13 +184,13 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         </div>
 
         {/* ORGANIC WAVES SECTION DIVIDER */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+        <div className="absolute -bottom-1 left-0 right-0 z-20 pointer-events-none">
           <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
         </div>
       </section>
 
       {/* 5. PHOTO GALLERY HEADER & FILTERABLE GRID (#f8fafc Light Section) */}
-      <section className="py-16 sm:py-24 bg-[#f8fafc] text-slate-900 relative">
+      <section className="py-8 sm:py-24 bg-[#f8fafc] text-slate-900 relative">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
           
           {/* Header & Horizontal Filter Rail (Options Below Text) */}
@@ -315,7 +315,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       </section>
 
       {/* 6. ORGANIC SECTION DIVIDER */}
-      <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />
+      <div className="w-full relative z-10 -my-[1px]">
+        <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />
+      </div>
 
       {/* 7. SUPPORT OUR CAUSE CTA */}
       <section className="py-12 sm:py-16 md:py-20 min-h-[440px] sm:min-h-[480px] md:min-h-[520px] bg-[#071b34] text-white relative overflow-hidden flex items-center">
@@ -394,7 +396,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       </section>
 
       {/* 8. ORGANIC SECTION DIVIDER */}
-      <DarkToLightDivider bgFrom="#071b34" bgTo="#0a2240" />
+      <div className="w-full relative z-10 -my-[1px]">
+        <DarkToLightDivider bgFrom="#071b34" bgTo="#0a2240" />
+      </div>
 
       {/* 7. FULL STORY LIGHTBOX MODAL (GLASSMORPHISM & RESPONSIVE MOBILE ALIGNMENT) */}
       {activeStoryItem && createPortal(

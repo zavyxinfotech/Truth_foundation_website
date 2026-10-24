@@ -168,7 +168,7 @@ export const Gallery: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Upload Box Container */}
-      <div className="bg-[#071b34]/80 border border-slate-800 rounded-3xl p-6 sm:p-8">
+      <div className="bg-[#071b34]/80 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
         <div className="mb-5">
           <h3 className="text-base font-bold text-white flex items-center gap-2">
             <UploadCloud className="w-5 h-5 text-[#da8a24]" />
@@ -179,13 +179,13 @@ export const Gallery: React.FC = () => {
           </p>
         </div>
 
-        <form onSubmit={handleUploadSubmit} className="space-y-5">
+        <form onSubmit={handleUploadSubmit} className="space-y-4 sm:space-y-5">
           {/* Drag & Drop Zone */}
           <div
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
-            className={`border-2 border-dashed rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition flex flex-col items-center justify-center ${
+            className={`border-2 border-dashed rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center cursor-pointer transition flex flex-col items-center justify-center ${
               previewUrl
                 ? 'border-[#da8a24]/60 bg-[#da8a24]/5'
                 : 'border-slate-700 hover:border-[#da8a24]/60 bg-slate-900/40 hover:bg-slate-900/70'
@@ -213,7 +213,7 @@ export const Gallery: React.FC = () => {
                     setFile(null);
                     setPreviewUrl(null);
                   }}
-                  className="absolute -top-2 -right-2 p-1.5 bg-red-500 hover:bg-red-600 text-white rounded-full shadow"
+                  className="absolute -top-2 -right-2 p-1.5 bg-red-500 hover:bg-red-600 text-white rounded-full shadow cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -232,7 +232,7 @@ export const Gallery: React.FC = () => {
           </div>
 
           {/* Metadata Inputs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                 Image Title / Caption
@@ -242,7 +242,7 @@ export const Gallery: React.FC = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Daily Nutritional Lunch at Redhills Home"
-                className="w-full px-4 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
+                className="w-full px-3.5 py-2 sm:px-4 sm:py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
               />
             </div>
 
@@ -251,7 +251,7 @@ export const Gallery: React.FC = () => {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-4 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
+                className="w-full px-3.5 py-2 sm:px-4 sm:py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
               >
                 {CATEGORIES.filter((c) => c !== 'All').map((cat) => (
                   <option key={cat} value={cat}>
@@ -270,7 +270,7 @@ export const Gallery: React.FC = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Brief description of the activity or child support initiative..."
-                className="w-full px-4 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
+                className="w-full px-3.5 py-2 sm:px-4 sm:py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
               />
             </div>
           </div>
@@ -279,7 +279,7 @@ export const Gallery: React.FC = () => {
             <button
               type="submit"
               disabled={uploading || !file}
-              className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#da8a24] to-[#b7711b] hover:from-[#e5952f] hover:to-[#c67c20] text-[#071b34] font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#da8a24] to-[#b7711b] hover:from-[#e5952f] hover:to-[#c67c20] text-[#071b34] font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {uploading ? (
                 <>
@@ -335,7 +335,7 @@ export const Gallery: React.FC = () => {
             <p>No photos found for category: {selectedCategory}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {images.map((img) => (
               <div
                 key={img.id}
@@ -353,8 +353,8 @@ export const Gallery: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-3 space-y-2 border-t border-slate-800/80">
-                  <p className="text-slate-200 truncate font-semibold text-xs" title={img.title}>
+                <div className="p-2.5 sm:p-3 space-y-1.5 sm:space-y-2 border-t border-slate-800/80">
+                  <p className="text-slate-200 truncate font-semibold text-[11px] sm:text-xs" title={img.title}>
                     {img.title || 'Untitled'}
                   </p>
                   <div className="flex items-center justify-between pt-1">
@@ -364,7 +364,7 @@ export const Gallery: React.FC = () => {
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handleOpenEdit(img)}
-                        className="p-1 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition"
+                        className="p-1 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition cursor-pointer"
                         title="Edit Details"
                       >
                         <Edit3 className="w-3.5 h-3.5 text-[#da8a24]" />
@@ -387,8 +387,8 @@ export const Gallery: React.FC = () => {
 
       {/* Edit Gallery Item Modal */}
       {editingImage && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-4 sm:p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="text-base font-bold text-white flex items-center gap-2">
                 <Edit3 className="w-4 h-4 text-[#da8a24]" />
@@ -396,7 +396,7 @@ export const Gallery: React.FC = () => {
               </h3>
               <button
                 onClick={() => setEditingImage(null)}
-                className="text-slate-400 hover:text-white"
+                className="text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

@@ -89,15 +89,15 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5 sm:space-y-8">
       {/* Metrics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
         {metricCards.map((card, idx) => {
           const Icon = card.icon;
           return (
             <div
               key={idx}
-              className="bg-[#071b34]/70 backdrop-blur-sm rounded-2xl p-5 relative overflow-hidden shadow-none border-0"
+              className="bg-[#071b34]/70 backdrop-blur-sm rounded-2xl p-4 sm:p-5 relative overflow-hidden shadow-none border-0"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-medium text-slate-400">{card.title}</span>
@@ -106,13 +106,13 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              <div className="text-2xl font-bold text-white mb-1 tracking-tight">
+              <div className="text-xl sm:text-2xl font-bold text-white mb-1 tracking-tight">
                 {loading ? <span className="opacity-40 animate-pulse">Loading...</span> : card.value}
               </div>
 
-              <div className="flex items-center justify-between text-[11px] text-slate-400">
-                <span>{card.subtitle}</span>
-                <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-800/80 text-slate-300 font-mono">
+              <div className="flex items-center justify-between text-[11px] text-slate-400 gap-2">
+                <span className="truncate">{card.subtitle}</span>
+                <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-800/80 text-slate-300 font-mono shrink-0">
                   {card.badge}
                 </span>
               </div>
@@ -122,10 +122,10 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
       </div>
 
       {/* Two Column Layout: Recent Donations & Recent Inquiries */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
         
         {/* Left Column (2 Cols): Recent Donations */}
-        <div className="lg:col-span-2 bg-[#071b34]/70 rounded-2xl p-6 shadow-none border-0">
+        <div className="lg:col-span-2 bg-[#071b34]/70 rounded-2xl p-4 sm:p-6 shadow-none border-0">
           <div className="flex items-center justify-between mb-5">
             <div>
               <h3 className="text-base font-semibold text-white">Recent Donations</h3>
@@ -153,7 +153,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+              <table className="w-full text-left text-xs min-w-[480px]">
                 <thead>
                   <tr className="border-b border-slate-800/40 text-slate-400 font-semibold uppercase tracking-wider">
                     <th className="pb-3">Donor</th>
@@ -190,7 +190,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
         </div>
 
         {/* Right Column (1 Col): Contact Messages Inbox */}
-        <div className="bg-[#071b34]/70 rounded-2xl p-6 flex flex-col justify-between shadow-none border-0">
+        <div className="bg-[#071b34]/70 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-none border-0">
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>

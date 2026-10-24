@@ -135,7 +135,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
   const activeSlide = heroSlides[currentSlide] || heroSlides[0];
 
   return (
-    <section className="w-full bg-slate-950 text-white relative overflow-hidden min-h-[85vh] lg:min-h-screen lg:h-screen flex flex-col justify-end pt-20 sm:pt-24">
+    <section className="w-full bg-slate-950 text-white relative overflow-x-clip min-h-[85vh] lg:min-h-screen lg:h-screen flex flex-col justify-end pt-20 sm:pt-24">
       
       {/* Background Slideshow with Horizontal Motion */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -194,14 +194,14 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
               transition={{ duration: 0.3 }}
               className="space-y-1.5 sm:space-y-3"
             >
-              <h1 className="text-[32px] xs:text-[38px] sm:text-5xl lg:text-[56px] font-semibold leading-tight tracking-tight text-white drop-shadow-md">
+              <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-normal text-white tracking-tight leading-[1.1] drop-shadow-md">
                 {heroSlides[currentSlide].title}<br />
-                <span className="text-white font-normal italic text-xl xs:text-2xl sm:text-2xl lg:text-3xl block pt-1 drop-shadow-sm">
+                <span className="text-white font-normal italic text-lg sm:text-xl lg:text-2xl block pt-1.5 drop-shadow-sm">
                   {heroSlides[currentSlide].tagline}
                 </span>
               </h1>
 
-              <p className="text-base xs:text-xl sm:text-lg lg:text-[20px] text-blue-100 max-w-2xl leading-relaxed font-normal drop-shadow-md">
+              <p className="text-base sm:text-xl lg:text-2xl text-slate-200 font-normal leading-relaxed max-w-[660px] drop-shadow-sm">
                 {heroSlides[currentSlide].subtitle}
               </p>
             </motion.div>
@@ -254,7 +254,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
       </div>
 
       {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+      <div className="absolute -bottom-1 left-0 right-0 z-20 pointer-events-none">
         <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
       </div>
 

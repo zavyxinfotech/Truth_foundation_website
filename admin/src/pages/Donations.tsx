@@ -127,18 +127,18 @@ export const Donations: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       {/* Header & Action Bar */}
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between">
         <div>
-          <h3 className="text-lg font-bold text-white">Donations Management</h3>
+          <h3 className="text-base sm:text-lg font-bold text-white">Donations Management</h3>
           <p className="text-xs text-slate-400">Total {donations.length} records retrieved from Supabase</p>
         </div>
 
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
           <button
             onClick={handleExportCSV}
-            className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 transition"
+            className="flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export CSV</span>
@@ -146,7 +146,7 @@ export const Donations: React.FC = () => {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-sm"
+            className="flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-sm"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>Record Donation</span>
@@ -155,8 +155,8 @@ export const Donations: React.FC = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-[#071b34]/70 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row gap-3 items-center justify-between">
-        <form onSubmit={handleSearchSubmit} className="relative w-full md:w-96">
+      <div className="bg-[#071b34]/70 border border-slate-800 rounded-2xl p-3 sm:p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+        <form onSubmit={handleSearchSubmit} className="relative w-full md:w-80 lg:w-96">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -167,12 +167,12 @@ export const Donations: React.FC = () => {
           />
         </form>
 
-        <div className="flex items-center gap-1.5 w-full md:w-auto overflow-x-auto">
+        <div className="flex items-center gap-1.5 w-full md:w-auto overflow-x-auto pb-1 md:pb-0 shrink-0">
           {(['All', 'One-time', 'Monthly'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setFrequencyFilter(tab)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer whitespace-nowrap ${
                 frequencyFilter === tab
                   ? 'bg-[#da8a24] text-[#071b34] font-semibold'
                   : 'text-slate-400 hover:text-white bg-slate-900/60'
@@ -198,7 +198,7 @@ export const Donations: React.FC = () => {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
+            <table className="w-full text-left text-xs min-w-[760px]">
               <thead className="bg-slate-900/70 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
                 <tr>
                   <th className="py-3.5 px-4">Receipt #</th>
@@ -273,13 +273,13 @@ export const Donations: React.FC = () => {
 
       {/* Record Donation Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-[#040f1d]/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#071b34] border border-slate-700 rounded-3xl p-6 sm:p-8 w-full max-w-lg shadow-2xl relative">
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 z-50 bg-[#040f1d]/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#071b34] border border-slate-700 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <div className="flex items-center justify-between mb-5 sm:mb-6">
               <h4 className="text-base font-bold text-white">Record Offline / Direct Donation</h4>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-white p-1 rounded-lg"
+                className="text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

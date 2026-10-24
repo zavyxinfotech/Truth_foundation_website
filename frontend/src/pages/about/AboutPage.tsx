@@ -328,7 +328,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       />
 
       {/* 2. HERO SECTION (Dark Neutral Overlay for vivid clear image) */}
-      <section className="pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-hidden min-h-[75vh] lg:min-h-screen flex items-center">
+      <section className="pt-24 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-x-clip min-h-0 sm:min-h-[75vh] lg:min-h-screen flex items-center">
         {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
           className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-90"
@@ -355,12 +355,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               className="space-y-4"
             >
               {/* Main Heading: All White Color */}
-              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
+              <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-normal text-white tracking-tight leading-[1.1]">
                 {aboutContent?.hero_title || 'Empowering Lives with Dignity, Equality & Hope'}
               </h1>
 
               {/* Concise Hero Paragraph */}
-              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-[600px]">
+              <p className="text-base sm:text-xl lg:text-2xl text-slate-200 font-normal leading-relaxed max-w-[660px] drop-shadow-sm">
                 {aboutContent?.hero_description || 'TRUTH FOUNDATION is a registered Public Charitable Trust established on 5th July 2010 in Chennai, dedicated to creating equal opportunities, education, shelter, and compassionate care for orphaned children and elders across Tamil Nadu.'}
               </p>
 
@@ -396,13 +396,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         </div>
 
         {/* ORGANIC WAVES SECTION DIVIDER */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+        <div className="absolute -bottom-1 left-0 right-0 z-20 pointer-events-none">
           <DarkToLightDivider bgFrom="transparent" bgTo="#ffffff" />
         </div>
       </section>
 
       {/* 4. IMPACT AT A GLANCE (Heading Removed, No Background Color for Cards/Text, Centered with Professional Colored Icons) */}
-      <section className="py-10 sm:py-14 bg-white text-slate-900 relative">
+      <section className="pt-1 pb-8 sm:py-14 bg-white text-slate-900 relative">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col items-center justify-center">
           
           {/* Desktop Display: Centered Borderless & Backgroundless Cards Grid */}
@@ -433,7 +433,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           </div>
 
           {/* Mobile Display: Centered Track */}
-          <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-2">
+          <div className="md:hidden overflow-hidden relative w-full -mx-4 px-4 py-1">
             <motion.div
               animate={{ x: ['-50%', '0%'] }}
               transition={{ repeat: Infinity, duration: 16, ease: 'linear' }}
@@ -442,18 +442,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               {[...STATS_CARDS, ...STATS_CARDS].map((stat, idx) => (
                 <div
                   key={idx}
-                  className="w-[180px] shrink-0 flex flex-col items-center text-center p-3 bg-transparent border-0 shadow-none space-y-1"
+                  className="w-[200px] shrink-0 flex flex-col items-center text-center p-2.5 bg-transparent border-0 shadow-none space-y-1.5"
                 >
-                  <div className={`w-12 h-12 rounded-2xl ${stat.iconBg} flex items-center justify-center mb-0.5 shrink-0`}>
-                    <stat.icon className="w-6 h-6" />
+                  <div className={`w-14 h-14 rounded-2xl ${stat.iconBg} flex items-center justify-center mb-0.5 shrink-0`}>
+                    <stat.icon className="w-7 h-7" />
                   </div>
-                  <div className="text-2xl sm:text-3xl font-semibold text-[#0a2240] tracking-tight">
+                  <div className="text-3xl sm:text-4xl font-bold text-[#0a2240] tracking-tight">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-slate-700">
+                  <div className="text-sm sm:text-base font-semibold text-slate-800">
                     {stat.label}
                   </div>
-                  <div className="text-[11px] font-medium text-[#da8a24]">
+                  <div className="text-xs sm:text-sm font-medium text-[#da8a24]">
                     {stat.subtitle}
                   </div>
                 </div>
@@ -785,7 +785,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       </section>
 
       {/* 7. ORGANIC SECTION DIVIDER (Light to Dark) */}
-      <LightToDarkDivider bgFrom="#ffffff" bgTo="#071b34" />
+      <div className="w-full relative z-10 -my-[1px]">
+        <LightToDarkDivider bgFrom="#ffffff" bgTo="#071b34" />
+      </div>
 
       {/* 8. OUR PROGRAMS / INITIATIVES SECTION (Dark Blue #071b34 Section with White Glassmorphism Card) */}
       <section className="py-8 sm:py-12 bg-[#071b34] text-white relative overflow-hidden">
@@ -1003,7 +1005,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       </section>
 
       {/* 9. ORGANIC SECTION DIVIDER (Dark to Light) */}
-      <DarkToLightDivider bgFrom="#071b34" bgTo="#ffffff" />
+      <div className="w-full relative z-10 -my-[1px]">
+        <DarkToLightDivider bgFrom="#071b34" bgTo="#ffffff" />
+      </div>
 
       {/* 10. STATUTORY CREDENTIALS (TRUST & TRANSPARENCY - White #ffffff Section) */}
       <section className="py-16 sm:py-20 bg-white text-slate-900 relative">

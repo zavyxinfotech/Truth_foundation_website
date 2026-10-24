@@ -49,9 +49,9 @@ export const Inquiries: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <div>
-        <h3 className="text-lg font-bold text-white">Contact Inquiries Inbox</h3>
+        <h3 className="text-base sm:text-lg font-bold text-white">Contact Inquiries Inbox</h3>
         <p className="text-xs text-slate-400">Visitor messages and volunteer requests from website contact form</p>
       </div>
 
@@ -70,14 +70,14 @@ export const Inquiries: React.FC = () => {
           {inquiries.map((inq) => (
             <div
               key={inq.id}
-              className={`p-5 rounded-2xl border transition ${
+              className={`p-4 sm:p-5 rounded-2xl border transition ${
                 inq.status === 'NEW'
                   ? 'bg-[#071b34] border-[#da8a24]/40 shadow-sm'
                   : 'bg-slate-900/40 border-slate-800'
               }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
                   <span className="font-semibold text-white text-sm">{inq.name}</span>
                   <span
                     className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
@@ -104,19 +104,19 @@ export const Inquiries: React.FC = () => {
               </div>
 
               {/* Contact meta */}
-              <div className="flex flex-wrap gap-4 text-xs text-slate-400 mb-3">
+              <div className="flex flex-wrap gap-2.5 sm:gap-4 text-xs text-slate-400 mb-3 break-all">
                 <span>Email: <a href={`mailto:${inq.email}`} className="text-sky-400 hover:underline">{inq.email}</a></span>
                 {inq.phone && <span>Phone: <a href={`tel:${inq.phone}`} className="text-emerald-400 hover:underline">{inq.phone}</a></span>}
                 {inq.subject && <span>Subject: <strong className="text-white">{inq.subject}</strong></span>}
               </div>
 
               {/* Message body */}
-              <div className="p-3.5 rounded-xl bg-slate-900/80 text-xs text-slate-200 leading-relaxed whitespace-pre-wrap">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-slate-900/80 text-xs text-slate-200 leading-relaxed whitespace-pre-wrap break-words">
                 {inq.message}
               </div>
 
               {/* Action buttons */}
-              <div className="flex justify-end gap-2 mt-3 pt-3 border-t border-slate-800/80">
+              <div className="flex items-center justify-end gap-2 mt-3 pt-3 border-t border-slate-800/80 flex-wrap sm:flex-nowrap">
                 <button
                   onClick={() => handleToggleStatus(inq.id, inq.status)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
