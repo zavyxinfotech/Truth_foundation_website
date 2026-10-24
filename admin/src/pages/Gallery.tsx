@@ -3,14 +3,15 @@ import {
   UploadCloud,
   Image as ImageIcon,
   Trash2,
+  Edit3,
   Loader2,
   X,
-  ExternalLink
+  Save
 } from 'lucide-react';
 import { apiRequest } from '../api/client';
 import { GalleryImage } from '../types';
 
-const CATEGORIES = ['All', 'Meals', 'Birthday', 'Tuition', 'Volunteers', 'Medical', 'General'];
+const CATEGORIES = ['All', 'Meals', 'Education', 'Birthday Celebrations', 'Volunteers', 'Medical', 'Events', 'General'];
 
 export const Gallery: React.FC = () => {
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -25,6 +26,16 @@ export const Gallery: React.FC = () => {
   const [category, setCategory] = useState('Meals');
   const [description, setDescription] = useState('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  // Edit Modal State
+  const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [editCategory, setEditCategory] = useState('Meals');
+  const [editDescription, setEditDescription] = useState('');
+  const [editFile, setEditFile] = useState<File | null>(null);
+  const [editPreview, setEditPreview] = useState<string | null>(null);
+  const [updating, setUpdating] = useState(false);
+  const editFileInputRef = useRef<HTMLInputElement | null>(null);
 
   const loadImages = async () => {
     try {
@@ -101,6 +112,44 @@ export const Gallery: React.FC = () => {
     }
   };
 
+  const handleOpenEdit = (img: GalleryImage) => {
+    setEditingImage(img);
+    setEditTitle(img.title || '');
+    setEditCategory(img.category || 'Meals');
+    setEditDescription(img.description || '');
+    setEditFile(null);
+    setEditPreview(null);
+  };
+
+  const handleUpdateSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingImage) return;
+
+    setUpdating(true);
+    try {
+      const formData = new FormData();
+      formData.append('title', editTitle);
+      formData.append('category', editCategory);
+      formData.append('description', editDescription);
+      if (editFile) {
+        formData.append('image', editFile);
+      }
+
+      const res = await apiRequest<{ image: GalleryImage }>(`/gallery/${editingImage.id}`, {
+        method: 'PUT',
+        body: formData,
+      });
+
+      setImages(images.map((img) => (img.id === editingImage.id ? res.image : img)));
+      setEditingImage(null);
+      alert('Gallery image updated successfully!');
+    } catch (err: any) {
+      alert(err.message || 'Failed to update image');
+    } finally {
+      setUpdating(false);
+    }
+  };
+
   const handleDelete = async (id: number) => {
     if (!window.confirm('Delete this image from Cloudinary and database?')) return;
     try {
@@ -109,6 +158,11 @@ export const Gallery: React.FC = () => {
     } catch (err: any) {
       alert(err.message || 'Failed to delete image');
     }
+  };
+
+  const getImageSrc = (url: string) => {
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    return `http://localhost:5173/src/${url.replace(/^\/?/, '')}`;
   };
 
   return (
@@ -150,7 +204,7 @@ export const Gallery: React.FC = () => {
                 <img
                   src={previewUrl}
                   alt="Preview"
-                  className="max-h-48 rounded-xl object-contain shadow-lg"
+                  className="max-h-48 rounded-xl object-contain shadow-md"
                 />
                 <button
                   type="button"
@@ -159,49 +213,65 @@ export const Gallery: React.FC = () => {
                     setFile(null);
                     setPreviewUrl(null);
                   }}
-                  className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 rounded-full text-white flex items-center justify-center shadow hover:bg-red-600 transition"
+                  className="absolute -top-2 -right-2 p-1.5 bg-red-500 hover:bg-red-600 text-white rounded-full shadow"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
             ) : (
               <>
-                <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-[#da8a24] mb-3">
-                  <UploadCloud className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-[#da8a24] mb-3">
+                  <ImageIcon className="w-6 h-6" />
                 </div>
-                <p className="text-sm font-semibold text-white">Click to browse or drag and drop image here</p>
-                <p className="text-xs text-slate-400 mt-1">Supports JPG, PNG, WEBP (Max 10MB)</p>
+                <p className="text-sm font-semibold text-slate-200">
+                  Drop your high-resolution field photograph here, or <span className="text-[#da8a24]">browse</span>
+                </p>
+                <p className="text-[11px] text-slate-400 mt-1">Supports PNG, JPG, JPEG, WEBP up to 10MB</p>
               </>
             )}
           </div>
 
-          {/* Form Meta Fields */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Photo Title / Caption</label>
+          {/* Metadata Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                Image Title / Caption
+              </label>
               <input
                 type="text"
-                placeholder="e.g. Daily Wholesome Meals at Redhills Orphanage"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#da8a24]"
+                placeholder="e.g. Daily Nutritional Lunch at Redhills Home"
+                className="w-full px-4 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Category</label>
+              <label className="block text-xs font-semibold text-slate-300 mb-1.5">Category</label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-[#da8a24]"
+                className="w-full px-4 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
               >
-                <option value="Meals">Meals</option>
-                <option value="Birthday">Birthday Celebrations</option>
-                <option value="Tuition">Tuition & Education</option>
-                <option value="Volunteers">Volunteers & Events</option>
-                <option value="Medical">Medical Support</option>
-                <option value="General">General Campus</option>
+                {CATEGORIES.filter((c) => c !== 'All').map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
               </select>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                Description / Field Story (Optional)
+              </label>
+              <textarea
+                rows={2}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Brief description of the activity or child support initiative..."
+                className="w-full px-4 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-[#da8a24]"
+              />
             </div>
           </div>
 
@@ -209,7 +279,7 @@ export const Gallery: React.FC = () => {
             <button
               type="submit"
               disabled={uploading || !file}
-              className="px-6 py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] font-bold text-xs tracking-wider uppercase transition flex items-center gap-2 disabled:opacity-40 cursor-pointer shadow-md"
+              className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#da8a24] to-[#b7711b] hover:from-[#e5952f] hover:to-[#c67c20] text-[#071b34] font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {uploading ? (
                 <>
@@ -219,7 +289,7 @@ export const Gallery: React.FC = () => {
               ) : (
                 <>
                   <UploadCloud className="w-4 h-4" />
-                  <span>Publish to Gallery</span>
+                  <span>Upload to Cloudinary</span>
                 </>
               )}
             </button>
@@ -227,16 +297,16 @@ export const Gallery: React.FC = () => {
         </form>
       </div>
 
-      {/* Gallery Filter & Grid */}
+      {/* Gallery Photos Browser */}
       <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
           <div>
-            <h3 className="text-base font-bold text-white">Cloud Gallery Photos</h3>
-            <p className="text-xs text-slate-400">{images.length} photos active in cloud database</p>
+            <h3 className="text-lg font-bold text-white">Cloudinary Stored Photographs</h3>
+            <p className="text-xs text-slate-400">Total photos stored in Supabase: {images.length}</p>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex items-center gap-1.5 flex-wrap">
+          {/* Category Filter Chips */}
+          <div className="flex flex-wrap gap-1.5">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -269,11 +339,11 @@ export const Gallery: React.FC = () => {
             {images.map((img) => (
               <div
                 key={img.id}
-                className="group relative bg-[#071b34] border border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between"
+                className="group relative bg-[#071b34] border border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:border-[#da8a24]/50 transition"
               >
                 <div className="aspect-square w-full overflow-hidden bg-slate-900 relative">
                   <img
-                    src={img.image_url}
+                    src={getImageSrc(img.image_url)}
                     alt={img.title || 'Gallery image'}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                     loading="lazy"
@@ -283,27 +353,30 @@ export const Gallery: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-3 flex items-center justify-between text-xs border-t border-slate-800/80">
-                  <span className="text-slate-300 truncate font-medium text-[11px]" title={img.title}>
+                <div className="p-3 space-y-2 border-t border-slate-800/80">
+                  <p className="text-slate-200 truncate font-semibold text-xs" title={img.title}>
                     {img.title || 'Untitled'}
-                  </span>
-                  <div className="flex items-center gap-1">
-                    <a
-                      href={img.image_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-1 text-slate-400 hover:text-white"
-                      title="View full resolution"
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                    <button
-                      onClick={() => handleDelete(img.id)}
-                      className="p-1 text-red-400/80 hover:text-red-400 transition cursor-pointer"
-                      title="Delete Image"
-                    >
-                      <Trash2 className="w-3 h-3" />
-                    </button>
+                  </p>
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="text-[10px] text-slate-500 font-mono">
+                      {img.cloudinary_public_id ? 'Cloudinary' : 'Existing'}
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => handleOpenEdit(img)}
+                        className="p-1 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition"
+                        title="Edit Details"
+                      >
+                        <Edit3 className="w-3.5 h-3.5 text-[#da8a24]" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(img.id)}
+                        className="p-1 text-red-400/80 hover:text-red-400 hover:bg-red-500/10 rounded transition cursor-pointer"
+                        title="Delete Image"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -311,6 +384,126 @@ export const Gallery: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Edit Gallery Item Modal */}
+      {editingImage && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 className="text-base font-bold text-white flex items-center gap-2">
+                <Edit3 className="w-4 h-4 text-[#da8a24]" />
+                Edit Gallery Photo Details
+              </h3>
+              <button
+                onClick={() => setEditingImage(null)}
+                className="text-slate-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleUpdateSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Photo Title / Caption</label>
+                <input
+                  type="text"
+                  required
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Category</label>
+                <select
+                  value={editCategory}
+                  onChange={(e) => setEditCategory(e.target.value)}
+                  className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                >
+                  {CATEGORIES.filter((c) => c !== 'All').map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">Description</label>
+                <textarea
+                  rows={3}
+                  value={editDescription}
+                  onChange={(e) => setEditDescription(e.target.value)}
+                  className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                />
+              </div>
+
+              {/* Optional replacement image */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Replace Photo on Cloudinary (Optional)
+                </label>
+                {editPreview && (
+                  <div className="mb-2 h-24 w-full rounded-lg overflow-hidden border border-slate-700">
+                    <img src={editPreview} alt="New Preview" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <div
+                  onClick={() => editFileInputRef.current?.click()}
+                  className="border border-dashed border-slate-700 hover:border-[#da8a24] rounded-xl p-3 text-center cursor-pointer bg-slate-900/60"
+                >
+                  <p className="text-xs text-slate-300">
+                    {editFile ? editFile.name : 'Click to select new image file'}
+                  </p>
+                </div>
+                <input
+                  ref={editFileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) {
+                      setEditFile(f);
+                      setEditPreview(URL.createObjectURL(f));
+                    }
+                  }}
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+                <button
+                  type="button"
+                  onClick={() => setEditingImage(null)}
+                  className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={updating}
+                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition disabled:opacity-50"
+                >
+                  {updating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Saving...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-4 h-4" />
+                      <span>Save Changes</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
+
+export default Gallery;

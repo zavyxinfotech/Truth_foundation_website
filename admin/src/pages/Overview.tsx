@@ -97,7 +97,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
           return (
             <div
               key={idx}
-              className="bg-[#071b34]/70 backdrop-blur-sm border border-slate-800 rounded-2xl p-5 relative overflow-hidden"
+              className="bg-[#071b34]/70 backdrop-blur-sm rounded-2xl p-5 relative overflow-hidden shadow-none border-0"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-medium text-slate-400">{card.title}</span>
@@ -125,7 +125,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Left Column (2 Cols): Recent Donations */}
-        <div className="lg:col-span-2 bg-[#071b34]/70 border border-slate-800 rounded-2xl p-6">
+        <div className="lg:col-span-2 bg-[#071b34]/70 rounded-2xl p-6 shadow-none border-0">
           <div className="flex items-center justify-between mb-5">
             <div>
               <h3 className="text-base font-semibold text-white">Recent Donations</h3>
@@ -155,7 +155,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+                  <tr className="border-b border-slate-800/40 text-slate-400 font-semibold uppercase tracking-wider">
                     <th className="pb-3">Donor</th>
                     <th className="pb-3">Amount</th>
                     <th className="pb-3">Frequency</th>
@@ -163,7 +163,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
                     <th className="pb-3 text-right">Date</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-800/40">
                   {recentDonations.map((d) => (
                     <tr key={d.id} className="hover:bg-slate-800/20 transition">
                       <td className="py-3 font-medium text-white">{d.donor_name}</td>
@@ -190,7 +190,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
         </div>
 
         {/* Right Column (1 Col): Contact Messages Inbox */}
-        <div className="bg-[#071b34]/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+        <div className="bg-[#071b34]/70 rounded-2xl p-6 flex flex-col justify-between shadow-none border-0">
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>
@@ -214,7 +214,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
             ) : (
               <div className="space-y-3">
                 {recentInquiries.map((inq) => (
-                  <div key={inq.id} className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs">
+                  <div key={inq.id} className="p-3 rounded-xl bg-slate-900/60 text-xs shadow-none border-0">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-white">{inq.name}</span>
                       <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase ${
@@ -231,7 +231,7 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
           </div>
 
           {/* Quick Shortcuts */}
-          <div className="mt-6 pt-4 border-t border-slate-800 grid grid-cols-2 gap-2 text-xs">
+          <div className="mt-6 pt-4 grid grid-cols-2 gap-2 text-xs">
             <button
               onClick={() => onNavigate('gallery')}
               className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium flex items-center justify-center gap-1.5 transition"

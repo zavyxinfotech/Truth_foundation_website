@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   PhoneCall,
@@ -27,6 +27,7 @@ import { FloatingWhatsApp } from '../../components/FloatingWhatsApp';
 import { DarkToLightDivider } from '../../components/SectionDividers';
 import { WhatsAppIcon } from '../../components/WhatsAppIcon';
 import { pixelTracker } from '../../utils/pixelTracker';
+import { fetchSiteContent } from '../../utils/cmsApi';
 
 // Real Project Image Imports
 import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
@@ -58,6 +59,26 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const [contactInfo, setContactInfo] = useState({
+    redhillsPhone: '+91 63827 21178',
+    kolathurPhone: '+91 99622 94949',
+    email: 'truthfoundation2010@gmail.com',
+    whatsapp: '916382721178'
+  });
+
+  useEffect(() => {
+    fetchSiteContent().then((data) => {
+      if (data?.contact_page) {
+        setContactInfo({
+          redhillsPhone: data.contact_page.redhills_phone || '+91 63827 21178',
+          kolathurPhone: data.contact_page.kolathur_phone || '+91 99622 94949',
+          email: data.contact_page.redhills_email || 'truthfoundation2010@gmail.com',
+          whatsapp: (data.contact_page.whatsapp_number || '916382721178').replace('+', '')
+        });
+      }
+    });
+  }, []);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -73,6 +94,19 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
       name: formData.fullName
     });
 
+    // Save to Supabase contact_inquiries table via backend API
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message
+      })
+    }).catch((err) => console.warn('Could not post inquiry to API:', err));
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -83,13 +117,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
         subject: INQUIRY_SUBJECTS[0],
         message: ''
       });
-    }, 1000);
+    }, 800);
   };
 
   const handleDirectWhatsApp = () => {
     pixelTracker.trackWhatsAppClick('Contact Page WhatsApp Card');
     const msg = encodeURIComponent(`Hello Truth Foundation! I have an inquiry regarding: ${formData.subject || 'General Info'}`);
-    window.open(`https://wa.me/919962294949?text=${msg}`, '_blank');
+    window.open(`https://wa.me/${contactInfo.whatsapp}?text=${msg}`, '_blank');
   };
 
   return (

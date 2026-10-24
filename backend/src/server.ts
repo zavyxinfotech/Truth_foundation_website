@@ -6,6 +6,7 @@ import donationRoutes from './routes/donationRoutes.js';
 import galleryRoutes from './routes/galleryRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
+import contentRoutes from './routes/contentRoutes.js';
 import { initDatabase } from './db/init.js';
 
 dotenv.config();
@@ -56,6 +57,7 @@ app.use('/api/donations', donationRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/content', contentRoutes);
 
 // Error Handling Middleware
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {

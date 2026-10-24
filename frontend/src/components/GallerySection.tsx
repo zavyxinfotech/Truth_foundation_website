@@ -14,25 +14,52 @@ import { motion, AnimatePresence } from 'motion/react';
 import { GALLERY_ITEMS } from '../data/campaignData';
 import { pixelTracker } from '../utils/pixelTracker';
 import { Picture } from './Picture';
+import { fetchGalleryImages } from '../utils/cmsApi';
 
 interface GallerySectionProps {
   onOpenDonateModal?: (amount: number) => void;
 }
 
-const TOTAL = GALLERY_ITEMS.length;
 const CARD_ROTATE_INTERVAL = 3200; // ms between continuous card advances
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModal }) => {
+  const [items, setItems] = useState<any[]>(GALLERY_ITEMS);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRunning, setIsRunning] = useState(true);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const activeItem = GALLERY_ITEMS[currentIndex];
+  useEffect(() => {
+    fetchGalleryImages().then((dbItems: any) => {
+      if (Array.isArray(dbItems) && dbItems.length > 0) {
+        const merged = dbItems.map((db, idx) => {
+          const fallback = GALLERY_ITEMS[idx % GALLERY_ITEMS.length];
+          return {
+            id: db.id,
+            title: db.title || fallback?.title || 'Gallery Item',
+            category: db.category || fallback?.category || 'Community Care',
+            location: db.location || fallback?.location || 'Chennai, Tamil Nadu',
+            image: db.image_url || fallback?.image,
+            description: db.description || fallback?.description || '',
+            storyDetails: db.story_details || fallback?.storyDetails || '',
+            quote: db.quote || fallback?.quote || '',
+            impactStat: fallback?.impactStat || { value: '45+', label: 'Lives Supported' }
+          };
+        });
+        setItems(merged);
+      }
+    }).catch(console.error);
+  }, []);
+
+  const total = items.length;
+  const activeItem = items[currentIndex] || items[0] || GALLERY_ITEMS[0];
 
   const getIdx = useCallback(
-    (offset: number) => ((currentIndex + offset) % TOTAL + TOTAL) % TOTAL,
-    [currentIndex]
+    (offset: number) => {
+      const len = items.length || 1;
+      return ((currentIndex + offset) % len + len) % len;
+    },
+    [currentIndex, items.length]
   );
 
   // Lock body scroll when story modal is open
@@ -54,16 +81,16 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
       return;
     }
     timerRef.current = setInterval(() => {
-      setCurrentIndex((p) => (p + 1) % TOTAL);
+      setCurrentIndex((p) => (p + 1) % (items.length || 1));
     }, CARD_ROTATE_INTERVAL);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isRunning, isModalOpen]);
+  }, [isRunning, isModalOpen, items.length]);
 
-  const goNext = () => setCurrentIndex((p) => (p + 1) % TOTAL);
-  const goPrev = () => setCurrentIndex((p) => (p - 1 + TOTAL) % TOTAL);
+  const goNext = () => setCurrentIndex((p) => (p + 1) % (items.length || 1));
+  const goPrev = () => setCurrentIndex((p) => (p - 1 + (items.length || 1)) % (items.length || 1));
 
   const positionConfig = [
     {
@@ -147,7 +174,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
           {/* Render 5 positional slots */}
           {[-2, -1, 0, 1, 2].map((offset, posIdx) => {
             const itemIdx = getIdx(offset);
-            const item = GALLERY_ITEMS[itemIdx];
+            const item = items[itemIdx] || items[0] || GALLERY_ITEMS[0];
             const cfg = positionConfig[posIdx];
             const isCenter = offset === 0;
 
@@ -187,13 +214,22 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
                   `}
                   style={{ aspectRatio: '3/4' }}
                 >
-                  <Picture
-                    picture={item.image}
-                    sizes="(min-width: 1024px) 430px, (min-width: 768px) 400px, (min-width: 640px) 360px, 265px"
-                    alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
-                    draggable={false}
-                  />
+                  {typeof item.image === 'string' ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+                      draggable={false}
+                    />
+                  ) : (
+                    <Picture
+                      picture={item.image}
+                      sizes="(min-width: 1024px) 430px, (min-width: 768px) 400px, (min-width: 640px) 360px, 265px"
+                      alt={item.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+                      draggable={false}
+                    />
+                  )}
 
                   <div className="absolute inset-0 bg-gradient-to-t from-[#061525]/95 via-[#061525]/20 to-[#061525]/55 pointer-events-none" />
 
@@ -284,13 +320,21 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
 
                 {/* Left Column (Desktop) */}
                 <div className="lg:col-span-5 relative bg-[#06172a] p-3 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[#163863] min-h-[200px] lg:min-h-[420px] max-h-[35vh] lg:max-h-[85vh] overflow-hidden shrink-0">
-                  <Picture
-                    picture={activeItem.image}
-                    sizes="(min-width: 1024px) 420px, calc(100vw - 2rem)"
-                    alt={activeItem.title}
-                    loading="eager"
-                    className="w-full h-full max-h-[32vh] lg:max-h-[75vh] object-cover rounded-2xl shadow-xl"
-                  />
+                  {typeof activeItem.image === 'string' ? (
+                    <img
+                      src={activeItem.image}
+                      alt={activeItem.title}
+                      className="w-full h-full max-h-[32vh] lg:max-h-[75vh] object-cover rounded-2xl shadow-xl"
+                    />
+                  ) : (
+                    <Picture
+                      picture={activeItem.image}
+                      sizes="(min-width: 1024px) 420px, calc(100vw - 2rem)"
+                      alt={activeItem.title}
+                      loading="eager"
+                      className="w-full h-full max-h-[32vh] lg:max-h-[75vh] object-cover rounded-2xl shadow-xl"
+                    />
+                  )}
                 </div>
 
                 {/* Right Column (Desktop) */}

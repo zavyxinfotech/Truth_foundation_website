@@ -28,6 +28,7 @@ import { DarkToLightDivider, LightToDarkDivider } from '../../components/Section
 import { GALLERY_ITEMS } from '../../data/campaignData';
 import { GalleryItem } from '../../types';
 import { pixelTracker } from '../../utils/pixelTracker';
+import { fetchGalleryImages } from '../../utils/cmsApi';
 
 // Real Project Image Imports
 import galleryDonateSectionImg from '../../assets/images/gallery_page_donate_section.jpeg?w=600&format=webp';
@@ -60,7 +61,32 @@ const CATEGORY_DONATION_AMOUNTS: Record<string, number> = {
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [activeStoryItem, setActiveStoryItem] = useState<GalleryItem | null>(null);
+  const [activeStoryItem, setActiveStoryItem] = useState<any | null>(null);
+  const [galleryList, setGalleryList] = useState<any[]>(GALLERY_ITEMS);
+
+  // Load photos dynamically from Supabase database
+  useEffect(() => {
+    fetchGalleryImages().then((dbImgs) => {
+      if (dbImgs && dbImgs.length > 0) {
+        const dynamicItems = dbImgs.map((img) => ({
+          id: `db_${img.id}`,
+          title: img.title || 'Truth Foundation Community Work',
+          category: img.category,
+          image: img.image_url,
+          location: 'Truth Foundation Centers, Chennai',
+          date: 'Recent Field Activity',
+          description: img.description || 'Providing daily hot meals, education support, and medical care to underprivileged children.',
+          quote: '“Every hot meal brings a smile and gives our children strength to learn and thrive.”',
+          aspectRatio: 'wide',
+          impactStat: { label: img.category, value: 'Active Care' },
+          beneficiaries: 'Underprivileged Children & Elders',
+          readTime: '2 min read',
+          storyDetails: img.description || 'Our foundation conducts humanitarian drives across northern Chennai and Thiruvallur districts.'
+        }));
+        setGalleryList(dynamicItems);
+      }
+    });
+  }, []);
 
   // Body scroll lock when story modal is open
   useEffect(() => {
@@ -75,8 +101,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
   }, [activeStoryItem]);
 
   const filteredItems = selectedCategory === 'All'
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter(item => item.category === selectedCategory);
+    ? galleryList
+    : galleryList.filter(item => item.category === selectedCategory);
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip bg-[#0a2240] text-slate-900 font-sans antialiased selection:bg-[#da8a24] selection:text-[#0a2240] relative">
@@ -205,8 +231,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
             </div>
           </div>
 
-          {/* Gallery Grid - 2 Columns on Mobile, 4 Columns on Desktop */}
-          <motion.div layout className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          {/* Gallery Grid - 2 Columns on Mobile, 3 Columns on Tablet, 4 Columns on Desktop */}
+          <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
             <AnimatePresence>
               {filteredItems.map((item) => {
                 const donateAmount = CATEGORY_DONATION_AMOUNTS[item.category] || 500;
@@ -223,12 +249,20 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   >
                     {/* Image Tile - Increased height on mobile (aspect-square) */}
                     <div className="relative aspect-square sm:aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-xl border-0 shadow-none">
-                      <Picture
-                        picture={item.image}
-                        sizes="(min-width: 1024px) 300px, (min-width: 640px) 320px, 50vw"
-                        alt={item.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out rounded-xl"
-                      />
+                      {typeof item.image === 'string' ? (
+                        <img
+                          src={item.image.startsWith('http') ? item.image : `/src/${item.image.replace(/^\/?/, '')}`}
+                          alt={item.title}
+                          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out rounded-xl"
+                        />
+                      ) : (
+                        <Picture
+                          picture={item.image}
+                          sizes="(min-width: 1024px) 300px, (min-width: 640px) 320px, 50vw"
+                          alt={item.title}
+                          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out rounded-xl"
+                        />
+                      )}
 
                       {/* Glassmorphism Category Label (No Icon) */}
                       <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 bg-[#0a2240]/40 backdrop-blur-md border border-white/25 text-white font-normal text-xs uppercase tracking-wider px-3 py-1 rounded-md z-10">
@@ -391,13 +425,21 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
 
               {/* Image side - Category aligned UPON the image */}
               <div className="lg:col-span-5 relative bg-[#040f1a]/40 backdrop-blur-md p-3 sm:p-4 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 shrink-0">
-                <Picture
-                  picture={activeStoryItem.image}
-                  sizes="(min-width: 1024px) 420px, calc(100vw - 2rem)"
-                  alt={activeStoryItem.title}
-                  loading="eager"
-                  className="w-full h-full max-h-[32vh] sm:max-h-[42vh] lg:max-h-[75vh] object-cover rounded-xl shadow-lg"
-                />
+                {typeof activeStoryItem.image === 'string' ? (
+                  <img
+                    src={activeStoryItem.image.startsWith('http') ? activeStoryItem.image : `/src/${activeStoryItem.image.replace(/^\/?/, '')}`}
+                    alt={activeStoryItem.title}
+                    className="w-full h-full max-h-[32vh] sm:max-h-[42vh] lg:max-h-[75vh] object-cover rounded-xl shadow-lg"
+                  />
+                ) : (
+                  <Picture
+                    picture={activeStoryItem.image}
+                    sizes="(min-width: 1024px) 420px, calc(100vw - 2rem)"
+                    alt={activeStoryItem.title}
+                    loading="eager"
+                    className="w-full h-full max-h-[32vh] sm:max-h-[42vh] lg:max-h-[75vh] object-cover rounded-xl shadow-lg"
+                  />
+                )}
 
                 {/* Category Label Overlay UPON the Image */}
                 <span className="absolute top-5 left-5 bg-[#da8a24] text-[#0a2240] font-semibold text-xs uppercase tracking-wider px-3 py-1 rounded-md shadow-md z-10">

@@ -156,8 +156,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
             </div>
           </div>
 
-          {/* Column 3 (4 Cols): Google Maps Embed */}
-          <div className="lg:col-span-4 space-y-3">
+          {/* Column 3 (4 Cols): Google Maps Embed (Full width on tablet) */}
+          <div className="md:col-span-2 lg:col-span-4 space-y-3">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#da8a24] shrink-0" />
@@ -201,7 +201,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
               href="https://zavyx.odoo.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#da8a24] font-medium hover:underline"
+              className="text-[#0a2240] hover:text-[#da8a24] font-medium tracking-wide transition-colors"
+              style={{ fontFamily: "'Roboto', sans-serif" }}
             >
               ZAVYX InfoTech
             </a>

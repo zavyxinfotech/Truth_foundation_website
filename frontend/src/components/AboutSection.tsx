@@ -87,13 +87,13 @@ export const AboutSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Responsive 4-Card Showcase: Thin Borders, No Gradients */}
+        {/* Responsive 4-Card Showcase: 1-col scroll on mobile, 2x2 grid on tablet, 4-col on desktop */}
         <div className="relative py-1">
           <div
             ref={scrollContainerRef}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="flex lg:grid lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-4 overflow-x-auto lg:overflow-x-visible py-3 px-1 sm:px-2 scrollbar-none snap-x snap-mandatory scroll-smooth items-stretch justify-start w-full"
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-4 overflow-x-auto md:overflow-x-visible py-3 px-1 sm:px-2 scrollbar-none snap-x snap-mandatory scroll-smooth items-stretch justify-start w-full"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {FEATURES.map((feature, idx) => {
@@ -106,7 +106,7 @@ export const AboutSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.15 }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className={`w-[82vw] max-w-[280px] sm:w-[310px] lg:w-full lg:max-w-none shrink-0 lg:shrink snap-center rounded-2xl p-5 sm:p-6 bg-[#071b34] border transition-all duration-300 transform-gpu cursor-pointer space-y-3 flex flex-col justify-between group ${
+                  className={`w-[82vw] max-w-[280px] sm:w-[310px] md:w-full md:max-w-none shrink-0 md:shrink snap-center rounded-2xl p-5 sm:p-6 bg-[#071b34] border transition-all duration-300 transform-gpu cursor-pointer space-y-3 flex flex-col justify-between group ${
                     isActive
                       ? 'border-[#da8a24]/80 z-20'
                       : 'border-[#163863]/60 hover:border-[#da8a24]/60 z-10'
@@ -134,8 +134,8 @@ export const AboutSection: React.FC = () => {
             })}
           </div>
 
-          {/* Pagination Indicators on Mobile */}
-          <div className="flex lg:hidden items-center justify-center pt-3">
+          {/* Pagination Indicators on Mobile only */}
+          <div className="flex md:hidden items-center justify-center pt-3">
             <div className="flex items-center gap-2 px-3 py-1 bg-[#071b34] rounded-full border border-[#163863]">
               {FEATURES.map((_, i) => (
                 <button

@@ -30,6 +30,7 @@ import { Footer } from '../../components/Footer';
 import { FloatingWhatsApp } from '../../components/FloatingWhatsApp';
 import { DarkToLightDivider, LightToDarkDivider } from '../../components/SectionDividers';
 import { pixelTracker } from '../../utils/pixelTracker';
+import { fetchSiteContent } from '../../utils/cmsApi';
 
 // Real Project Image Imports
 import aboutHeroBgDesktop from '../../assets/images/about_page_hero_section_desktop_view.jpeg';
@@ -45,12 +46,13 @@ import heroTuitionSchoolMeals from '../../assets/images/hero_tuition_school_meal
 import founderPresidentImg from '../../images/Founder_President.png?w=600&format=webp';
 import managingTrusteeImg from '../../images/Managing_trustee.png?w=600&format=webp';
 
-import sponsorBreakfastImg from '../../images/veg_beakfast.png?w=600&format=webp';
-import sponsorLunchImg from '../../images/lunch_high_rate.png?w=600&format=webp';
-import sponsorDinnerImg from '../../images/veg_dinner.png?w=600&format=webp';
-import sponsorEducationImg from '../../images/education_support.png?w=600&format=webp';
-import sponsorHealthcareImg from '../../images/medical_support.png?w=600&format=webp';
-import sponsorClothingImg from '../../images/clothing_support.png?w=600&format=webp';
+import sponsorBreakfastImg from '../../images/sponsor_breakfast.jpg?w=600&format=webp';
+import sponsorLunchImg from '../../images/sponsor_lunch.jpg?w=600&format=webp';
+import sponsorDinnerImg from '../../images/sponsor_dinner.jpg?w=600&format=webp';
+import sponsorEducationImg from '../../images/sponsor_education.jpg?w=600&format=webp';
+import sponsorHealthcareImg from '../../images/sponsor_medical.jpg?w=600&format=webp';
+import sponsorClothingImg from '../../images/sponsor_clothing.jpg?w=600&format=webp';
+import supportCauseGirlImg from '../../assets/images/support_cause_girl_donate.png';
 
 interface AboutPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -163,34 +165,16 @@ const STATUTORY_CREDENTIALS = [
 const SPONSOR_CAUSES = [
   {
     id: 'cause-breakfast',
-    title: 'Breakfast Support',
-    amount: 300,
-    amountLabel: '₹300',
+    title: 'Breakfast Donation',
+    amount: 6000,
+    amountLabel: '₹6,000',
     image: sponsorBreakfastImg,
     icon: Utensils,
     description: 'Provide wholesome morning breakfast meals to orphaned children and elders to start their day with energy.'
   },
   {
-    id: 'cause-lunch',
-    title: 'Hot Lunch & Meals',
-    amount: 500,
-    amountLabel: '₹500',
-    image: sponsorLunchImg,
-    icon: Utensils,
-    description: 'Sponsor protein-rich hot lunches for 45 orphanage kids and 20 abandoned seniors at our Redhills campus.'
-  },
-  {
-    id: 'cause-dinner',
-    title: 'Wholesome Dinner',
-    amount: 1000,
-    amountLabel: '₹1,000',
-    image: sponsorDinnerImg,
-    icon: Utensils,
-    description: 'Provide freshly cooked warm dinner meals for resident children and evening tuition students.'
-  },
-  {
     id: 'cause-education',
-    title: 'Education & Tuition Support',
+    title: 'Education Support',
     amount: 2500,
     amountLabel: '₹2,500',
     image: sponsorEducationImg,
@@ -198,8 +182,17 @@ const SPONSOR_CAUSES = [
     description: 'Sponsor school backpacks, textbooks, notebooks, and learning tools for 346 evening tuition children.'
   },
   {
+    id: 'cause-lunch',
+    title: 'Lunch Support',
+    amount: 8000,
+    amountLabel: '₹8,000',
+    image: sponsorLunchImg,
+    icon: Utensils,
+    description: 'Sponsor protein-rich hot lunches for 45 orphanage kids and 20 abandoned seniors at our Redhills campus.'
+  },
+  {
     id: 'cause-healthcare',
-    title: 'Healthcare & Medical Support',
+    title: 'Health Care Support',
     amount: 1500,
     amountLabel: '₹1,500',
     image: sponsorHealthcareImg,
@@ -207,8 +200,17 @@ const SPONSOR_CAUSES = [
     description: 'Support periodic medical checkups, essential prescription drugs, and health drives for elders & kids.'
   },
   {
+    id: 'cause-dinner',
+    title: 'Dinner Support',
+    amount: 6000,
+    amountLabel: '₹6,000',
+    image: sponsorDinnerImg,
+    icon: Utensils,
+    description: 'Provide freshly cooked warm dinner meals for resident children and evening tuition students.'
+  },
+  {
     id: 'cause-clothing',
-    title: 'Clothing & Hygiene Kits',
+    title: 'Clothing & Hygiene Support',
     amount: 1000,
     amountLabel: '₹1,000',
     image: sponsorClothingImg,
@@ -223,21 +225,66 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
   const [isPaused, setIsPaused] = useState(false);
   const [openPillar, setOpenPillar] = useState<'vision' | 'mission' | 'values' | null>('vision');
   const [currentProgramIndex, setCurrentProgramIndex] = useState(0);
+  const [aboutContent, setAboutContent] = useState<any>(null);
+  const [programsList, setProgramsList] = useState<any[]>(PROGRAMS);
+
+  useEffect(() => {
+    fetchSiteContent().then((data) => {
+      if (data?.about_page) {
+        setAboutContent(data.about_page);
+        if (Array.isArray(data.about_page.programs) && data.about_page.programs.length > 0) {
+          const mapped = data.about_page.programs.map((p: any, idx: number) => {
+            const fallback = PROGRAMS[idx % PROGRAMS.length];
+            return {
+              icon: fallback?.icon || HeartHandshake,
+              title: p.title || fallback?.title || 'Program',
+              location: p.location || fallback?.location || '',
+              tag: p.tag || fallback?.tag || 'Active',
+              image: p.image || fallback?.image,
+              description: p.description || fallback?.description || '',
+              details: Array.isArray(p.details) && p.details.length > 0 ? p.details : (fallback?.details || [])
+            };
+          });
+          setProgramsList(mapped);
+        }
+      }
+    }).catch(console.error);
+  }, []);
 
   const handleNextProgram = () => {
-    setCurrentProgramIndex((prev) => (prev + 1) % PROGRAMS.length);
+    setProgramsList((currentList) => {
+      if (!currentList.length) return currentList;
+      setCurrentProgramIndex((prev) => (prev + 1) % currentList.length);
+      return currentList;
+    });
   };
 
   const handlePrevProgram = () => {
-    setCurrentProgramIndex((prev) => (prev - 1 + PROGRAMS.length) % PROGRAMS.length);
+    setProgramsList((currentList) => {
+      if (!currentList.length) return currentList;
+      setCurrentProgramIndex((prev) => (prev - 1 + currentList.length) % currentList.length);
+      return currentList;
+    });
   };
 
   useEffect(() => {
     const programTimer = setInterval(() => {
-      setCurrentProgramIndex((prev) => (prev + 1) % PROGRAMS.length);
+      setProgramsList((currentList) => {
+        if (!currentList.length) return currentList;
+        setCurrentProgramIndex((prev) => (prev + 1) % currentList.length);
+        return currentList;
+      });
     }, 4000);
     return () => clearInterval(programTimer);
   }, []);
+
+  const getProgramImgSrc = (img: any): string => {
+    if (!img) return '';
+    if (typeof img === 'string') return img;
+    if (img.img?.src) return img.img.src;
+    if (img.src) return img.src;
+    return String(img);
+  };
 
   const scrollToCard = (index: number) => {
     setActiveIndex(index);
@@ -309,12 +356,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             >
               {/* Main Heading: All White Color */}
               <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold text-white tracking-tight leading-[1.1]">
-                Empowering Lives with Dignity, Equality & Hope
+                {aboutContent?.hero_title || 'Empowering Lives with Dignity, Equality & Hope'}
               </h1>
 
               {/* Concise Hero Paragraph */}
               <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-[600px]">
-                TRUTH FOUNDATION is a registered Public Charitable Trust established on 5th July 2010 in Chennai, dedicated to creating equal opportunities, education, shelter, and compassionate care for orphaned children and elders across Tamil Nadu.
+                {aboutContent?.hero_description || 'TRUTH FOUNDATION is a registered Public Charitable Trust established on 5th July 2010 in Chennai, dedicated to creating equal opportunities, education, shelter, and compassionate care for orphaned children and elders across Tamil Nadu.'}
               </p>
 
               {/* Action Buttons */}
@@ -611,7 +658,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   >
                     <div className="bg-[#071b34] text-white p-6 sm:p-8 rounded-b-[28px] border-t border-[#163863] space-y-4">
                       <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-                        To establish a just and equitable social order where every child, elder, and special-needs individual lives with dignity, freedom, equal opportunity, and complete access to education, nutrition, and healthcare.
+                        {aboutContent?.vision || 'To establish a just and equitable social order where every child, elder, and special-needs individual lives with dignity, freedom, equal opportunity, and complete access to education, nutrition, and healthcare.'}
                       </p>
                       <div className="pt-3 border-t border-[#163863] text-xs sm:text-sm text-[#da8a24] font-semibold flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-[#da8a24]" />
@@ -658,7 +705,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   >
                     <div className="bg-[#da8a24] text-[#071b34] p-6 sm:p-8 rounded-b-[28px] border-t border-[#071b34]/20 space-y-4">
                       <p className="text-base sm:text-lg text-[#071b34]/90 leading-relaxed font-medium">
-                        Empowering rural communities through free education, evening tuition centers, specialized therapy for children with disabilities, shelter and food for abandoned seniors, and health awareness campaigns.
+                        {aboutContent?.mission || 'Empowering rural communities through free education, evening tuition centers, specialized therapy for children with disabilities, shelter and food for abandoned seniors, and health awareness campaigns.'}
                       </p>
                       <div className="pt-3 border-t border-[#071b34]/20 text-xs sm:text-sm text-[#071b34] font-semibold flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-[#071b34]" />
@@ -780,135 +827,67 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           </div>
 
           {/* Carousel Stage Container */}
-          <div className="relative w-full max-w-[1240px] mx-auto">
-            
-            {/* Desktop Stage: Center Card with White Glassmorphism & No Numbers */}
-            <div className="hidden md:flex items-center justify-between relative overflow-hidden min-h-[380px]">
-              
-              {/* Left Side: Active Program Image */}
-              <div className="w-[44%] h-[340px] lg:h-[380px] rounded-[28px] overflow-hidden relative shadow-xl shrink-0 bg-[#0a2240]">
-                <img
-                  src={PROGRAMS[currentProgramIndex].image}
-                  alt={PROGRAMS[currentProgramIndex].title}
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-              </div>
+          {(() => {
+            const currentProgram = programsList[currentProgramIndex] || programsList[0] || PROGRAMS[0];
+            const nextProgram = programsList[(currentProgramIndex + 1) % programsList.length] || currentProgram;
+            const ProgramIcon = currentProgram?.icon || HeartHandshake;
 
-              {/* Center Overlapping White Glassmorphism Content Panel (No 01, 02, 03, 04 numbers) */}
-              <motion.div
-                key={currentProgramIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4 }}
-                className="w-[56%] -ml-16 relative z-20 bg-white/90 backdrop-blur-md border border-white/60 text-slate-900 rounded-[30px] p-5 lg:p-7 shadow-2xl flex flex-col justify-between space-y-3"
-              >
-                {/* Header Row */}
-                <div className="space-y-2.5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
-                        {React.createElement(PROGRAMS[currentProgramIndex].icon, { className: "w-5 h-5" })}
-                      </div>
-                      <div>
-                        <h3 className="text-lg lg:text-2xl font-normal text-[#0a2240] leading-snug">
-                          {PROGRAMS[currentProgramIndex].title}
-                        </h3>
-                        <p className="text-xs text-slate-500 font-normal">
-                          {PROGRAMS[currentProgramIndex].location}
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
-                      {PROGRAMS[currentProgramIndex].tag}
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-xs lg:text-sm text-slate-600 font-normal leading-relaxed">
-                    {PROGRAMS[currentProgramIndex].description}
-                  </p>
-                </div>
-
-                {/* Feature Bullet List */}
-                <div className="pt-2.5 border-t border-slate-200/60 space-y-2">
-                  {PROGRAMS[currentProgramIndex].details.map((detail, dIdx) => (
-                    <div key={dIdx} className="flex items-center gap-2.5 text-xs lg:text-sm text-slate-700 font-normal">
-                      <div className="w-4.5 h-4.5 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                      </div>
-                      <span>{detail}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Right Side: Peek of Next Program Image (No number overlay) */}
-              <div
-                onClick={handleNextProgram}
-                className="w-[20%] h-[300px] lg:h-[340px] rounded-[24px] overflow-hidden relative opacity-75 scale-95 shrink-0 shadow-lg border border-slate-700/50 cursor-pointer hover:opacity-95 transition-all group"
-              >
-                <img
-                  src={PROGRAMS[(currentProgramIndex + 1) % PROGRAMS.length].image}
-                  alt={PROGRAMS[(currentProgramIndex + 1) % PROGRAMS.length].title}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-            </div>
-
-            {/* Mobile Stage */}
-            <div className="block md:hidden relative overflow-hidden">
-              <div className="relative flex items-center">
-                
-                {/* Main Content Area */}
-                <div className="w-full pr-4">
-                  
-                  {/* Top Image */}
-                  <div className="w-full h-44 sm:h-52 rounded-[22px] overflow-hidden relative shadow-lg bg-[#0a2240]">
+            return (
+              <div className="relative w-full max-w-[1240px] mx-auto">
+                {/* Desktop Stage: Center Card with White Glassmorphism & No Numbers */}
+                <div className="hidden md:flex items-center justify-between relative overflow-hidden min-h-[380px]">
+                  {/* Left Side: Active Program Image */}
+                  <div className="w-[44%] h-[340px] lg:h-[380px] rounded-[28px] overflow-hidden relative shadow-xl shrink-0 bg-[#0a2240]">
                     <img
-                      src={PROGRAMS[currentProgramIndex].image}
-                      alt={PROGRAMS[currentProgramIndex].title}
-                      className="w-full h-full object-cover object-center"
+                      src={getProgramImgSrc(currentProgram.image)}
+                      alt={currentProgram.title}
+                      className="w-full h-full object-cover object-center transform transition-transform duration-700 hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  {/* Overlapping Content Box */}
+                  {/* Center Overlapping White Glassmorphism Content Panel (No 01, 02, 03, 04 numbers) */}
                   <motion.div
-                    key={`mobile-${currentProgramIndex}`}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="pt-3 relative z-20 bg-transparent text-white border-0 shadow-none space-y-2.5"
+                    key={currentProgramIndex}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-[56%] -ml-16 relative z-20 bg-white/90 backdrop-blur-md border border-white/60 text-slate-900 rounded-[30px] p-5 lg:p-7 shadow-2xl flex flex-col justify-between space-y-3"
                   >
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="w-7 h-7 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
-                          {React.createElement(PROGRAMS[currentProgramIndex].icon, { className: "w-4 h-4" })}
+                    {/* Header Row */}
+                    <div className="space-y-2.5">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
+                            <ProgramIcon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg lg:text-2xl font-normal text-[#0a2240] leading-snug">
+                              {currentProgram.title}
+                            </h3>
+                            <p className="text-xs text-slate-500 font-normal">
+                              {currentProgram.location}
+                            </p>
+                          </div>
                         </div>
-                        <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-2.5 py-0.5 rounded-full">
-                          {PROGRAMS[currentProgramIndex].tag}
+                        
+                        <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
+                          {currentProgram.tag}
                         </span>
                       </div>
 
-                      <h3 className="text-base sm:text-lg font-normal text-white leading-snug">
-                        {PROGRAMS[currentProgramIndex].title}
-                      </h3>
-                      <p className="text-xs text-slate-300 font-normal">
-                        {PROGRAMS[currentProgramIndex].location}
+                      {/* Description */}
+                      <p className="text-xs lg:text-sm text-slate-600 font-normal leading-relaxed">
+                        {currentProgram.description}
                       </p>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
-                      {PROGRAMS[currentProgramIndex].description}
-                    </p>
-
-                    <div className="pt-2 border-t border-slate-700/60 space-y-1.5">
-                      {PROGRAMS[currentProgramIndex].details.map((detail, dIdx) => (
-                        <div key={dIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 font-normal">
-                          <div className="w-4 h-4 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
-                            <CheckCircle2 className="w-3 h-3" />
+                    {/* Feature Bullet List */}
+                    <div className="pt-2.5 border-t border-slate-200/60 space-y-2">
+                      {(currentProgram.details || []).map((detail: string, dIdx: number) => (
+                        <div key={dIdx} className="flex items-center gap-2.5 text-xs lg:text-sm text-slate-700 font-normal">
+                          <div className="w-4.5 h-4.5 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
+                            <CheckCircle2 className="w-3.5 h-3.5" />
                           </div>
                           <span>{detail}</span>
                         </div>
@@ -916,41 +895,109 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     </div>
                   </motion.div>
 
+                  {/* Right Side: Peek of Next Program Image (No number overlay) */}
+                  <div
+                    onClick={handleNextProgram}
+                    className="w-[20%] h-[300px] lg:h-[340px] rounded-[24px] overflow-hidden relative opacity-75 scale-95 shrink-0 shadow-lg border border-slate-700/50 cursor-pointer hover:opacity-95 transition-all group"
+                  >
+                    <img
+                      src={getProgramImgSrc(nextProgram.image)}
+                      alt={nextProgram.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
                 </div>
 
-                {/* Right Peek Image on Mobile */}
-                <div
-                  onClick={handleNextProgram}
-                  className="w-7 h-44 rounded-r-xl overflow-hidden opacity-60 absolute right-0 top-2 border-l border-slate-700 shrink-0 cursor-pointer"
-                >
-                  <img
-                    src={PROGRAMS[(currentProgramIndex + 1) % PROGRAMS.length].image}
-                    alt="Next"
-                    className="w-full h-full object-cover"
-                  />
+                {/* Mobile Stage */}
+                <div className="block md:hidden relative overflow-hidden">
+                  <div className="relative flex items-center">
+                    {/* Main Content Area */}
+                    <div className="w-full pr-4">
+                      {/* Top Image */}
+                      <div className="w-full h-44 sm:h-52 rounded-[22px] overflow-hidden relative shadow-lg bg-[#0a2240]">
+                        <img
+                          src={getProgramImgSrc(currentProgram.image)}
+                          alt={currentProgram.title}
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </div>
+
+                      {/* Overlapping Content Box */}
+                      <motion.div
+                        key={`mobile-${currentProgramIndex}`}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="pt-3 relative z-20 bg-transparent text-white border-0 shadow-none space-y-2.5"
+                      >
+                        <div className="space-y-1.5">
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="w-7 h-7 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
+                              <ProgramIcon className="w-4 h-4" />
+                            </div>
+                            <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-2.5 py-0.5 rounded-full">
+                              {currentProgram.tag}
+                            </span>
+                          </div>
+
+                          <h3 className="text-base sm:text-lg font-normal text-white leading-snug">
+                            {currentProgram.title}
+                          </h3>
+                          <p className="text-xs text-slate-300 font-normal">
+                            {currentProgram.location}
+                          </p>
+                        </div>
+
+                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                          {currentProgram.description}
+                        </p>
+
+                        <div className="pt-2 border-t border-slate-700/60 space-y-1.5">
+                          {(currentProgram.details || []).map((detail: string, dIdx: number) => (
+                            <div key={dIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 font-normal">
+                              <div className="w-4 h-4 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
+                                <CheckCircle2 className="w-3 h-3" />
+                              </div>
+                              <span>{detail}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    </div>
+
+                    {/* Right Peek Image on Mobile */}
+                    <div
+                      onClick={handleNextProgram}
+                      className="w-7 h-44 rounded-r-xl overflow-hidden opacity-60 absolute right-0 top-2 border-l border-slate-700 shrink-0 cursor-pointer"
+                    >
+                      <img
+                        src={getProgramImgSrc(nextProgram.image)}
+                        alt="Next"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
                 </div>
 
+                {/* Pagination Indicator Dots */}
+                <div className="flex justify-center items-center gap-2 mt-4">
+                  {programsList.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCurrentProgramIndex(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      className={`transition-all duration-300 rounded-full cursor-pointer ${
+                        currentProgramIndex === idx
+                          ? 'bg-[#da8a24] w-6 h-2.5'
+                          : 'bg-slate-500/50 hover:bg-slate-400 w-2.5 h-2.5'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-
-            {/* Pagination Indicator Dots */}
-            <div className="flex justify-center items-center gap-2 mt-4">
-              {PROGRAMS.map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setCurrentProgramIndex(idx)}
-                  aria-label={`Go to slide ${idx + 1}`}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
-                    currentProgramIndex === idx
-                      ? 'bg-[#da8a24] w-6 h-2.5'
-                      : 'bg-slate-500/50 hover:bg-slate-400 w-2.5 h-2.5'
-                  }`}
-                />
-              ))}
-            </div>
-
-          </div>
+            );
+          })()}
 
         </div>
       </section>
@@ -1170,22 +1217,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Top Grid: Professional Cartoon Illustration on Left, Content on Right */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
+            {/* Top Grid: Transparent Cutout Image on Left, Content on Right */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
               
-              {/* Left Column: Image Frame with Cartoon Illustration */}
-              <div className="lg:col-span-5 relative">
-                <div className="relative w-full h-[180px] sm:h-[220px] lg:h-[230px] overflow-hidden rounded-2xl bg-transparent flex items-center justify-center">
+              {/* Left Column: Transparent Cutout Image of Girl with Donate Box */}
+              <div className="md:col-span-5 relative flex items-center justify-center">
+                <div className="relative w-full max-w-[300px] sm:max-w-[340px] md:max-w-[320px] lg:max-w-[380px] h-[210px] sm:h-[240px] md:h-[250px] lg:h-[280px] flex items-center justify-center bg-transparent">
                   <img
-                    src={sponsorLunchImg}
-                    alt="Support Truth Foundation Community"
-                    className="w-full h-full object-contain object-center"
+                    src={supportCauseGirlImg}
+                    alt="Support a Cause. Change a Life. - Truth Foundation"
+                    className="w-full h-full object-contain object-center filter drop-shadow-2xl"
                   />
                 </div>
               </div>
 
               {/* Right Column: Non-bold Enlarged Title, Subtitle & Donate Button */}
-              <div className="lg:col-span-7 space-y-3 text-left">
+              <div className="md:col-span-7 space-y-3 text-left">
                 
                 {/* Heading: Non-bold & Enlarged */}
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-tight leading-tight">

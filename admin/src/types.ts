@@ -52,3 +52,80 @@ export interface DashboardStats {
   monthlyRecurringAmount: number;
   last30DaysAmount: number;
 }
+
+export interface HeroSlide {
+  id: string;
+  title: string;
+  tagline: string;
+  subtitle: string;
+  badge: string;
+  tag: string;
+  image_url: string;
+  cloudinary_public_id?: string;
+}
+
+export interface AboutProgram {
+  id: string;
+  title: string;
+  location?: string;
+  tag?: string;
+  badge?: string;
+  image_url: string;
+  description: string;
+  details?: string[];
+}
+
+export interface SiteContentData {
+  home_hero?: {
+    slides: HeroSlide[];
+  };
+  home_stats?: {
+    daily_meals?: number;
+    staff_count?: number;
+    elderly_seniors?: number;
+    resident_orphans?: number;
+    tuition_students?: number;
+    years_of_service?: number;
+    special_needs_kids?: number;
+  };
+  about_page?: {
+    hero_title?: string;
+    hero_subtitle?: string;
+    hero_tagline?: string;
+    hero_image_url?: string;
+    mission_statement?: string;
+    vision_statement?: string;
+    founder_name?: string;
+    founder_title?: string;
+    founder_bio?: string;
+    founder_image_url?: string;
+    trustee_name?: string;
+    trustee_title?: string;
+    trustee_bio?: string;
+    trustee_image_url?: string;
+    programs?: AboutProgram[];
+    cta_title?: string;
+    cta_subtitle?: string;
+    cta_image_url?: string;
+  };
+  gallery_page?: {
+    hero_title?: string;
+    hero_subtitle?: string;
+    hero_image_url?: string;
+  };
+  contact_page?: {
+    hero_title?: string;
+    hero_subtitle?: string;
+    hero_image_url?: string;
+    redhills_name?: string;
+    redhills_address?: string;
+    redhills_phone?: string;
+    redhills_email?: string;
+    kolathur_name?: string;
+    kolathur_address?: string;
+    kolathur_phone?: string;
+    kolathur_email?: string;
+    whatsapp_number?: string;
+    timings?: string;
+  };
+}

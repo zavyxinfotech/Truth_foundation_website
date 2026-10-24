@@ -1,6 +1,7 @@
 import React from 'react';
 import { Database, Cloud, User } from 'lucide-react';
 import { AdminUser } from '../types';
+import truthLogo from '../assets/truth_foundation_logo.jpg';
 
 interface HeaderProps {
   user: AdminUser | null;
@@ -10,9 +11,16 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ user, title }) => {
   return (
     <header className="h-18 bg-[#071b34]/90 backdrop-blur-md border-b border-slate-800/80 px-8 flex items-center justify-between sticky top-0 z-30">
-      <div>
-        <h2 className="text-xl font-bold text-white tracking-tight">{title}</h2>
-        <p className="text-xs text-slate-400">Public Charitable Trust (Est. 2010) • Redhills, Chennai</p>
+      <div className="flex items-center gap-3">
+        <img
+          src={truthLogo}
+          alt="Truth Foundation Official Logo"
+          className="w-10 h-10 rounded-full object-cover border-2 border-[#da8a24] bg-white shadow-sm shrink-0"
+        />
+        <div>
+          <h2 className="text-xl font-bold text-white tracking-tight">{title}</h2>
+          <p className="text-xs text-slate-400">Public Charitable Trust (Est. 2010) • Redhills, Chennai</p>
+        </div>
       </div>
 
       <div className="flex items-center gap-5">

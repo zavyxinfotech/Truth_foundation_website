@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, Mail, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import { apiRequest, setStoredToken } from '../api/client';
 import { AdminUser } from '../types';
+import truthLogo from '../assets/truth_foundation_logo.jpg';
 
 interface LoginProps {
   onLoginSuccess: (user: AdminUser) => void;
@@ -43,8 +44,12 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         
         {/* Brand Header */}
         <div className="text-center space-y-3 mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-[#da8a24] to-[#b7711b] text-[#071b34] shadow-lg shadow-[#da8a24]/20 mb-1">
-            <ShieldCheck className="w-8 h-8 stroke-[2.2]" />
+          <div className="inline-flex items-center justify-center mb-1">
+            <img
+              src={truthLogo}
+              alt="Truth Foundation Official Logo"
+              className="w-20 h-20 rounded-full object-cover border-2 border-[#da8a24] bg-white shadow-xl"
+            />
           </div>
           <h1 className="text-2xl font-bold text-white tracking-tight">Truth Foundation</h1>
           <p className="text-xs text-[#da8a24] font-medium uppercase tracking-wider">

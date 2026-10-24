@@ -3,44 +3,26 @@ import { motion } from 'motion/react';
 import { Heart, Utensils, GraduationCap, Stethoscope, Shirt } from 'lucide-react';
 import { pixelTracker } from '../utils/pixelTracker';
 
-import sponsorBreakfastImg from '../images/veg_beakfast.png?w=600&format=webp';
-import sponsorLunchImg from '../images/lunch_high_rate.png?w=600&format=webp';
-import sponsorDinnerImg from '../images/veg_dinner.png?w=600&format=webp';
-import sponsorEducationImg from '../images/education_support.png?w=600&format=webp';
-import sponsorHealthcareImg from '../images/medical_support.png?w=600&format=webp';
-import sponsorClothingImg from '../images/clothing_support.png?w=600&format=webp';
+import sponsorBreakfastImg from '../images/sponsor_breakfast.jpg?w=600&format=webp';
+import sponsorLunchImg from '../images/sponsor_lunch.jpg?w=600&format=webp';
+import sponsorDinnerImg from '../images/sponsor_dinner.jpg?w=600&format=webp';
+import sponsorEducationImg from '../images/sponsor_education.jpg?w=600&format=webp';
+import sponsorHealthcareImg from '../images/sponsor_medical.jpg?w=600&format=webp';
+import sponsorClothingImg from '../images/sponsor_clothing.jpg?w=600&format=webp';
 
 export const SPONSOR_CAUSES = [
   {
     id: 'cause-breakfast',
-    title: 'Breakfast Support',
-    amount: 300,
-    amountLabel: '₹300',
+    title: 'Breakfast Donation',
+    amount: 6000,
+    amountLabel: '₹6,000',
     image: sponsorBreakfastImg,
     icon: Utensils,
     description: 'Provide wholesome morning breakfast meals to orphaned children and elders to start their day with energy.'
   },
   {
-    id: 'cause-lunch',
-    title: 'Hot Lunch & Meals',
-    amount: 500,
-    amountLabel: '₹500',
-    image: sponsorLunchImg,
-    icon: Utensils,
-    description: 'Sponsor protein-rich hot lunches for 45 orphanage kids and 20 abandoned seniors at our Redhills campus.'
-  },
-  {
-    id: 'cause-dinner',
-    title: 'Wholesome Dinner',
-    amount: 1000,
-    amountLabel: '₹1,000',
-    image: sponsorDinnerImg,
-    icon: Utensils,
-    description: 'Provide freshly cooked warm dinner meals for resident children and evening tuition students.'
-  },
-  {
     id: 'cause-education',
-    title: 'Education & Tuition Support',
+    title: 'Education Support',
     amount: 2500,
     amountLabel: '₹2,500',
     image: sponsorEducationImg,
@@ -48,8 +30,17 @@ export const SPONSOR_CAUSES = [
     description: 'Sponsor school backpacks, textbooks, notebooks, and learning tools for 346 evening tuition children.'
   },
   {
+    id: 'cause-lunch',
+    title: 'Lunch Support',
+    amount: 8000,
+    amountLabel: '₹8,000',
+    image: sponsorLunchImg,
+    icon: Utensils,
+    description: 'Sponsor protein-rich hot lunches for 45 orphanage kids and 20 abandoned seniors at our Redhills campus.'
+  },
+  {
     id: 'cause-healthcare',
-    title: 'Healthcare & Medical Support',
+    title: 'Health Care Support',
     amount: 1500,
     amountLabel: '₹1,500',
     image: sponsorHealthcareImg,
@@ -57,8 +48,17 @@ export const SPONSOR_CAUSES = [
     description: 'Support periodic medical checkups, essential prescription drugs, and health drives for elders & kids.'
   },
   {
+    id: 'cause-dinner',
+    title: 'Dinner Support',
+    amount: 6000,
+    amountLabel: '₹6,000',
+    image: sponsorDinnerImg,
+    icon: Utensils,
+    description: 'Provide freshly cooked warm dinner meals for resident children and evening tuition students.'
+  },
+  {
     id: 'cause-clothing',
-    title: 'Clothing & Hygiene Kits',
+    title: 'Clothing & Hygiene Support',
     amount: 1000,
     amountLabel: '₹1,000',
     image: sponsorClothingImg,

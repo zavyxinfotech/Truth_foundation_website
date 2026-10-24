@@ -5,6 +5,7 @@ import { Campaign } from '../types';
 import { pixelTracker } from '../utils/pixelTracker';
 import { Picture } from './Picture';
 import { DarkToLightDivider } from './SectionDividers';
+import { fetchSiteContent } from '../utils/cmsApi';
 
 import heroChildLongingMeal from '../assets/images/hero_child_longing_meal.jpg?w=640;960;1376&format=webp;jpg&as=picture';
 import heroRedhillsOrphanage from '../assets/images/hero_redhills_orphanage.jpg?w=640;960;1376&format=webp;jpg&as=picture';
@@ -12,6 +13,49 @@ import heroSpecialNeedsCare from '../assets/images/hero_special_needs_care.jpg?w
 import heroTuitionSchoolMeals from '../assets/images/hero_tuition_school_meals.jpg?w=640;960;1376&format=webp;jpg&as=picture';
 
 const HERO_SIZES = '100vw';
+
+const DEFAULT_HERO_SLIDES = [
+  {
+    picture: heroChildLongingMeal,
+    imageUrl: null as string | null,
+    label: 'One Meal. One Smile.',
+    tag: 'Public Charitable Trust',
+    badge: 'Est. 5th July 2010',
+    title: 'ONE MEAL. ONE SMILE.',
+    tagline: 'Your ₹500 can provide warm, nutritious meals to children in need.',
+    subtitle: 'Every donation directly funds nutritious meals, education, and healthcare for orphaned children, abandoned seniors, and special needs children.',
+  },
+  {
+    picture: heroRedhillsOrphanage,
+    imageUrl: null as string | null,
+    label: 'Orphanage Home for Children',
+    tag: 'Our Campus',
+    badge: '45 Resident Boys & Girls',
+    title: 'Orphanage Home for Children.',
+    tagline: 'Dormitories, Study Halls & Playgrounds in Rural Communities',
+    subtitle: 'Managed by 16 committed staff members, providing full shelter, nutrition, healthcare, and education to 45 orphaned children.',
+  },
+  {
+    picture: heroSpecialNeedsCare,
+    imageUrl: null as string | null,
+    label: 'Empowerment Center',
+    tag: 'Education Center',
+    badge: 'Dedicated Care & Support',
+    title: 'Empowering Every Child.',
+    tagline: 'Providing Compassionate Care, Structured Learning, and Safe Transportation',
+    subtitle: 'Our dedicated professionals provide personalized learning and physical well-being support to foster growth and independence.',
+  },
+  {
+    picture: heroTuitionSchoolMeals,
+    imageUrl: null as string | null,
+    label: '346 Evening Tuition Students',
+    tag: '8 Tuition Centers',
+    badge: 'Free Education & Supplies',
+    title: '346 Enrolled Children Supported Daily.',
+    tagline: 'Serving Marginalized Communities Across 8 Different Centers',
+    subtitle: 'Providing free evening tuition, nutritious meals, backpacks, textbooks, pens, and hygiene supplies.',
+  },
+];
 
 interface HeroProps {
   campaign: Campaign;
@@ -25,56 +69,45 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
   const [customVal, setCustomVal] = useState<string>('');
   const activeAmount = isCustom ? (parseInt(customVal, 10) || campaign.minAmount || 100) : selectedAmount;
 
-  // Hero Image Slideshow collection with realistic documentary photography
-  const heroSlides = [
-    {
-      picture: heroChildLongingMeal,
-      label: campaign.title,
-      tag: 'Public Charitable Trust',
-      badge: 'Est. 5th July 2010',
-      title: 'ONE MEAL. ONE SMILE.',
-      tagline: 'Your ₹100 can provide a warm, nutritious meal to a child in need.',
-      subtitle: 'Every donation directly funds nutritious meals, education, and healthcare for orphaned children, abandoned seniors, and special needs children.',
-    },
-    {
-      picture: heroRedhillsOrphanage,
-      label: 'Orphanage Home for Children',
-      tag: 'Our Campus',
-      badge: '45 Resident Boys & Girls',
-      title: 'Orphanage Home for Children.',
-      tagline: 'Dormitories, Study Halls & Playgrounds in Rural Communities',
-      subtitle: 'Managed by 16 committed staff members, providing full shelter, nutrition, healthcare, and education to 45 orphaned children.',
-    },
-    {
-      picture: heroSpecialNeedsCare,
-      label: 'Empowerment Center',
-      tag: 'Education Center',
-      badge: 'Dedicated Care & Support',
-      title: 'Empowering Every Child.',
-      tagline: 'Providing Compassionate Care, Structured Learning, and Safe Transportation',
-      subtitle: 'Our dedicated professionals provide personalized learning and physical well-being support to foster growth and independence.',
-    },
-    {
-      picture: heroTuitionSchoolMeals,
-      label: '346 Evening Tuition Students',
-      tag: '8 Tuition Centers',
-      badge: 'Free Education & Supplies',
-      title: '346 Enrolled Children Supported Daily.',
-      tagline: 'Serving Marginalized Communities Across 8 Different Centers',
-      subtitle: 'Providing free evening tuition, nutritious meals, backpacks, textbooks, pens, and hygiene supplies.',
-    },
-  ];
-
+  const [heroSlides, setHeroSlides] = useState(DEFAULT_HERO_SLIDES);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
+
+  // Load dynamic CMS slides from backend database
+  useEffect(() => {
+    fetchSiteContent().then((data) => {
+      if (data?.home_hero?.slides && data.home_hero.slides.length > 0) {
+        const mapped = data.home_hero.slides.map((s, idx) => {
+          const fallback = DEFAULT_HERO_SLIDES[idx % DEFAULT_HERO_SLIDES.length];
+          const isRemote = s.image_url?.startsWith('http://') || s.image_url?.startsWith('https://');
+          return {
+            picture: isRemote ? null : fallback.picture,
+            imageUrl: isRemote ? s.image_url : null,
+            label: campaign.title,
+            tag: s.tag || fallback.tag,
+            badge: s.badge || fallback.badge,
+            title: s.title || fallback.title,
+            tagline: s.tagline || fallback.tagline,
+            subtitle: s.subtitle || fallback.subtitle,
+          };
+        });
+        setHeroSlides(mapped as any);
+      }
+    });
+  }, [campaign.id, campaign.title]);
 
   // Prefetch the remaining slides once the page is idle so they don't compete with the first one
   useEffect(() => {
     const prefetch = () => {
       heroSlides.slice(1).forEach((slide) => {
-        const img = new Image();
-        img.sizes = HERO_SIZES;
-        img.srcset = slide.picture.sources.webp || slide.picture.img.src;
+        if (slide.picture) {
+          const img = new Image();
+          img.sizes = HERO_SIZES;
+          img.srcset = slide.picture.sources.webp || slide.picture.img.src;
+        } else if (slide.imageUrl) {
+          const img = new Image();
+          img.src = slide.imageUrl;
+        }
       });
     };
     const id = window.requestIdleCallback
@@ -83,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
     return () => {
       window.cancelIdleCallback ? window.cancelIdleCallback(id) : window.clearTimeout(id);
     };
-  }, [campaign.id]);
+  }, [campaign.id, heroSlides]);
 
   // Auto transition slides slowly horizontally with fade effect every 5 seconds
   useEffect(() => {
@@ -98,6 +131,8 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
   useEffect(() => {
     setCurrentSlide(0);
   }, [campaign.id]);
+
+  const activeSlide = heroSlides[currentSlide] || heroSlides[0];
 
   return (
     <section className="w-full bg-slate-950 text-white relative overflow-hidden min-h-[85vh] lg:min-h-screen lg:h-screen flex flex-col justify-end pt-20 sm:pt-24">
@@ -121,15 +156,24 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
             }}
             className="absolute inset-0 w-full h-full"
           >
-            <Picture
-              picture={heroSlides[currentSlide].picture}
-              sizes={HERO_SIZES}
-              alt={`Truth Foundation NGO - ${heroSlides[currentSlide].title} - ${heroSlides[currentSlide].label}`}
-              loading={currentSlide === 0 ? 'eager' : 'lazy'}
-              fetchPriority={currentSlide === 0 ? 'high' : 'auto'}
-              decoding={currentSlide === 0 ? 'sync' : 'async'}
-              className="w-full h-full object-cover object-center"
-            />
+            {activeSlide.imageUrl ? (
+              <img
+                src={activeSlide.imageUrl}
+                alt={`Truth Foundation NGO - ${activeSlide.title} - ${activeSlide.label}`}
+                loading={currentSlide === 0 ? 'eager' : 'lazy'}
+                className="w-full h-full object-cover object-center"
+              />
+            ) : (
+              <Picture
+                picture={activeSlide.picture!}
+                sizes={HERO_SIZES}
+                alt={`Truth Foundation NGO - ${activeSlide.title} - ${activeSlide.label}`}
+                loading={currentSlide === 0 ? 'eager' : 'lazy'}
+                fetchPriority={currentSlide === 0 ? 'high' : 'auto'}
+                decoding={currentSlide === 0 ? 'sync' : 'async'}
+                className="w-full h-full object-cover object-center"
+              />
+            )}
           </motion.div>
         </AnimatePresence>
 

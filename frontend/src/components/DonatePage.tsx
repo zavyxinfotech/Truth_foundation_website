@@ -1,12 +1,21 @@
 /* cspell:disable */
 /* eslint-disable */
 import React, { useState } from 'react';
-import { Lock } from 'lucide-react';
+import { Lock, ShieldCheck, CheckCircle2, Award } from 'lucide-react';
 import truthLogo from '../assets/images/truth_foundation_logo_1785562616008.jpg?w=128&format=webp';
 import sadChildPainting from '../assets/images/sad_child_painting.jpg?w=512;1024&format=webp;jpg&as=picture';
 import brushMask from '../assets/images/brush_mask.png?w=700&format=webp';
 import { pixelTracker } from '../utils/pixelTracker';
 import { Picture } from './Picture';
+
+const RazorpayBadge: React.FC<{ size?: 'sm' | 'md' }> = ({ size = 'md' }) => (
+  <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-200/90 rounded-lg shadow-2xs">
+    <svg className={`${size === 'sm' ? 'w-4 h-4' : 'w-4.5 h-4.5'} fill-[#0C2451] shrink-0`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.436 0l-11.91 7.773-1.174 4.276 6.625-4.297L11.65 24h4.391l6.395-24zM14.26 10.098L3.389 17.166 1.564 24h9.008l3.688-13.902Z" />
+    </svg>
+    <span className={`font-bold text-[#0C2451] ${size === 'sm' ? 'text-xs' : 'text-sm'} tracking-tight leading-none`}>Razorpay</span>
+  </div>
+);
 
 interface DonatePageProps {
   initialAmount?: number;
@@ -16,7 +25,7 @@ interface DonatePageProps {
 }
 
 export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onClose, onDonateSuccess, onNavigateHome }) => {
-  const [selectedAmount, setSelectedAmount] = useState<number>(initialAmount);
+  const [selectedAmount, setSelectedAmount] = useState<number>(initialAmount >= 500 ? initialAmount : 500);
   const [isCustom, setIsCustom] = useState<boolean>(false);
   const [customValue, setCustomValue] = useState<string>('');
 
@@ -26,7 +35,8 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
     phone: '',
   });
 
-  const activeAmount = isCustom ? (parseInt(customValue, 10) || 100) : selectedAmount;
+  const parsedCustom = parseInt(customValue, 10);
+  const activeAmount = isCustom ? (parsedCustom && parsedCustom >= 500 ? parsedCustom : 500) : selectedAmount;
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -77,6 +87,12 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
             </div>
           </a>
 
+          {/* Right Header Trust Badge */}
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] text-slate-500 font-medium hidden sm:inline">Official Payment Partner:</span>
+            <RazorpayBadge size="sm" />
+          </div>
+
         </div>
       </header>
 
@@ -106,11 +122,12 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
                 <h2 className="text-base sm:text-lg lg:text-xl font-semibold text-[#0a2240] tracking-tight">
                   Select Donation Amount (INR)
                 </h2>
+                <span className="text-xs text-slate-500 font-medium">Starts from ₹500</span>
               </div>
 
               {/* 2-Row Amount Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[100, 500, 1000, 2500, 5000, 10000].map((amt) => {
+                {[500, 1000, 2000, 2500, 5000, 10000].map((amt) => {
                   const isSelected = !isCustom && selectedAmount === amt;
                   return (
                     <button
@@ -138,13 +155,14 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
                   <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-semibold text-sm text-[#0a2240]">₹</span>
                   <input
                     type="number"
+                    min="500"
                     value={customValue}
                     onFocus={() => setIsCustom(true)}
                     onChange={(e) => {
                       setIsCustom(true);
                       setCustomValue(e.target.value);
                     }}
-                    placeholder="Custom"
+                    placeholder="Other (Min ₹500)"
                     className="w-full py-3.5 pl-8 pr-3 text-center text-base font-semibold text-[#0a2240] bg-transparent focus:outline-none placeholder:text-slate-400"
                   />
                 </div>
@@ -244,6 +262,35 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
               <span>DONATE NOW</span>
             </button>
 
+            {/* Official Razorpay Trust & Security Section */}
+            <div className="pt-4 border-t border-slate-200/80 space-y-3.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                  Payment Security Guaranteed
+                </span>
+                <RazorpayBadge size="sm" />
+              </div>
+
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-center justify-center gap-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-[10px] font-semibold text-slate-700 leading-tight">256-Bit SSL Encrypted</span>
+                </div>
+                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-center justify-center gap-1">
+                  <Award className="w-4 h-4 text-[#da8a24] shrink-0" />
+                  <span className="text-[10px] font-semibold text-slate-700 leading-tight">Instant 80G Receipt</span>
+                </div>
+                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-center justify-center gap-1">
+                  <Lock className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="text-[10px] font-semibold text-slate-700 leading-tight">RBI Authorized</span>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-slate-500 text-center leading-relaxed">
+                Transactions are securely processed through Razorpay. Supports UPI (Google Pay, PhonePe, Paytm, BHIM), Net Banking, Credit & Debit Cards.
+              </p>
+            </div>
+
           </div>
 
         </form>
@@ -256,7 +303,8 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
           href="https://zavyx.odoo.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#da8a24] font-medium hover:underline"
+          className="text-[#0a2240] hover:text-[#da8a24] font-medium tracking-wide transition-colors"
+          style={{ fontFamily: "'Roboto', sans-serif" }}
         >
           ZAVYX InfoTech
         </a>

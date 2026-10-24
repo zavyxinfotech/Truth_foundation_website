@@ -49,8 +49,8 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
   const [transactionId, setTransactionId] = useState<string>('');
 
   const mealsCount = Math.floor(amount / 20);
-  const monthlyAmounts = campaign?.monthlyOptions?.suggestedAmounts || [300, 500, 1000, 2500, 5000];
-  const oneTimeAmounts = campaign?.suggestedAmounts || [100, 500, 1000, 2500, 5000];
+  const monthlyAmounts = campaign?.monthlyOptions?.suggestedAmounts || [500, 1000, 2500, 5000, 10000];
+  const oneTimeAmounts = campaign?.suggestedAmounts || [500, 1000, 2500, 5000, 10000];
   const currentPresets = frequency === 'Monthly' ? monthlyAmounts : oneTimeAmounts;
 
   const handleDetailsSubmit = (e: React.FormEvent) => {
@@ -222,8 +222,9 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
                 <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-semibold text-slate-400">₹</span>
                 <input
                   type="number"
+                  min="500"
                   value={amount}
-                  onChange={(e) => setAmount(Math.max(50, parseInt(e.target.value, 10) || 0))}
+                  onChange={(e) => setAmount(Math.max(500, parseInt(e.target.value, 10) || 0))}
                   className="w-full pl-8 pr-16 py-3 bg-slate-50 border border-slate-300 rounded-xl text-base font-semibold text-blue-900 focus:outline-hidden focus:border-amber-400"
                 />
                 {frequency === 'Monthly' && (

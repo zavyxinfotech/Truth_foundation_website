@@ -101,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Center: Desktop Navigation Links (No background, underline only for active) */}
-        <nav className="hidden md:flex items-center gap-4 lg:gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link) => {
             const isActive = currentPage === link.page;
             return (
@@ -159,10 +159,10 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="inline font-semibold">Donate</span>
           </motion.button>
 
-          {/* Mobile Menu Toggle Button (No border color, outline-none) */}
+          {/* Mobile & Tablet Menu Toggle Button (Visible below lg) */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2.5 text-slate-200 hover:text-white bg-[#071b34]/80 backdrop-blur-md rounded-xl border-0 outline-none cursor-pointer"
+            className="lg:hidden p-2.5 text-slate-200 hover:text-white bg-[#071b34]/80 backdrop-blur-md rounded-xl border-0 outline-none cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {isMobileMenuOpen ? <CloseIcon className="w-6 h-6 text-[#da8a24]" /> : <Menu className="w-6 h-6 text-white" />}
@@ -172,7 +172,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       </div>
 
-      {/* Mobile Slide-in Drawer Portal from Right Side (Rendered in document.body to stay above all sections) */}
+      {/* Mobile & Tablet Slide-in Drawer Portal from Right Side */}
       {typeof document !== 'undefined' && createPortal(
         <AnimatePresence>
           {isMobileMenuOpen && (
@@ -184,16 +184,16 @@ export const Header: React.FC<HeaderProps> = ({
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 z-[999990] bg-black/60 backdrop-blur-sm md:hidden"
+                className="fixed inset-0 z-[999990] bg-black/60 backdrop-blur-sm lg:hidden"
               />
 
-              {/* Right Drawer Panel (Occupies Half Screen Width, Highest Z-Index) */}
+              {/* Right Drawer Panel */}
               <motion.div
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-                className="fixed top-0 right-0 bottom-0 z-[999999] w-[60%] xs:w-1/2 max-w-xs h-full bg-[#071b34] p-5 pt-6 flex flex-col justify-between shadow-2xl md:hidden overflow-y-auto"
+                className="fixed top-0 right-0 bottom-0 z-[999999] w-[70%] sm:w-80 max-w-sm h-full bg-[#071b34] p-5 pt-6 flex flex-col justify-between shadow-2xl lg:hidden overflow-y-auto"
               >
                 <div className="space-y-6">
                   {/* Header row in mobile menu: Close button aligned right (No Navigation text) */}

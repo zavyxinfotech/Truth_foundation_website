@@ -44,8 +44,8 @@ export const CURRENT_CAMPAIGN: Campaign = {
   targetMeals: 100000,
   mealsServed: 58420,
   donorsCount: 12480,
-  minAmount: 100,
-  suggestedAmounts: [100, 500, 1000, 2500, 5000],
+  minAmount: 500,
+  suggestedAmounts: [500, 1000, 2500, 5000, 10000],
   badge: 'Registered Public Charitable Trust (Est. 2010)',
   description: 'Launched on 5th July 2010, Truth Foundation (A Public Charitable Trust) operates an Orphanage in rural Redhills Chennai, an Old Age Day Care Home, a Special School for mentally retarded children in Thiruvallur, and 8 Free Evening Tuition Centers serving 346+ children with education, food, and hygiene supplies.',
   monthlyOptions: DEFAULT_MONTHLY_GIVING
@@ -120,12 +120,6 @@ export const FUTURE_CAMPAIGNS: Campaign[] = [
 ];
 
 export const DONATION_PRESETS: DonationOption[] = [
-  {
-    amount: 100,
-    meals: 1,
-    label: '₹100',
-    description: 'Provides 1 warm, protein-rich meal to a child in need.'
-  },
   {
     amount: 500,
     meals: 5,
@@ -473,5 +467,5 @@ export const LIVE_DONATION_TICKER = [
   { name: 'Dr. Smita V.', location: 'Coimbatore', amount: '₹2,500', time: '4 mins ago' },
   { name: 'Karan M.', location: 'Madurai', amount: '₹500', time: '6 mins ago' },
   { name: 'Neha P.', location: 'Chennai', amount: '₹5,000', time: '11 mins ago' },
-  { name: 'Sunil G.', location: 'Thiruvallur', amount: '₹100', time: '14 mins ago' }
+  { name: 'Sunil G.', location: 'Thiruvallur', amount: '₹500', time: '14 mins ago' }
 ];

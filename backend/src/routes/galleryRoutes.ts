@@ -100,6 +100,90 @@ router.post('/upload', requireAuth, upload.single('image'), async (req, res) => 
   }
 });
 
+// PUT /api/gallery/:id (Admin: Edit gallery item details or replace image)
+router.put('/:id', requireAuth, upload.single('image'), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const findResult = await query('SELECT * FROM gallery_images WHERE id = $1', [id]);
+    if (findResult.rows.length === 0) {
+      res.status(404).json({ error: 'Gallery image not found' });
+      return;
+    }
+
+    const existing = findResult.rows[0];
+    const { title, category, description, featured } = req.body;
+
+    let finalImageUrl = existing.image_url;
+    let cloudinaryPublicId = existing.cloudinary_public_id;
+
+    if (req.file) {
+      if (existing.cloudinary_public_id) {
+        try {
+          await cloudinary.uploader.destroy(existing.cloudinary_public_id);
+        } catch (cErr) {
+          console.warn('Could not delete old Cloudinary image:', cErr);
+        }
+      }
+
+      const uploadStream = () =>
+        new Promise<{ secure_url: string; public_id: string }>((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            {
+              folder: 'truth_foundation_gallery',
+              resource_type: 'image',
+              format: 'webp',
+              quality: 'auto'
+            },
+            (error, result) => {
+              if (error || !result) {
+                reject(error || new Error('Cloudinary upload failed'));
+              } else {
+                resolve({
+                  secure_url: result.secure_url,
+                  public_id: result.public_id
+                });
+              }
+            }
+          );
+          stream.end(req.file!.buffer);
+        });
+
+      const uploadRes = await uploadStream();
+      finalImageUrl = uploadRes.secure_url;
+      cloudinaryPublicId = uploadRes.public_id;
+    }
+
+    const updateResult = await query(
+      `UPDATE gallery_images SET
+        title = $1,
+        category = $2,
+        image_url = $3,
+        cloudinary_public_id = $4,
+        description = $5,
+        featured = $6
+       WHERE id = $7
+       RETURNING *`,
+      [
+        title !== undefined ? title : existing.title,
+        category !== undefined ? category : existing.category,
+        finalImageUrl,
+        cloudinaryPublicId,
+        description !== undefined ? description : existing.description,
+        featured !== undefined ? featured : existing.featured,
+        id
+      ]
+    );
+
+    res.json({
+      message: 'Gallery item updated successfully',
+      image: updateResult.rows[0]
+    });
+  } catch (error) {
+    console.error('Update gallery error:', error);
+    res.status(500).json({ error: 'Failed to update gallery image' });
+  }
+});
+
 // DELETE /api/gallery/:id (Admin: Delete image from Cloudinary & Supabase)
 router.delete('/:id', requireAuth, async (req, res) => {
   try {

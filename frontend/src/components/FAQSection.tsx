@@ -31,7 +31,6 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
   };
 
   const donationOptions = [
-    { label: '₹100', value: 100 },
     { label: '₹500', value: 500 },
     { label: '₹1,000', value: 1000 },
     { label: '₹2,500', value: 2500 },

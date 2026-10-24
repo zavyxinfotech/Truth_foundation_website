@@ -9,6 +9,7 @@ import { Donations } from './pages/Donations';
 import { Gallery } from './pages/Gallery';
 import { Inquiries } from './pages/Inquiries';
 import { Settings } from './pages/Settings';
+import { ContentManager } from './pages/ContentManager';
 import { Loader2 } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -82,6 +83,7 @@ export const App: React.FC = () => {
 
   const tabTitles: Record<string, string> = {
     overview: 'Executive Dashboard Overview',
+    content: 'Website Content & Media Manager',
     donations: 'Donations & 80G Receipts',
     gallery: 'Cloudinary Gallery Manager',
     inquiries: 'Visitor Inquiries Inbox',
@@ -104,6 +106,7 @@ export const App: React.FC = () => {
 
         <main className="flex-1 p-6 sm:p-8 lg:p-10 overflow-y-auto">
           {currentTab === 'overview' && <Overview onNavigate={setCurrentTab} />}
+          {currentTab === 'content' && <ContentManager />}
           {currentTab === 'donations' && <Donations />}
           {currentTab === 'gallery' && <Gallery />}
           {currentTab === 'inquiries' && <Inquiries />}

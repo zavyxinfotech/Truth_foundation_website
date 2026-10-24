@@ -6,9 +6,10 @@ import {
   Mail,
   Settings,
   LogOut,
-  ShieldCheck,
-  ExternalLink
+  ExternalLink,
+  Layers
 } from 'lucide-react';
+import truthLogo from '../assets/truth_foundation_logo.jpg';
 
 interface SidebarProps {
   currentTab: string;
@@ -25,8 +26,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const navItems = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+    { id: 'content', label: 'Website Content', icon: Layers },
+    { id: 'gallery', label: 'Gallery Photos', icon: Image },
     { id: 'donations', label: 'Donations', icon: HeartHandshake },
-    { id: 'gallery', label: 'Gallery Uploader', icon: Image },
     { id: 'inquiries', label: 'Inquiries Inbox', icon: Mail, badge: inquiriesCount > 0 ? inquiriesCount : undefined },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
@@ -35,10 +37,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside className="w-64 bg-[#071b34] border-r border-slate-800 flex flex-col justify-between shrink-0 min-h-screen">
       <div>
         {/* Brand Logo & Name */}
-        <div className="p-6 border-b border-slate-800/80 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#da8a24] to-[#b7711b] flex items-center justify-center text-[#0a2240] shadow-md">
-            <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
-          </div>
+        <div className="p-5 border-b border-slate-800/80 flex items-center gap-3">
+          <img
+            src={truthLogo}
+            alt="Truth Foundation Official Logo"
+            className="w-10 h-10 rounded-full object-cover border-2 border-[#da8a24] bg-white shadow-md shrink-0"
+          />
           <div>
             <h1 className="text-sm font-semibold tracking-wide text-white uppercase">Truth Foundation</h1>
             <p className="text-[11px] text-[#da8a24] font-medium tracking-wider">Admin Control Panel</p>
