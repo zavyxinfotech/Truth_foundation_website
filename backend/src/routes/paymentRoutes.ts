@@ -5,42 +5,53 @@ import { query } from '../db/db.js';
 
 const router = Router();
 
-const KEY_ID = process.env.RAZORPAY_KEY_ID?.trim();
-const KEY_SECRET = process.env.RAZORPAY_KEY_SECRET?.trim();
-
-let razorpay: Razorpay | null = null;
-if (KEY_ID && KEY_SECRET) {
-  razorpay = new Razorpay({
-    key_id: KEY_ID,
-    key_secret: KEY_SECRET,
-  });
+function getRazorpayConfig() {
+  const key_id = (process.env.RAZORPAY_KEY_ID || 'rzp_live_TkcXDVNE0IJstM').trim();
+  const key_secret = process.env.RAZORPAY_KEY_SECRET?.trim();
+  const client = (key_id && key_secret) ? new Razorpay({ key_id, key_secret }) : null;
+  return { key_id, key_secret, client };
 }
 
 // POST /api/payment/create-order
 router.post('/create-order', async (req, res) => {
   try {
-    const { amount, currency = 'INR', receipt } = req.body;
+    const { currency = 'INR', receipt } = req.body;
+    const { key_id, key_secret, client } = getRazorpayConfig();
 
-    if (!amount || amount < 100) {
-      res.status(400).json({ error: 'Amount must be at least 100 paise (₹1)' });
+    // Determine amount in both paise (for Razorpay) and rupees (for display/db)
+    let amountInPaise: number;
+    let amountInRupees: number;
+
+    if (req.body.amountInPaise) {
+      amountInPaise = Math.round(Number(req.body.amountInPaise));
+      amountInRupees = amountInPaise / 100;
+    } else {
+      amountInRupees = Number(req.body.amountInRupees ?? req.body.amount ?? 500);
+      amountInPaise = Math.round(amountInRupees * 100);
+    }
+
+    if (!amountInPaise || amountInPaise < 100) {
+      res.status(400).json({ error: 'Donation amount must be at least ₹1 (100 paise)' });
       return;
     }
 
-    if (!KEY_ID || !KEY_SECRET || !razorpay) {
-      // In development / demo mode when secret is pending, return simulated order_id
+    if (!key_secret || !client) {
+      // In development / demo mode when secret is not configured
       const mockOrderId = `order_sim_${Date.now()}`;
       res.json({
         order_id: mockOrderId,
-        amount,
+        amount: amountInPaise,
+        amount_in_rupees: amountInRupees,
         currency,
+        key_id,
         isSimulated: true,
         message: 'Simulated Order (Configure RAZORPAY_KEY_SECRET in .env for live gateway)'
       });
       return;
     }
 
-    const order = await razorpay.orders.create({
-      amount: Math.round(amount),
+    const order = await client.orders.create({
+      amount: amountInPaise,
       currency,
       receipt: receipt || `rcpt_${Date.now()}`,
     });
@@ -48,12 +59,14 @@ router.post('/create-order', async (req, res) => {
     res.json({
       order_id: order.id,
       amount: order.amount,
+      amount_in_rupees: amountInRupees,
       currency: order.currency,
+      key_id,
       isSimulated: false
     });
   } catch (error: any) {
     console.error('Razorpay create-order error:', error);
-    res.status(500).json({ error: error?.message || 'Failed to create order' });
+    res.status(500).json({ error: error?.message || 'Failed to create Razorpay order' });
   }
 });
 
@@ -73,11 +86,12 @@ router.post('/verify-payment', async (req, res) => {
       return;
     }
 
+    const { key_secret } = getRazorpayConfig();
     let isValid = true;
-    if (KEY_SECRET && razorpay_signature) {
+    if (key_secret && razorpay_signature) {
       const body = razorpay_order_id + '|' + razorpay_payment_id;
       const expectedSignature = crypto
-        .createHmac('sha256', KEY_SECRET)
+        .createHmac('sha256', key_secret)
         .update(body)
         .digest('hex');
       isValid = expectedSignature === razorpay_signature;
@@ -104,7 +118,7 @@ router.post('/verify-payment', async (req, res) => {
           donor_details.email || 'donor@truthfoundation.org',
           donor_details.phone || null,
           donor_details.panNumber || null,
-          parseFloat(amount),
+          parseFloat(req.body.amountInRupees ?? (amount ? amount : (req.body.amountInPaise ? req.body.amountInPaise / 100 : 500))),
           donor_details.frequency || 'One-time',
           !!donor_details.isEightYGRequired,
           'Razorpay',

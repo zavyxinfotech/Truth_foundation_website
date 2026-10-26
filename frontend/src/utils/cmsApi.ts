@@ -72,6 +72,25 @@ export interface DynamicSiteContent {
     whatsapp_number?: string;
     timings?: string;
   };
+  donation_popups?: DynamicDonationPopupsConfig;
+}
+
+export interface DynamicDonationPopup {
+  id?: string;
+  donor_name?: string;
+  name?: string;
+  amount: number;
+  cause?: string;
+  location?: string;
+  cta_text?: string;
+  time_ago?: string;
+}
+
+export interface DynamicDonationPopupsConfig {
+  enabled?: boolean;
+  interval_seconds?: number;
+  messages?: DynamicDonationPopup[];
+  popups?: DynamicDonationPopup[];
 }
 
 export interface DynamicGalleryItem {

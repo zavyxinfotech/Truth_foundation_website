@@ -1,6 +1,6 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 import donationRoutes from './routes/donationRoutes.js';
 import galleryRoutes from './routes/galleryRoutes.js';
@@ -8,9 +8,6 @@ import contactRoutes from './routes/contactRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import contentRoutes from './routes/contentRoutes.js';
 import { initDatabase } from './db/init.js';
-
-dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 

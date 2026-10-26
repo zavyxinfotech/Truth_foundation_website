@@ -1,53 +1,265 @@
 import React, { useState, useEffect } from 'react';
-import { X, Heart } from 'lucide-react';
+import { X, Heart, CheckCircle2 } from 'lucide-react';
 import { pixelTracker } from '../utils/pixelTracker';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { fetchSiteContent, DynamicDonationPopup } from '../utils/cmsApi';
 
 interface FloatingWhatsAppProps {
   onOpenDonateModal?: (amount?: number) => void;
 }
 
+const DEFAULT_POPUPS: DynamicDonationPopup[] = [
+  {
+    id: 'pop-1',
+    donor_name: 'Karthik Raja',
+    amount: 1500,
+    cause: 'Special Meals for 15 Children',
+    location: 'Chennai',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-2',
+    donor_name: 'Priya Sundaram',
+    amount: 750,
+    cause: 'Senior Care & Daily Medicines',
+    location: 'Tambaram',
+    time_ago: '1 min ago',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-3',
+    donor_name: 'Ananya Sharma',
+    amount: 2500,
+    cause: 'Monthly Education Kit & Books',
+    location: 'Anna Nagar',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-4',
+    donor_name: 'Vignesh Kumar',
+    amount: 1000,
+    cause: 'Daily Nutritious Breakfast for Kids',
+    location: 'Thiruvallur',
+    time_ago: '2 mins ago',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-5',
+    donor_name: 'Meera Krishnan',
+    amount: 5000,
+    cause: 'Special Needs Therapy & Care',
+    location: 'Adyar',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-6',
+    donor_name: 'Rajesh Natarajan',
+    amount: 3000,
+    cause: 'Emergency Shelter & Bedding Provisions',
+    location: 'Velachery',
+    time_ago: '3 mins ago',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-7',
+    donor_name: 'Divya & Arun',
+    amount: 1200,
+    cause: 'Sunday Feast for Orphan Children',
+    location: 'Redhills',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-8',
+    donor_name: 'Sangeetha R.',
+    amount: 800,
+    cause: 'Fresh Fruits & Wholesome Diet',
+    location: 'Mylapore',
+    time_ago: '4 mins ago',
+    cta_text: 'Add your donation'
+  }
+];
+
 export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonateModal }) => {
-  const [showTooltip, setShowTooltip] = useState(true);
+  const [popups, setPopups] = useState<DynamicDonationPopup[]>(DEFAULT_POPUPS);
+  const [enabled, setEnabled] = useState(true);
+  const [intervalSec, setIntervalSec] = useState(5);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(true);
+  const [isDismissed, setIsDismissed] = useState(false);
 
-  // Show "Need assistance?" option for 30 seconds, then auto hide
+  // Fetch CMS config if available
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowTooltip(false);
-    }, 30000); // 30 seconds
-
-    return () => clearTimeout(timer);
+    let mounted = true;
+    fetchSiteContent().then((content) => {
+      if (!mounted) return;
+      if (content?.donation_popups) {
+        if (typeof content.donation_popups.enabled === 'boolean') {
+          setEnabled(content.donation_popups.enabled);
+        }
+        if (content.donation_popups.interval_seconds && content.donation_popups.interval_seconds >= 3) {
+          setIntervalSec(content.donation_popups.interval_seconds);
+        }
+        const customMsgs = content.donation_popups.messages || content.donation_popups.popups;
+        if (customMsgs && customMsgs.length > 0) {
+          setPopups(customMsgs);
+        }
+      }
+    });
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const handleClick = () => {
+  // 5-second cycle: Typing animation (~1.2s) followed by Popup display (~3.8s)
+  useEffect(() => {
+    if (!enabled || isDismissed || popups.length === 0) return;
+
+    let typingTimeout: ReturnType<typeof setTimeout>;
+    let nextCycleTimeout: ReturnType<typeof setTimeout>;
+
+    const runCycle = () => {
+      // Step 1: Start typing state
+      setIsTyping(true);
+
+      // Step 2: After 1.2s, reveal the completed donation popup message
+      typingTimeout = setTimeout(() => {
+        setIsTyping(false);
+      }, 1200);
+
+      // Step 3: At the end of the configured interval (default 5s), move to the next donor
+      nextCycleTimeout = setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % popups.length);
+        runCycle();
+      }, intervalSec * 1000);
+    };
+
+    // Initial trigger
+    runCycle();
+
+    return () => {
+      clearTimeout(typingTimeout);
+      clearTimeout(nextCycleTimeout);
+    };
+  }, [enabled, isDismissed, popups.length, intervalSec]);
+
+  const currentPopup = popups[currentIndex] || DEFAULT_POPUPS[0];
+  const donorName = currentPopup.donor_name || currentPopup.name || 'Kind Supporter';
+  const amount = Number(currentPopup.amount) || 500;
+  const cause = currentPopup.cause || 'Nutritious Meals & Care';
+  const location = currentPopup.location || 'Chennai';
+  const timeAgo = currentPopup.time_ago || 'Just now';
+  const ctaText = currentPopup.cta_text || 'Add your donation';
+
+  // Extract initials for donor avatar
+  const initials = donorName
+    .split(' ')
+    .map((w) => w[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join('')
+    .toUpperCase() || 'TF';
+
+  const handleWhatsAppClick = () => {
     pixelTracker.trackWhatsAppClick('Floating Widget');
-    setShowTooltip(false);
     const msg = encodeURIComponent(`Hello Truth Foundation! I am interested in donating meals or volunteering.`);
     window.open(`https://wa.me/919962294949?text=${msg}`, '_blank');
   };
 
+  const handleDonateClick = () => {
+    pixelTracker.trackDonateClick(500, 'WhatsApp Popup CTA');
+    if (onOpenDonateModal) {
+      onOpenDonateModal(500);
+    }
+  };
+
   return (
-    <div className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 z-[9990] flex flex-col items-end gap-3 max-w-[calc(100vw-2rem)]">
-      {showTooltip && (
-        <div className="bg-[#071b34] text-white text-xs border border-[#163863] p-3 sm:p-3.5 rounded-2xl shadow-2xl max-w-xs relative">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowTooltip(false);
-            }}
-            className="absolute top-1.5 right-1.5 text-slate-400 hover:text-white p-1 cursor-pointer"
-            aria-label="Close assistance message"
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
-          <div className="font-bold text-[#da8a24] mb-0.5">Need assistance?</div>
-          <p className="text-slate-300 text-[11px]">Chat with Truth Foundation on WhatsApp for donation queries & 80G receipts.</p>
+    <div className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 z-[9990] flex flex-col items-end gap-2.5 max-w-[calc(100vw-2rem)] select-none">
+      {/* Dynamic Popups & Automatic Typing Notification (No border color applied) */}
+      {enabled && !isDismissed && isPopupVisible && (
+        <div className="flex flex-col items-end">
+          {isTyping ? (
+            /* Automatic Typing Indicator Bubble */
+            <div className="bg-[#071b34] text-white px-3.5 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2.5 border-0 text-xs transition-all">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-slate-300 text-[11px] font-medium tracking-wide">
+                Someone is donating...
+              </span>
+              <span className="flex items-center gap-1 ml-0.5">
+                <span className="w-1.5 h-1.5 bg-[#da8a24] rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                <span className="w-1.5 h-1.5 bg-[#da8a24] rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                <span className="w-1.5 h-1.5 bg-[#da8a24] rounded-full animate-bounce"></span>
+              </span>
+            </div>
+          ) : (
+            /* Popup Notification Message Card (No border color, completely borderless with shadow-2xl) */
+            <div className="bg-[#071b34] text-white p-3 sm:p-3.5 rounded-2xl shadow-2xl border-0 w-[275px] xs:w-[300px] sm:w-[325px] relative transition-all duration-300">
+              {/* Dismiss Button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsDismissed(true);
+                }}
+                className="absolute top-2 right-2 text-slate-400 hover:text-white p-1 rounded-full hover:bg-white/10 transition cursor-pointer"
+                title="Dismiss notification"
+                aria-label="Dismiss notification"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+
+              {/* Top Row: Donor Avatar, Name, Location & Verified Check */}
+              <div className="flex items-center gap-2.5 mb-2 pr-6">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-[#071b34] font-bold text-xs flex items-center justify-center shrink-0 shadow-sm">
+                  {initials}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-semibold text-white text-xs truncate">{donorName}</span>
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0 fill-emerald-400/20" />
+                  </div>
+                  <p className="text-[10px] text-slate-400 truncate">
+                    {location} • <span className="text-emerald-400 font-medium">{timeAgo}</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Middle Row: Donation Amount & Cause */}
+              <div className="bg-[#0a254a] rounded-xl p-2 sm:p-2.5 mb-2.5 flex items-center justify-between gap-2 border-0">
+                <div className="min-w-0 flex-1">
+                  <div className="text-[11px] text-slate-300 leading-tight truncate">
+                    Donated for <span className="text-[#da8a24] font-medium">{cause}</span>
+                  </div>
+                </div>
+                <div className="text-right shrink-0">
+                  <span className="inline-block px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 font-bold text-xs">
+                    ₹{amount.toLocaleString('en-IN')}
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom Row: Interactive "Add your donation" CTA button */}
+              <button
+                onClick={handleDonateClick}
+                className="w-full py-1.5 px-3 bg-gradient-to-r from-[#da8a24] to-[#f59e0b] hover:from-[#c77a1e] hover:to-[#da8a24] text-[#071b34] text-xs font-bold rounded-xl shadow-md transition active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer border-0"
+              >
+                <Heart className="w-3.5 h-3.5 fill-[#071b34]" />
+                <span>{ctaText}</span>
+              </button>
+            </div>
+          )}
         </div>
       )}
 
       {/* 1. Floating WhatsApp Button */}
       <button
-        onClick={handleClick}
+        onClick={handleWhatsAppClick}
         className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full shadow-xl flex items-center justify-center cursor-pointer border-2 border-white transition-transform active:scale-95 shrink-0"
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
@@ -72,3 +284,4 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
     </div>
   );
 };
+

@@ -16,14 +16,90 @@ import {
   BookOpen,
   PhoneCall,
   Home,
-  Compass
+  Compass,
+  Bell
 } from 'lucide-react';
 import { apiRequest } from '../api/client';
-import { SiteContentData, HeroSlide, AboutProgram } from '../types';
+import { SiteContentData, HeroSlide, AboutProgram, DonationPopupMessage, DonationPopupsConfig } from '../types';
 import supportCauseGirlImg from '../assets/support_cause_girl_donate.png';
 
+const DEFAULT_POPUPS_ADMIN: DonationPopupMessage[] = [
+  {
+    id: 'pop-1',
+    name: 'Karthik Raja',
+    amount: 1500,
+    cause: 'Special Meals for 15 Children',
+    location: 'Chennai',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-2',
+    name: 'Priya Sundaram',
+    amount: 750,
+    cause: 'Senior Care & Daily Medicines',
+    location: 'Tambaram',
+    time_ago: '1 min ago',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-3',
+    name: 'Ananya Sharma',
+    amount: 2500,
+    cause: 'Monthly Education Kit & Books',
+    location: 'Anna Nagar',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-4',
+    name: 'Vignesh Kumar',
+    amount: 1000,
+    cause: 'Daily Nutritious Breakfast for Kids',
+    location: 'Thiruvallur',
+    time_ago: '2 mins ago',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-5',
+    name: 'Meera Krishnan',
+    amount: 5000,
+    cause: 'Special Needs Therapy & Care',
+    location: 'Adyar',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-6',
+    name: 'Rajesh Natarajan',
+    amount: 3000,
+    cause: 'Emergency Shelter & Bedding Provisions',
+    location: 'Velachery',
+    time_ago: '3 mins ago',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-7',
+    name: 'Divya & Arun',
+    amount: 1200,
+    cause: 'Sunday Feast for Orphan Children',
+    location: 'Redhills',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  },
+  {
+    id: 'pop-8',
+    name: 'Sangeetha R.',
+    amount: 800,
+    cause: 'Fresh Fruits & Wholesome Diet',
+    location: 'Mylapore',
+    time_ago: '4 mins ago',
+    cta_text: 'Add your donation'
+  }
+];
+
 export const ContentManager: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'hero' | 'about' | 'gallery' | 'contact'>('hero');
+  const [activeTab, setActiveTab] = useState<'hero' | 'about' | 'gallery' | 'contact' | 'popups'>('hero');
   const [content, setContent] = useState<SiteContentData>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -64,6 +140,87 @@ export const ContentManager: React.FC = () => {
   const [programFile, setProgramFile] = useState<File | null>(null);
   const [programPreview, setProgramPreview] = useState<string | null>(null);
   const programFileInputRef = useRef<HTMLInputElement | null>(null);
+
+  // Donation Popups State (Add / Edit)
+  const [popupModalOpen, setPopupModalOpen] = useState(false);
+  const [editingPopupIndex, setEditingPopupIndex] = useState<number | null>(null);
+  const [popupForm, setPopupForm] = useState<DonationPopupMessage>({
+    id: '',
+    name: '',
+    amount: 1000,
+    cause: '',
+    location: '',
+    time_ago: 'Just now',
+    cta_text: 'Add your donation'
+  });
+
+  const getPopupsList = (): DonationPopupMessage[] => {
+    return content.donation_popups?.popups || DEFAULT_POPUPS_ADMIN;
+  };
+
+  const handleOpenAddPopup = () => {
+    setEditingPopupIndex(null);
+    setPopupForm({
+      id: `pop_${Date.now()}`,
+      name: '',
+      amount: 1000,
+      cause: '',
+      location: 'Chennai',
+      time_ago: 'Just now',
+      cta_text: 'Add your donation'
+    });
+    setPopupModalOpen(true);
+  };
+
+  const handleOpenEditPopup = (index: number) => {
+    const list = getPopupsList();
+    const item = list[index];
+    if (!item) return;
+    setEditingPopupIndex(index);
+    setPopupForm({ ...item });
+    setPopupModalOpen(true);
+  };
+
+  const handleDeletePopup = async (index: number) => {
+    if (!confirm('Are you sure you want to delete this donation popup message?')) return;
+    const currentList = [...getPopupsList()];
+    currentList.splice(index, 1);
+    const updatedConfig: DonationPopupsConfig = {
+      enabled: content.donation_popups?.enabled ?? true,
+      interval_seconds: content.donation_popups?.interval_seconds ?? 5,
+      popups: currentList
+    };
+    await saveSection('donation_popups', updatedConfig);
+  };
+
+  const handleSavePopupSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!popupForm.name.trim()) {
+      alert('Donor name is required');
+      return;
+    }
+    if (!popupForm.amount || popupForm.amount <= 0) {
+      alert('Please enter a valid donation amount');
+      return;
+    }
+    const currentList = [...getPopupsList()];
+    if (editingPopupIndex !== null) {
+      currentList[editingPopupIndex] = popupForm;
+    } else {
+      currentList.push({
+        ...popupForm,
+        id: popupForm.id || `pop_${Date.now()}`
+      });
+    }
+    const updatedConfig: DonationPopupsConfig = {
+      enabled: content.donation_popups?.enabled ?? true,
+      interval_seconds: content.donation_popups?.interval_seconds ?? 5,
+      popups: currentList
+    };
+    await saveSection('donation_popups', updatedConfig);
+    setPopupModalOpen(false);
+  };
+
 
   // Load Content from Backend
   const loadContent = async () => {
@@ -393,6 +550,21 @@ export const ContentManager: React.FC = () => {
         >
           <PhoneCall className="w-4 h-4 shrink-0" />
           <span>Contact & Offices</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('popups')}
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
+            activeTab === 'popups'
+              ? 'bg-[#da8a24] text-[#071b34] shadow-md'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+          }`}
+        >
+          <Bell className="w-4 h-4 shrink-0" />
+          <span>Donation Popups</span>
+          <span className="px-1.5 py-0.5 text-[11px] rounded-full bg-slate-900/60 text-slate-200 ml-1">
+            {getPopupsList().length}
+          </span>
         </button>
       </div>
 
@@ -1019,6 +1191,152 @@ export const ContentManager: React.FC = () => {
       )}
 
       {/* ============================================================== */}
+      {/* TAB 5: DONATION POPUPS & LIVE MESSAGES                         */}
+      {/* ============================================================== */}
+      {activeTab === 'popups' && (
+        <div className="space-y-6">
+          {/* Top Info & Settings Card */}
+          <div className="bg-[#071b34] border border-slate-800 rounded-2xl p-4 sm:p-6 space-y-4 shadow-xl">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+              <div>
+                <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                  <Bell className="w-5 h-5 text-[#da8a24]" />
+                  Live Donation Popups (WhatsApp Widget Notifications)
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                  Configure automatic typing and live donor contribution messages that pop up near the floating WhatsApp icon across both mobile and desktop views.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <button
+                  onClick={handleOpenAddPopup}
+                  className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer shadow-md"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add Donor Message</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Global Settings: Enable Toggle & Interval */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+              <div className="flex items-center gap-3 p-3 bg-slate-900/60 rounded-xl border border-slate-800/80">
+                <input
+                  type="checkbox"
+                  id="popups_enabled_toggle"
+                  defaultChecked={content.donation_popups?.enabled ?? true}
+                  className="w-4 h-4 accent-[#da8a24] rounded cursor-pointer"
+                />
+                <label htmlFor="popups_enabled_toggle" className="text-xs font-medium text-slate-200 cursor-pointer">
+                  Enable Popup Notifications on Website
+                </label>
+              </div>
+
+              <div className="flex items-center gap-2.5 p-3 bg-slate-900/60 rounded-xl border border-slate-800/80">
+                <label htmlFor="popups_interval_input" className="text-xs font-medium text-slate-300 shrink-0">
+                  Cycle Interval (Seconds):
+                </label>
+                <input
+                  type="number"
+                  id="popups_interval_input"
+                  min="3"
+                  max="60"
+                  defaultValue={content.donation_popups?.interval_seconds ?? 5}
+                  className="w-20 px-2.5 py-1 bg-slate-950 border border-slate-700 rounded-lg text-white text-xs font-bold focus:border-[#da8a24] focus:outline-none"
+                />
+              </div>
+
+              <div className="flex items-center sm:col-span-2 lg:col-span-1 justify-end">
+                <button
+                  disabled={saving}
+                  onClick={() => {
+                    const isEnabled = (document.getElementById('popups_enabled_toggle') as HTMLInputElement)?.checked ?? true;
+                    const interval = parseInt((document.getElementById('popups_interval_input') as HTMLInputElement)?.value || '5', 10);
+                    const updatedConfig: DonationPopupsConfig = {
+                      enabled: isEnabled,
+                      interval_seconds: interval >= 3 ? interval : 5,
+                      popups: getPopupsList()
+                    };
+                    saveSection('donation_popups', updatedConfig);
+                  }}
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition cursor-pointer"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>Save Popup Settings</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* List of Popup Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {getPopupsList().map((item, idx) => (
+              <div
+                key={item.id || idx}
+                className="bg-[#071b34] border border-slate-800 rounded-2xl p-4 shadow-lg hover:border-slate-700 transition flex flex-col justify-between gap-3"
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-[#071b34] font-bold text-xs flex items-center justify-center shrink-0">
+                        {(item.name || 'TF')
+                          .split(' ')
+                          .map((w) => w[0])
+                          .filter(Boolean)
+                          .slice(0, 2)
+                          .join('')
+                          .toUpperCase()}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-sm font-bold text-white truncate">{item.name}</div>
+                        <div className="text-[11px] text-slate-400 truncate">
+                          {item.location || 'Chennai'} • <span className="text-emerald-400">{item.time_ago || 'Just now'}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold text-xs shrink-0">
+                      ₹{item.amount.toLocaleString('en-IN')}
+                    </span>
+                  </div>
+
+                  <div className="bg-slate-900/70 rounded-xl p-2.5 text-xs text-slate-300">
+                    <span className="text-slate-400">Cause:</span>{' '}
+                    <span className="font-medium text-white">{item.cause || 'Meals & Care'}</span>
+                  </div>
+
+                  <div className="mt-2 text-[11px] text-slate-400 flex items-center gap-1.5">
+                    <span>CTA Button:</span>
+                    <span className="text-[#da8a24] font-medium">"{item.cta_text || 'Add your donation'}"</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800/80">
+                  <button
+                    onClick={() => handleOpenEditPopup(idx)}
+                    className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition cursor-pointer text-xs flex items-center gap-1"
+                    title="Edit message"
+                  >
+                    <Edit3 className="w-3.5 h-3.5 text-[#da8a24]" />
+                    <span>Edit</span>
+                  </button>
+                  <button
+                    onClick={() => handleDeletePopup(idx)}
+                    className="p-1.5 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-lg transition cursor-pointer text-xs flex items-center gap-1"
+                    title="Delete message"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
       {/* MODAL: ADD / EDIT HERO SLIDE                                  */}
       {/* ============================================================== */}
       {slideModalOpen && (
@@ -1315,6 +1633,129 @@ export const ContentManager: React.FC = () => {
                       <span>Save Program</span>
                     </>
                   )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* MODAL: ADD / EDIT DONATION POPUP                               */}
+      {/* ============================================================== */}
+      {popupModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#071b34] border border-slate-800 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl p-4 sm:p-6 space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                <Bell className="w-5 h-5 text-[#da8a24]" />
+                {editingPopupIndex !== null ? 'Edit Donor Popup Message' : 'Add New Donor Message'}
+              </h3>
+              <button
+                onClick={() => setPopupModalOpen(false)}
+                className="text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSavePopupSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-medium text-slate-300 mb-1">
+                  Donor Name <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={popupForm.name}
+                  onChange={(e) => setPopupForm({ ...popupForm, name: e.target.value })}
+                  placeholder="e.g. Karthik Raja"
+                  className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Donation Amount (₹) <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    required
+                    min="1"
+                    value={popupForm.amount}
+                    onChange={(e) => setPopupForm({ ...popupForm, amount: Number(e.target.value) })}
+                    placeholder="e.g. 1500"
+                    className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                  />
+                  <span className="text-[10px] text-amber-400/80">Suggested: ₹500 or above</span>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">Donor Location</label>
+                  <input
+                    type="text"
+                    value={popupForm.location || ''}
+                    onChange={(e) => setPopupForm({ ...popupForm, location: e.target.value })}
+                    placeholder="e.g. Chennai / Tambaram"
+                    className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-300 mb-1">
+                  Cause / Purpose <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={popupForm.cause || ''}
+                  onChange={(e) => setPopupForm({ ...popupForm, cause: e.target.value })}
+                  placeholder="e.g. Special Meals for 15 Children"
+                  className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">Time Tag</label>
+                  <input
+                    type="text"
+                    value={popupForm.time_ago || ''}
+                    onChange={(e) => setPopupForm({ ...popupForm, time_ago: e.target.value })}
+                    placeholder="e.g. Just now / 2 mins ago"
+                    className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">CTA Button Text</label>
+                  <input
+                    type="text"
+                    value={popupForm.cta_text || ''}
+                    onChange={(e) => setPopupForm({ ...popupForm, cta_text: e.target.value })}
+                    placeholder="e.g. Add your donation"
+                    className="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:border-[#da8a24] focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+                <button
+                  type="button"
+                  onClick={() => setPopupModalOpen(false)}
+                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition disabled:opacity-50 cursor-pointer"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>Save Message</span>
                 </button>
               </div>
             </form>

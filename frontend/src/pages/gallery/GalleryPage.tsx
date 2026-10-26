@@ -31,7 +31,7 @@ import { pixelTracker } from '../../utils/pixelTracker';
 import { fetchGalleryImages } from '../../utils/cmsApi';
 
 // Real Project Image Imports
-import galleryDonateSectionImg from '../../assets/images/gallery_page_donate_section.jpeg?w=600&format=webp';
+import childrenEatingMealsBg from '../../assets/images/children_eating_meals_background.jpg?w=1200&format=webp';
 import galleryHeroBgDesktop from '../../assets/images/Gallery_page_hero_section_desktop_view.jpeg';
 import galleryHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
 
@@ -314,57 +314,67 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         </div>
       </section>
 
-      {/* 6. ORGANIC SECTION DIVIDER */}
-      <div className="w-full relative z-10 -my-[1px]">
-        <LightToDarkDivider bgFrom="#f8fafc" bgTo="#071b34" />
-      </div>
-
-      {/* 7. SUPPORT OUR CAUSE CTA */}
-      <section className="py-12 sm:py-16 md:py-20 min-h-[440px] sm:min-h-[480px] md:min-h-[520px] bg-[#071b34] text-white relative overflow-hidden flex items-center">
-        {/* Left Side Image: occupies full height of section, full width of left side, no crop top/bottom, clear quality */}
-        <div className="absolute inset-y-0 left-0 h-full pointer-events-none overflow-hidden z-0 flex items-center">
-          <div className="relative h-full aspect-square">
-            <img
-              src={galleryDonateSectionImg}
-              alt="Truth Foundation - Happy Moments"
-              className="w-full h-full object-cover"
-            />
-            {/* Clear quality on child; only right side shaded and mingled with section color theme */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent 40%, via-[#071b34]/60 70%, to-[#071b34] 100%" />
-          </div>
+      {/* 7. SUPPORT OUR CAUSE CTA - Full organic wave background */}
+      <section className="relative text-white overflow-hidden w-full min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] flex flex-col justify-between">
+        
+        {/* Full Image Background covering the entire height including both waves */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <img
+            src={childrenEatingMealsBg}
+            alt="Truth Foundation - Children Having Wholesome Meals"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Readability gradient overlay across the entire background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071b34]/85 via-[#071b34]/75 to-[#071b34]/85" />
+          {/* Mobile extra contrast */}
+          <div className="absolute inset-0 bg-[#071b34]/40 md:hidden" />
         </div>
 
-        {/* Mobile readability overlay */}
-        <div className="absolute inset-0 bg-[#071b34]/70 md:hidden pointer-events-none z-[1]" />
-
         {/* Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#da8a24]/8 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#da8a24]/8 rounded-full blur-[100px] pointer-events-none z-[1]" />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
-          
-          {/* Content & CTA Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center bg-transparent border-0 shadow-none p-0 relative">
+        {/* Top Organic Wave Transition from #f8fafc into the background image */}
+        <div className="relative z-10 w-full leading-none pointer-events-none select-none block -mt-px">
+          <svg
+            viewBox="0 0 1440 90"
+            preserveAspectRatio="none"
+            className="relative block w-full h-8 sm:h-14 lg:h-20"
+          >
+            {/* Soft accent wave */}
+            <path
+              d="M0,0 L1440,0 L1440,40 C1240,-10 1000,28 680,105 C360,-10 0,40 0,40 Z"
+              fill="#f8fafc"
+              fillOpacity="0.4"
+            />
+            {/* Main top wave filled with #f8fafc */}
+            <path
+              d="M0,0 L1440,0 L1440,40 C1320,70 1120,-10 840,28 C560,100 280,-25 0,55 Z"
+              fill="#f8fafc"
+            />
+          </svg>
+        </div>
+
+        {/* Center CTA Content - Aligned at left end, buttons at right end */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-8 sm:py-12 md:py-14 my-auto">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 lg:gap-12">
             
-            {/* Left space reserved for the left-side image */}
-            <div className="hidden md:block md:col-span-4 lg:col-span-4" />
-
-            {/* 2. Content Column */}
-            <div className="md:col-span-5 lg:col-span-5 space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-normal shadow-none">
-                <Heart className="w-4 h-4 fill-[#0a2240]" />
+            {/* Left End: Content */}
+            <div className="max-w-2xl space-y-3 text-left">
+              <div className="w-9 h-9 rounded-xl bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-normal shadow-none">
+                <Heart className="w-4.5 h-4.5 fill-[#0a2240]" />
               </div>
               
-              <h2 className="text-xl sm:text-2xl font-normal text-white tracking-tight leading-snug">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-white tracking-tight leading-snug">
                 Be a Part of More Happy Moments
               </h2>
               
-              <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-xl">
                 Every contribution directly funds wholesome daily meals, educational books, special needs therapy, and shelter for children and seniors across Chennai & Thiruvallur.
               </p>
             </div>
 
-            {/* 3. CTA Buttons Column */}
-            <div className="md:col-span-3 lg:col-span-3 flex flex-col gap-2 justify-center">
+            {/* Right End: Buttons */}
+            <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full sm:w-auto md:w-56 items-stretch md:items-end">
               <motion.button
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
@@ -372,9 +382,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   pixelTracker.trackDonateClick(500, 'Gallery Page Support CTA');
                   onOpenDonateModal(500);
                 }}
-                className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-5 py-2.5 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider"
+                className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider w-full"
               >
-                <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
+                <Heart className="w-4 h-4 fill-[#0a2240]" />
                 <span>Donate Now</span>
               </motion.button>
 
@@ -382,23 +392,39 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onNavigate('contact')}
-                className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/30 font-normal px-5 py-2.5 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm"
+                className="bg-[#071b34]/90 hover:bg-[#163863] text-white border border-[#da8a24]/30 font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm w-full"
               >
-                <Users className="w-3.5 h-3.5 text-[#da8a24]" />
+                <Users className="w-4 h-4 text-[#da8a24]" />
                 <span>Contact Our Team</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#da8a24]" />
+                <ArrowRight className="w-4 h-4 text-[#da8a24]" />
               </motion.button>
             </div>
 
           </div>
-
         </div>
-      </section>
 
-      {/* 8. ORGANIC SECTION DIVIDER */}
-      <div className="w-full relative z-10 -my-[1px]">
-        <DarkToLightDivider bgFrom="#071b34" bgTo="#0a2240" />
-      </div>
+        {/* Bottom Organic Wave Transition from background image into #f8fafc footer */}
+        <div className="relative z-10 w-full leading-none pointer-events-none select-none block -mb-px">
+          <svg
+            viewBox="0 0 1440 90"
+            preserveAspectRatio="none"
+            className="relative block w-full h-8 sm:h-14 lg:h-20"
+          >
+            {/* Soft accent wave */}
+            <path
+              d="M0,32 C280,96 560,0 840,64 C1120,128 1320,32 1440,48 L1440,95 L0,95 Z"
+              fill="#f8fafc"
+              fillOpacity="0.4"
+            />
+            {/* Main bottom wave filled with #f8fafc */}
+            <path
+              d="M0,48 C320,110 640,-10 960,75 C1200,130 1360,35 1440,55 L1440,95 L0,95 Z"
+              fill="#f8fafc"
+            />
+          </svg>
+        </div>
+
+      </section>
 
       {/* 7. FULL STORY LIGHTBOX MODAL (GLASSMORPHISM & RESPONSIVE MOBILE ALIGNMENT) */}
       {activeStoryItem && createPortal(

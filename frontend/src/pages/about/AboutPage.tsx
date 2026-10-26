@@ -795,14 +795,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
           
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-1">
-            <div className="space-y-1 max-w-2xl text-left">
-              <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
+            <div className="space-y-1.5 max-w-2xl text-left">
+              <span className="text-[#da8a24] font-medium text-sm sm:text-base uppercase tracking-widest block">
                 WHAT WE DO
               </span>
-              <h2 className="text-2xl sm:text-4xl font-normal text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-normal text-white tracking-tight">
                 Our Programs
               </h2>
-              <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
                 Comprehensive care and support for children, elderly, and communities across Tamil Nadu.
               </p>
             </div>
@@ -932,38 +932,27 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                         transition={{ duration: 0.3 }}
                         className="pt-3 relative z-20 bg-transparent text-white border-0 shadow-none space-y-2.5"
                       >
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                           <div className="flex items-center justify-between gap-2">
-                            <div className="w-7 h-7 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
-                              <ProgramIcon className="w-4 h-4" />
+                            <div className="w-8 h-8 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
+                              <ProgramIcon className="w-5 h-5" />
                             </div>
-                            <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-2.5 py-0.5 rounded-full">
+                            <span className="text-xs sm:text-sm font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full">
                               {currentProgram.tag}
                             </span>
                           </div>
 
-                          <h3 className="text-base sm:text-lg font-normal text-white leading-snug">
+                          <h3 className="text-xl sm:text-2xl font-normal text-white leading-snug">
                             {currentProgram.title}
                           </h3>
-                          <p className="text-xs text-slate-300 font-normal">
+                          <p className="text-sm sm:text-base text-slate-300 font-normal">
                             {currentProgram.location}
                           </p>
                         </div>
 
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                           {currentProgram.description}
                         </p>
-
-                        <div className="pt-2 border-t border-slate-700/60 space-y-1.5">
-                          {(currentProgram.details || []).map((detail: string, dIdx: number) => (
-                            <div key={dIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 font-normal">
-                              <div className="w-4 h-4 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
-                                <CheckCircle2 className="w-3 h-3" />
-                              </div>
-                              <span>{detail}</span>
-                            </div>
-                          ))}
-                        </div>
                       </motion.div>
                     </div>
 

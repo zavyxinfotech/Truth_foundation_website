@@ -79,22 +79,99 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
     setStep(3);
   };
 
-  const handlePayNow = () => {
+  const handlePayNow = async () => {
     setStep(4); // Processing
-    const txn = 'TXN_TF_' + Math.floor(100000000 + Math.random() * 900000000);
-    setTransactionId(txn);
 
-    setTimeout(() => {
-      setStep(5); // Success Receipt
-      pixelTracker.trackPaymentCompleted(amount, donorDetails.fullName, txn);
-
-      // Trigger Confetti Celebration
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 }
+    try {
+      const res = await fetch('/api/payment/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount,
+          currency: 'INR',
+          receipt: `rcpt_${Date.now()}`
+        })
       });
-    }, 2500);
+
+      const orderData = await res.json();
+      if (!res.ok || !orderData.order_id) {
+        throw new Error(orderData.error || 'Failed to initialize order');
+      }
+
+      const razorpayKey = orderData.key_id || (import.meta as any).env?.VITE_RAZORPAY_KEY_ID || 'rzp_live_TkcXDVNE0IJstM';
+
+      const options = {
+        key: razorpayKey,
+        amount: orderData.amount,
+        currency: orderData.currency || 'INR',
+        name: 'Truth Foundation',
+        description: `Donation to feed children (₹${amount.toLocaleString()})`,
+        image: truthLogo,
+        order_id: orderData.order_id,
+        prefill: {
+          name: donorDetails.fullName,
+          email: donorDetails.email,
+          contact: donorDetails.phone
+        },
+        notes: {
+          pan_number: donorDetails.panNumber || 'N/A',
+          is_eighty_g: donorDetails.isEightYGRequired ? 'true' : 'false'
+        },
+        theme: {
+          color: '#0a2240'
+        },
+        handler: async function (response: any) {
+          try {
+            const verifyRes = await fetch('/api/payment/verify-payment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                amount,
+                donor_details: donorDetails
+              })
+            });
+
+            const verifyData = await verifyRes.json();
+            const receiptNum = verifyData?.donation?.receipt_number || `TF-${Date.now().toString().slice(-6)}`;
+            setTransactionId(receiptNum);
+            setStep(5);
+            pixelTracker.trackPaymentCompleted(amount, donorDetails.fullName, response.razorpay_payment_id);
+
+            try {
+              confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 }
+              });
+            } catch {
+              // Ignore confetti error
+            }
+          } catch {
+            setTransactionId(`TF-${Date.now().toString().slice(-6)}`);
+            setStep(5);
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            setStep(3);
+          }
+        }
+      };
+
+      const rzpInstance = new (window as any).Razorpay(options);
+      rzpInstance.on('payment.failed', function () {
+        setStep(3);
+        alert('Payment was cancelled or unsuccessful. Please try again.');
+      });
+      rzpInstance.open();
+    } catch (err: any) {
+      console.error('Payment error:', err);
+      setStep(3);
+      alert(err.message || 'Payment initiation failed. Please check internet connection.');
+    }
   };
 
   return createPortal(

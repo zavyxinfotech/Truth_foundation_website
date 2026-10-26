@@ -16,10 +16,7 @@ import {
   MessageSquare,
   Users,
   Mail,
-  Phone,
-  ShieldCheck,
-  Lock,
-  Award
+  Phone
 } from 'lucide-react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -30,7 +27,7 @@ import { pixelTracker } from '../../utils/pixelTracker';
 import { fetchSiteContent } from '../../utils/cmsApi';
 
 // Real Project Image Imports
-import heroChildLongingMeal from '../../assets/images/hero_child_longing_meal.jpg?w=900&format=webp';
+import immediateImpactIllustration from '../../assets/images/immediate_impact_donation_illustration.png';
 import contactHeroBgDesktop from '../../assets/images/contact_page_hero_background_image_desktop_view.jpg';
 import contactHeroBgMobile from '../../assets/images/contact_page_hero_background_image_mobile_view.jpeg';
 
@@ -408,43 +405,41 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
 
       {/* 8. SUPPORT A CAUSE / FINAL DONATION CTA SECTION (White Section) */}
-      <section className="py-16 sm:py-24 bg-white text-slate-900 relative">
+      <section className="py-10 sm:py-16 bg-white text-slate-900 relative">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12">
           
-          <div className="bg-[#0a2240] text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden space-y-10 shadow-2xl">
+          <div className="bg-[#0a2240] text-white rounded-3xl p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-2xl">
             
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
               
-              {/* Left Column: Organic Image Frame (5 cols) */}
+              {/* Left Column: Transparent Illustration (5 cols) */}
               <div className="lg:col-span-5 flex items-center justify-center">
-                <div className="relative w-full max-w-[380px]">
-                  <div 
-                    className="w-full aspect-[4/3] overflow-hidden border-2 border-[#da8a24] shadow-2xl bg-[#071b34]"
-                    style={{ borderRadius: '90px 25px 90px 25px' }}
-                  >
-                    <img
-                      src={heroChildLongingMeal}
-                      alt="Support a Cause Truth Foundation"
-                      className="w-full h-full object-cover object-center"
-                      loading="lazy"
-                    />
-                  </div>
+                <div className="relative w-full max-w-[270px] sm:max-w-[310px] lg:max-w-[330px] flex items-center justify-center">
+                  {/* Subtle warm ambient backdrop glow */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#da8a24]/15 via-[#da8a24]/5 to-transparent rounded-full blur-2xl pointer-events-none transform -translate-y-2"></div>
+                  
+                  <img
+                    src={immediateImpactIllustration}
+                    alt="Support a Cause Truth Foundation - Make an Immediate Impact"
+                    className="relative z-10 w-full h-auto max-h-[250px] sm:max-h-[280px] lg:max-h-[300px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
+                    loading="lazy"
+                  />
                 </div>
               </div>
 
               {/* Right Column: Heading & CTA Button (7 cols) */}
-              <div className="lg:col-span-7 space-y-5">
-                <span className="text-[#da8a24] font-normal text-sm sm:text-base uppercase tracking-widest block">
+              <div className="lg:col-span-7 space-y-3.5 sm:space-y-4">
+                <span className="text-[#da8a24] font-normal text-xs sm:text-sm uppercase tracking-widest block">
                   MAKE AN IMMEDIATE IMPACT
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-normal text-white tracking-tight">
+                <h2 className="text-2xl sm:text-4xl lg:text-[40px] font-normal text-white tracking-tight leading-tight">
                   Support a Cause. <span className="text-[#da8a24]">Change a Life.</span>
                 </h2>
-                <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed">
                   Every contribution directly provides warm nutritious meals, school textbooks, medical care, and dignity to orphaned children and elderly seniors across Chennai.
                 </p>
 
-                <div className="pt-2 flex flex-wrap items-center gap-4">
+                <div className="pt-1.5 flex flex-wrap items-center gap-4">
                   <motion.button
                     whileHover={{ scale: 1.04, y: -2 }}
                     whileTap={{ scale: 0.96 }}
@@ -452,34 +447,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                       pixelTracker.trackDonateClick(500, 'Contact Final Support CTA');
                       onOpenDonateModal(500);
                     }}
-                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-9 py-4.5 rounded-2xl shadow-xl transition flex items-center gap-2.5 cursor-pointer text-base sm:text-lg uppercase tracking-wider min-h-[52px]"
+                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-8 py-3.5 sm:px-9 sm:py-4 rounded-2xl shadow-xl transition flex items-center gap-2.5 cursor-pointer text-base sm:text-lg uppercase tracking-wider min-h-[48px]"
                   >
-                    <Heart className="w-5.5 h-5.5 fill-[#0a2240]" />
+                    <Heart className="w-5 h-5 fill-[#0a2240]" />
                     <span>Donate Now</span>
                   </motion.button>
                 </div>
               </div>
 
-            </div>
-
-            {/* Horizontal Trust Indicators Strip */}
-            <div className="pt-6 border-t border-[#163863] grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm sm:text-base font-normal text-slate-300">
-              <div className="flex items-center gap-2.5">
-                <Lock className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                <span>Safe & Secure Donations</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                <span>Direct Impact Delivery</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Award className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                <span>80G Tax Exemption</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Users className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                <span>Trusted by Communities</span>
-              </div>
             </div>
 
           </div>

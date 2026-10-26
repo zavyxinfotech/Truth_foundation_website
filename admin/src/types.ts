@@ -128,4 +128,22 @@ export interface SiteContentData {
     whatsapp_number?: string;
     timings?: string;
   };
+  donation_popups?: DonationPopupsConfig;
 }
+
+export interface DonationPopupMessage {
+  id?: string;
+  name: string;
+  amount: number;
+  cause?: string;
+  location?: string;
+  time_ago?: string;
+  cta_text?: string;
+}
+
+export interface DonationPopupsConfig {
+  enabled?: boolean;
+  interval_seconds?: number;
+  popups?: DonationPopupMessage[];
+}
+
