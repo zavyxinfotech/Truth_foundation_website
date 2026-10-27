@@ -138,7 +138,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
                       }}
                       className={`py-2.5 px-2 rounded-xl font-normal text-center text-xs transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#da8a24] text-[#0a2240] font-medium shadow-md'
+                          ? 'bg-[#da8a24] text-white font-medium shadow-md'
                           : 'bg-white text-slate-800 hover:bg-slate-100 border border-slate-200'
                       }`}
                     >
@@ -151,7 +151,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
                   onClick={() => setIsCustom(true)}
                   className={`py-2.5 px-2 rounded-xl font-normal text-center text-xs transition-all cursor-pointer ${
                     isCustom
-                      ? 'bg-[#da8a24] text-[#0a2240] font-medium shadow-md'
+                      ? 'bg-[#da8a24] text-white font-medium shadow-md'
                       : 'bg-white text-slate-800 hover:bg-slate-100 border border-slate-200'
                   }`}
                 >
@@ -179,9 +179,9 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
                   pixelTracker.trackDonateClick(activeAmt, 'FAQ Side Donation Card');
                   if (onOpenDonateModal) onOpenDonateModal(activeAmt);
                 }}
-                className="w-full py-3.5 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-medium text-xs sm:text-sm rounded-xl shadow-md flex items-center justify-center gap-2 transition cursor-pointer active:scale-98 uppercase tracking-wider"
+                className="w-full py-3.5 bg-[#da8a24] hover:bg-[#c77a1e] text-white font-medium text-xs sm:text-sm rounded-xl shadow-md flex items-center justify-center gap-2 transition cursor-pointer active:scale-98 uppercase tracking-wider"
               >
-                <Heart className="w-4 h-4 fill-[#0a2240] text-[#0a2240] shrink-0" />
+                <Heart className="w-4 h-4 fill-white text-white shrink-0" />
                 <span>Donate Now</span>
               </button>
             </div>
@@ -196,7 +196,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
           </p>
           <button
             onClick={handleWhatsApp}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-normal px-6 py-2.5 rounded-xl shadow-md transition cursor-pointer active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-xl shadow-md transition cursor-pointer active:scale-95"
           >
             <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
             <span>Chat directly on WhatsApp</span>

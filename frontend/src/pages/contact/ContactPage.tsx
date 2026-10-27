@@ -27,9 +27,10 @@ import { pixelTracker } from '../../utils/pixelTracker';
 import { fetchSiteContent } from '../../utils/cmsApi';
 
 // Real Project Image Imports
-import immediateImpactIllustration from '../../assets/images/immediate_impact_donation_illustration.png';
+import giveLoveHandsHeart from '../../assets/images/give_love_hands_heart.png';
 import contactHeroBgDesktop from '../../assets/images/contact_page_hero_background_image_desktop_view.jpg';
 import contactHeroBgMobile from '../../assets/images/contact_page_hero_background_image_mobile_view.jpeg';
+import truthFoundationSealWatermark from '../../assets/images/truth_foundation_seal_watermark.png';
 
 interface ContactPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -124,7 +125,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
   };
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-clip bg-[#0a2240] text-slate-900 font-sans antialiased selection:bg-[#da8a24] selection:text-[#0a2240] relative">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip bg-white text-slate-900 font-sans antialiased selection:bg-[#da8a24] selection:text-[#0a2240] relative">
       
       {/* 1. Header (EXACT EXISTING NAVBAR - UNCHANGED) */}
       <Header
@@ -177,9 +178,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.96 }}
                   onClick={handleDirectWhatsApp}
-                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-8 py-4 rounded-2xl shadow-xl transition flex items-center gap-3 cursor-pointer text-base sm:text-lg uppercase tracking-wider"
+                  className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-xl transition flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
                 >
-                  <WhatsAppIcon className="w-5.5 h-5.5 text-[#0a2240]" />
+                  <WhatsAppIcon className="w-5 h-5 text-white shrink-0" />
                   <span>WhatsApp Chat Now</span>
                 </motion.button>
 
@@ -190,9 +191,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                     pixelTracker.trackDonateClick(500, 'Contact Hero Secondary CTA');
                     onOpenDonateModal(500);
                   }}
-                  className="bg-[#071b34] hover:bg-[#163863] text-white font-normal border border-[#da8a24]/50 px-8 py-4 rounded-2xl shadow-md transition flex items-center gap-2.5 cursor-pointer text-base sm:text-lg backdrop-blur-md"
+                  className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/50 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-md transition flex items-center justify-center gap-2.5 cursor-pointer backdrop-blur-md whitespace-nowrap"
                 >
-                  <Heart className="w-5 h-5 text-[#da8a24] fill-[#da8a24]" />
+                  <Heart className="w-4.5 h-4.5 text-[#da8a24] fill-[#da8a24] shrink-0" />
                   <span>Donate Now</span>
                 </motion.button>
               </div>
@@ -204,15 +205,28 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
         {/* ORGANIC WAVES SECTION DIVIDER (No Blue Bar) */}
         <div className="absolute -bottom-1 left-0 right-0 z-20 pointer-events-none">
-          <DarkToLightDivider bgFrom="transparent" bgTo="#f8fafc" />
+          <DarkToLightDivider bgFrom="transparent" bgTo="#ffffff" />
         </div>
       </section>
 
 
 
       {/* 4. MAIN CONTACT FORM & LOCATION MAP SECTION */}
-      <section id="form-section" className="py-8 sm:py-24 bg-[#f8fafc] text-slate-900 relative">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16">
+      <section id="form-section" className="py-8 sm:py-24 bg-white text-slate-900 relative overflow-hidden">
+        
+        {/* Truth Foundation Circular Seal Watermark in Background (Side Right) */}
+        <div 
+          className="absolute top-1/2 -translate-y-1/2 -right-16 sm:-right-24 lg:-right-10 w-[340px] sm:w-[500px] lg:w-[620px] h-[340px] sm:h-[500px] lg:h-[620px] pointer-events-none select-none z-0 opacity-[0.08] sm:opacity-[0.10] flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <img
+            src={truthFoundationSealWatermark}
+            alt=""
+            className="w-full h-full object-contain mix-blend-multiply"
+          />
+        </div>
+
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16 relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             
@@ -236,13 +250,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                 </p>
               </div>
 
-              {/* Grid of Contact Information Cards - Transparent & Dark Navy Icons */}
+              {/* Grid of Contact Information Cards - Borderless & Shadowless */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
                 {/* 1. Call Our Helpline */}
-                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                <div className="p-6 rounded-2xl space-y-4 bg-slate-50 border-0 shadow-none flex flex-col justify-between">
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-normal shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-normal shadow-none border-0">
                       <PhoneCall className="w-6 h-6 text-[#da8a24]" />
                     </div>
                     <div className="space-y-1">
@@ -258,11 +272,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   </a>
                 </div>
 
-                {/* 2. WhatsApp Chat */}
-                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                {/* 2. WhatsApp Chat (Strictly WhatsApp Theme Color Only) */}
+                <div className="p-6 rounded-2xl space-y-4 bg-slate-50 border-0 shadow-none flex flex-col justify-between">
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-normal shadow-sm">
-                      <WhatsAppIcon className="w-6 h-6 text-[#da8a24]" />
+                    <div className="w-12 h-12 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center font-normal shadow-none border-0">
+                      <WhatsAppIcon className="w-6 h-6 text-[#25D366]" />
                     </div>
                     <div className="space-y-1">
                       <h3 className="font-normal text-[#0a2240] text-lg sm:text-xl">WhatsApp Chat</h3>
@@ -271,23 +285,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   </div>
                   <button
                     onClick={handleDirectWhatsApp}
-                    className="w-full mt-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal text-sm py-3 px-5 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-sm uppercase tracking-wider"
+                    className="w-full mt-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-normal text-sm py-3 px-5 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-none border-0 uppercase tracking-wider"
                   >
-                    <WhatsAppIcon className="w-4.5 h-4.5 text-[#0a2240]" />
+                    <WhatsAppIcon className="w-4.5 h-4.5 text-white" />
                     <span>Chat Now</span>
                   </button>
                 </div>
 
                 {/* 3. Redhills Home Office */}
-                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                <div className="p-6 rounded-2xl space-y-4 bg-slate-50 border-0 shadow-none flex flex-col justify-between">
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-normal shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-normal shadow-none border-0">
                       <MapPin className="w-6 h-6 text-[#da8a24]" />
                     </div>
                     <h3 className="font-normal text-[#0a2240] text-lg sm:text-xl">Redhills Home Office</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                      #244, Mallima Nagar, Vilagadupakkam, Redhills, Chennai - 600052
-                    </p>
+                    <div className="text-sm text-slate-600 leading-relaxed font-normal space-y-0.5">
+                      <p className="font-semibold text-[#0a2240]">Truth Foundation Home</p>
+                      <p>#244, Mallima Nagar, Vilagadupakkam, Redhills, Chennai - 600052</p>
+                    </div>
                   </div>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+244+Mallima+Nagar+Vilagadupakkam+Redhills+Chennai+600052"
@@ -301,15 +316,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                 </div>
 
                 {/* 4. Corporate Office */}
-                <div className="p-6 rounded-2xl space-y-4 border border-slate-200/80 hover:border-[#da8a24]/50 transition-colors flex flex-col justify-between">
+                <div className="p-6 rounded-2xl space-y-4 bg-slate-50 border-0 shadow-none flex flex-col justify-between">
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-normal shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-[#0a2240] text-[#da8a24] flex items-center justify-center font-normal shadow-none border-0">
                       <Building2 className="w-6 h-6 text-[#da8a24]" />
                     </div>
                     <h3 className="font-normal text-[#0a2240] text-lg sm:text-xl">Corporate Office</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                      #49, Venus Nagar Main Road, Kolathur, Chennai - 600099
-                    </p>
+                    <div className="text-sm text-slate-600 leading-relaxed font-normal space-y-0.5">
+                      <p className="font-semibold text-[#0a2240]">Truth Foundation Corporate Office</p>
+                      <p>#49, Venus Nagar Main Road, Kolathur, Chennai - 600099</p>
+                    </div>
                   </div>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+49+Venus+Nagar+Main+Road+Kolathur+Chennai+600099"
@@ -335,8 +351,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-5 space-y-6"
             >
-              {/* Google Map Panel */}
-              <div className="bg-white p-6 rounded-3xl space-y-4">
+              {/* Google Map Panel - Borderless & Shadowless */}
+              <div className="bg-slate-50 p-6 rounded-3xl space-y-4 border-0 shadow-none">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 font-normal text-[#0a2240] text-base uppercase tracking-wider">
                     <MapPin className="w-4.5 h-4.5 text-[#da8a24]" />
@@ -353,7 +369,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   </a>
                 </div>
 
-                <div className="w-full h-72 rounded-2xl overflow-hidden relative bg-slate-100">
+                <div className="w-full h-72 rounded-2xl overflow-hidden relative bg-slate-100 border-0 shadow-none">
                   <iframe
                     title="Truth Foundation Office Location"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.642940251147!2d80.2078603!3d13.1221764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5264ff9c5a15bd%3A0x429671d18bb76211!2s49%2C%20Venus%20Nagar%20Main%20Rd%2C%20Venus%20Nagar%2C%20Kolathur%2C%20Chennai%2C%20Tamil%20Nadu%20600099!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -367,11 +383,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                 </div>
               </div>
 
-              {/* Working Hours & Visit Info Card (Dark Navy #0a2240) */}
-              <div className="bg-[#0a2240] text-white p-6 sm:p-8 rounded-3xl space-y-5">
+              {/* Working Hours & Visit Info Card (Dark Navy #0a2240) - Borderless & Shadowless */}
+              <div className="bg-[#0a2240] text-white p-6 sm:p-8 rounded-3xl space-y-5 border-0 shadow-none">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-normal">
-                    <Clock className="w-6 h-6 text-[#0a2240]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#da8a24] text-white flex items-center justify-center font-normal">
+                    <Clock className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-xl sm:text-2xl font-normal text-white">Center Visit Hours</h3>
@@ -404,61 +420,224 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
 
 
-      {/* 8. SUPPORT A CAUSE / FINAL DONATION CTA SECTION (White Section) */}
-      <section className="py-10 sm:py-16 bg-white text-slate-900 relative">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12">
+      {/* 8. GIVE LOVE / MAKE AN IMMEDIATE IMPACT SECTION (Exact Reference Mockup Design) */}
+      <section className="pt-10 sm:pt-14 pb-0 bg-white text-slate-900 relative overflow-hidden">
+        
+        {/* Giant Faint Heart Watermark in Background (Right Side) */}
+        <div 
+          className="absolute -top-12 sm:-top-16 -right-16 sm:-right-8 lg:right-0 w-[55%] min-w-[340px] max-w-[850px] h-[120%] pointer-events-none select-none z-0"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-[#fdf7ee]/90">
+            <path d="M50 88.5 C20 62 4 44 4 27 C4 13.5 14.5 3 28 3 C36.5 3 44.5 7.5 50 14.5 C55.5 7.5 63.5 3 72 3 C85.5 3 96 13.5 96 27 C96 44 80 62 50 88.5 Z" />
+          </svg>
+        </div>
+
+        <div className="max-w-[1140px] mx-auto px-4 sm:px-8 lg:px-10 relative z-20 space-y-6 sm:space-y-8">
           
-          <div className="bg-[#0a2240] text-white rounded-3xl p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-2xl">
+          {/* Top Row: Left Header & Right Description + CTA */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
             
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
-              
-              {/* Left Column: Transparent Illustration (5 cols) */}
-              <div className="lg:col-span-5 flex items-center justify-center">
-                <div className="relative w-full max-w-[270px] sm:max-w-[310px] lg:max-w-[330px] flex items-center justify-center">
-                  {/* Subtle warm ambient backdrop glow */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#da8a24]/15 via-[#da8a24]/5 to-transparent rounded-full blur-2xl pointer-events-none transform -translate-y-2"></div>
-                  
-                  <img
-                    src={immediateImpactIllustration}
-                    alt="Support a Cause Truth Foundation - Make an Immediate Impact"
-                    className="relative z-10 w-full h-auto max-h-[250px] sm:max-h-[280px] lg:max-h-[300px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column: Heading & CTA Button (7 cols) */}
-              <div className="lg:col-span-7 space-y-3.5 sm:space-y-4">
-                <span className="text-[#da8a24] font-normal text-xs sm:text-sm uppercase tracking-widest block">
-                  MAKE AN IMMEDIATE IMPACT
+            {/* Top-Left: Truth Foundation Kicker & Give Love Title */}
+            <div className="lg:col-span-5 space-y-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 sm:w-8 h-1 sm:h-1.5 bg-[#da8a24] rounded-full" />
+                <span className="text-xs sm:text-sm font-bold text-[#071b34] tracking-wider uppercase">
+                  TRUTH FOUNDATION
                 </span>
-                <h2 className="text-2xl sm:text-4xl lg:text-[40px] font-normal text-white tracking-tight leading-tight">
-                  Support a Cause. <span className="text-[#da8a24]">Change a Life.</span>
-                </h2>
-                <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed">
-                  Every contribution directly provides warm nutritious meals, school textbooks, medical care, and dignity to orphaned children and elderly seniors across Chennai.
-                </p>
-
-                <div className="pt-1.5 flex flex-wrap items-center gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    onClick={() => {
-                      pixelTracker.trackDonateClick(500, 'Contact Final Support CTA');
-                      onOpenDonateModal(500);
-                    }}
-                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-8 py-3.5 sm:px-9 sm:py-4 rounded-2xl shadow-xl transition flex items-center gap-2.5 cursor-pointer text-base sm:text-lg uppercase tracking-wider min-h-[48px]"
-                  >
-                    <Heart className="w-5 h-5 fill-[#0a2240]" />
-                    <span>Donate Now</span>
-                  </motion.button>
-                </div>
               </div>
+              <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#071b34] tracking-tight leading-none">
+                Give Love
+              </h2>
+            </div>
 
+            {/* Top-Right: Description Paragraph & DONATE NOW Button */}
+            <div className="lg:col-span-7 space-y-3.5 lg:pl-4">
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-600 font-normal leading-relaxed max-w-xl">
+                Your support helps us create brighter futures, stronger communities, and lasting change. Together, we can make a real difference.
+              </p>
+
+              <div>
+                <motion.button
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => {
+                    pixelTracker.trackDonateClick(500, 'Give Love Section - Donate Now');
+                    onOpenDonateModal(500);
+                  }}
+                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all inline-flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Heart className="w-4.5 h-4.5 fill-white text-white shrink-0" />
+                  <span>DONATE NOW</span>
+                </motion.button>
+              </div>
             </div>
 
           </div>
 
+          {/* Middle Row: 4 Action Items (DONATE, VOLUNTEER, GET HELP, CONTACT US) Situated Cleanly Above Hands */}
+          <div className="grid grid-cols-4 gap-2 sm:gap-6 lg:gap-8 max-w-2xl sm:max-w-3xl mx-auto pt-4 sm:pt-6 pb-4 sm:pb-6">
+            
+            {/* 1. DONATE */}
+            <button
+              onClick={() => {
+                pixelTracker.trackDonateClick(500, 'Give Love - Donate Action');
+                onOpenDonateModal(500);
+              }}
+              className="flex flex-col items-center justify-center gap-2.5 sm:gap-3 p-1 sm:p-2 group cursor-pointer transition-all border-0 bg-transparent text-center"
+            >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center transition-transform group-hover:scale-110">
+                <svg viewBox="0 0 64 64" className="w-full h-full" fill="none">
+                  {/* Golden Heart */}
+                  <path
+                    d="M32 23 C28 17 21 17 19 22 C17 27 24 33 32 38 C40 33 47 27 45 22 C43 17 36 17 32 23 Z"
+                    fill="#da8a24"
+                    stroke="#da8a24"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                  {/* Navy Hand */}
+                  <path
+                    d="M16 41 L27 41 L34 45 L48 41 C51 40 53 43 51 46 L42 53 C40 54 37 55 34 55 L22 55 C18 55 16 52 16 48 Z"
+                    stroke="#071b34"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <span className="font-bold text-[#071b34] text-[10px] sm:text-xs md:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+                DONATE
+              </span>
+            </button>
+
+            {/* 2. VOLUNTEER */}
+            <button
+              onClick={() => {
+                pixelTracker.trackWhatsAppClick('Give Love - Volunteer Action');
+                const msg = encodeURIComponent('Hello Truth Foundation! I would love to volunteer and get involved.');
+                window.open(`https://wa.me/${contactInfo.whatsapp}?text=${msg}`, '_blank');
+              }}
+              className="flex flex-col items-center justify-center gap-2.5 sm:gap-3 p-1 sm:p-2 group cursor-pointer transition-all border-0 bg-transparent text-center"
+            >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center transition-transform group-hover:scale-110">
+                <svg viewBox="0 0 64 64" className="w-full h-full" fill="none">
+                  {/* Golden Heart over center person */}
+                  <path
+                    d="M32 17 C29 12 24 12 22.5 15.5 C21 19 26 23.5 32 27 C38 23.5 43 19 41.5 15.5 C40 12 35 12 32 17 Z"
+                    fill="#da8a24"
+                    stroke="#da8a24"
+                    strokeWidth="1.8"
+                    strokeLinejoin="round"
+                  />
+                  {/* Center Person */}
+                  <circle cx="32" cy="34" r="5" stroke="#071b34" strokeWidth="2.5" />
+                  <path d="M24 49 C24 43 28 41 32 41 C36 41 40 43 40 49" stroke="#071b34" strokeWidth="2.5" strokeLinecap="round" />
+                  {/* Left Person */}
+                  <circle cx="20" cy="37" r="4" stroke="#071b34" strokeWidth="2.2" />
+                  <path d="M14 50 C14 45 17 43 21 43" stroke="#071b34" strokeWidth="2.2" strokeLinecap="round" />
+                  {/* Right Person */}
+                  <circle cx="44" cy="37" r="4" stroke="#071b34" strokeWidth="2.2" />
+                  <path d="M43 43 C47 43 50 45 50 50" stroke="#071b34" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              </div>
+              <span className="font-bold text-[#071b34] text-[10px] sm:text-xs md:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+                VOLUNTEER
+              </span>
+            </button>
+
+            {/* 3. GET HELP */}
+            <a
+              href="tel:+919962294949"
+              className="flex flex-col items-center justify-center gap-2.5 sm:gap-3 p-1 sm:p-2 group cursor-pointer transition-all border-0 bg-transparent text-center"
+            >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center transition-transform group-hover:scale-110">
+                <svg viewBox="0 0 64 64" className="w-full h-full" fill="none">
+                  {/* Golden Heart */}
+                  <path
+                    d="M32 24 C28 18 21 18 19 23 C17 28 24 34 32 39 C40 34 47 28 45 23 C43 18 36 18 32 24 Z"
+                    fill="#da8a24"
+                    stroke="#da8a24"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                  {/* Left Cupped Hand */}
+                  <path
+                    d="M16 35 C16 43 23 52 30 52 C31 52 31 50 28 49 C22 47 19 41 19 36 L21 34"
+                    stroke="#071b34"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Right Cupped Hand */}
+                  <path
+                    d="M48 35 C48 43 41 52 34 52 C33 52 33 50 36 49 C42 47 45 41 45 36 L43 34"
+                    stroke="#071b34"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <span className="font-bold text-[#071b34] text-[10px] sm:text-xs md:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+                GET HELP
+              </span>
+            </a>
+
+            {/* 4. CONTACT US */}
+            <button
+              onClick={() => {
+                const formElem = document.getElementById('form-section');
+                if (formElem) {
+                  formElem.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="flex flex-col items-center justify-center gap-2.5 sm:gap-3 p-1 sm:p-2 group cursor-pointer transition-all border-0 bg-transparent text-center"
+            >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center transition-transform group-hover:scale-110">
+                <svg viewBox="0 0 64 64" className="w-full h-full" fill="none">
+                  {/* Envelope Body */}
+                  <path
+                    d="M16 30 L16 50 C16 52 18 54 20 54 L44 54 C46 54 48 52 48 50 L48 30"
+                    stroke="#071b34"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Envelope V Flap */}
+                  <path
+                    d="M16 30 L32 42 L48 30"
+                    stroke="#071b34"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Golden Heart emerging from envelope */}
+                  <path
+                    d="M32 23 C28 17 21 17 19 22 C17 27 24 33 32 38 C40 33 47 27 45 22 C43 17 36 17 32 23 Z"
+                    fill="#da8a24"
+                    stroke="#da8a24"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <span className="font-bold text-[#071b34] text-[10px] sm:text-xs md:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+                CONTACT US
+              </span>
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* Bottom Full-Bleed Hands Forming Heart Image (Reaches Both Screen Edges, Cleanly Below Icons With Zero Overlap) */}
+        <div className="relative w-full overflow-hidden leading-none z-10 pointer-events-none">
+          <img
+            src={giveLoveHandsHeart}
+            alt="Truth Foundation - Give Love"
+            className="w-full h-auto min-h-[140px] sm:min-h-[220px] md:min-h-[280px] lg:min-h-[340px] select-none pointer-events-none block mx-auto"
+          />
         </div>
       </section>
 
@@ -488,7 +667,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
             <button
               onClick={() => setIsSubmitted(false)}
-              className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal py-3.5 rounded-xl transition cursor-pointer text-sm uppercase tracking-wider"
+              className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal py-3.5 rounded-xl transition cursor-pointer text-sm uppercase tracking-wider"
             >
               Close Window
             </button>

@@ -248,7 +248,7 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
 
           {/* Right Header Trust Badge */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            <span className="text-xs text-slate-500 font-medium hidden sm:inline">Official Payment Partner:</span>
+            <span className="text-xs text-slate-500 font-medium hidden sm:inline">Secured by</span>
             <img
               src={razorpayLogo}
               alt="Razorpay"
@@ -325,9 +325,9 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
               <button
                 type="button"
                 onClick={handleLogoClick}
-                className="flex-1 py-3 px-4 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold rounded-xl text-sm transition flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="flex-1 py-3 px-4 bg-[#da8a24] hover:bg-[#c77a1e] text-white font-semibold rounded-xl text-sm transition flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-4 h-4 text-white" />
                 <span>Return to Home</span>
               </button>
             </div>
@@ -375,7 +375,7 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
                           }}
                           className={`py-2.5 sm:py-3 px-2 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all cursor-pointer text-center ${
                             isSelected
-                              ? 'bg-[#da8a24] border-[#da8a24] text-[#0a2240] shadow-sm scale-102'
+                              ? 'bg-[#da8a24] border-[#da8a24] text-white shadow-sm scale-102'
                               : 'bg-white border-slate-200/90 text-slate-800 hover:border-slate-300 hover:bg-slate-50 shadow-2xs'
                           }`}
                         >
@@ -501,18 +501,18 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className={`w-full h-12.5 sm:h-13 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-base sm:text-lg rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 uppercase tracking-wider ${
+                  className={`w-full h-12.5 sm:h-13 bg-[#da8a24] hover:bg-[#c77a1e] text-white font-semibold text-base sm:text-lg rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 uppercase tracking-wider ${
                     isProcessing ? 'opacity-70 cursor-wait' : ''
                   }`}
                 >
                   {isProcessing ? (
                     <>
-                      <RefreshCw className="w-4 h-4 animate-spin text-[#0a2240]" />
+                      <RefreshCw className="w-4 h-4 animate-spin text-white" />
                       <span>OPENING SECURE GATEWAY...</span>
                     </>
                   ) : (
                     <>
-                      <Lock className="w-4 h-4 fill-[#0a2240] text-[#0a2240] shrink-0" />
+                      <Lock className="w-4 h-4 fill-white text-white shrink-0" />
                       <span>DONATE ₹{activeAmount.toLocaleString()} NOW</span>
                     </>
                   )}
@@ -520,7 +520,7 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
 
                 {/* Trust indicator - Exact attached Razorpay logo for building trust */}
                 <div className="pt-1.5 flex items-center justify-center gap-2 sm:gap-2.5 text-slate-500 text-xs sm:text-sm">
-                  <span className="font-medium text-slate-600">Official Payment Partner:</span>
+                  <span className="font-medium text-slate-600">Secured by</span>
                   <img src={razorpayLogo} alt="Razorpay" className="h-6 sm:h-7 w-auto object-contain" />
                   <span className="hidden sm:inline text-slate-400 font-normal">• Instant UPI, Cards & NetBanking</span>
                 </div>
@@ -536,7 +536,7 @@ export const DonatePage: React.FC<DonatePageProps> = ({ initialAmount = 500, onC
       <footer className="py-2.5 sm:py-3 border-t border-amber-200/40 text-center text-xs text-slate-500 font-normal shrink-0">
         © {new Date().getFullYear()} Truth Foundation • Registered NGO. Developed with ❤️ by{' '}
         <a
-          href="https://zavyx.odoo.com/"
+          href="https://zavyx.in"
           target="_blank"
           rel="noopener noreferrer"
           className="text-[#0a2240] hover:text-[#da8a24] font-medium tracking-wide transition-colors"

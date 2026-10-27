@@ -188,7 +188,7 @@ async function seedDefaultSiteContent() {
   const aboutData = checkAbout.rows[0]?.content_json || {};
   if (!aboutData.programs || aboutData.programs.length === 0) {
     aboutData.hero_title = aboutData.hero_title || 'Our Story & Vision';
-    aboutData.hero_image_url = aboutData.hero_image_url || 'assets/images/about_page_hero_section_desktop_view.jpeg';
+    aboutData.hero_image_url = 'assets/images/truth_foundation_gate.jpg';
     aboutData.cta_image_url = aboutData.cta_image_url || 'assets/images/support_cause_girl_donate.png';
     aboutData.cta_title = aboutData.cta_title || 'Support a Cause. Change a Life.';
     aboutData.cta_subtitle = aboutData.cta_subtitle || 'Your contribution brings hope, education, nourishment, and care to children, elderly, and special-needs individuals across Tamil Nadu.';
@@ -198,9 +198,9 @@ async function seedDefaultSiteContent() {
         title: 'Redhills Orphanage Home',
         location: 'Redhills, Northern Chennai',
         tag: '15+ Years Active',
-        badge: '45 Children',
+        badge: '41 Children',
         image_url: 'assets/images/hero_redhills_orphanage.jpg',
-        description: 'Operating on an acre of land with separate dormitories, study halls, hygienic dining facilities, and playgrounds for 45 resident boys and girls.',
+        description: 'Operating on an acre of land with separate dormitories, study halls, hygienic dining facilities, and playgrounds for 41 resident boys and girls.',
         details: [
           'Separate dormitories & study rooms for boys & girls',
           '16 committed full-time & part-time caregivers',
@@ -213,9 +213,9 @@ async function seedDefaultSiteContent() {
         title: 'Old Age Day Care Center',
         location: 'Redhills Campus, Chennai',
         tag: 'Senior Care',
-        badge: '20 Destitute Seniors',
+        badge: '3 Destitute Seniors',
         image_url: 'assets/images/elderly_food_care_drive.jpg',
-        description: 'Providing food, shelter, daily essential medication, and loving care for 20 abandoned street elderly seniors in Redhills.',
+        description: 'Providing food, shelter, daily essential medication, and loving care for 3 abandoned street elderly people in Redhills.',
         details: [
           'Warm daily meals, snacks, and fruits',
           'Routine health screening and medication management',

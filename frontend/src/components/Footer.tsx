@@ -114,6 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                 </div>
 
                 <p className="text-slate-600 leading-relaxed font-normal text-sm pl-5">
+                  <span className="font-semibold text-[#0a2240] block">Truth Foundation Home</span>
                   #244, Mallima Nagar, Vilagadupakkam,<br />
                   Redhills, Chennai - 600052
                 </p>
@@ -143,6 +144,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                 </div>
 
                 <p className="text-slate-600 leading-relaxed font-normal text-sm pl-5">
+                  <span className="font-semibold text-[#0a2240] block">Truth Foundation Corporate Office</span>
                   #49, Venus Nagar Main Road,<br />
                   Kolathur, Chennai - 600099
                 </p>
@@ -198,7 +200,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
           <div>
             © {new Date().getFullYear()} Truth Foundation • Registered NGO. Developed with ❤️ by{' '}
             <a
-              href="https://zavyx.odoo.com/"
+              href="https://zavyx.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0a2240] hover:text-[#da8a24] font-medium tracking-wide transition-colors"

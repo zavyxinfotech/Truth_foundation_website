@@ -216,11 +216,11 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
                 pixelTracker.trackDonateClick(500, `Hero Primary Button - ${campaign.title}`);
                 onOpenDonateModal(500);
               }}
-              className="px-6 sm:px-8 py-3 sm:py-3.5 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-2xl transition cursor-pointer active:scale-98 uppercase tracking-wider relative z-20 whitespace-nowrap"
+              className="bg-[#da8a24] hover:bg-[#c77a1e] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-xl transition cursor-pointer active:scale-98 relative z-20 whitespace-nowrap"
             >
-              <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-[#0a2240] shrink-0" />
+              <Heart className="w-4.5 h-4.5 sm:w-5 sm:h-5 fill-white text-white shrink-0" />
               <span>Donate Now</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5] hidden sm:inline-block" />
+              <ArrowRight className="w-4.5 h-4.5 sm:w-5 sm:h-5 stroke-[2.5] hidden sm:inline-block" />
             </motion.button>
           </div>
         </div>

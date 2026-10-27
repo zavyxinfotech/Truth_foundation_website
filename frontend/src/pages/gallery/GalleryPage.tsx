@@ -32,8 +32,7 @@ import { fetchGalleryImages } from '../../utils/cmsApi';
 
 // Real Project Image Imports
 import childrenEatingMealsBg from '../../assets/images/children_eating_meals_background.jpg?w=1200&format=webp';
-import galleryHeroBgDesktop from '../../assets/images/Gallery_page_hero_section_desktop_view.jpeg';
-import galleryHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
+import galleryHeroBg from '../../assets/images/gallery_hero_children_gate.jpg';
 
 interface GalleryPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -117,16 +116,10 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       {/* 2. GALLERY HERO SECTION WITH BACKGROUND IMAGES */}
       <section className="pt-24 sm:pt-36 pb-12 sm:pb-20 bg-slate-950 text-white relative overflow-x-clip min-h-0 sm:min-h-[75vh] lg:min-h-screen flex items-center">
         
-        {/* Desktop Background Image (Hidden on Mobile) */}
+        {/* Hero Background Image (Children at Truth Home Gate) */}
         <div 
-          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-90"
-          style={{ backgroundImage: `url(${galleryHeroBgDesktop})` }}
-        />
-
-        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
-        <div 
-          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-90"
-          style={{ backgroundImage: `url(${galleryHeroBgMobile})` }}
+          className="absolute inset-0 w-full h-full bg-cover bg-center sm:bg-[center_top_15%] pointer-events-none opacity-90"
+          style={{ backgroundImage: `url(${galleryHeroBg})` }}
         />
 
         {/* Neutral Dark Gradient Overlay (No Blue Mask) */}
@@ -161,9 +154,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                     pixelTracker.trackDonateClick(500, 'Gallery Page Hero CTA');
                     onOpenDonateModal(500);
                   }}
-                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-5 sm:px-7 py-3.5 sm:py-4 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base uppercase tracking-wider min-h-[44px] sm:min-h-[48px] whitespace-nowrap"
+                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-xl transition flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
                 >
-                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-[#0a2240] shrink-0" />
+                  <Heart className="w-4.5 h-4.5 sm:w-5 sm:h-5 fill-white text-white shrink-0" />
                   <span>Support Our Cause</span>
                 </motion.button>
 
@@ -171,9 +164,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => onNavigate('contact')}
-                  className="bg-[#071b34] hover:bg-[#163863] text-white font-normal border border-[#da8a24]/50 px-5 sm:px-7 py-3.5 sm:py-4 rounded-2xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base min-h-[44px] sm:min-h-[48px] whitespace-nowrap"
+                  className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/50 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-md transition flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
                 >
-                  <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#da8a24] shrink-0" />
+                  <Users className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#da8a24] shrink-0" />
                   <span>Contact Our Team</span>
                 </motion.button>
               </div>
@@ -219,11 +212,11 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                     onClick={() => setSelectedCategory(cat.label)}
                     className={`px-4 py-2.5 rounded-lg text-sm sm:text-base font-normal transition-all cursor-pointer flex items-center gap-2 shrink-0 border-0 ${
                       isSelected
-                        ? 'bg-[#da8a24] text-[#0a2240]'
+                        ? 'bg-[#da8a24] text-white'
                         : 'bg-white text-[#0a2240] hover:bg-slate-100'
                     }`}
                   >
-                    <IconComponent className={`w-4 h-4 ${isSelected ? 'text-[#0a2240]' : 'text-[#da8a24]'}`} />
+                    <IconComponent className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-[#da8a24]'}`} />
                     <span>{cat.label === 'All' ? 'All Media' : cat.label}</span>
                   </button>
                 );
@@ -289,9 +282,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                             pixelTracker.trackDonateClick(donateAmount, `Gallery Card (${item.category})`);
                             onOpenDonateModal(donateAmount);
                           }}
-                          className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal text-xs sm:text-sm py-1.5 px-2 rounded-lg transition-all flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
+                          className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal text-xs sm:text-sm py-1.5 px-2 rounded-lg transition-all flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
                         >
-                          <Heart className="w-3.5 h-3.5 fill-[#0a2240]" />
+                          <Heart className="w-3.5 h-3.5 fill-white text-white" />
                           <span>Donate ₹{donateAmount}</span>
                         </button>
                       </div>
@@ -360,8 +353,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
             
             {/* Left End: Content */}
             <div className="max-w-2xl space-y-3 text-left">
-              <div className="w-9 h-9 rounded-xl bg-[#da8a24] text-[#0a2240] flex items-center justify-center font-normal shadow-none">
-                <Heart className="w-4.5 h-4.5 fill-[#0a2240]" />
+              <div className="w-9 h-9 rounded-xl bg-[#da8a24] text-white flex items-center justify-center font-normal shadow-none">
+                <Heart className="w-4.5 h-4.5 fill-white text-white" />
               </div>
               
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-white tracking-tight leading-snug">
@@ -382,9 +375,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   pixelTracker.trackDonateClick(500, 'Gallery Page Support CTA');
                   onOpenDonateModal(500);
                 }}
-                className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider w-full"
+                className="bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider w-full"
               >
-                <Heart className="w-4 h-4 fill-[#0a2240]" />
+                <Heart className="w-4 h-4 fill-white text-white" />
                 <span>Donate Now</span>
               </motion.button>
 
@@ -447,7 +440,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
               {/* Close button */}
               <button
                 onClick={() => setActiveStoryItem(null)}
-                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 bg-[#da8a24] text-[#0a2240] hover:bg-rose-600 hover:text-white p-2 sm:p-2.5 rounded-full border-0 shadow-lg transition-all transform hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 bg-[#da8a24] text-white hover:bg-rose-600 hover:text-white p-2 sm:p-2.5 rounded-full border-0 shadow-lg transition-all transform hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
@@ -472,7 +465,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 )}
 
                 {/* Category Label Overlay UPON the Image */}
-                <span className="absolute top-5 left-5 bg-[#da8a24] text-[#0a2240] font-semibold text-xs uppercase tracking-wider px-3 py-1 rounded-md shadow-md z-10">
+                <span className="absolute top-5 left-5 bg-[#da8a24] text-white font-semibold text-xs uppercase tracking-wider px-3 py-1 rounded-md shadow-md z-10">
                   {activeStoryItem.category}
                 </span>
               </div>
@@ -512,9 +505,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                       setActiveStoryItem(null);
                       onOpenDonateModal(500);
                     }}
-                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-6 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider active:scale-95"
+                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal px-6 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider active:scale-95"
                   >
-                    <Heart className="w-4 h-4 fill-[#0a2240] animate-pulse" />
+                    <Heart className="w-4 h-4 fill-white text-white animate-pulse" />
                     <span>Sponsor Meals for This Drive (₹500)</span>
                   </button>
                 </div>

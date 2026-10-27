@@ -216,7 +216,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
 
               {/* Top Row: Donor Avatar, Name, Location & Verified Check */}
               <div className="flex items-center gap-2.5 mb-2 pr-6">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-[#071b34] font-bold text-xs flex items-center justify-center shrink-0 shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm">
                   {initials}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -247,9 +247,9 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
               {/* Bottom Row: Interactive "Add your donation" CTA button */}
               <button
                 onClick={handleDonateClick}
-                className="w-full py-1.5 px-3 bg-gradient-to-r from-[#da8a24] to-[#f59e0b] hover:from-[#c77a1e] hover:to-[#da8a24] text-[#071b34] text-xs font-bold rounded-xl shadow-md transition active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer border-0"
+                className="w-full py-1.5 px-3 bg-gradient-to-r from-[#da8a24] to-[#f59e0b] hover:from-[#c77a1e] hover:to-[#da8a24] text-white text-xs font-bold rounded-xl shadow-md transition active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer border-0 uppercase tracking-wider"
               >
-                <Heart className="w-3.5 h-3.5 fill-[#071b34]" />
+                <Heart className="w-3.5 h-3.5 fill-white text-white" />
                 <span>{ctaText}</span>
               </button>
             </div>
@@ -260,7 +260,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
       {/* 1. Floating WhatsApp Button */}
       <button
         onClick={handleWhatsAppClick}
-        className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full shadow-xl flex items-center justify-center cursor-pointer border-2 border-white transition-transform active:scale-95 shrink-0"
+        className="w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-xl flex items-center justify-center cursor-pointer border-2 border-white transition-transform active:scale-95 shrink-0"
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
       >
@@ -274,11 +274,11 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
             pixelTracker.trackDonateClick(500, 'Floating Mobile Donate Button');
             onOpenDonateModal(500);
           }}
-          className="sm:hidden w-12 h-12 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] rounded-full shadow-xl flex items-center justify-center cursor-pointer border-2 border-white transition-transform active:scale-95 shrink-0"
+          className="sm:hidden w-12 h-12 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-full shadow-xl flex items-center justify-center cursor-pointer border-2 border-white transition-transform active:scale-95 shrink-0"
           title="Donate Now"
           aria-label="Donate Now"
         >
-          <Heart className="w-6 h-6 fill-[#0a2240]" />
+          <Heart className="w-6 h-6 fill-white text-white" />
         </button>
       )}
     </div>

@@ -313,7 +313,7 @@ export const Gallery: React.FC = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-[#da8a24] text-[#071b34] font-semibold'
+                    ? 'bg-[#da8a24] text-white font-semibold'
                     : 'text-slate-400 hover:text-white bg-slate-800/60'
                 }`}
               >
@@ -483,7 +483,7 @@ export const Gallery: React.FC = () => {
                 <button
                   type="submit"
                   disabled={updating}
-                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition disabled:opacity-50"
+                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition disabled:opacity-50"
                 >
                   {updating ? (
                     <>

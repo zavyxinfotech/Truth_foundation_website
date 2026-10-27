@@ -232,10 +232,10 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
                   type="button"
                   onClick={() => setFrequency('Monthly')}
                   className={`py-2.5 rounded-lg transition flex items-center justify-center gap-1.5 cursor-pointer ${
-                    frequency === 'Monthly' ? 'bg-amber-400 text-blue-950 shadow-sm font-semibold' : 'text-slate-600 hover:text-slate-900'
+                    frequency === 'Monthly' ? 'bg-amber-400 text-white shadow-sm font-semibold' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  <RefreshCw className="w-3.5 h-3.5 text-blue-950 animate-spin" style={{ animationDuration: '8s' }} />
+                  <RefreshCw className="w-3.5 h-3.5 text-white animate-spin" style={{ animationDuration: '8s' }} />
                   <span>Monthly Partner</span>
                   <span className="bg-blue-950 text-amber-300 text-[9px] px-1.5 py-0.5 rounded-full font-semibold uppercase">Save 80G</span>
                 </button>
@@ -314,9 +314,9 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
 
             <button
               onClick={() => setStep(2)}
-              className="w-full bg-amber-400 hover:bg-amber-300 text-blue-950 font-semibold py-4 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer active:scale-98 text-base uppercase tracking-wider"
+              className="w-full bg-amber-400 hover:bg-amber-300 text-white font-semibold py-4 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer active:scale-98 text-base uppercase tracking-wider"
             >
-              <Heart className="w-4 h-4 fill-blue-950" />
+              <Heart className="w-4 h-4 fill-white text-white" />
               <span>Donate Now</span>
             </button>
           </div>
@@ -423,7 +423,7 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
 
               <button
                 type="submit"
-                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-6 py-3 rounded-xl shadow-md transition flex items-center gap-2 text-xs cursor-pointer"
+                className="bg-amber-500 hover:bg-amber-400 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition flex items-center gap-2 text-xs cursor-pointer"
               >
                 <span>Proceed to Razorpay</span>
                 <ArrowRight className="w-4 h-4" />
@@ -613,7 +613,7 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
               </button>
               <button
                 onClick={onClose}
-                className="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold py-3 rounded-xl text-xs cursor-pointer"
+                className="flex-1 bg-amber-500 hover:bg-amber-400 text-white font-semibold py-3 rounded-xl text-xs cursor-pointer"
               >
                 Close & Return
               </button>

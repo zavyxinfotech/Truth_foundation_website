@@ -129,7 +129,7 @@ export const Settings: React.FC<SettingsProps> = ({ user }) => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-white font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-sm"
           >
             {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
             <span>Update Password</span>

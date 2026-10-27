@@ -6,12 +6,12 @@ const FEATURES = [
   {
     icon: Home,
     title: 'Redhills Orphanage Home',
-    description: 'Campus in rural Redhills Chennai with separate dormitories, study halls, and playgrounds for 45 boys & girls.',
+    description: 'Campus in rural Redhills Chennai with separate dormitories, study halls, and playgrounds for 41 boys & girls.',
   },
   {
     icon: HeartHandshake,
     title: 'Old Age Day Care Center',
-    description: 'Providing food, shelter, regular medicine, and loving care for 20 abandoned street elderly seniors in Redhills.',
+    description: 'Providing food, shelter, regular medicine, and loving care for 3 abandoned street elderly people in Redhills.',
   },
   {
     icon: GraduationCap,
@@ -114,7 +114,7 @@ export const AboutSection: React.FC = () => {
                 >
                   <div className="space-y-2.5">
                     <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
-                      isActive ? 'bg-[#da8a24] text-[#0a2240]' : 'bg-[#0a2240] border border-[#163863] text-[#da8a24]'
+                      isActive ? 'bg-[#da8a24] text-white' : 'bg-[#0a2240] border border-[#163863] text-[#da8a24]'
                     }`}>
                       <feature.icon className="w-5 h-5" />
                     </div>

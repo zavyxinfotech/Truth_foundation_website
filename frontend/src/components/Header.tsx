@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { Heart, Menu, X as CloseIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { pixelTracker } from '../utils/pixelTracker';
-import { WhatsAppIcon } from './WhatsAppIcon';
 import truthLogo from '../assets/images/truth_foundation_logo_1785562616008.jpg?w=128&format=webp';
 
 export type PageType = 'home' | 'about' | 'gallery' | 'contact' | 'donate';
@@ -33,12 +32,6 @@ export const Header: React.FC<HeaderProps> = ({
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleWhatsAppClick = () => {
-    pixelTracker.trackWhatsAppClick('Header WhatsApp Button');
-    const msg = encodeURIComponent(`Hello Truth Foundation! I am interested in donating meals or volunteering.`);
-    window.open(`https://wa.me/919962294949?text=${msg}`, '_blank');
-  };
 
   const navLinks: { label: string; page: PageType }[] = [
     { label: 'Home', page: 'home' },
@@ -129,20 +122,6 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Right Side: Action Buttons */}
         <div className="flex flex-row items-center justify-end gap-1.5 sm:gap-3 shrink-0">
 
-          {/* WhatsApp button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={handleWhatsAppClick}
-            className="hidden sm:flex items-center justify-center gap-1.5 sm:gap-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium shadow-sm cursor-pointer transition-all shrink-0
-              w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2.5 lg:px-4.5 lg:py-2.5 text-xs sm:text-sm"
-            title="Chat on WhatsApp"
-            aria-label="Chat on WhatsApp"
-          >
-            <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
-            <span className="hidden sm:inline font-medium">WhatsApp</span>
-          </motion.button>
-
           {/* Donate Now button (Hidden on mobile, visible on sm and up) - ENLARGED */}
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -151,12 +130,12 @@ export const Header: React.FC<HeaderProps> = ({
               pixelTracker.trackDonateClick(500, 'Header Donate Button');
               onOpenDonateModal(500);
             }}
-            className="hidden sm:flex items-center justify-center gap-2 sm:gap-2.5 bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] rounded-xl font-semibold shadow-md cursor-pointer transition-all shrink-0 uppercase tracking-wider
+            className="hidden sm:flex items-center justify-center gap-2 sm:gap-2.5 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl font-semibold shadow-md cursor-pointer transition-all shrink-0 uppercase tracking-wider
               px-5 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-3.5 text-sm sm:text-base lg:text-lg"
             aria-label="Donate Now"
           >
-            <Heart className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 fill-[#0a2240] shrink-0 animate-pulse" />
-            <span className="inline font-semibold">Donate</span>
+            <Heart className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 fill-white text-white shrink-0 animate-pulse" />
+            <span className="inline font-semibold">Donate Now</span>
           </motion.button>
 
           {/* Mobile & Tablet Menu Toggle Button (Visible below lg) */}
@@ -217,12 +196,12 @@ export const Header: React.FC<HeaderProps> = ({
                           onClick={() => handleNavClick(link.page)}
                           className={`w-full text-left px-4 py-3.5 rounded-xl text-base sm:text-lg font-normal transition-all cursor-pointer flex items-center justify-between border-0 ${
                             isActive
-                              ? 'bg-[#da8a24] text-[#0a2240]'
+                              ? 'bg-[#da8a24] text-white'
                               : 'text-slate-200 hover:bg-[#0a2240] hover:text-white'
                           }`}
                         >
                           <span className="font-normal">{link.label}</span>
-                          {isActive && <div className="w-2 h-2 rounded-full bg-[#0a2240]" />}
+                          {isActive && <div className="w-2 h-2 rounded-full bg-white" />}
                         </button>
                       );
                     })}

@@ -85,12 +85,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => handleNavClick(item.id)}
                 className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#da8a24] text-[#071b34] shadow-sm font-semibold'
+                    ? 'bg-[#da8a24] text-white shadow-sm font-semibold'
                     : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#071b34]' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
                 </div>
                 {item.badge && (

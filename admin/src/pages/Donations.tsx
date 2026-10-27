@@ -146,7 +146,7 @@ export const Donations: React.FC = () => {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-sm"
+            className="flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-white text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-sm"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>Record Donation</span>
@@ -174,7 +174,7 @@ export const Donations: React.FC = () => {
               onClick={() => setFrequencyFilter(tab)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer whitespace-nowrap ${
                 frequencyFilter === tab
-                  ? 'bg-[#da8a24] text-[#071b34] font-semibold'
+                  ? 'bg-[#da8a24] text-white font-semibold'
                   : 'text-slate-400 hover:text-white bg-slate-900/60'
               }`}
             >
@@ -383,7 +383,7 @@ export const Donations: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-5 py-2 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] text-xs font-bold transition flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-xl bg-[#da8a24] hover:bg-[#c77a1e] text-white text-xs font-bold transition flex items-center gap-1.5"
                 >
                   {submitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                   <span>Save Record</span>

@@ -156,7 +156,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
           {/* Left Arrow */}
           <button
             onClick={() => goPrev()}
-            className="absolute left-1 sm:left-4 md:left-7 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#0a2240]/90 hover:bg-[#da8a24] text-white hover:text-[#0a2240] border border-[#da8a24]/50 shadow-xl flex items-center justify-center transition-all cursor-pointer active:scale-95"
+            className="absolute left-1 sm:left-4 md:left-7 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#0a2240]/90 hover:bg-[#da8a24] text-white hover:text-white border border-[#da8a24]/50 shadow-xl flex items-center justify-center transition-all cursor-pointer active:scale-95"
             aria-label="Previous"
           >
             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -165,7 +165,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
           {/* Right Arrow */}
           <button
             onClick={() => goNext()}
-            className="absolute right-1 sm:right-4 md:right-7 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#0a2240]/90 hover:bg-[#da8a24] text-white hover:text-[#0a2240] border border-[#da8a24]/50 shadow-xl flex items-center justify-center transition-all cursor-pointer active:scale-95"
+            className="absolute right-1 sm:right-4 md:right-7 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#0a2240]/90 hover:bg-[#da8a24] text-white hover:text-white border border-[#da8a24]/50 shadow-xl flex items-center justify-center transition-all cursor-pointer active:scale-95"
             aria-label="Next"
           >
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -238,7 +238,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
                     <span
                       className={`text-[9px] sm:text-[11px] font-semibold uppercase tracking-widest px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full flex items-center gap-1 sm:gap-1.5 shadow-md
                         ${isCenter
-                          ? 'bg-[#da8a24] text-[#0a2240]'
+                          ? 'bg-[#da8a24] text-white'
                           : 'bg-white/15 backdrop-blur-sm text-white border border-white/25'
                         }`}
                     >
@@ -312,7 +312,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
                     setIsModalOpen(false);
                     setIsRunning(true);
                   }}
-                  className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-50 bg-[#da8a24] text-[#0a2240] hover:bg-rose-600 hover:text-white p-2.5 sm:p-3 rounded-full border-2 border-white shadow-2xl transition-all transform hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center"
+                  className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-50 bg-[#da8a24] text-white hover:bg-rose-600 hover:text-white p-2.5 sm:p-3 rounded-full border-2 border-white shadow-2xl transition-all transform hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center"
                   aria-label="Close modal"
                 >
                   <X className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
@@ -342,7 +342,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
                   <div className="space-y-3.5 pr-1 sm:pr-2">
                     {/* Badges row */}
                     <div className="flex flex-wrap items-center gap-2 text-xs pt-1">
-                      <span className="bg-[#da8a24] text-[#0a2240] font-semibold px-3 py-1 rounded-full uppercase tracking-wider text-[10px] flex items-center gap-1">
+                      <span className="bg-[#da8a24] text-white font-semibold px-3 py-1 rounded-full uppercase tracking-wider text-[10px] flex items-center gap-1">
                         <Sparkles className="w-3 h-3" />{activeItem.category}
                       </span>
                       <span className="text-slate-200 flex items-center gap-1 bg-[#0a2240] px-3 py-1 rounded-full border border-[#163863]">
@@ -383,9 +383,9 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
                         setIsRunning(true);
                         if (onOpenDonateModal) onOpenDonateModal(500);
                       }}
-                      className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-6 py-3.5 rounded-2xl shadow-xl transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider"
+                      className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-semibold px-6 py-3.5 rounded-2xl shadow-xl transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider"
                     >
-                      <Heart className="w-4 h-4 fill-[#0a2240] animate-pulse" />
+                      <Heart className="w-4 h-4 fill-white text-white animate-pulse" />
                       <span>Sponsor Meals for This Drive (₹500)</span>
                     </button>
                   </div>

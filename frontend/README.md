@@ -144,4 +144,4 @@ The first hero slide is the LCP element; `plugins/lcp-preload.ts` injects a resp
 
 ## 👨‍💻 Credits
 
-Developed with ❤️ by **ZAVYX InfoTech** — [https://zavyx.odoo.com/](https://zavyx.odoo.com/)
+Developed with ❤️ by **ZAVYX InfoTech** — [https://zavyx.in](https://zavyx.in)

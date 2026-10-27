@@ -120,8 +120,8 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
 
                   {/* Desktop Hover Only: Shows Donate Button */}
                   <div className="absolute bottom-2.5 inset-x-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-xs sm:text-sm py-2.5 px-3 rounded-xl uppercase tracking-wider">
-                      <Heart className="w-4 h-4 fill-[#0a2240]" />
+                    <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-semibold text-xs sm:text-sm py-2.5 px-3 rounded-xl uppercase tracking-wider">
+                      <Heart className="w-4 h-4 fill-white text-white" />
                       <span>Donate</span>
                     </span>
                   </div>

@@ -38,7 +38,7 @@ export const DEFAULT_MONTHLY_GIVING: MonthlyGivingOptions = {
 export const CURRENT_CAMPAIGN: Campaign = {
   id: 'truth-foundation-drive',
   title: 'Truth Foundation Comprehensive Care Drive',
-  subtitle: 'Your support empowers 45 orphaned children, 20 abandoned elders, 23 special-needs children, and 346 tuition students.',
+  subtitle: 'Your support empowers 41 orphaned children, 3 abandoned elders, 23 special-needs children, and 346 tuition students.',
   tagline: 'Public Charitable Trust (Est. 5th July 2010)',
   heroImage: heroChildLongingMeal,
   targetMeals: 100000,
@@ -55,7 +55,7 @@ export const FUTURE_CAMPAIGNS: Campaign[] = [
   {
     id: 'orphanage-home-redhills',
     title: 'Redhills Orphanage & Child Care',
-    subtitle: 'Provide food, shelter, dormitories, education, and love to 45 resident boys and girls in Redhills.',
+    subtitle: 'Provide food, shelter, dormitories, education, and love to 41 resident boys and girls in Redhills.',
     tagline: 'Our Campus in Redhills, Chennai',
     heroImage: heroRedhillsOrphanage,
     targetMeals: 50000,
@@ -64,7 +64,7 @@ export const FUTURE_CAMPAIGNS: Campaign[] = [
     minAmount: 500,
     suggestedAmounts: [500, 1000, 2500, 5000, 10000],
     badge: '15+ Years Orphanage Home',
-    description: 'Our Redhills campus features separate dormitories, study halls, playgrounds, and dining facilities for 45 children managed by 16 committed staff members.',
+    description: 'Our Redhills campus features separate dormitories, study halls, playgrounds, and dining facilities for 41 children managed by 16 committed staff members.',
     monthlyOptions: DEFAULT_MONTHLY_GIVING
   },
   {
@@ -90,7 +90,7 @@ export const FUTURE_CAMPAIGNS: Campaign[] = [
   {
     id: 'old-age-care-center',
     title: 'Old Age Home & Senior Care Center',
-    subtitle: 'Nourishment, shelter, daily medication, and dignity for 20 abandoned street seniors in Redhills.',
+    subtitle: 'Nourishment, shelter, daily medication, and dignity for 3 abandoned street elderly people in Redhills.',
     tagline: 'Care for Abandoned Elders',
     heroImage: elderlyFoodCareDrive,
     targetMeals: 40000,
@@ -99,7 +99,7 @@ export const FUTURE_CAMPAIGNS: Campaign[] = [
     minAmount: 500,
     suggestedAmounts: [500, 1500, 3000, 7500],
     badge: 'Senior Day Care & Shelter',
-    description: 'Providing food, shelter, periodic medical checkups, and loving care to 20 elderly citizens left destitute on streets by family members.',
+    description: 'Providing food, shelter, periodic medical checkups, and loving care to 3 elderly citizens left destitute on streets by family members.',
     monthlyOptions: DEFAULT_MONTHLY_GIVING
   },
   {
@@ -156,12 +156,12 @@ export const FAQS: FAQItem[] = [
   {
     category: 'Centers & Locations',
     question: 'Where are Truth Foundation centers and projects located?',
-    answer: 'Our Orphanage Home (for 45 boys & girls) and Old Age Home (for 20 elders) operate on an acre of land in rural Redhills, Northern Chennai (#244 Mallima Nagar, Vilagadupakkam). Our rural education initiatives support children across Thiruvallur District with dedicated educational materials and transport. Our 8 Evening Tuition Centers serve 346 children across Vyasarpadi, Pulianthope, Surapattu, Periyapalem, Vichoor, Perungavoor, Athipattu, and Thirumullaivoyal.'
+    answer: 'Our Orphanage Home (for 41 boys & girls) and Old Age Home (for 3 elders) operate on an acre of land in rural Redhills, Northern Chennai (#244 Mallima Nagar, Vilagadupakkam). Our rural education initiatives support children across Thiruvallur District with dedicated educational materials and transport. Our 8 Evening Tuition Centers serve 346 children across Vyasarpadi, Pulianthope, Surapattu, Periyapalem, Vichoor, Perungavoor, Athipattu, and Thirumullaivoyal.'
   },
   {
     category: 'Donations & Utilization',
     question: 'Where does my donation go?',
-    answer: '100% of your donation directly supports 45 orphaned children, 20 abandoned elders, rural students, and 346 evening tuition children. Funds cover fresh grain, cooked meals, school supplies (bags, notebooks, pens), hygiene kits (soap, shampoo, toothbrush, footwear), medical care, and van transportation.'
+    answer: '100% of your donation directly supports 41 orphaned children, 3 abandoned elders, rural students, and 346 evening tuition children. Funds cover fresh grain, cooked meals, school supplies (bags, notebooks, pens), hygiene kits (soap, shampoo, toothbrush, footwear), medical care, and van transportation.'
   },
   {
     category: 'Security & Receipts',
@@ -242,10 +242,10 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image: servingMealsImg,
     location: 'Redhills, Northern Chennai',
     date: 'Est. 15+ Years (Active)',
-    description: 'Dedicated campus on an acre of land providing separate dormitories, study halls, playgrounds, and nutritious dining for 45 boys and girls.',
+    description: 'Dedicated campus on an acre of land providing separate dormitories, study halls, playgrounds, and nutritious dining for 41 boys and girls.',
     quote: '“Let decisions of the people be based on values of social justice, equality, truth, freedom and dignity.”',
     aspectRatio: 'tall',
-    impactStat: { label: 'Residents', value: '45 Children' },
+    impactStat: { label: 'Residents', value: '41 Children' },
     beneficiaries: '16 Staff Members',
     readTime: '3 min read',
     storyDetails: 'Functioning for over 15 years in rural Redhills, Chennai, TRUTH FOUNDATION operates on about an acre of land equipped with separate dormitories, hygienic bathrooms, dining halls, and playgrounds for boys and girls. Cared for by 16 committed full-time and part-time staff members, the orphanage is sustained through compassionate philanthropists.'

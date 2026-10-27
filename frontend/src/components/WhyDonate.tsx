@@ -124,8 +124,8 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
                   {/* Top Centered Circular Icon Badge */}
                   <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-300 shrink-0 ${
                     isActive 
-                      ? 'bg-[#da8a24] text-[#0a2240] scale-105' 
-                      : 'bg-[#0a2240] text-[#da8a24] group-hover:bg-[#da8a24] group-hover:text-[#0a2240]'
+                      ? 'bg-[#da8a24] text-white scale-105' 
+                      : 'bg-[#0a2240] text-[#da8a24] group-hover:bg-[#da8a24] group-hover:text-white'
                   }`}>
                     <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>

@@ -505,7 +505,7 @@ export const ContentManager: React.FC = () => {
           onClick={() => setActiveTab('hero')}
           className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'hero'
-              ? 'bg-[#da8a24] text-[#071b34] shadow-md'
+              ? 'bg-[#da8a24] text-white shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
@@ -520,7 +520,7 @@ export const ContentManager: React.FC = () => {
           onClick={() => setActiveTab('about')}
           className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'about'
-              ? 'bg-[#da8a24] text-[#071b34] shadow-md'
+              ? 'bg-[#da8a24] text-white shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
@@ -532,7 +532,7 @@ export const ContentManager: React.FC = () => {
           onClick={() => setActiveTab('gallery')}
           className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'gallery'
-              ? 'bg-[#da8a24] text-[#071b34] shadow-md'
+              ? 'bg-[#da8a24] text-white shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
@@ -544,7 +544,7 @@ export const ContentManager: React.FC = () => {
           onClick={() => setActiveTab('contact')}
           className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'contact'
-              ? 'bg-[#da8a24] text-[#071b34] shadow-md'
+              ? 'bg-[#da8a24] text-white shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
@@ -556,7 +556,7 @@ export const ContentManager: React.FC = () => {
           onClick={() => setActiveTab('popups')}
           className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer ${
             activeTab === 'popups'
-              ? 'bg-[#da8a24] text-[#071b34] shadow-md'
+              ? 'bg-[#da8a24] text-white shadow-md'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
           }`}
         >
@@ -580,7 +580,7 @@ export const ContentManager: React.FC = () => {
             </div>
             <button
               onClick={handleOpenAddSlide}
-              className="flex items-center justify-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs sm:text-sm font-bold shadow-md transition shrink-0 cursor-pointer w-full sm:w-auto"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs sm:text-sm font-bold shadow-md transition shrink-0 cursor-pointer w-full sm:w-auto"
             >
               <Plus className="w-4 h-4 stroke-[2.5]" />
               <span>Add New Slide</span>
@@ -605,7 +605,7 @@ export const ContentManager: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#071b34] via-black/30 to-transparent" />
                     <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                       {slide.tag && (
-                        <span className="px-2 py-0.5 text-[10px] font-bold rounded-md bg-[#da8a24] text-[#071b34]">
+                        <span className="px-2 py-0.5 text-[10px] font-bold rounded-md bg-[#da8a24] text-white">
                           {slide.tag}
                         </span>
                       )}
@@ -736,7 +736,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('home_stats', updatedStats);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Metrics</span>
@@ -800,7 +800,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('about_page', updatedAbout);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Banner Details</span>
@@ -817,7 +817,7 @@ export const ContentManager: React.FC = () => {
               </div>
               <button
                 onClick={handleOpenAddProgram}
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold shadow-md transition w-full sm:w-auto shrink-0 cursor-pointer"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold shadow-md transition w-full sm:w-auto shrink-0 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Program</span>
@@ -839,7 +839,7 @@ export const ContentManager: React.FC = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#071b34] via-transparent to-transparent" />
                       {prog.tag && (
-                        <span className="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-bold rounded-md bg-[#da8a24] text-[#071b34]">
+                        <span className="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-bold rounded-md bg-[#da8a24] text-white">
                           {prog.tag}
                         </span>
                       )}
@@ -915,7 +915,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('about_page', updatedAbout);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Mission & Vision</span>
@@ -988,7 +988,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('about_page', updatedAbout);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition"
               >
                 <Save className="w-4 h-4" />
                 <span>Save CTA Card</span>
@@ -1041,7 +1041,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('gallery_page', updatedGallery);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Gallery Banner</span>
@@ -1180,7 +1180,7 @@ export const ContentManager: React.FC = () => {
                   };
                   saveSection('contact_page', updatedContact);
                 }}
-                className="flex items-center gap-2 px-5 py-2.5 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Contact Details</span>
@@ -1211,7 +1211,7 @@ export const ContentManager: React.FC = () => {
               <div className="flex items-center gap-3 shrink-0">
                 <button
                   onClick={handleOpenAddPopup}
-                  className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition cursor-pointer shadow-md"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition cursor-pointer shadow-md"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add Donor Message</span>
@@ -1470,7 +1470,7 @@ export const ContentManager: React.FC = () => {
                 <button
                   type="submit"
                   disabled={uploadingImage}
-                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition disabled:opacity-50"
+                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition disabled:opacity-50"
                 >
                   {uploadingImage ? (
                     <>
@@ -1620,7 +1620,7 @@ export const ContentManager: React.FC = () => {
                 <button
                   type="submit"
                   disabled={uploadingImage}
-                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition disabled:opacity-50"
+                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition disabled:opacity-50"
                 >
                   {uploadingImage ? (
                     <>
@@ -1752,7 +1752,7 @@ export const ContentManager: React.FC = () => {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-[#071b34] rounded-xl text-xs font-bold transition disabled:opacity-50 cursor-pointer"
+                  className="flex items-center gap-2 px-5 py-2 bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-xl text-xs font-bold transition disabled:opacity-50 cursor-pointer"
                 >
                   <Save className="w-4 h-4" />
                   <span>Save Message</span>

@@ -23,7 +23,8 @@ import {
   Compass,
   Utensils,
   Shirt,
-  Stethoscope
+  Stethoscope,
+  Package
 } from 'lucide-react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -33,8 +34,8 @@ import { pixelTracker } from '../../utils/pixelTracker';
 import { fetchSiteContent } from '../../utils/cmsApi';
 
 // Real Project Image Imports
-import aboutHeroBgDesktop from '../../assets/images/about_page_hero_section_desktop_view.jpeg';
-import aboutHeroBgMobile from '../../assets/images/Gallery_page_hero_background_img_mobile_view.jpeg';
+import aboutHeroBgDesktop from '../../assets/images/truth_foundation_gate.jpg';
+import aboutHeroBgMobile from '../../assets/images/truth_foundation_gate.jpg';
 import ctaImage from '../../assets/images/trust_section_organic_meal.jpg?w=800&format=webp';
 import charityCauseIllustration from '../../assets/images/charity_cause_illustration.png';
 
@@ -52,7 +53,7 @@ import sponsorDinnerImg from '../../images/sponsor_dinner.jpg?w=600&format=webp'
 import sponsorEducationImg from '../../images/sponsor_education.jpg?w=600&format=webp';
 import sponsorHealthcareImg from '../../images/sponsor_medical.jpg?w=600&format=webp';
 import sponsorClothingImg from '../../images/sponsor_clothing.jpg?w=600&format=webp';
-import supportCauseGirlImg from '../../assets/images/support_cause_girl_donate.png';
+import supportCauseChildImg from '../../assets/images/about_support_cause_child.png';
 
 interface AboutPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -61,8 +62,8 @@ interface AboutPageProps {
 
 const STATS_CARDS = [
   { label: 'Years of Service', value: '14+', subtitle: 'Est. 5th July 2010', icon: Calendar, iconBg: 'bg-amber-500/15 text-amber-600' },
-  { label: 'Orphanage Children', value: '45', subtitle: 'Resident Boys & Girls', icon: Home, iconBg: 'bg-emerald-500/15 text-emerald-600' },
-  { label: 'Elderly Seniors', value: '20', subtitle: 'Day Care & Shelter', icon: HeartHandshake, iconBg: 'bg-rose-500/15 text-rose-600' },
+  { label: 'Orphanage Children', value: '41', subtitle: 'Resident Boys & Girls', icon: Home, iconBg: 'bg-emerald-500/15 text-emerald-600' },
+  { label: 'Elderly Seniors', value: '3', subtitle: 'Day Care & Shelter', icon: HeartHandshake, iconBg: 'bg-rose-500/15 text-rose-600' },
   { label: 'Special Needs Kids', value: '23', subtitle: 'Free Van Transportation', icon: GraduationCap, iconBg: 'bg-blue-500/15 text-blue-600' },
   { label: 'Tuition Students', value: '346', subtitle: 'Across 8 Centers', icon: BookOpen, iconBg: 'bg-indigo-500/15 text-indigo-600' }
 ];
@@ -74,7 +75,7 @@ const PROGRAMS = [
     location: 'Redhills, Northern Chennai',
     tag: '15+ Years Active',
     image: heroRedhillsOrphanage,
-    description: 'Operating on an acre of land with separate dormitories, study halls, hygienic dining facilities, and playgrounds for 45 resident boys and girls.',
+    description: 'Operating on an acre of land with separate dormitories, study halls, hygienic dining facilities, and playgrounds for 41 resident boys and girls.',
     details: [
       'Separate dormitories & study rooms for boys & girls',
       '16 committed full-time & part-time caregivers',
@@ -88,7 +89,7 @@ const PROGRAMS = [
     location: 'Redhills Campus, Chennai',
     tag: 'Senior Care',
     image: elderlyFoodCareDrive,
-    description: 'Providing food, shelter, daily essential medication, and loving care for 20 abandoned street elderly seniors in Redhills.',
+    description: 'Providing food, shelter, daily essential medication, and loving care for 3 abandoned street elderly people in Redhills.',
     details: [
       'Free wholesome daily meals & evening tea',
       'Periodic medical camps & prescription drugs',
@@ -135,12 +136,12 @@ const JOURNEY_MILESTONES = [
   {
     year: '2012',
     title: 'Redhills Orphanage Home',
-    desc: 'Established 1-acre campus providing dormitories, dining, and healthcare for 45 resident boys and girls.'
+    desc: 'Established 1-acre campus providing dormitories, dining, and healthcare for 41 resident boys and girls.'
   },
   {
     year: '2015',
     title: 'Old Age Senior Care Center',
-    desc: 'Opened dedicated day care and shelter providing food and medication for 20 abandoned street elders.'
+    desc: 'Opened dedicated day care and shelter providing food and medication for 3 abandoned street elderly people.'
   },
   {
     year: '2018',
@@ -188,7 +189,7 @@ const SPONSOR_CAUSES = [
     amountLabel: '₹8,000',
     image: sponsorLunchImg,
     icon: Utensils,
-    description: 'Sponsor protein-rich hot lunches for 45 orphanage kids and 20 abandoned seniors at our Redhills campus.'
+    description: 'Sponsor protein-rich hot lunches for 41 orphanage kids and 3 elderly people at our Redhills campus.'
   },
   {
     id: 'cause-healthcare',
@@ -373,9 +374,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     pixelTracker.trackDonateClick(500, 'About Page Hero CTA');
                     onOpenDonateModal(500);
                   }}
-                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold px-4 sm:px-7 py-3.5 sm:py-4 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base uppercase tracking-wider min-h-[44px] sm:min-h-[48px] whitespace-nowrap"
+                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-xl transition flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
                 >
-                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-[#0a2240] shrink-0" />
+                  <Heart className="w-4.5 h-4.5 sm:w-5 sm:h-5 fill-white text-white shrink-0" />
                   <span>Support Our Cause</span>
                 </motion.button>
 
@@ -383,9 +384,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => onNavigate('contact')}
-                  className="bg-[#071b34] hover:bg-[#163863] text-white font-semibold border border-[#da8a24]/50 px-4 sm:px-7 py-3.5 sm:py-4 rounded-2xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base min-h-[44px] sm:min-h-[48px] whitespace-nowrap"
+                  className="bg-[#071b34] hover:bg-[#163863] text-white border border-[#da8a24]/50 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl min-h-[48px] sm:min-h-[52px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-md transition flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
                 >
-                  <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#da8a24] shrink-0" />
+                  <Users className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#da8a24] shrink-0" />
                   <span>Contact Our Team</span>
                 </motion.button>
               </div>
@@ -535,7 +536,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   TRUTH FOUNDATION is a volunteer public charitable trust doing dedicated service for orphan, semi-orphan, and destitute children since 2010.
                 </p>
                 <p>
-                  We support 45+ resident children and 20+ seniors with nutritious food, education, clothing, medical care, and shelter. Over 150+ children have benefited, with many graduating and standing on their own feet.
+                  We support 41 resident children and 3 elderly people with nutritious food, education, clothing, medical care, and shelter. Over 150+ children have benefited, with many graduating and standing on their own feet.
                 </p>
                 <p>
                   Operating on a 1-acre campus at Redhills, Chennai, our facilities include separate dormitories, dining halls, prayer halls, study halls, and a special needs school.
@@ -633,8 +634,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  {/* Gold Circle Badge with Dark Navy Icon */}
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#da8a24] border-2 border-[#071b34] text-[#071b34] flex items-center justify-center font-semibold shrink-0 shadow-md">
+                  {/* Gold Circle Badge with White Icon */}
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#da8a24] border-2 border-white text-white flex items-center justify-center font-semibold shrink-0 shadow-md">
                     <Compass className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
                   </div>
                   <span className="text-lg sm:text-xl font-semibold tracking-tight text-white">
@@ -675,7 +676,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               <button
                 type="button"
                 onClick={() => setOpenPillar(openPillar === 'mission' ? null : 'mission')}
-                className={`w-full bg-[#da8a24] text-[#071b34] p-3.5 sm:p-4 px-5 sm:px-7 flex items-center justify-between cursor-pointer transition-all duration-300 ${
+                className={`w-full bg-[#da8a24] text-white p-3.5 sm:p-4 px-5 sm:px-7 flex items-center justify-between cursor-pointer transition-all duration-300 ${
                   openPillar === 'mission' ? 'rounded-t-[28px] rounded-b-none' : 'rounded-l-full rounded-r-2xl sm:rounded-r-3xl'
                 }`}
               >
@@ -684,12 +685,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-[#da8a24] flex items-center justify-center font-semibold shrink-0 shadow-md">
                     <Heart className="w-5 h-5 sm:w-6 sm:h-6 fill-[#da8a24]" />
                   </div>
-                  <span className="text-lg sm:text-xl font-semibold tracking-tight text-[#071b34]">
+                  <span className="text-lg sm:text-xl font-semibold tracking-tight text-white">
                     Our Mission
                   </span>
                 </div>
                 <ChevronDown
-                  className={`w-5 h-5 sm:w-6 sm:h-6 text-[#071b34] transition-transform duration-300 ${
+                  className={`w-5 h-5 sm:w-6 sm:h-6 text-white transition-transform duration-300 ${
                     openPillar === 'mission' ? 'rotate-180' : ''
                   }`}
                 />
@@ -703,12 +704,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
-                    <div className="bg-[#da8a24] text-[#071b34] p-6 sm:p-8 rounded-b-[28px] border-t border-[#071b34]/20 space-y-4">
-                      <p className="text-base sm:text-lg text-[#071b34]/90 leading-relaxed font-medium">
+                    <div className="bg-[#da8a24] text-white p-6 sm:p-8 rounded-b-[28px] border-t border-white/20 space-y-4">
+                      <p className="text-base sm:text-lg text-white/95 leading-relaxed font-medium">
                         {aboutContent?.mission || 'Empowering rural communities through free education, evening tuition centers, specialized therapy for children with disabilities, shelter and food for abandoned seniors, and health awareness campaigns.'}
                       </p>
-                      <div className="pt-3 border-t border-[#071b34]/20 text-xs sm:text-sm text-[#071b34] font-semibold flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#071b34]" />
+                      <div className="pt-3 border-t border-white/20 text-xs sm:text-sm text-white font-semibold flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-white" />
                         <span>Grassroots Social Transformation</span>
                       </div>
                     </div>
@@ -821,7 +822,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 type="button"
                 onClick={handleNextProgram}
                 aria-label="Next Program"
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#da8a24] text-[#071b34] hover:bg-white transition-all flex items-center justify-center shadow-md cursor-pointer"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#da8a24] text-white hover:bg-white hover:text-[#da8a24] transition-all flex items-center justify-center shadow-md cursor-pointer"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -1023,7 +1024,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 className="flex flex-col p-4 sm:p-5 bg-[#f8fafc] hover:bg-[#0a2240] rounded-2xl border-0 shadow-none space-y-2.5 cursor-pointer transition-all duration-300 group"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#0a2240] text-[#da8a24] group-hover:bg-[#da8a24] group-hover:text-[#0a2240] flex items-center justify-center font-semibold transition-colors duration-300">
+                <div className="w-12 h-12 rounded-2xl bg-[#0a2240] text-[#da8a24] group-hover:bg-[#da8a24] group-hover:text-white flex items-center justify-center font-semibold transition-colors duration-300">
                   <cred.icon className="w-6 h-6" />
                 </div>
                 <div>
@@ -1132,8 +1133,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
                     {/* Desktop Hover Only: Shows Donate Button */}
                     <div className="absolute bottom-2.5 inset-x-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-semibold text-xs sm:text-sm py-2.5 px-3 rounded-xl uppercase tracking-wider">
-                        <Heart className="w-4 h-4 fill-[#0a2240]" />
+                      <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-semibold text-xs sm:text-sm py-2.5 px-3 rounded-xl uppercase tracking-wider">
+                        <Heart className="w-4 h-4 fill-white text-white" />
                         <span>Donate</span>
                       </span>
                     </div>
@@ -1199,91 +1200,143 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         </div>
       </section>
 
-      {/* 12. FINAL SUPPORT A CAUSE / DONATE CTA */}
-      <section className="py-4 sm:py-6 bg-[#f8fafc] text-white relative overflow-hidden">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+      {/* 12. FINAL SUPPORT A CAUSE / DONATE CTA (Seamless, No Card Border, No Shadow, Matching Site Color Theme & Font) */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Main Fluid Banner Container - No Card Border, No Shadow, Compact Height */}
-          <div className="relative bg-[#071b34] rounded-2xl sm:rounded-3xl overflow-hidden border-0 shadow-none p-5 sm:p-7 lg:p-8">
+          {/* Top Grid: Circular Composition on Left, Content on Right (No Card Border, No Shadow) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             
-            {/* Ambient Gold Glows */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#da8a24]/10 rounded-full blur-3xl pointer-events-none" />
+            {/* Left Column: Overlapping Circle Photo Composition without covering center */}
+            <div className="lg:col-span-6 relative flex items-center justify-center py-2 sm:py-4">
+              <div className="relative w-[280px] h-[280px] xs:w-[320px] xs:h-[320px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[390px] mx-auto flex items-center justify-center">
+                
+                {/* Decorative Halftone / Dot Grid Cluster (Top-Left) */}
+                <div className="absolute -top-2 left-0 sm:left-4 w-36 h-36 sm:w-48 sm:h-48 opacity-30 pointer-events-none z-0">
+                  <svg viewBox="0 0 200 200" className="w-full h-full text-slate-300 fill-current">
+                    {Array.from({ length: 8 }).map((_, r) =>
+                      Array.from({ length: 8 }).map((_, c) => {
+                        const dist = Math.hypot(r - 2, c - 2);
+                        if (dist > 4.2) return null;
+                        return (
+                          <circle
+                            key={`${r}-${c}`}
+                            cx={18 + c * 23}
+                            cy={18 + r * 23}
+                            r={dist < 2 ? 3 : 2}
+                          />
+                        );
+                      })
+                    )}
+                  </svg>
+                </div>
 
-            {/* Top Grid: Transparent Cutout Image on Left, Content on Right */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
-              
-              {/* Left Column: Transparent Cutout Image of Girl with Donate Box */}
-              <div className="md:col-span-5 relative flex items-center justify-center">
-                <div className="relative w-full max-w-[300px] sm:max-w-[340px] md:max-w-[320px] lg:max-w-[380px] h-[210px] sm:h-[240px] md:h-[250px] lg:h-[280px] flex items-center justify-center bg-transparent">
+                {/* Decorative Solid Gold Dot (Left) */}
+                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#da8a24] absolute top-16 sm:top-20 -left-1 sm:left-2 z-20 shadow-sm" />
+
+                {/* Decorative Hollow Gold Ring (Top-Right) */}
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-[#da8a24]/80 absolute top-2 right-10 sm:right-16 z-0" />
+
+                {/* Decorative Small Gold Dot (Bottom-Right) */}
+                <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-[#da8a24] absolute bottom-5 sm:bottom-6 right-16 sm:right-28 z-20" />
+
+                {/* Secondary Circle: Elderly Care (Top-Right, overlapping behind) */}
+                <div className="absolute top-2 sm:top-4 lg:top-6 right-0 sm:right-2 lg:right-4 w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 sm:border-4 border-white shadow-lg z-10 bg-slate-100">
                   <img
-                    src={supportCauseGirlImg}
-                    alt="Support a Cause. Change a Life. - Truth Foundation"
-                    className="w-full h-full object-contain object-center filter drop-shadow-2xl"
+                    src={elderlyFoodCareDrive}
+                    alt="Truth Foundation Elderly Care"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
-              </div>
 
-              {/* Right Column: Non-bold Enlarged Title, Subtitle & Donate Button */}
-              <div className="md:col-span-7 space-y-3 text-left">
-                
-                {/* Heading: Non-bold & Enlarged */}
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-tight leading-tight">
-                  Support a Cause. <span className="text-[#da8a24] font-normal">Change a Life.</span>
-                </h2>
-
-                {/* Subtitle Paragraph: Non-bold & Enlarged */}
-                <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed max-w-xl">
-                  Your contribution brings hope, education, nourishment, and care to children, elderly, and special-needs individuals across Tamil Nadu.
-                </p>
-
-                {/* Golden Pill Donate Button: Non-bold */}
-                <div className="pt-1">
-                  <motion.button
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    onClick={() => {
-                      pixelTracker.trackDonateClick(500, 'About Page Final CTA');
-                      onOpenDonateModal(500);
-                    }}
-                    className="bg-[#da8a24] hover:bg-[#c77a1e] text-[#0a2240] font-normal px-7 py-2.5 rounded-full shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer text-sm sm:text-base uppercase tracking-wider min-h-[42px]"
-                  >
-                    <Heart className="w-4.5 h-4.5 fill-[#0a2240]" />
-                    <span>Donate Now</span>
-                  </motion.button>
+                {/* Primary Center Circle: Child (Large, Prominent, Center) */}
+                <div className="w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 sm:border-[6px] border-white shadow-2xl relative z-20 bg-slate-100 ring-1 ring-slate-100/60">
+                  <img
+                    src={supportCauseChildImg}
+                    alt="Support a Cause. Change a Life. - Truth Foundation"
+                    className="w-full h-full object-cover object-[50%_35%]"
+                  />
                 </div>
 
-              </div>
-
-            </div>
-
-            {/* Bottom Trust Credentials Strip (No Divider Lines, No Icon Background Colors, Non-bold & Enlarged Text) */}
-            <div className="mt-5 sm:mt-6 pt-3 relative z-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 text-slate-200">
-                
-                <div className="flex items-center gap-2 md:justify-center px-1">
-                  <Lock className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                  <span className="text-xs sm:text-sm font-normal leading-tight">Safe & Secure Donations</span>
-                </div>
-
-                <div className="flex items-center gap-2 md:justify-center px-1">
-                  <Camera className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                  <span className="text-xs sm:text-sm font-normal leading-tight">Direct Impact Delivery</span>
-                </div>
-
-                <div className="flex items-center gap-2 md:justify-center px-1">
-                  <ShieldCheck className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                  <span className="text-xs sm:text-sm font-normal leading-tight">80G Tax Exemption</span>
-                </div>
-
-                <div className="flex items-center gap-2 md:justify-center px-1">
-                  <Award className="w-4.5 h-4.5 text-[#da8a24] shrink-0" />
-                  <span className="text-xs sm:text-sm font-normal leading-tight">Trusted by Communities</span>
+                {/* Secondary Circle: Orphanage Children (Bottom-Left, overlapping in front) */}
+                <div className="absolute bottom-1 sm:bottom-2 lg:bottom-3 left-0 sm:left-2 lg:left-4 w-16 h-16 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 sm:border-4 border-white shadow-xl z-30 bg-slate-100">
+                  <img
+                    src={heroRedhillsOrphanage}
+                    alt="Truth Foundation Orphanage Children"
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
 
               </div>
             </div>
 
+            {/* Right Column: Title, Subtitle, & Brand Yellow Donate Button */}
+            <div className="lg:col-span-6 space-y-4 sm:space-y-5 text-center lg:text-left">
+              
+              {/* Category Tag matching other sections */}
+              <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
+                SUPPORT A CAUSE
+              </span>
+
+              {/* Heading using standard sans font-family and brand navy color */}
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0a2240] tracking-tight leading-tight">
+                Support a Cause. <span className="text-[#da8a24] block sm:inline lg:block">Change a Life.</span>
+              </h2>
+
+              {/* Subtitle Paragraph */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-600 font-normal leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Your contribution brings hope, education, nourishment, and care to children, elderly, and special-needs individuals across Tamil Nadu.
+              </p>
+
+              {/* Brand Yellow Donate Button matching other sections */}
+              <div className="pt-2 sm:pt-3">
+                <motion.button
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => {
+                    pixelTracker.trackDonateClick(500, 'About Page Final CTA');
+                    onOpenDonateModal(500);
+                  }}
+                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-white font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2.5 cursor-pointer text-sm sm:text-base uppercase tracking-wider min-h-[46px]"
+                >
+                  <Heart className="w-5 h-5 fill-white text-white" />
+                  <span>DONATE NOW</span>
+                </motion.button>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Bottom Trust Credentials Strip with Vertical Dividers */}
+          <div className="border-t border-slate-200 mt-10 sm:mt-14 pt-8 sm:pt-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-0 items-center">
+              
+              {/* Item 1 */}
+              <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5 md:border-r border-slate-200/80">
+                <Lock className="w-5 h-5 text-[#da8a24] shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">Safe & Secure Donations</span>
+              </div>
+
+              {/* Item 2 */}
+              <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5 md:border-r border-slate-200/80">
+                <Package className="w-5 h-5 text-[#da8a24] shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">Direct Impact Delivery</span>
+              </div>
+
+              {/* Item 3 */}
+              <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5 md:border-r border-slate-200/80">
+                <ShieldCheck className="w-5 h-5 text-[#da8a24] shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">80G Tax Exemption</span>
+              </div>
+
+              {/* Item 4 */}
+              <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5">
+                <Users className="w-5 h-5 text-[#da8a24] shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">Trusted by Communities</span>
+              </div>
+
+            </div>
           </div>
 
         </div>
