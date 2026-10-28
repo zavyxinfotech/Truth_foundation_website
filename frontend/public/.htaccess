@@ -4,9 +4,11 @@ DirectoryIndex index.php index.html
   RewriteEngine On
   RewriteBase /
 
-  # 1. DO NOT rewrite /api requests to SPA index.html - let cPanel execute PHP /api scripts!
+  # 1. DO NOT rewrite /api or /admin requests to SPA index.html
   RewriteCond %{REQUEST_URI} ^/api [NC,OR]
-  RewriteCond %{REQUEST_URI} ^/api/ [NC]
+  RewriteCond %{REQUEST_URI} ^/api/ [NC,OR]
+  RewriteCond %{REQUEST_URI} ^/admin [NC,OR]
+  RewriteCond %{REQUEST_URI} ^/admin/ [NC]
   RewriteRule ^ - [L]
 
   # 2. React SPA single-page routing for all static page routes
