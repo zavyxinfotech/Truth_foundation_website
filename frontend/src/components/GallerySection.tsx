@@ -132,7 +132,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenDonateModa
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: false, amount: 0.15 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3 mb-4 sm:mb-8"
         >

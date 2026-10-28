@@ -30,10 +30,10 @@ const DEFAULT_HERO_SLIDES = [
     imageUrl: null as string | null,
     label: 'Orphanage Home for Children',
     tag: 'Our Campus',
-    badge: '45 Resident Boys & Girls',
+    badge: '41 Resident Boys & Girls',
     title: 'Orphanage Home for Children.',
     tagline: 'Dormitories, Study Halls & Playgrounds in Rural Communities',
-    subtitle: 'Managed by 16 committed staff members, providing full shelter, nutrition, healthcare, and education to 45 orphaned children.',
+    subtitle: 'Managed by 16 committed staff members, providing full shelter, nutrition, healthcare, and education to 41 orphaned children.',
   },
   {
     picture: heroSpecialNeedsCare,

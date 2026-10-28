@@ -1,85 +1,57 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { HeartHandshake, Home, GraduationCap, BookOpen } from 'lucide-react';
+import React from 'react';
+import { HeartHandshake, GraduationCap, Award, Users } from 'lucide-react';
 import { motion } from 'motion/react';
+import { AnimatedCounter } from './AnimatedCounter';
 
-const FEATURES = [
+const COUNTABLE_STATS = [
   {
-    icon: Home,
-    title: 'Redhills Orphanage Home',
-    description: 'Campus in rural Redhills Chennai with separate dormitories, study halls, and playgrounds for 41 boys & girls.',
+    icon: Award,
+    value: 15,
+    suffix: '+',
+    label: 'Years of Dedicated Service',
+    description: 'Serving underprivileged rural communities with trust, dignity, and care since 5th July 2010.',
+  },
+  {
+    icon: Users,
+    value: 41,
+    suffix: '',
+    label: 'Orphaned Children Supported',
+    description: 'Providing loving shelter, nutrition, healthcare, and education to 41 boys & girls at Redhills Home.',
   },
   {
     icon: HeartHandshake,
-    title: 'Old Age Day Care Center',
-    description: 'Providing food, shelter, regular medicine, and loving care for 3 abandoned street elderly people in Redhills.',
+    value: 3,
+    suffix: '',
+    label: 'Elderly People Cared For',
+    description: 'Offering food, medical care, shelter, and companionship to 3 abandoned street elderly seniors.',
   },
   {
     icon: GraduationCap,
-    title: 'Rural Education Support',
-    description: 'Educational assistance, learning materials, and doorstep transport for rural children across Thiruvallur.',
-  },
-  {
-    icon: BookOpen,
-    title: '346 Tuition Students',
-    description: 'Free evening tuition across 8 centers in Chennai & Thiruvallur with free food, backpacks, textbooks & hygiene supplies.',
+    value: 346,
+    suffix: '+',
+    label: 'Rural Students Educated',
+    description: 'Free evening tuition, school bags, textbooks, and nutrition across 8 rural learning centers.',
   },
 ];
 
 export const AboutSection: React.FC = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const scrollToCard = (index: number) => {
-    setActiveIndex(index);
-    const container = scrollContainerRef.current;
-    if (!container) return;
-    const cardElement = container.children[index] as HTMLElement;
-    if (cardElement) {
-      const cardOffsetLeft = cardElement.offsetLeft;
-      const cardWidth = cardElement.offsetWidth;
-      const containerWidth = container.offsetWidth;
-      const targetScroll = cardOffsetLeft - (containerWidth / 2) + (cardWidth / 2);
-
-      container.scrollTo({
-        left: Math.max(0, targetScroll),
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  // Automatic horizontal step-scroll timer
-  useEffect(() => {
-    if (isPaused) return;
-
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => {
-        const nextIdx = (prev + 1) % FEATURES.length;
-        scrollToCard(nextIdx);
-        return nextIdx;
-      });
-    }, 3200);
-
-    return () => clearInterval(timer);
-  }, [isPaused]);
-
   return (
-    <section id="about" className="py-6 sm:py-10 bg-[#0a2240] text-white relative overflow-hidden">
+    <section id="about" className="py-8 sm:py-12 bg-[#0a2240] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Section Header: Aligned in a Single Line on Desktop */}
+        {/* Top Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.15 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="max-w-4xl space-y-2 mb-5 sm:mb-8"
+          className="max-w-4xl space-y-2 mb-8 sm:mb-10 text-left"
         >
           <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
             About Truth Foundation
           </span>
-          <h2 className="text-[18px] xs:text-[22px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-semibold text-white tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
-            <span className="text-[#da8a24]">TRUTH FOUNDATION</span> (Public Charitable Trust)
+          <h2 className="text-[18px] xs:text-[22px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-semibold tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
+            <span className="text-white">TRUTH FOUNDATION</span> <span className="text-[#da8a24]">(Public Charitable Trust)</span>
           </h2>
 
           <p className="text-xs sm:text-base lg:text-[16px] text-slate-300 leading-relaxed font-normal">
@@ -87,68 +59,41 @@ export const AboutSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Responsive 4-Card Showcase: 1-col scroll on mobile, 2x2 grid on tablet, 4-col on desktop */}
-        <div className="relative py-1">
-          <div
-            ref={scrollContainerRef}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-4 overflow-x-auto md:overflow-x-visible py-3 px-1 sm:px-2 scrollbar-none snap-x snap-mandatory scroll-smooth items-stretch justify-start w-full"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {FEATURES.map((feature, idx) => {
-              const isActive = activeIndex === idx;
-              return (
-                <motion.div
-                  key={idx}
-                  onClick={() => scrollToCard(idx)}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.15 }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className={`w-[82vw] max-w-[280px] sm:w-[310px] md:w-full md:max-w-none shrink-0 md:shrink snap-center rounded-2xl p-5 sm:p-6 bg-[#071b34] border transition-all duration-300 transform-gpu cursor-pointer space-y-3 flex flex-col justify-between group ${
-                    isActive
-                      ? 'border-[#da8a24]/80 z-20'
-                      : 'border-[#163863]/60 hover:border-[#da8a24]/60 z-10'
-                  }`}
-                >
-                  <div className="space-y-2.5">
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
-                      isActive ? 'bg-[#da8a24] text-white' : 'bg-[#0a2240] border border-[#163863] text-[#da8a24]'
-                    }`}>
-                      <feature.icon className="w-5 h-5" />
-                    </div>
+        {/* Countable Contents Grid (No Card Borders, No Shadows, Clean Typography) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pt-2 pb-4">
+          {COUNTABLE_STATS.map((stat, idx) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: 'easeOut' }}
+                className="flex flex-col items-start space-y-2.5 p-0 bg-transparent border-0 shadow-none text-left"
+              >
+                {/* Icon Badge */}
+                <div className="w-12 h-12 rounded-xl bg-[#da8a24]/10 text-[#da8a24] flex items-center justify-center shrink-0 border-0 shadow-none">
+                  <Icon className="w-6 h-6 text-[#da8a24]" />
+                </div>
 
-                    {/* Card Title: Non-bold Font */}
-                    <h3 className="font-normal text-white text-base sm:text-lg lg:text-xl tracking-tight group-hover:text-[#da8a24] transition-colors leading-snug">
-                      {feature.title}
-                    </h3>
+                {/* Big Countable Number */}
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#da8a24] tracking-tight">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} repeatOnScroll={true} />
+                </div>
 
-                    {/* Card Description: Non-bold Font */}
-                    <p className="text-xs sm:text-sm text-slate-300 group-hover:text-white leading-relaxed font-normal">
-                      {feature.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                {/* Stat Title */}
+                <h3 className="font-semibold text-white text-base sm:text-lg tracking-tight leading-snug">
+                  {stat.label}
+                </h3>
 
-          {/* Pagination Indicators on Mobile only */}
-          <div className="flex md:hidden items-center justify-center pt-3">
-            <div className="flex items-center gap-2 px-3 py-1 bg-[#071b34] rounded-full border border-[#163863]">
-              {FEATURES.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => scrollToCard(i)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === i ? 'w-6 bg-[#da8a24]' : 'w-2 bg-slate-600 hover:bg-slate-500'
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+                {/* Stat Description */}
+                <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                  {stat.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>

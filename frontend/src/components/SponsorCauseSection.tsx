@@ -36,7 +36,7 @@ export const SPONSOR_CAUSES = [
     amountLabel: '₹8,000',
     image: sponsorLunchImg,
     icon: Utensils,
-    description: 'Sponsor protein-rich hot lunches for 45 orphanage kids and 20 abandoned seniors at our Redhills campus.'
+    description: 'Sponsor protein-rich hot lunches for 41 orphanage kids and 3 abandoned seniors at our Redhills campus.'
   },
   {
     id: 'cause-healthcare',
@@ -77,7 +77,13 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-4 sm:space-y-6 relative z-10">
         
         {/* Header: Left Aligned Single Line */}
-        <div className="text-left max-w-4xl space-y-1">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="text-left max-w-4xl space-y-1"
+        >
           <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
             SPONSOR A CAUSE
           </span>
@@ -87,13 +93,17 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
           <p className="text-xs sm:text-base lg:text-[16px] text-slate-600 font-normal leading-relaxed">
             Your support helps us provide nutrition, education, healthcare, and care for children, elderly, and special-needs individuals.
           </p>
-        </div>
+        </motion.div>
 
         {/* Desktop Display: 6 Cause Items Grid (Hover shows Donate button) */}
         <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-2.5 lg:gap-3">
-          {SPONSOR_CAUSES.map((cause) => (
+          {SPONSOR_CAUSES.map((cause, idx) => (
             <motion.div
               key={cause.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
               whileHover={{ y: -4 }}
               onClick={() => {
                 pixelTracker.trackDonateClick(cause.amount, `Sponsor Cause - ${cause.title}`);
@@ -110,10 +120,10 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                     className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
                   />
                   
-                  {/* Glassmorphism Price Header Above Image with Bigger & Bolder Price */}
+                  {/* Glassmorphism Price Header Above Image with White Price */}
                   <div className="absolute top-2.5 inset-x-2.5 px-3 py-1.5 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
                     <span className="text-xs text-slate-300 font-normal">Cause</span>
-                    <span className="text-base sm:text-lg font-bold text-[#da8a24] tracking-tight">
+                    <span className="text-base sm:text-lg font-bold text-white tracking-tight">
                       {cause.amountLabel}
                     </span>
                   </div>
@@ -163,10 +173,10 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                       className="w-full h-full object-cover object-center"
                     />
                     
-                    {/* Glassmorphism Price Header Above Image */}
+                    {/* Glassmorphism Price Header Above Image with White Price */}
                     <div className="absolute top-2 inset-x-2 px-2.5 py-1 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
                       <span className="text-[10px] text-slate-300 font-normal">Cause</span>
-                      <span className="text-sm font-bold text-[#da8a24] tracking-tight">
+                      <span className="text-sm font-bold text-white tracking-tight">
                         {cause.amountLabel}
                       </span>
                     </div>

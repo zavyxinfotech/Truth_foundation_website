@@ -234,7 +234,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-7 space-y-8"
             >
@@ -347,7 +347,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               id="map-section"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-5 space-y-6"
             >

@@ -6,18 +6,20 @@ interface AnimatedCounterProps {
   suffix?: string;
   duration?: number; // duration in ms
   className?: string;
+  repeatOnScroll?: boolean;
 }
 
 export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   value,
   prefix = '',
   suffix = '',
-  duration = 2000,
+  duration = 1800,
   className = '',
+  repeatOnScroll = true,
 }) => {
   const [displayValue, setDisplayValue] = useState<string>('0');
-  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
   const elementRef = useRef<HTMLSpanElement>(null);
+  const animFrameRef = useRef<number | null>(null);
 
   // Parse target number and suffix if raw string passed like "58,400+" or "1.2M+"
   let numericTarget = 0;
@@ -44,9 +46,9 @@ export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
           let startTime: number | null = null;
           const startVal = 0;
 
@@ -65,7 +67,7 @@ export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
             }
 
             if (progress < 1) {
-              requestAnimationFrame(step);
+              animFrameRef.current = requestAnimationFrame(step);
             } else {
               if (numericTarget >= 1000) {
                 setDisplayValue(numericTarget.toLocaleString('en-IN'));
@@ -75,18 +77,24 @@ export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
             }
           };
 
-          requestAnimationFrame(step);
+          animFrameRef.current = requestAnimationFrame(step);
+        } else if (repeatOnScroll) {
+          if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+          setDisplayValue('0');
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     if (elementRef.current) {
       observer.observe(elementRef.current);
     }
 
-    return () => observer.disconnect();
-  }, [numericTarget, duration, hasAnimated]);
+    return () => {
+      observer.disconnect();
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    };
+  }, [numericTarget, duration, repeatOnScroll]);
 
   return (
     <span ref={elementRef} className={className}>
