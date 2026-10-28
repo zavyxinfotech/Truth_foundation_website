@@ -23,6 +23,23 @@ import img179Tuition from '../assets/images/img179.jpeg?w=400;800&format=webp;jp
 import img212Volunteer from '../assets/images/img212.jpeg?w=400;800&format=webp;jpg&as=picture';
 import img299Medical from '../assets/images/img299.jpg?w=400;800&format=webp;jpg&as=picture';
 
+export const LOCAL_GALLERY_IMAGE_MAP: Record<string, any> = {
+  img56: img56Meal,
+  img101: img101Meal,
+  img137: img137Meal,
+  img155: servingMealsImg,
+  img170: img170Tuition,
+  img179: img179Tuition,
+  img188: img188Birthday,
+  img191: culturalFestivalImg,
+  img212: img212Volunteer,
+  img236: img236Birthday,
+  img293: HealthCampsImg,
+  img299: covidCampsImg,
+  img125: schoolKitsImg,
+  img71: happyChildrenMealsImg,
+};
+
 export const DEFAULT_MONTHLY_GIVING: MonthlyGivingOptions = {
   enabled: true,
   suggestedAmounts: [300, 500, 1000, 2500],

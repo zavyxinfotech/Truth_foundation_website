@@ -27,7 +27,7 @@ import { Footer } from '../../components/Footer';
 import { FloatingWhatsApp } from '../../components/FloatingWhatsApp';
 import { Picture } from '../../components/Picture';
 import { DarkToLightDivider, LightToDarkDivider } from '../../components/SectionDividers';
-import { GALLERY_ITEMS } from '../../data/campaignData';
+import { GALLERY_ITEMS, LOCAL_GALLERY_IMAGE_MAP } from '../../data/campaignData';
 import { GalleryItem } from '../../types';
 import { pixelTracker } from '../../utils/pixelTracker';
 import { fetchGalleryImages } from '../../utils/cmsApi';
@@ -117,6 +117,27 @@ const DEFAULT_VIDEO_ITEMS = [
   }
 ];
 
+function resolveGalleryImage(url: string | any, title?: string): any {
+  if (!url) return null;
+  if (typeof url !== 'string') return url;
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+
+  // Match key from LOCAL_GALLERY_IMAGE_MAP
+  for (const [key, pic] of Object.entries(LOCAL_GALLERY_IMAGE_MAP)) {
+    if (url.includes(key)) {
+      return pic;
+    }
+  }
+
+  // Match title in GALLERY_ITEMS
+  if (title) {
+    const matched = GALLERY_ITEMS.find((it) => it.title?.trim().toLowerCase() === title.trim().toLowerCase());
+    if (matched?.image) return matched.image;
+  }
+
+  return url;
+}
+
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeStoryItem, setActiveStoryItem] = useState<any | null>(null);
@@ -129,15 +150,21 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
         const dynamicItems = dbImgs.map((img) => {
           const isVideo = img.category === 'Videos' || img.image_url?.endsWith('.mp4') || img.image_url?.includes('/video/upload/');
           const localFallback = img.image_url?.includes('video_3') ? video3 : img.image_url?.includes('video_4') ? video4 : null;
+          
+          let resolvedImage: any = img.image_url;
+          if (isVideo) {
+            resolvedImage = img.image_url.includes('/video/upload/')
+              ? img.image_url.replace('/video/upload/', '/video/upload/so_2,w_800,c_fill,q_auto,f_jpg/')
+              : (localFallback || img.image_url);
+          } else {
+            resolvedImage = resolveGalleryImage(img.image_url, img.title);
+          }
+
           return {
             id: `db_${img.id}`,
             title: img.title || 'Truth Foundation Community Work',
             category: img.category,
-            image: isVideo
-              ? (img.image_url.includes('/video/upload/')
-                  ? img.image_url.replace('/video/upload/', '/video/upload/so_2,w_800,c_fill,q_auto,f_jpg/')
-                  : (localFallback || img.image_url))
-              : img.image_url,
+            image: resolvedImage,
             videoUrl: isVideo ? img.image_url : null,
             localFallbackUrl: localFallback,
             isVideo,
@@ -339,7 +366,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                     <div className="relative aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-t-2xl">
                       {typeof item.image === 'string' ? (
                         <img
-                          src={item.image.startsWith('http') ? item.image : `/src/${item.image.replace(/^\/?/, '')}`}
+                          src={item.image}
                           alt={item.title}
                           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
@@ -595,7 +622,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   </div>
                 ) : typeof activeStoryItem.image === 'string' ? (
                   <img
-                    src={activeStoryItem.image.startsWith('http') ? activeStoryItem.image : `/src/${activeStoryItem.image.replace(/^\/?/, '')}`}
+                    src={activeStoryItem.image}
                     alt={activeStoryItem.title}
                     className="w-full h-full max-h-[32vh] sm:max-h-[42vh] lg:max-h-[75vh] object-cover rounded-xl shadow-lg"
                   />
