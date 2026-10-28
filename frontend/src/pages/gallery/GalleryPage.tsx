@@ -35,6 +35,7 @@ import { fetchGalleryImages } from '../../utils/cmsApi';
 // Real Project Media Imports
 import childrenEatingMealsBg from '../../assets/images/children_eating_meals_background.jpg?w=1200&format=webp';
 import galleryHeroBg from '../../assets/images/gallery_hero_children_gate.jpg';
+import giveLoveHandsHeart from '../../assets/images/give_love_hands_heart.png';
 import video3 from '../../assets/videos/video3.mp4';
 import video4 from '../../assets/videos/video4.mp4';
 
@@ -63,6 +64,18 @@ const CATEGORY_DONATION_AMOUNTS: Record<string, number> = {
   Volunteers: 500,
   'Birthday Celebrations': 1000,
   Events: 750
+};
+
+// Recent Donation Information mapped to categories for prominent donor impact cards
+const RECENT_DONATION_MAP: Record<string, { donor: string; amount: number; cause: string; location: string }> = {
+  'Education': { donor: 'Ananya Sharma', amount: 2500, cause: 'Monthly Education Kit & Books', location: 'Anna Nagar' },
+  'Meals': { donor: 'Karthik Subramanian', amount: 1500, cause: '30 Wholesome Meals for Children', location: 'Redhills' },
+  'Medical': { donor: 'Priya Sundaram', amount: 750, cause: 'Senior Care & Daily Medicines', location: 'Tambaram' },
+  'Volunteers': { donor: 'Vignesh Kumar', amount: 1000, cause: 'Evening Tuition Support & Kits', location: 'Thiruvallur' },
+  'Birthday Celebrations': { donor: 'Rajesh Natarajan', amount: 3000, cause: 'Birthday Feast & Special Cake', location: 'Velachery' },
+  'Events': { donor: 'Divya & Arun', amount: 1200, cause: 'Community Feast & Relief Kits', location: 'Redhills' },
+  'Videos': { donor: 'Sangeetha R.', amount: 800, cause: 'Fresh Fruits & Wholesome Diet', location: 'Mylapore' },
+  'All': { donor: 'Meera Krishnan', amount: 5000, cause: 'Special Needs Care & Nutrition', location: 'Adyar' }
 };
 
 const DEFAULT_VIDEO_ITEMS = [
@@ -243,8 +256,21 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
       </section>
 
       {/* 5. PHOTO GALLERY HEADER & FILTERABLE GRID (#f8fafc Light Section) */}
-      <section className="py-8 sm:py-24 bg-[#f8fafc] text-slate-900 relative">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
+      <section className="py-8 sm:py-24 bg-[#f8fafc] text-slate-900 relative overflow-hidden">
+        
+        {/* Minimal Shade Hands Watermark Behind Gallery Images */}
+        <div 
+          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <img
+            src={giveLoveHandsHeart}
+            alt=""
+            className="w-full max-w-[1100px] h-auto object-contain opacity-[0.04] grayscale contrast-125 filter mix-blend-multiply"
+          />
+        </div>
+
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10 relative z-10">
           
           {/* Header & Horizontal Filter Rail (Options Below Text) */}
           <div className="flex flex-col gap-6 border-b border-slate-200 pb-8">
@@ -289,6 +315,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
             <AnimatePresence>
               {filteredItems.map((item) => {
                 const donateAmount = CATEGORY_DONATION_AMOUNTS[item.category] || 500;
+                const donationInfo = RECENT_DONATION_MAP[item.category] || RECENT_DONATION_MAP['All'];
                 return (
                   <motion.div
                     key={item.id}
@@ -298,78 +325,108 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
                     onClick={() => setActiveStoryItem(item)}
-                    className="bg-white rounded-xl overflow-hidden border-0 shadow-none hover:shadow-none transition-all group cursor-pointer flex flex-col justify-between relative"
+                    className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition-all group cursor-pointer flex flex-col justify-between relative"
                   >
-                    {/* Image Tile - Increased height on mobile (aspect-square) */}
-                    <div className="relative aspect-square sm:aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-xl border-0 shadow-none">
+                    {/* Subtle Minimal Shade Hands Watermark inside card */}
+                    <div 
+                      className="absolute -right-6 -bottom-6 w-36 h-36 pointer-events-none select-none z-0 opacity-[0.03] grayscale overflow-hidden"
+                      aria-hidden="true"
+                    >
+                      <img src={giveLoveHandsHeart} alt="" className="w-full h-full object-contain filter" />
+                    </div>
+
+                    {/* Top: Image Tile */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-t-2xl">
                       {typeof item.image === 'string' ? (
                         <img
                           src={item.image.startsWith('http') ? item.image : `/src/${item.image.replace(/^\/?/, '')}`}
                           alt={item.title}
-                          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out rounded-xl"
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
                       ) : (
                         <Picture
                           picture={item.image}
                           sizes="(min-width: 1024px) 300px, (min-width: 640px) 320px, 50vw"
                           alt={item.title}
-                          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out rounded-xl"
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
                       )}
 
                       {/* Video Play Overlay Badge */}
                       {item.isVideo && (
                         <div className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/15 transition-colors z-10 pointer-events-none">
-                          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#da8a24] text-white flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
-                            <Play className="w-6 h-6 fill-white text-white ml-0.5" />
+                          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#da8a24] text-white flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+                            <Play className="w-5 h-5 fill-white text-white ml-0.5" />
                           </div>
-                          <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] sm:text-xs text-white font-medium flex items-center gap-1">
+                          <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] text-white font-medium flex items-center gap-1">
                             <Video className="w-3 h-3 text-[#da8a24]" />
                             <span>Video</span>
                           </span>
                         </div>
                       )}
 
-                      {/* Glassmorphism Category Label (No Icon) */}
-                      <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 bg-[#0a2240]/40 backdrop-blur-md border border-white/25 text-white font-normal text-xs uppercase tracking-wider px-3 py-1 rounded-md z-10">
+                      {/* Glassmorphism Category Label */}
+                      <span className="absolute top-2.5 left-2.5 bg-[#0a2240]/75 backdrop-blur-md border border-white/20 text-white font-medium text-[11px] uppercase tracking-wider px-2.5 py-0.5 rounded-lg z-10">
                         {item.category}
                       </span>
+                    </div>
 
-                      {/* Half-Size Hover Pop-Up Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#071b34]/95 backdrop-blur-md p-2.5 sm:p-3.5 flex flex-col justify-between translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-20">
-                        {/* Title & Location */}
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-1 text-xs sm:text-sm text-[#da8a24] font-normal truncate">
-                            <MapPin className="w-3 h-3 shrink-0" />
-                            <span className="truncate">{item.location}</span>
-                          </div>
-                          <h3 className="font-normal text-white text-xs sm:text-sm line-clamp-1 leading-tight">
-                            {item.title}
-                          </h3>
+                    {/* Recent Donation Info Pill (Like Attached Reference Toast) */}
+                    <div className="px-3.5 pt-3 pb-1.5 flex items-center justify-between gap-1 border-b border-slate-100 relative z-10">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="w-5 h-5 rounded-full bg-[#0a2240] text-[#da8a24] text-[10px] font-bold flex items-center justify-center shrink-0">
+                          {donationInfo.donor.slice(0, 2).toUpperCase()}
+                        </span>
+                        <div className="min-w-0 flex items-center gap-1">
+                          <span className="text-xs font-semibold text-[#0a2240] truncate">
+                            {donationInfo.donor}
+                          </span>
+                          <span className="text-[10px] text-slate-400 shrink-0 hidden sm:inline">• {donationInfo.location}</span>
                         </div>
+                      </div>
+                      <span className="text-[11px] font-bold text-[#da8a24] shrink-0 bg-[#fef5e7] px-2 py-0.5 rounded-md border border-[#da8a24]/20">
+                        ₹{donationInfo.amount.toLocaleString()}
+                      </span>
+                    </div>
 
-                        {/* Category-Based Donate Action Button */}
+                    {/* Card Body: Title & Short Description About the Donation */}
+                    <div className="p-3.5 pt-2 space-y-1.5 flex-1 flex flex-col justify-between relative z-10">
+                      <div className="space-y-1">
+                        <h3 className="font-semibold text-[#0a2240] text-xs sm:text-sm line-clamp-1 leading-snug group-hover:text-[#da8a24] transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-[11px] sm:text-xs text-slate-600 line-clamp-2 leading-relaxed font-normal">
+                          {item.description}
+                        </p>
+                        <div className="flex items-center gap-1 text-[10px] text-slate-500 pt-0.5 truncate">
+                          <Heart className="w-3 h-3 fill-[#da8a24] text-[#da8a24] shrink-0" />
+                          <span className="truncate">{donationInfo.cause}</span>
+                        </div>
+                      </div>
+
+                      {/* Card Action Row: Donate CTA + Story Button */}
+                      <div className="pt-2 flex items-center gap-2">
                         <button
+                          type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             pixelTracker.trackDonateClick(donateAmount, `Gallery Card (${item.category})`);
                             onOpenDonateModal(donateAmount);
                           }}
-                          className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal text-xs sm:text-sm py-1.5 px-2 rounded-lg transition-all flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
+                          className="flex-1 bg-[#da8a24] hover:bg-[#c77a1e] text-white font-bold text-[11px] sm:text-xs py-2 px-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 uppercase tracking-wider cursor-pointer shadow-sm active:scale-95"
                         >
-                          <Heart className="w-3.5 h-3.5 fill-white text-white" />
+                          <Heart className="w-3.5 h-3.5 fill-white text-white shrink-0" />
                           <span>Donate ₹{donateAmount}</span>
                         </button>
+                        <button
+                          type="button"
+                          onClick={() => setActiveStoryItem(item)}
+                          className="px-2.5 py-2 text-[11px] sm:text-xs font-semibold text-[#0a2240] hover:text-[#da8a24] bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors flex items-center gap-0.5 shrink-0"
+                        >
+                          <span>Story</span>
+                          <ChevronRightIcon className="w-3.5 h-3.5 text-[#da8a24]" />
+                        </button>
                       </div>
-                    </div>
-
-                    {/* Tile Bottom Action Bar - Mobile: Only Arrow Aligned to Right. Desktop: View Details + Arrow */}
-                    <div className="p-2 sm:p-3.5 bg-white border-0 shadow-none flex items-center justify-end sm:justify-between text-xs sm:text-sm font-normal text-[#0a2240] group-hover:text-[#da8a24] transition-colors">
-                      <span className="hidden sm:flex items-center gap-1 truncate">
-                        <Eye className="w-3.5 h-3.5 text-[#da8a24] shrink-0" />
-                        <span className="truncate">View Details</span>
-                      </span>
-                      <ChevronRightIcon className="w-4 h-4 text-[#da8a24] transform group-hover:translate-x-1 transition-transform shrink-0" />
                     </div>
                   </motion.div>
                 );
