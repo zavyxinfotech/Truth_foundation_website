@@ -22,8 +22,8 @@ const DEFAULT_HERO_SLIDES = [
     tag: 'Public Charitable Trust',
     badge: 'Est. 5th July 2010',
     title: 'ONE MEAL. ONE SMILE.',
-    tagline: 'Your ₹500 can provide warm, nutritious meals to children in need.',
-    subtitle: 'Every donation directly funds nutritious meals, education, and healthcare for orphaned children, abandoned seniors, and special needs children.',
+    tagline: 'Supporting 41 orphaned children, 3 abandoned elders, 23 special-needs children & 346 tuition students',
+    subtitle: 'Every donation directly supports 41 resident orphaned children, 3 abandoned elders, 23 special-needs children, and 346 evening tuition students across 15+ years of dedicated service in Tamil Nadu.',
   },
   {
     picture: heroRedhillsOrphanage,
@@ -31,19 +31,19 @@ const DEFAULT_HERO_SLIDES = [
     label: 'Orphanage Home for Children',
     tag: 'Our Campus',
     badge: '41 Resident Boys & Girls',
-    title: 'Orphanage Home for Children.',
-    tagline: 'Dormitories, Study Halls & Playgrounds in Rural Communities',
-    subtitle: 'Managed by 16 committed staff members, providing full shelter, nutrition, healthcare, and education to 41 orphaned children.',
+    title: 'Orphanage Home for Children',
+    tagline: 'Loving Shelter, Nutritious Food & Education for 41 Resident Boys and Girls',
+    subtitle: 'Operating on an acre of land in Redhills with separate dormitories, dining halls, and study spaces for 41 resident orphaned children, cared for by 16 committed staff members.',
   },
   {
     picture: heroSpecialNeedsCare,
     imageUrl: null as string | null,
-    label: 'Empowerment Center',
-    tag: 'Education Center',
-    badge: 'Dedicated Care & Support',
-    title: 'Empowering Every Child.',
-    tagline: 'Providing Compassionate Care, Structured Learning, and Safe Transportation',
-    subtitle: 'Our dedicated professionals provide personalized learning and physical well-being support to foster growth and independence.',
+    label: 'Senior Care & Special Needs',
+    tag: 'Compassionate Care',
+    badge: 'Elders & Special Needs',
+    title: 'Elderly Care & Special Education',
+    tagline: 'Food, Medication & Safe Door-step Van Transportation',
+    subtitle: 'Providing nutritious meals, daily essential medicines, and dignified shelter for 3 abandoned elders, alongside specialized learning and van transport for 23 special-needs children.',
   },
   {
     picture: heroTuitionSchoolMeals,
@@ -51,9 +51,9 @@ const DEFAULT_HERO_SLIDES = [
     label: '346 Evening Tuition Students',
     tag: '8 Tuition Centers',
     badge: 'Free Education & Supplies',
-    title: '346 Enrolled Children Supported Daily.',
-    tagline: 'Serving Marginalized Communities Across 8 Different Centers',
-    subtitle: 'Providing free evening tuition, nutritious meals, backpacks, textbooks, pens, and hygiene supplies.',
+    title: '346 Tuition Students Across 8 Centers',
+    tagline: 'Serving Marginalized Communities in Chennai & Thiruvallur',
+    subtitle: 'Empowering 346 underprivileged children daily with free evening tuition, school bags, notebooks, textbooks, hygiene supplies, and evening nourishment.',
   },
 ];
 
@@ -195,10 +195,7 @@ export const Hero: React.FC<HeroProps> = ({ campaign, onOpenDonateModal }) => {
               className="space-y-1.5 sm:space-y-3"
             >
               <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-normal text-white tracking-tight leading-[1.1] drop-shadow-md">
-                {heroSlides[currentSlide].title}<br />
-                <span className="text-white font-normal italic text-lg sm:text-xl lg:text-2xl block pt-1.5 drop-shadow-sm">
-                  {heroSlides[currentSlide].tagline}
-                </span>
+                {heroSlides[currentSlide].title}
               </h1>
 
               <p className="text-base sm:text-xl lg:text-2xl text-slate-200 font-normal leading-relaxed max-w-[660px] drop-shadow-sm">

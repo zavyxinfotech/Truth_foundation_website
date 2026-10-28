@@ -329,21 +329,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
       />
 
       {/* 2. HERO SECTION (Dark Neutral Overlay for vivid clear image) */}
-      <section className="pt-24 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-x-clip min-h-0 sm:min-h-[75vh] lg:min-h-screen flex items-center">
+      <section className="pt-20 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 text-white relative overflow-x-clip min-h-[55vh] sm:min-h-[75vh] lg:min-h-screen flex items-center">
         {/* Desktop Background Image (Hidden on Mobile) */}
         <div 
-          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-90"
+          className="hidden md:block absolute inset-0 w-full h-full bg-cover bg-center lg:bg-top pointer-events-none opacity-95"
           style={{ backgroundImage: `url(${aboutHeroBgDesktop})` }}
         />
 
-        {/* Mobile Background Image (Block on Mobile, Hidden on Desktop) */}
+        {/* Mobile Background Ambient Tone */}
         <div 
-          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-90"
+          className="block md:hidden absolute inset-0 w-full h-full bg-cover bg-[position:center_top] pointer-events-none opacity-30"
           style={{ backgroundImage: `url(${aboutHeroBgMobile})` }}
         />
 
-        {/* Neutral Dark Gradient Overlay (No Blue Mask) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent pointer-events-none" />
+        {/* Neutral Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/75 via-black/35 to-transparent pointer-events-none" />
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
           
@@ -355,8 +355,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               transition={{ duration: 0.5 }}
               className="space-y-4"
             >
+              {/* Mobile View: Dedicated Full-Width Image so every child & gate is 100% visible without cropping */}
+              <div className="block sm:hidden w-full overflow-hidden rounded-none shadow-2xl border border-white/20 mb-4">
+                <img
+                  src={aboutHeroBgMobile}
+                  alt="Truth Foundation Children & Staff at Gate"
+                  className="w-full h-auto object-cover object-top"
+                />
+              </div>
+
               {/* Main Heading: All White Color */}
-              <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-normal text-white tracking-tight leading-[1.1]">
+              <h1 className="text-3xl sm:text-6xl lg:text-[64px] font-normal text-white tracking-tight leading-[1.15]">
                 {aboutContent?.hero_title || 'Empowering Lives with Dignity, Equality & Hope'}
               </h1>
 

@@ -58,18 +58,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
               />
               <div>
                 <span className="font-semibold text-xl sm:text-2xl text-[#0a2240] tracking-tight block leading-none">TRUTH FOUNDATION</span>
-                <p className="text-xs text-[#da8a24] font-medium uppercase tracking-wider pt-0.5">Registered NGO • Chennai, India</p>
+                <p className="text-xs sm:text-sm text-[#da8a24] font-normal uppercase tracking-wider pt-0.5">Registered NGO • Chennai, India</p>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm font-normal">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-sm font-normal">
               Truth Foundation is a registered non-profit NGO dedicated to empowering underprivileged children, seniors, and special needs communities across Tamil Nadu.
             </p>
 
             {/* Quick Links Aligned One by One Vertically */}
-            <div className="space-y-2 pt-1">
-              <h4 className="text-[#da8a24] font-semibold text-xs uppercase tracking-widest">Quick Links</h4>
-              <ul className="flex flex-col space-y-2 text-xs text-slate-700 font-medium">
+            <div className="space-y-2.5 pt-1">
+              <h4 className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest">Quick Links</h4>
+              <ul className="flex flex-col space-y-2.5 text-sm sm:text-base text-slate-700 font-normal">
                 <li><a href="#why-donate" onClick={(e) => handleLinkClick(e, 'why-donate')} className="hover:text-[#da8a24] transition">Why Your Donation Matters</a></li>
                 <li><a href="#about" onClick={(e) => handleLinkClick(e, 'about')} className="hover:text-[#da8a24] transition">About Truth Foundation</a></li>
                 <li><a href="#gallery" onClick={(e) => handleLinkClick(e, 'gallery')} className="hover:text-[#da8a24] transition">Field Gallery</a></li>
@@ -91,14 +91,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
 
           {/* Column 2 (4 Cols): Stacked Locations */}
           <div className="lg:col-span-4 space-y-4">
-            <h4 className="text-[#0a2240] font-semibold text-sm sm:text-base uppercase tracking-wider">Locations</h4>
+            <h4 className="text-[#0a2240] font-medium text-base sm:text-lg uppercase tracking-wider">Locations</h4>
             
-            <div className="flex flex-col space-y-6 text-xs sm:text-sm">
+            <div className="flex flex-col space-y-6 text-sm sm:text-base">
               
               {/* Registered Home Office */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 font-semibold text-[#0a2240] text-xs sm:text-sm">
+                  <div className="flex items-center gap-1.5 font-medium text-[#0a2240] text-sm sm:text-base">
                     <MapPin className="w-4 h-4 text-[#da8a24] shrink-0" />
                     <span>Registered Home Office</span>
                   </div>
@@ -106,29 +106,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                     href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+244+Mallima+Nagar+Vilagadupakkam+Redhills+Chennai+600052"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] sm:text-xs font-medium text-[#da8a24] hover:underline flex items-center gap-0.5"
+                    className="text-xs sm:text-sm font-normal text-[#da8a24] hover:underline flex items-center gap-0.5"
                   >
                     <span>Map</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
 
-                <p className="text-slate-600 leading-relaxed font-normal text-sm pl-5">
-                  <span className="font-semibold text-[#0a2240] block">Truth Foundation Home</span>
+                <p className="text-slate-600 leading-relaxed font-normal text-sm sm:text-base pl-5">
+                  <span className="font-medium text-[#0a2240] block">Truth Foundation Home</span>
                   #244, Mallima Nagar, Vilagadupakkam,<br />
                   Redhills, Chennai - 600052
                 </p>
 
-                <div className="flex items-center gap-1.5 text-xs text-slate-700 pl-5 font-normal">
+                <div className="flex items-center gap-1.5 text-sm sm:text-base text-slate-700 pl-5 font-normal">
                   <PhoneCall className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <a href="tel:+916382721178" className="text-[#da8a24] font-medium hover:underline">+91 63827 21178</a>
+                  <a href="tel:+916382721178" className="text-[#da8a24] font-normal hover:underline">+91 63827 21178</a>
                 </div>
               </div>
 
               {/* Corporate Office */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 font-semibold text-[#0a2240] text-xs sm:text-sm">
+                  <div className="flex items-center gap-1.5 font-medium text-[#0a2240] text-sm sm:text-base">
                     <MapPin className="w-4 h-4 text-[#da8a24] shrink-0" />
                     <span>Corporate Office</span>
                   </div>
@@ -136,22 +136,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                     href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+49+Venus+Nagar+Main+Road+Kolathur+Chennai+600099"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] sm:text-xs font-medium text-[#da8a24] hover:underline flex items-center gap-0.5"
+                    className="text-xs sm:text-sm font-normal text-[#da8a24] hover:underline flex items-center gap-0.5"
                   >
                     <span>Map</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
 
-                <p className="text-slate-600 leading-relaxed font-normal text-sm pl-5">
-                  <span className="font-semibold text-[#0a2240] block">Truth Foundation Corporate Office</span>
+                <p className="text-slate-600 leading-relaxed font-normal text-sm sm:text-base pl-5">
+                  <span className="font-medium text-[#0a2240] block">Truth Foundation Corporate Office</span>
                   #49, Venus Nagar Main Road,<br />
                   Kolathur, Chennai - 600099
                 </p>
 
-                <div className="flex items-center gap-1.5 text-xs text-slate-700 pl-5 font-normal">
+                <div className="flex items-center gap-1.5 text-sm sm:text-base text-slate-700 pl-5 font-normal">
                   <PhoneCall className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <a href="tel:+919962294949" className="text-[#da8a24] font-medium hover:underline">+91 99622 94949</a>
+                  <a href="tel:+919962294949" className="text-[#da8a24] font-normal hover:underline">+91 99622 94949</a>
                 </div>
               </div>
 
@@ -163,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#da8a24] shrink-0" />
-                <span className="font-semibold text-xs sm:text-sm text-[#0a2240] uppercase tracking-wider">
+                <span className="font-medium text-sm sm:text-base text-[#0a2240] uppercase tracking-wider">
                   Corporate Office Map
                 </span>
               </div>
@@ -171,7 +171,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                 href="https://www.google.com/maps/search/?api=1&query=Truth+Foundation+49+Venus+Nagar+Main+Road+Kolathur+Chennai+600099"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-medium text-[#da8a24] hover:text-[#c77a1e] hover:underline flex items-center gap-1"
+                className="text-xs sm:text-sm font-normal text-[#da8a24] hover:text-[#c77a1e] hover:underline flex items-center gap-1"
               >
                 <span>Open in Google Maps</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -196,21 +196,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="mt-10 pt-6 pb-20 sm:pb-6 border-t border-slate-200/90 flex flex-col items-center gap-3 text-center text-xs text-slate-600 font-normal sm:flex-row sm:justify-between sm:text-left">
+        <div className="mt-10 pt-6 pb-20 sm:pb-6 border-t border-slate-200/90 flex flex-col items-center gap-3 text-center text-sm sm:text-base text-slate-600 font-normal sm:flex-row sm:justify-between sm:text-left">
           <div>
             © {new Date().getFullYear()} Truth Foundation • Registered NGO. Developed with ❤️ by{' '}
             <a
               href="https://zavyx.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0a2240] hover:text-[#da8a24] font-medium tracking-wide transition-colors"
+              className="text-[#0a2240] hover:text-[#da8a24] font-normal tracking-wide transition-colors"
               style={{ fontFamily: "'Roboto', sans-serif" }}
             >
               ZAVYX InfoTech
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 font-medium text-xs text-slate-600">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 font-normal text-sm sm:text-base text-slate-600">
             <button onClick={() => setActiveModal('privacy')} className="hover:text-[#da8a24] underline cursor-pointer">Privacy Policy</button>
             <span className="text-slate-400">•</span>
             <button onClick={() => setActiveModal('terms')} className="hover:text-[#da8a24] underline cursor-pointer">Terms & Conditions</button>
