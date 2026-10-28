@@ -29,6 +29,10 @@ import { fetchSiteContent } from '../../utils/cmsApi';
 // Real Project Image Imports
 import contactHeroBgDesktop from '../../assets/images/contact_page_hero_background_image_desktop_view.jpg';
 import contactHeroBgMobile from '../../assets/images/contact_page_hero_background_image_mobile_view.jpeg';
+import volunteerCareImg from '../../assets/images/img212.jpeg';
+import mealDonationsImg from '../../assets/images/img56.jpeg';
+import tuitionKitsImg from '../../assets/images/img170.jpeg';
+import communityFoodImg from '../../assets/images/img137.jpeg';
 
 interface ContactPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -406,20 +410,20 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
 
 
-      {/* 8. GIVE LOVE / MAKE AN IMMEDIATE IMPACT SECTION (Refined Compact Banner Without Hands Image) */}
-      <section className="py-8 sm:py-10 bg-[#fdfbf7] text-slate-900 relative overflow-hidden border-t border-slate-100">
+      {/* 8. GIVE LOVE / MAKE AN IMMEDIATE IMPACT SECTION (Pure White Background with Single Row of Images) */}
+      <section className="py-8 sm:py-12 bg-white text-slate-900 relative overflow-hidden border-t border-slate-100">
         
         {/* Subtle Faint Heart Watermark in Background (Right Side - Decreased Proportion) */}
         <div 
-          className="absolute -top-4 sm:-top-6 -right-10 sm:-right-4 w-[35%] min-w-[200px] max-w-[360px] h-[90%] pointer-events-none select-none z-0 opacity-40"
+          className="absolute -top-4 sm:-top-6 -right-10 sm:-right-4 w-[35%] min-w-[200px] max-w-[360px] h-[90%] pointer-events-none select-none z-0 opacity-25"
           aria-hidden="true"
         >
-          <svg viewBox="0 0 100 100" className="w-full h-full fill-[#f6ebd8]">
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-slate-100">
             <path d="M50 88.5 C20 62 4 44 4 27 C4 13.5 14.5 3 28 3 C36.5 3 44.5 7.5 50 14.5 C55.5 7.5 63.5 3 72 3 C85.5 3 96 13.5 96 27 C96 44 80 62 50 88.5 Z" />
           </svg>
         </div>
 
-        <div className="max-w-[1140px] mx-auto px-4 sm:px-8 lg:px-10 relative z-20 space-y-6">
+        <div className="max-w-[1140px] mx-auto px-4 sm:px-8 lg:px-10 relative z-20 space-y-6 sm:space-y-8">
           
           {/* Top Row: Left Header & Right Description + CTA */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
@@ -601,6 +605,93 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
               </span>
             </button>
 
+          </div>
+
+          {/* Single Row of Real Volunteer & Donation Images Below Give Love */}
+          <div className="pt-2 sm:pt-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              
+              {/* 1. Volunteer Care */}
+              <div className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                <img
+                  src={volunteerCareImg}
+                  alt="Truth Foundation Volunteer Activities"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5 sm:p-3">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-semibold text-white tracking-wide block drop-shadow-sm">
+                      Volunteer Care
+                    </span>
+                    <span className="text-[9px] sm:text-[10px] text-amber-300 font-medium block">
+                      Teaching & Mentoring
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. Wholesome Meal Donations */}
+              <div className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                <img
+                  src={mealDonationsImg}
+                  alt="Truth Foundation Nutritious Meal Donations"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5 sm:p-3">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-semibold text-white tracking-wide block drop-shadow-sm">
+                      Meal Donations
+                    </span>
+                    <span className="text-[9px] sm:text-[10px] text-amber-300 font-medium block">
+                      Daily Wholesome Food
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Education Kit & Tuition Support */}
+              <div className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                <img
+                  src={tuitionKitsImg}
+                  alt="Truth Foundation Education Kits"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5 sm:p-3">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-semibold text-white tracking-wide block drop-shadow-sm">
+                      Education Kits
+                    </span>
+                    <span className="text-[9px] sm:text-[10px] text-amber-300 font-medium block">
+                      Books & Study Supplies
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Community Outreach Drives */}
+              <div className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                <img
+                  src={communityFoodImg}
+                  alt="Truth Foundation Community Outreach"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5 sm:p-3">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-semibold text-white tracking-wide block drop-shadow-sm">
+                      Community Drives
+                    </span>
+                    <span className="text-[9px] sm:text-[10px] text-amber-300 font-medium block">
+                      Fresh Rations & Outreach
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>
