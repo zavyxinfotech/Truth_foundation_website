@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Hardware-accelerated ultra-smooth infinite marquee animation */
+@keyframes testimonial-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-testimonial-marquee {
+  display: flex;
+  width: max-content;
+  animation: testimonial-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .animate-testimonial-marquee {
+    animation-duration: 32s;
+  }
+}

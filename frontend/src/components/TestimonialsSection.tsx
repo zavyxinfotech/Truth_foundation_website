@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Star, Quote, CheckCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { TESTIMONIALS } from '../data/campaignData';
@@ -6,52 +6,9 @@ import { TESTIMONIALS } from '../data/campaignData';
 export const TestimonialsSection: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [activeCardId, setActiveCardId] = useState<string | number | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // Quadruple list for continuous infinite horizontal marquee stream
-  const displayItems = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
-
-  // Continuous auto-scroll moving FROM LEFT TO RIGHT
-  useEffect(() => {
-    let animationFrameId: number;
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    // Start at middle of container for instant left-to-right continuous flow
-    if (container.scrollLeft === 0) {
-      container.scrollLeft = container.scrollWidth / 2;
-    }
-
-    const step = () => {
-      if (!isPaused && container) {
-        if (container.scrollLeft <= 0) {
-          container.scrollLeft = container.scrollWidth / 2;
-        } else {
-          container.scrollLeft -= 1.2;
-        }
-      }
-      animationFrameId = requestAnimationFrame(step);
-    };
-
-    animationFrameId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
-
-  // Pause on hover / touch
-  const handleCardInteract = (id: string | number, element: HTMLDivElement) => {
-    setIsPaused(true);
-    setActiveCardId(id);
-    element.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-      block: 'nearest',
-    });
-  };
-
-  const handleCardLeave = () => {
-    setIsPaused(false);
-    setActiveCardId(null);
-  };
+  // Duplicate list for continuous, seamless infinite loop
+  const displayItems = [...TESTIMONIALS, ...TESTIMONIALS];
 
   return (
     <section className="py-8 sm:py-14 bg-white relative border-t border-slate-100 overflow-hidden w-full">
@@ -76,24 +33,33 @@ export const TestimonialsSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Full Width Edge-to-Edge Marquee Stream Moving Left to Right */}
-      <div className="w-full overflow-hidden relative z-10 px-0">
+      {/* Full Width Edge-to-Edge Hardware-Accelerated Marquee Stream */}
+      <div 
+        className="w-full overflow-hidden relative z-10 py-3 group"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => {
+          setIsPaused(false);
+          setActiveCardId(null);
+        }}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => {
+          setIsPaused(false);
+          setActiveCardId(null);
+        }}
+        style={{ touchAction: 'pan-y' }}
+      >
+        {/* Soft edge fade masks for seamless visual transition */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-20 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-20 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+
         <div
-          ref={scrollContainerRef}
-          onPointerEnter={(e) => { if (e.pointerType === 'mouse') setIsPaused(true); }}
-          onPointerLeave={(e) => {
-            if (e.pointerType === 'mouse') {
-              setIsPaused(false);
-              setActiveCardId(null);
-            }
+          className={`animate-testimonial-marquee flex gap-4 sm:gap-6 py-2 ${
+            isPaused ? '[animation-play-state:paused]' : ''
+          }`}
+          style={{
+            willChange: 'transform',
+            touchAction: 'pan-y',
           }}
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => {
-            setIsPaused(false);
-            setActiveCardId(null);
-          }}
-          className="flex gap-4 sm:gap-6 overflow-x-auto py-4 px-2 sm:px-4 scrollbar-none scroll-smooth w-full"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {displayItems.map((testimonial, idx) => {
             const cardUniqueKey = `${testimonial.id}-${idx}`;
@@ -101,15 +67,11 @@ export const TestimonialsSection: React.FC = () => {
             return (
               <div
                 key={cardUniqueKey}
-                onPointerEnter={(e) => {
-                  if (e.pointerType === 'mouse') handleCardInteract(cardUniqueKey, e.currentTarget);
-                }}
-                onPointerLeave={(e) => {
-                  if (e.pointerType === 'mouse') handleCardLeave();
-                }}
+                onMouseEnter={() => setActiveCardId(cardUniqueKey)}
+                onMouseLeave={() => setActiveCardId(null)}
                 className={`w-[260px] xs:w-[295px] sm:w-[340px] md:w-[370px] lg:w-[410px] shrink-0 bg-slate-50/90 backdrop-blur-md border rounded-2xl p-4 xs:p-5 sm:p-6 transition-all duration-300 flex flex-col justify-between relative space-y-3 cursor-pointer transform-gpu ${
                   isHovered
-                    ? 'scale-105 -translate-y-1 border-[#da8a24] bg-white z-30'
+                    ? 'scale-[1.02] -translate-y-1 border-[#da8a24] bg-white shadow-lg shadow-[#da8a24]/10 z-30'
                     : 'border-slate-200/80 hover:border-[#da8a24]/60 hover:bg-white z-10'
                 }`}
               >
@@ -169,7 +131,6 @@ export const TestimonialsSection: React.FC = () => {
           })}
         </div>
       </div>
-
     </section>
   );
 };

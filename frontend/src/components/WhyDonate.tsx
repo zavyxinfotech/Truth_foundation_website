@@ -100,6 +100,8 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
             ref={scrollContainerRef}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
             className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto py-2 px-2 sm:px-6 scrollbar-none snap-x snap-mandatory scroll-smooth items-center justify-start lg:justify-center"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >

@@ -11,10 +11,10 @@ export const ScrollSection: React.FC<ScrollSectionProps> = ({ children, classNam
   return (
     <motion.div
       id={id}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.15 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: false, amount: 0.08 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       className={className}
     >
       {children}
