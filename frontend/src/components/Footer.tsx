@@ -121,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
 
                 <div className="flex items-center gap-1.5 text-xs text-slate-700 pl-5 font-normal">
                   <PhoneCall className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <a href="tel:+919962294949" className="text-[#da8a24] font-medium hover:underline">9962294949</a>
+                  <a href="tel:+916382721178" className="text-[#da8a24] font-medium hover:underline">+91 63827 21178</a>
                 </div>
               </div>
 
@@ -151,7 +151,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
 
                 <div className="flex items-center gap-1.5 text-xs text-slate-700 pl-5 font-normal">
                   <PhoneCall className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <a href="tel:+919962294949" className="text-[#da8a24] font-medium hover:underline">9962294949</a>
+                  <a href="tel:+919962294949" className="text-[#da8a24] font-medium hover:underline">+91 99622 94949</a>
                 </div>
               </div>
 
@@ -181,7 +181,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
             <div className="w-full h-64 lg:h-72 rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm relative bg-white">
               <iframe
                 title="Truth Foundation Corporate Office Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.642940251147!2d80.2078603!3d13.1221764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5264ff9c5a15bd%3A0x429671d18bb76211!2s49%2C%20Venus%20Nagar%20Main%20Rd%2C%20Venus%20Nagar%2C%20Kolathur%2C%20Chennai%2C%20Tamil%20Nadu%20600099!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://maps.google.com/maps?q=49,+Venus+Nagar+Main+Road,+Kolathur,+Chennai+-+600099&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
