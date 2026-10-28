@@ -9,12 +9,12 @@ const router = Router();
 // Configure Multer for in-memory uploads
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB limit for videos and images
   fileFilter: (_req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
+    if (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/')) {
       cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'));
+      cb(new Error('Only image and video files are allowed'));
     }
   }
 });
@@ -40,26 +40,31 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST /api/gallery/upload (Admin: Upload image to Cloudinary & store in Supabase)
+// POST /api/gallery/upload (Admin: Upload image or video to Cloudinary & store in Supabase)
 router.post('/upload', requireAuth, upload.single('image'), async (req, res) => {
   try {
     if (!req.file) {
-      res.status(400).json({ error: 'No image file provided' });
+      res.status(400).json({ error: 'No media file provided' });
       return;
     }
 
     const { title, category = 'General', description } = req.body;
+    const isVideo = req.file.mimetype.startsWith('video/');
 
     // Upload buffer to Cloudinary
     const uploadStream = () =>
       new Promise<{ secure_url: string; public_id: string }>((resolve, reject) => {
+        const streamOptions: any = {
+          folder: 'truth_foundation_gallery',
+          resource_type: isVideo ? 'video' : 'image',
+        };
+        if (!isVideo) {
+          streamOptions.format = 'webp';
+          streamOptions.quality = 'auto';
+        }
+
         const stream = cloudinary.uploader.upload_stream(
-          {
-            folder: 'truth_foundation_gallery',
-            resource_type: 'image',
-            format: 'webp',
-            quality: 'auto'
-          },
+          streamOptions,
           (error, result) => {
             if (error || !result) {
               reject(error || new Error('Cloudinary upload failed'));

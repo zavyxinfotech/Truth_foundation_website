@@ -1123,10 +1123,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
                     />
                     
-                    {/* Glassmorphism Price Header Above Image with Bigger & Bolder Price */}
+                    {/* Glassmorphism Price Header Above Image with White Price */}
                     <div className="absolute top-2.5 inset-x-2.5 px-3 py-1.5 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
                       <span className="text-xs text-slate-300 font-normal">Cause</span>
-                      <span className="text-base sm:text-lg font-bold text-[#da8a24] tracking-tight">
+                      <span className="text-base sm:text-lg font-bold text-white tracking-tight">
                         {cause.amountLabel}
                       </span>
                     </div>
@@ -1176,10 +1176,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                         className="w-full h-full object-cover object-center"
                       />
                       
-                      {/* Glassmorphism Price Header Above Image */}
+                      {/* Glassmorphism Price Header Above Image with White Price */}
                       <div className="absolute top-2 inset-x-2 px-2.5 py-1 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
                         <span className="text-[10px] text-slate-300 font-normal">Cause</span>
-                        <span className="text-sm font-bold text-[#da8a24] tracking-tight">
+                        <span className="text-sm font-bold text-white tracking-tight">
                           {cause.amountLabel}
                         </span>
                       </div>

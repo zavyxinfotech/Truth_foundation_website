@@ -18,7 +18,9 @@ import {
   Calendar,
   HeartHandshake,
   Stethoscope,
-  Cake
+  Cake,
+  Video,
+  Play
 } from 'lucide-react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -30,9 +32,11 @@ import { GalleryItem } from '../../types';
 import { pixelTracker } from '../../utils/pixelTracker';
 import { fetchGalleryImages } from '../../utils/cmsApi';
 
-// Real Project Image Imports
+// Real Project Media Imports
 import childrenEatingMealsBg from '../../assets/images/children_eating_meals_background.jpg?w=1200&format=webp';
 import galleryHeroBg from '../../assets/images/gallery_hero_children_gate.jpg';
+import video3 from '../../assets/videos/video3.mp4';
+import video4 from '../../assets/videos/video4.mp4';
 
 interface GalleryPageProps {
   onOpenDonateModal: (amount?: number) => void;
@@ -41,6 +45,7 @@ interface GalleryPageProps {
 
 const CATEGORY_ITEMS = [
   { label: 'All', icon: LayoutGrid },
+  { label: 'Videos', icon: Video },
   { label: 'Meals', icon: Home },
   { label: 'Education', icon: BookOpen },
   { label: 'Medical', icon: Stethoscope },
@@ -50,6 +55,8 @@ const CATEGORY_ITEMS = [
 ];
 
 const CATEGORY_DONATION_AMOUNTS: Record<string, number> = {
+  All: 500,
+  Videos: 500,
   Meals: 500,
   Education: 1000,
   Medical: 1500,
@@ -58,31 +65,84 @@ const CATEGORY_DONATION_AMOUNTS: Record<string, number> = {
   Events: 750
 };
 
+const DEFAULT_VIDEO_ITEMS = [
+  {
+    id: 'vid_nutrition_care',
+    title: 'Children Nutrition & Daily Campus Care',
+    category: 'Videos',
+    image: 'https://res.cloudinary.com/xsuj7lkd/video/upload/so_2,w_800,c_fill,q_auto,f_jpg/v1793165936/truth_foundation_gallery/truth_foundation_field_video_3.jpg',
+    videoUrl: 'https://res.cloudinary.com/xsuj7lkd/video/upload/v1793165936/truth_foundation_gallery/truth_foundation_field_video_3.mp4',
+    localFallbackUrl: video3,
+    location: 'Truth Foundation Redhills Campus, Chennai',
+    date: 'Field Activity Video',
+    description: 'Field video documenting daily wholesome meal preparation, nutrition support, and loving environment for 41 children at Truth Foundation Redhills campus.',
+    quote: '“Seeing the joy and nourishment our children receive every single day is our greatest reward.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Daily Care', value: '41 Children' },
+    beneficiaries: '41 Resident Boys & Girls',
+    readTime: 'Video • 6 min',
+    storyDetails: 'Field video documenting daily wholesome meal preparation, nutrition support, and loving environment at Truth Foundation Redhills campus.',
+    isVideo: true
+  },
+  {
+    id: 'vid_tuition_empowerment',
+    title: 'Rural Evening Tuition & Youth Empowerment',
+    category: 'Videos',
+    image: 'https://res.cloudinary.com/xsuj7lkd/video/upload/so_2,w_800,c_fill,q_auto,f_jpg/v1793165797/truth_foundation_gallery/truth_foundation_field_video_4.jpg',
+    videoUrl: 'https://res.cloudinary.com/xsuj7lkd/video/upload/v1793165797/truth_foundation_gallery/truth_foundation_field_video_4.mp4',
+    localFallbackUrl: video4,
+    location: 'Rural Tuition Centers, Thiruvallur',
+    date: 'Field Activity Video',
+    description: 'Field video highlighting education support, evening tuition classes, textbooks, and hygiene kit distribution across rural centers.',
+    quote: '“Education is the foundation for lasting social change and dignity.”',
+    aspectRatio: 'wide',
+    impactStat: { label: 'Tuition', value: '346 Students' },
+    beneficiaries: '346 Rural Tuition Students',
+    readTime: 'Video • 2 min',
+    storyDetails: 'Field video highlighting education support, evening tuition classes, textbooks, and hygiene kit distribution across rural centers.',
+    isVideo: true
+  }
+];
+
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeStoryItem, setActiveStoryItem] = useState<any | null>(null);
-  const [galleryList, setGalleryList] = useState<any[]>(GALLERY_ITEMS);
+  const [galleryList, setGalleryList] = useState<any[]>([...DEFAULT_VIDEO_ITEMS, ...GALLERY_ITEMS]);
 
-  // Load photos dynamically from Supabase database
+  // Load photos & videos dynamically from Supabase database
   useEffect(() => {
     fetchGalleryImages().then((dbImgs) => {
       if (dbImgs && dbImgs.length > 0) {
-        const dynamicItems = dbImgs.map((img) => ({
-          id: `db_${img.id}`,
-          title: img.title || 'Truth Foundation Community Work',
-          category: img.category,
-          image: img.image_url,
-          location: 'Truth Foundation Centers, Chennai',
-          date: 'Recent Field Activity',
-          description: img.description || 'Providing daily hot meals, education support, and medical care to underprivileged children.',
-          quote: '“Every hot meal brings a smile and gives our children strength to learn and thrive.”',
-          aspectRatio: 'wide',
-          impactStat: { label: img.category, value: 'Active Care' },
-          beneficiaries: 'Underprivileged Children & Elders',
-          readTime: '2 min read',
-          storyDetails: img.description || 'Our foundation conducts humanitarian drives across northern Chennai and Thiruvallur districts.'
-        }));
-        setGalleryList(dynamicItems);
+        const dynamicItems = dbImgs.map((img) => {
+          const isVideo = img.category === 'Videos' || img.image_url?.endsWith('.mp4') || img.image_url?.includes('/video/upload/');
+          const localFallback = img.image_url?.includes('video_3') ? video3 : img.image_url?.includes('video_4') ? video4 : null;
+          return {
+            id: `db_${img.id}`,
+            title: img.title || 'Truth Foundation Community Work',
+            category: img.category,
+            image: isVideo
+              ? (img.image_url.includes('/video/upload/')
+                  ? img.image_url.replace('/video/upload/', '/video/upload/so_2,w_800,c_fill,q_auto,f_jpg/')
+                  : (localFallback || img.image_url))
+              : img.image_url,
+            videoUrl: isVideo ? img.image_url : null,
+            localFallbackUrl: localFallback,
+            isVideo,
+            location: 'Truth Foundation Centers, Chennai',
+            date: 'Recent Field Activity',
+            description: img.description || 'Providing daily hot meals, education support, and medical care to underprivileged children.',
+            quote: '“Every hot meal brings a smile and gives our children strength to learn and thrive.”',
+            aspectRatio: 'wide',
+            impactStat: { label: img.category, value: isVideo ? 'Video Story' : 'Active Care' },
+            beneficiaries: 'Underprivileged Children & Elders',
+            readTime: isVideo ? 'Video • Watch Story' : '2 min read',
+            storyDetails: img.description || 'Our foundation conducts humanitarian drives across northern Chennai and Thiruvallur districts.'
+          };
+        });
+
+        // Combine DB items with local video fallback to ensure videos always appear
+        const hasDbVideos = dynamicItems.some((it) => it.isVideo);
+        setGalleryList(hasDbVideos ? dynamicItems : [...DEFAULT_VIDEO_ITEMS, ...dynamicItems]);
       }
     });
   }, []);
@@ -255,6 +315,19 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                           alt={item.title}
                           className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out rounded-xl"
                         />
+                      )}
+
+                      {/* Video Play Overlay Badge */}
+                      {item.isVideo && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/15 transition-colors z-10 pointer-events-none">
+                          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#da8a24] text-white flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+                            <Play className="w-6 h-6 fill-white text-white ml-0.5" />
+                          </div>
+                          <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] sm:text-xs text-white font-medium flex items-center gap-1">
+                            <Video className="w-3 h-3 text-[#da8a24]" />
+                            <span>Video</span>
+                          </span>
+                        </div>
                       )}
 
                       {/* Glassmorphism Category Label (No Icon) */}
@@ -446,9 +519,24 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 <X className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
               </button>
 
-              {/* Image side - Category aligned UPON the image */}
+              {/* Media side - Image or Video Player */}
               <div className="lg:col-span-5 relative bg-[#040f1a]/40 backdrop-blur-md p-3 sm:p-4 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 shrink-0">
-                {typeof activeStoryItem.image === 'string' ? (
+                {activeStoryItem.isVideo ? (
+                  <div className="relative w-full aspect-video max-h-[32vh] sm:max-h-[42vh] lg:max-h-[75vh] flex items-center justify-center bg-black rounded-xl overflow-hidden shadow-xl">
+                    <video
+                      src={activeStoryItem.videoUrl || activeStoryItem.localFallbackUrl}
+                      controls
+                      autoPlay
+                      playsInline
+                      className="w-full h-full object-contain rounded-xl"
+                    >
+                      {activeStoryItem.localFallbackUrl && (
+                        <source src={activeStoryItem.localFallbackUrl} type="video/mp4" />
+                      )}
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                ) : typeof activeStoryItem.image === 'string' ? (
                   <img
                     src={activeStoryItem.image.startsWith('http') ? activeStoryItem.image : `/src/${activeStoryItem.image.replace(/^\/?/, '')}`}
                     alt={activeStoryItem.title}
@@ -465,8 +553,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 )}
 
                 {/* Category Label Overlay UPON the Image */}
-                <span className="absolute top-5 left-5 bg-[#da8a24] text-white font-semibold text-xs uppercase tracking-wider px-3 py-1 rounded-md shadow-md z-10">
-                  {activeStoryItem.category}
+                <span className="absolute top-5 left-5 bg-[#da8a24] text-white font-semibold text-xs uppercase tracking-wider px-3 py-1 rounded-md shadow-md z-20 flex items-center gap-1">
+                  {activeStoryItem.isVideo && <Video className="w-3.5 h-3.5" />}
+                  <span>{activeStoryItem.category}</span>
                 </span>
               </div>
 

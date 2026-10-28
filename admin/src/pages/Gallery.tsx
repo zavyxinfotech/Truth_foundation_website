@@ -11,7 +11,7 @@ import {
 import { apiRequest } from '../api/client';
 import { GalleryImage } from '../types';
 
-const CATEGORIES = ['All', 'Meals', 'Education', 'Birthday Celebrations', 'Volunteers', 'Medical', 'Events', 'General'];
+const CATEGORIES = ['All', 'Videos', 'Meals', 'Education', 'Birthday Celebrations', 'Volunteers', 'Medical', 'Events', 'General'];
 
 export const Gallery: React.FC = () => {
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -161,6 +161,10 @@ export const Gallery: React.FC = () => {
   };
 
   const getImageSrc = (url: string) => {
+    if (!url) return '';
+    if (url.includes('/video/upload/')) {
+      return url.replace('/video/upload/', '/video/upload/so_2,w_800,c_fill,q_auto,f_jpg/');
+    }
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
     return `http://localhost:5173/src/${url.replace(/^\/?/, '')}`;
   };
