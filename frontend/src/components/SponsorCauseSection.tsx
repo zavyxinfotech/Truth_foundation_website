@@ -84,13 +84,13 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="text-left max-w-4xl space-y-1"
         >
-          <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
+          <span className="text-[#da8a24] font-medium text-sm sm:text-base uppercase tracking-widest block">
             SPONSOR A CAUSE
           </span>
           <h2 className="text-[20px] xs:text-[24px] sm:text-[32px] md:text-[38px] lg:text-[40px] font-semibold text-[#0a2240] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
             Make a Direct Impact
           </h2>
-          <p className="text-xs sm:text-base lg:text-[16px] text-slate-600 font-normal leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-[16px] text-slate-600 font-normal leading-relaxed">
             Your support helps us provide nutrition, education, healthcare, and care for children, elderly, and special-needs individuals.
           </p>
         </motion.div>
@@ -175,8 +175,8 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                     
                     {/* Glassmorphism Price Header Above Image with White Price */}
                     <div className="absolute top-2 inset-x-2 px-2.5 py-1 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
-                      <span className="text-[10px] text-slate-300 font-normal">Cause</span>
-                      <span className="text-sm font-bold text-white tracking-tight">
+                      <span className="text-xs text-slate-300 font-normal">Cause</span>
+                      <span className="text-base font-bold text-white tracking-tight">
                         {cause.amountLabel}
                       </span>
                     </div>
@@ -184,7 +184,7 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
 
                   {/* Title Below Image: Strictly Normal Font */}
                   <div className="pt-2 pb-1 px-1 flex flex-col items-center text-center">
-                    <h3 className="font-normal text-[#0a2240] text-xs sm:text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
+                    <h3 className="font-normal text-[#0a2240] text-sm sm:text-base leading-snug group-hover:text-[#da8a24] transition-colors">
                       {cause.title}
                     </h3>
                   </div>

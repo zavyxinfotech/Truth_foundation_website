@@ -47,14 +47,14 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="max-w-4xl space-y-2 mb-8 sm:mb-10 text-left"
         >
-          <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
+          <span className="text-[#da8a24] font-medium text-sm sm:text-base uppercase tracking-widest block">
             About Truth Foundation
           </span>
           <h2 className="text-[18px] xs:text-[22px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-semibold tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
             <span className="text-white">TRUTH FOUNDATION</span> <span className="text-[#da8a24]">(Public Charitable Trust)</span>
           </h2>
 
-          <p className="text-xs sm:text-base lg:text-[16px] text-slate-300 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base lg:text-[16px] text-slate-300 leading-relaxed font-normal">
             Launched on <strong className="text-white font-medium">5th July 2010</strong>, Truth Foundation empowers marginalized rural communities through education, skills development, and advocacy for social justice, equality, and dignity.
           </p>
         </motion.div>
@@ -88,7 +88,7 @@ export const AboutSection: React.FC = () => {
                 </h3>
 
                 {/* Stat Description */}
-                <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
                   {stat.description}
                 </p>
               </motion.div>

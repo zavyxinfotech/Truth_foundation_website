@@ -56,13 +56,13 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
             className="lg:col-span-6 flex flex-col gap-4"
           >
             <div className="space-y-1">
-              <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
+              <span className="text-[#da8a24] font-medium text-sm sm:text-base uppercase tracking-widest block">
                 Frequently Asked Questions
               </span>
               <h2 className="text-xl xs:text-2xl sm:text-3xl font-medium text-white tracking-tight">
                 Clear Answers to Your Questions
               </h2>
-              <p className="text-slate-300 text-xs sm:text-sm font-normal leading-relaxed">
+              <p className="text-slate-300 text-sm sm:text-base font-normal leading-relaxed">
                 Everything you need to know about our meal drives, centers, and payment safety.
               </p>
             </div>
@@ -79,10 +79,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
                     <button
                       type="button"
                       onClick={() => toggleFAQ(idx)}
-                      className="w-full text-left p-3.5 sm:p-4 flex items-center justify-between gap-2.5 font-normal text-white text-xs sm:text-sm hover:text-[#da8a24] transition cursor-pointer"
+                      className="w-full text-left p-3.5 sm:p-4 flex items-center justify-between gap-2.5 font-normal text-white text-sm sm:text-base hover:text-[#da8a24] transition cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
-                        <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-[#163863] text-[#da8a24] text-[10px] sm:text-xs flex items-center justify-center font-normal shrink-0">
+                        <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-[#163863] text-[#da8a24] text-xs sm:text-sm flex items-center justify-center font-normal shrink-0">
                           Q{idx + 1}
                         </span>
                         <span className="leading-snug font-normal">{faq.question}</span>
@@ -104,7 +104,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
                           transition={{ duration: 0.25, ease: 'easeInOut' }}
                           className="overflow-hidden"
                         >
-                          <div className="px-4 pb-4 pt-1 text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-[#163863]/60 bg-[#0a2240]/60 font-normal">
+                          <div className="px-4 pb-4 pt-1 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-[#163863]/60 bg-[#0a2240]/60 font-normal">
                             {faq.answer}
                           </div>
                         </motion.div>
@@ -125,13 +125,13 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
             className="lg:col-span-6 bg-[#071b34] p-5 sm:p-6 rounded-3xl border border-[#163863] flex flex-col gap-4 self-start"
           >
             <div className="border-b border-[#163863] pb-3 space-y-1">
-              <span className="text-[#da8a24] font-medium text-xs uppercase tracking-widest block">
+              <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
                 Make an Impact Today
               </span>
               <h3 className="text-base sm:text-lg font-semibold text-white tracking-tight">
                 Support Child Nutrition & Shelter
               </h3>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
                 Your donation directly provides warm, nutritious daily meals to children in need.
               </p>
             </div>
@@ -203,13 +203,13 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenDonateModal }) => 
 
         {/* WhatsApp Help Prompt */}
         <div className="mt-8 text-center py-4 border-t border-[#163863] space-y-2">
-          <p className="text-xs sm:text-sm font-normal text-slate-300 leading-relaxed">
+          <p className="text-sm sm:text-base font-normal text-slate-300 leading-relaxed">
             Have another question not answered above? Speak directly with our team!
           </p>
           <button
             type="button"
             onClick={handleWhatsApp}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-xl shadow-md transition cursor-pointer active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm sm:text-base font-semibold px-6 py-2.5 rounded-xl shadow-md transition cursor-pointer active:scale-95"
           >
             <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
             <span>Chat directly on WhatsApp</span>

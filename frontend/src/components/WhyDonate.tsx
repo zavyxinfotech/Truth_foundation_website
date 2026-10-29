@@ -83,13 +83,13 @@ export const WhyDonate: React.FC<WhyDonateProps> = () => {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="text-center max-w-4xl mx-auto mb-3 sm:mb-4 space-y-1"
         >
-          <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
+          <span className="text-[#da8a24] font-medium text-sm sm:text-base uppercase tracking-widest block">
             Make an Impact Today
           </span>
           <h2 className="text-[20px] xs:text-[24px] sm:text-[32px] md:text-[38px] lg:text-[40px] font-semibold text-[#0a2240] tracking-tight leading-tight whitespace-normal md:whitespace-nowrap">
             Transforming Lives, One Plate at a Time
           </h2>
-          <p className="text-xs sm:text-base lg:text-[16px] text-slate-600 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base lg:text-[16px] text-slate-600 leading-relaxed font-normal">
             Your small contribution creates a massive ripple effect in the life of a child. Here is how your ₹500 turns into health, dignity, and education.
           </p>
         </motion.div>

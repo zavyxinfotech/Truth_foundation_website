@@ -21,13 +21,13 @@ export const TestimonialsSection: React.FC = () => {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-2"
         >
-          <span className="text-[#da8a24] font-medium text-xs sm:text-sm uppercase tracking-widest block">
+          <span className="text-[#da8a24] font-medium text-sm sm:text-base uppercase tracking-widest block">
             Stories & Voices
           </span>
           <h2 className="text-[20px] xs:text-[24px] sm:text-3xl lg:text-[36px] font-normal text-blue-950 tracking-tight leading-tight">
             Hear From Our Donors & Volunteers
           </h2>
-          <p className="text-slate-600 text-xs sm:text-base font-normal leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed">
             Read authentic feedback from individuals, teachers, and volunteers who have experienced the impact firsthand.
           </p>
         </motion.div>
@@ -89,7 +89,7 @@ export const TestimonialsSection: React.FC = () => {
                   </div>
 
                   {/* Comment */}
-                  <p className="text-slate-700 text-xs sm:text-sm leading-relaxed italic font-normal line-clamp-4">
+                  <p className="text-slate-700 text-sm sm:text-base leading-relaxed italic font-normal line-clamp-4">
                     "{testimonial.comment}"
                   </p>
                 </div>
@@ -108,20 +108,20 @@ export const TestimonialsSection: React.FC = () => {
                       referrerPolicy="no-referrer"
                     />
                     <div>
-                      <div className="font-normal text-blue-950 text-xs sm:text-sm flex items-center gap-1">
+                      <div className="font-normal text-blue-950 text-sm sm:text-base flex items-center gap-1">
                         <span>{testimonial.name}</span>
                         {testimonial.verified && (
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-600 fill-emerald-100 shrink-0" />
                         )}
                       </div>
-                      <div className="text-[10px] sm:text-xs text-slate-500 font-normal">
+                      <div className="text-xs sm:text-sm text-slate-500 font-normal">
                         {testimonial.role} • {testimonial.location}
                       </div>
                     </div>
                   </div>
 
                   {testimonial.donatedAmount && (
-                    <span className="bg-[#da8a24]/15 text-[#0a2240] text-[10px] sm:text-xs font-normal px-2.5 py-1 rounded-full border border-[#da8a24]/30 shrink-0">
+                    <span className="bg-[#da8a24]/15 text-[#0a2240] text-xs sm:text-sm font-normal px-2.5 py-1 rounded-full border border-[#da8a24]/30 shrink-0">
                       Donated {testimonial.donatedAmount}
                     </span>
                   )}

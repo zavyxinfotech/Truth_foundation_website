@@ -365,56 +365,62 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
-                    onClick={() => {
-                      pixelTracker.trackDonateClick(donateAmount, `Gallery Card (${item.category})`);
-                      onOpenDonateModal(donateAmount);
-                    }}
-                    className="bg-white rounded-none overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md transition-all group cursor-pointer flex flex-col justify-between"
+                    className="bg-white rounded-none overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                   >
-                    {/* Top: Image Tile with sharp corners (rounded-none) */}
-                    <div className="relative aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-none">
+                    {/* Top: Image/Video Tile with sharp corners (rounded-none) - Clicking opens media preview / plays video */}
+                    <div
+                      onClick={() => setActiveStoryItem(item)}
+                      className="relative aspect-[4/3] overflow-hidden bg-[#0a2240] rounded-none cursor-pointer group/media"
+                    >
                       {typeof item.image === 'string' ? (
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                          className="w-full h-full object-cover object-center group-hover/media:scale-105 transition-transform duration-500 ease-out"
                         />
                       ) : (
                         <Picture
                           picture={item.image}
                           sizes="(min-width: 1024px) 300px, (min-width: 640px) 320px, 50vw"
                           alt={item.title}
-                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                          className="w-full h-full object-cover object-center group-hover/media:scale-105 transition-transform duration-500 ease-out"
                         />
                       )}
 
                       {/* Video Play Overlay Badge */}
                       {item.isVideo && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/15 transition-colors z-10 pointer-events-none">
-                          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-none bg-[#da8a24] text-white flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/media:bg-black/10 transition-colors z-10">
+                          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-none bg-[#da8a24] text-white flex items-center justify-center shadow-xl transform group-hover/media:scale-110 transition-transform">
                             <Play className="w-5 h-5 fill-white text-white ml-0.5" />
                           </div>
-                          <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-none bg-black/75 backdrop-blur-md text-[10px] text-white font-medium flex items-center gap-1">
-                            <Video className="w-3 h-3 text-[#da8a24]" />
+                          <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-none bg-black/75 backdrop-blur-md text-xs text-white font-normal flex items-center gap-1">
+                            <Video className="w-3.5 h-3.5 text-[#da8a24]" />
                             <span>Video</span>
                           </span>
                         </div>
                       )}
 
                       {/* Sharp Category Label */}
-                      <span className="absolute top-2.5 left-2.5 bg-[#0a2240]/85 text-white font-medium text-[11px] uppercase tracking-wider px-2.5 py-0.5 rounded-none z-10">
+                      <span className="absolute top-2.5 left-2.5 bg-[#0a2240]/85 text-white font-normal text-xs uppercase tracking-wider px-2.5 py-0.5 rounded-none z-10">
                         {item.category}
                       </span>
                     </div>
 
-                    {/* Bottom: ONLY Donation Amount and Arrow at bottom end (rounded-none, simple) */}
-                    <div className="px-3 py-2.5 bg-white border-t border-slate-100 flex items-center justify-between gap-2 group-hover:bg-[#fef9f2] transition-colors rounded-none">
-                      <span className="text-xs sm:text-sm font-medium text-[#0a2240] flex items-center gap-1.5">
-                        <Heart className="w-3.5 h-3.5 fill-[#da8a24] text-[#da8a24] shrink-0" />
+                    {/* Bottom: ONLY Donation Amount and Arrow at bottom end (rounded-none, simple) - Clicking navigates to donate */}
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        pixelTracker.trackDonateClick(donateAmount, `Gallery Card (${item.category})`);
+                        onOpenDonateModal(donateAmount);
+                      }}
+                      className="px-3 py-2.5 bg-white border-t border-slate-100 flex items-center justify-between gap-2 hover:bg-[#fff7ed] transition-colors rounded-none cursor-pointer group/donate"
+                    >
+                      <span className="text-sm sm:text-base font-medium text-[#0a2240] group-hover/donate:text-[#da8a24] flex items-center gap-1.5 transition-colors">
+                        <Heart className="w-4 h-4 fill-[#da8a24] text-[#da8a24] shrink-0" />
                         <span>Donate ₹{donateAmount}</span>
                       </span>
-                      <div className="w-6 h-6 flex items-center justify-center text-[#da8a24] group-hover:translate-x-1 transition-transform">
-                        <ArrowRight className="w-4 h-4" />
+                      <div className="w-6 h-6 flex items-center justify-center text-[#da8a24] group-hover/donate:translate-x-1 transition-transform">
+                        <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                       </div>
                     </div>
                   </motion.div>
@@ -471,11 +477,11 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 <Heart className="w-4.5 h-4.5 fill-white text-white" />
               </div>
               
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-white tracking-tight leading-snug drop-shadow-md">
+              <h2 className="text-[26px] sm:text-3xl lg:text-[34px] font-normal text-white tracking-tight leading-snug drop-shadow-md">
                 Be a Part of More Happy Moments
               </h2>
               
-              <p className="text-base sm:text-lg text-white/95 font-normal leading-relaxed max-w-xl drop-shadow-md">
+              <p className="text-[17px] sm:text-lg text-white/95 font-normal leading-relaxed max-w-xl drop-shadow-md">
                 Every contribution directly funds wholesome daily meals, educational books, special needs therapy, and shelter for children and seniors across Chennai & Thiruvallur.
               </p>
             </div>
@@ -489,7 +495,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   pixelTracker.trackDonateClick(500, 'Gallery Page Support CTA');
                   onOpenDonateModal(500);
                 }}
-                className="bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider w-full"
+                className="bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none border-0 transition flex items-center justify-center gap-2 cursor-pointer text-sm sm:text-base uppercase tracking-wider w-full"
               >
                 <Heart className="w-4 h-4 fill-white text-white" />
                 <span>Donate Now</span>
@@ -499,7 +505,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onNavigate('contact')}
-                className="bg-[#071b34]/90 hover:bg-[#163863] text-white border border-[#da8a24]/30 font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm w-full"
+                className="bg-[#071b34]/90 hover:bg-[#163863] text-white border border-[#da8a24]/30 font-normal px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-none transition flex items-center justify-center gap-2 cursor-pointer text-sm sm:text-base w-full"
               >
                 <Users className="w-4 h-4 text-[#da8a24]" />
                 <span>Contact Our Team</span>
@@ -565,12 +571,16 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                 {activeStoryItem.isVideo ? (
                   <div className="relative w-full aspect-video max-h-[32vh] sm:max-h-[42vh] lg:max-h-[75vh] flex items-center justify-center bg-black rounded-xl overflow-hidden shadow-xl">
                     <video
+                      key={activeStoryItem.id || activeStoryItem.videoUrl}
                       src={activeStoryItem.videoUrl || activeStoryItem.localFallbackUrl}
                       controls
                       autoPlay
                       playsInline
                       className="w-full h-full object-contain rounded-xl"
                     >
+                      {activeStoryItem.videoUrl && (
+                        <source src={activeStoryItem.videoUrl} type="video/mp4" />
+                      )}
                       {activeStoryItem.localFallbackUrl && (
                         <source src={activeStoryItem.localFallbackUrl} type="video/mp4" />
                       )}
@@ -604,7 +614,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
               <div className="lg:col-span-7 p-4 sm:p-7 space-y-4 overflow-y-auto max-h-[60vh] lg:max-h-[85vh] flex flex-col justify-between scrollbar-thin">
                 <div className="space-y-3.5 pr-1 sm:pr-2">
                   {/* Location & Impact Stats (Clean Text - No Pill Backgrounds) */}
-                  <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm pt-1">
+                  <div className="flex flex-wrap items-center gap-3 text-sm sm:text-base pt-1">
                     <span className="text-[#da8a24] flex items-center gap-1 font-normal">
                       <MapPin className="w-3.5 h-3.5 text-[#da8a24]" />
                       {activeStoryItem.location}
@@ -618,12 +628,12 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                   </div>
 
                   <h3 className="text-xl sm:text-3xl font-normal text-white leading-tight">{activeStoryItem.title}</h3>
-                  <p className="text-xs sm:text-base text-slate-200 leading-relaxed font-normal">{activeStoryItem.description}</p>
+                  <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">{activeStoryItem.description}</p>
 
                   {activeStoryItem.quote && (
                     <div className="bg-[#da8a24]/10 backdrop-blur-md border border-[#da8a24]/20 p-3.5 rounded-xl flex items-start gap-3">
                       <Quote className="w-4 h-4 text-[#da8a24] shrink-0 mt-0.5" />
-                      <p className="text-xs sm:text-sm italic font-normal text-amber-200">{activeStoryItem.quote}</p>
+                      <p className="text-sm sm:text-base italic font-normal text-amber-200">{activeStoryItem.quote}</p>
                     </div>
                   )}
                 </div>
@@ -635,7 +645,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenDonateModal, onN
                       setActiveStoryItem(null);
                       onOpenDonateModal(500);
                     }}
-                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal px-6 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm uppercase tracking-wider active:scale-95"
+                    className="w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-normal px-6 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer text-sm sm:text-base uppercase tracking-wider active:scale-95"
                   >
                     <Heart className="w-4 h-4 fill-white text-white animate-pulse" />
                     <span>Sponsor Meals for This Drive (₹500)</span>

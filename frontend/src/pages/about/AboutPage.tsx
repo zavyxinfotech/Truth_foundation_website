@@ -435,7 +435,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 <div className="text-sm font-medium text-slate-700">
                   {stat.label}
                 </div>
-                <div className="text-xs text-[#da8a24] font-medium">
+                <div className="text-sm text-[#da8a24] font-medium">
                   {stat.subtitle}
                 </div>
               </motion.div>
@@ -463,7 +463,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   <div className="text-sm sm:text-base font-semibold text-slate-800">
                     {stat.label}
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-[#da8a24]">
+                  <div className="text-sm sm:text-base font-medium text-[#da8a24]">
                     {stat.subtitle}
                   </div>
                 </div>
@@ -490,7 +490,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
             >
               {/* Heading for Left Side Section */}
               <div className="space-y-1">
-                <span className="text-[#da8a24] font-normal text-xs sm:text-sm uppercase tracking-widest block">
+                <span className="text-[#da8a24] font-normal text-sm sm:text-base uppercase tracking-widest block">
                   WHO WE ARE?
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-normal text-[#0a2240] tracking-tight leading-tight">
@@ -553,7 +553,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               </div>
 
               {/* Verification Badges */}
-              <div className="pt-2 flex flex-wrap items-center gap-3 text-xs sm:text-sm font-normal">
+              <div className="pt-2 flex flex-wrap items-center gap-3 text-sm sm:text-base font-normal">
                 <div className="flex items-center gap-2 bg-[#da8a24]/15 text-[#0a2240] border border-[#da8a24]/30 rounded-xl px-4 py-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#da8a24]" />
                   <span>100% Direct Impact Delivery</span>
@@ -596,7 +596,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-[#da8a24] ring-4 ring-[#f8fafc]" />
 
                     <div className="bg-transparent border-0 shadow-none p-0 space-y-1.5 transition-all">
-                      <span className="text-xs font-semibold text-[#da8a24] uppercase tracking-wider bg-[#da8a24]/15 px-3 py-1 rounded-full inline-block">
+                      <span className="text-sm font-semibold text-[#da8a24] uppercase tracking-wider bg-[#da8a24]/15 px-3 py-1 rounded-full inline-block">
                         {milestone.year}
                       </span>
                       <h3 className="text-lg sm:text-xl font-semibold text-[#0a2240]">
@@ -622,7 +622,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
         <div className="max-w-[960px] mx-auto px-4 sm:px-8 space-y-8">
           
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-[#da8a24] font-semibold text-xs sm:text-sm uppercase tracking-widest block">
+            <span className="text-[#da8a24] font-semibold text-sm sm:text-base uppercase tracking-widest block">
               OUR FOUNDATIONAL PILLARS
             </span>
             <h2 className="text-2xl sm:text-4xl font-semibold text-[#0a2240] tracking-tight">
@@ -670,7 +670,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
                         {aboutContent?.vision || 'To establish a just and equitable social order where every child, elder, and special-needs individual lives with dignity, freedom, equal opportunity, and complete access to education, nutrition, and healthcare.'}
                       </p>
-                      <div className="pt-3 border-t border-[#163863] text-xs sm:text-sm text-[#da8a24] font-semibold flex items-center gap-2">
+                      <div className="pt-3 border-t border-[#163863] text-sm sm:text-base text-[#da8a24] font-semibold flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-[#da8a24]" />
                         <span>Equal Opportunity for All</span>
                       </div>
@@ -717,7 +717,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       <p className="text-base sm:text-lg text-white/95 leading-relaxed font-medium">
                         {aboutContent?.mission || 'Empowering rural communities through free education, evening tuition centers, specialized therapy for children with disabilities, shelter and food for abandoned seniors, and health awareness campaigns.'}
                       </p>
-                      <div className="pt-3 border-t border-white/20 text-xs sm:text-sm text-white font-semibold flex items-center gap-2">
+                      <div className="pt-3 border-t border-white/20 text-sm sm:text-base text-white font-semibold flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-white" />
                         <span>Grassroots Social Transformation</span>
                       </div>
@@ -779,7 +779,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                           <span>Community Leadership & Trust</span>
                         </div>
                       </div>
-                      <div className="pt-3 border-t border-slate-200 text-xs sm:text-sm text-[#da8a24] font-semibold flex items-center gap-2">
+                      <div className="pt-3 border-t border-slate-200 text-sm sm:text-base text-[#da8a24] font-semibold flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-[#da8a24]" />
                         <span>Govt. Certified Public Trust</span>
                       </div>
@@ -877,19 +877,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                             <h3 className="text-lg lg:text-2xl font-normal text-[#0a2240] leading-snug">
                               {currentProgram.title}
                             </h3>
-                            <p className="text-xs text-slate-500 font-normal">
+                            <p className="text-sm text-slate-500 font-normal">
                               {currentProgram.location}
                             </p>
                           </div>
                         </div>
                         
-                        <span className="text-xs font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
+                        <span className="text-sm font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
                           {currentProgram.tag}
                         </span>
                       </div>
 
                       {/* Description */}
-                      <p className="text-xs lg:text-sm text-slate-600 font-normal leading-relaxed">
+                      <p className="text-sm lg:text-base text-slate-600 font-normal leading-relaxed">
                         {currentProgram.description}
                       </p>
                     </div>
@@ -897,7 +897,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                     {/* Feature Bullet List */}
                     <div className="pt-2.5 border-t border-slate-200/60 space-y-2">
                       {(currentProgram.details || []).map((detail: string, dIdx: number) => (
-                        <div key={dIdx} className="flex items-center gap-2.5 text-xs lg:text-sm text-slate-700 font-normal">
+                        <div key={dIdx} className="flex items-center gap-2.5 text-sm lg:text-base text-slate-700 font-normal">
                           <div className="w-4.5 h-4.5 rounded-full bg-[#da8a24] text-white flex items-center justify-center shrink-0">
                             <CheckCircle2 className="w-3.5 h-3.5" />
                           </div>
@@ -947,7 +947,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                             <div className="w-8 h-8 rounded-lg bg-[#da8a24]/15 text-[#da8a24] flex items-center justify-center shrink-0">
                               <ProgramIcon className="w-5 h-5" />
                             </div>
-                            <span className="text-xs sm:text-sm font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full">
+                            <span className="text-sm sm:text-base font-normal text-[#da8a24] bg-[#da8a24]/15 px-3 py-1 rounded-full">
                               {currentProgram.tag}
                             </span>
                           </div>
@@ -1038,7 +1038,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                 </div>
                 <div>
                   <h4 className="font-semibold text-[#0a2240] group-hover:text-white text-base sm:text-lg transition-colors duration-300">{cred.title}</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 group-hover:text-slate-200 pt-1 leading-relaxed font-normal transition-colors duration-300">{cred.desc}</p>
+                  <p className="text-sm sm:text-base text-slate-600 group-hover:text-slate-200 pt-1 leading-relaxed font-normal transition-colors duration-300">{cred.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -1061,7 +1061,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                   </div>
                   <div>
                     <h4 className="font-semibold text-[#0a2240] text-base sm:text-lg">{cred.title}</h4>
-                    <p className="text-xs sm:text-sm text-slate-600 pt-1 leading-relaxed font-normal">{cred.desc}</p>
+                    <p className="text-sm sm:text-base text-slate-600 pt-1 leading-relaxed font-normal">{cred.desc}</p>
                   </div>
                 </div>
               ))}
@@ -1187,7 +1187,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       
                       {/* Glassmorphism Price Header Above Image with White Price */}
                       <div className="absolute top-2 inset-x-2 px-2.5 py-1 rounded-xl bg-[#0a2240]/80 backdrop-blur-md flex items-center justify-between text-left border border-white/10">
-                        <span className="text-[10px] text-slate-300 font-normal">Cause</span>
+                        <span className="text-xs text-slate-300 font-normal">Cause</span>
                         <span className="text-sm font-bold text-white tracking-tight">
                           {cause.amountLabel}
                         </span>
@@ -1196,7 +1196,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
 
                     {/* Title Below Image: Strictly Normal Font */}
                     <div className="pt-2 pb-1 px-1 flex flex-col items-center text-center">
-                      <h3 className="font-normal text-[#0a2240] text-xs sm:text-sm leading-snug group-hover:text-[#da8a24] transition-colors">
+                      <h3 className="font-normal text-[#0a2240] text-sm sm:text-base leading-snug group-hover:text-[#da8a24] transition-colors">
                         {cause.title}
                       </h3>
                     </div>
@@ -1324,25 +1324,25 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
               {/* Item 1 */}
               <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5 md:border-r border-slate-200/80">
                 <Lock className="w-5 h-5 text-[#da8a24] shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">Safe & Secure Donations</span>
+                <span className="text-sm sm:text-base font-medium text-slate-700 leading-tight">Safe & Secure Donations</span>
               </div>
 
               {/* Item 2 */}
               <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5 md:border-r border-slate-200/80">
                 <Package className="w-5 h-5 text-[#da8a24] shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">Direct Impact Delivery</span>
+                <span className="text-sm sm:text-base font-medium text-slate-700 leading-tight">Direct Impact Delivery</span>
               </div>
 
               {/* Item 3 */}
               <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5 md:border-r border-slate-200/80">
                 <ShieldCheck className="w-5 h-5 text-[#da8a24] shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">80G Tax Exemption</span>
+                <span className="text-sm sm:text-base font-medium text-slate-700 leading-tight">80G Tax Exemption</span>
               </div>
 
               {/* Item 4 */}
               <div className="flex items-center justify-center sm:justify-start lg:justify-center gap-2.5 px-3 py-1.5">
                 <Users className="w-5 h-5 text-[#da8a24] shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-slate-700 leading-tight">Trusted by Communities</span>
+                <span className="text-sm sm:text-base font-medium text-slate-700 leading-tight">Trusted by Communities</span>
               </div>
 
             </div>

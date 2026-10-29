@@ -443,7 +443,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
 
             {/* Top-Right: Description Paragraph & DONATE NOW Button */}
             <div className="lg:col-span-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 lg:pl-4">
-              <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-md">
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-md">
                 Your support helps us create brighter futures, stronger communities, and lasting change. Together, we can make a real difference.
               </p>
 
@@ -455,7 +455,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                     pixelTracker.trackDonateClick(500, 'Give Love Section - Donate Now');
                     onOpenDonateModal(500);
                   }}
-                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl min-h-[44px] font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                  className="bg-[#da8a24] hover:bg-[#c77a1e] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl min-h-[44px] font-semibold text-sm sm:text-base uppercase tracking-wider shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
                 >
                   <Heart className="w-4 h-4 fill-white text-white shrink-0" />
                   <span>DONATE NOW</span>
@@ -494,7 +494,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   />
                 </svg>
               </div>
-              <span className="font-bold text-[#071b34] text-[11px] sm:text-xs tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+              <span className="font-bold text-[#071b34] text-xs sm:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
                 DONATE
               </span>
             </button>
@@ -525,7 +525,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   <path d="M43 43 C47 43 50 45 50 50" stroke="#071b34" strokeWidth="2.2" strokeLinecap="round" />
                 </svg>
               </div>
-              <span className="font-bold text-[#071b34] text-[11px] sm:text-xs tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+              <span className="font-bold text-[#071b34] text-xs sm:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
                 VOLUNTEER
               </span>
             </button>
@@ -560,7 +560,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   />
                 </svg>
               </div>
-              <span className="font-bold text-[#071b34] text-[11px] sm:text-xs tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+              <span className="font-bold text-[#071b34] text-xs sm:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
                 GET HELP
               </span>
             </a>
@@ -600,7 +600,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenDonateModal, onN
                   />
                 </svg>
               </div>
-              <span className="font-bold text-[#071b34] text-[11px] sm:text-xs tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
+              <span className="font-bold text-[#071b34] text-xs sm:text-sm tracking-wider uppercase group-hover:text-[#da8a24] transition-colors whitespace-nowrap">
                 CONTACT US
               </span>
             </button>
