@@ -128,9 +128,9 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                     </span>
                   </div>
 
-                  {/* Desktop Hover Only: Shows Donate Button */}
-                  <div className="absolute bottom-2.5 inset-x-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-semibold text-xs sm:text-sm py-2.5 px-3 rounded-xl uppercase tracking-wider">
+                  {/* Donate Button: Visible by default on Desktop */}
+                  <div className="absolute bottom-2.5 inset-x-2.5">
+                    <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white font-semibold text-xs sm:text-sm py-2.5 px-3 rounded-xl uppercase tracking-wider shadow-md">
                       <Heart className="w-4 h-4 fill-white text-white" />
                       <span>Donate</span>
                     </span>
@@ -178,6 +178,14 @@ export const SponsorCauseSection: React.FC<SponsorCauseSectionProps> = ({ onOpen
                       <span className="text-xs text-slate-300 font-normal">Cause</span>
                       <span className="text-base font-bold text-white tracking-tight">
                         {cause.amountLabel}
+                      </span>
+                    </div>
+
+                    {/* Mobile Donate Button: Visible by default with Heart Icon */}
+                    <div className="absolute bottom-2 inset-x-2">
+                      <span className="inline-flex items-center justify-center gap-1.5 w-full bg-[#da8a24] text-white font-semibold text-xs py-2 px-2.5 rounded-xl uppercase tracking-wider shadow-md">
+                        <Heart className="w-3.5 h-3.5 fill-white text-white" />
+                        <span>Donate</span>
                       </span>
                     </div>
                   </div>
