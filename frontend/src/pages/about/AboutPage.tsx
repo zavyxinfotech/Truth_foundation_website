@@ -1140,10 +1140,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                       </span>
                     </div>
 
-                    {/* Donate Button: Heart Icon Only */}
-                    <div className="absolute bottom-2.5 inset-x-2.5">
-                      <span className="inline-flex items-center justify-center w-full bg-[#da8a24] hover:bg-[#c77a1e] text-white py-2 px-3 rounded-xl shadow-md transition">
-                        <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-white" />
+                    {/* Desktop Donate Button: Compact Bottom-Right Corner Heart, Expands with Donate text on Hover */}
+                    <div className="absolute bottom-2.5 right-2.5 z-20">
+                      <span className="group/btn inline-flex items-center justify-center bg-[#da8a24] hover:bg-[#c77a1e] text-white rounded-full shadow-lg transition-all duration-300 p-2 sm:p-2.5 cursor-pointer">
+                        <Heart className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white text-white shrink-0" />
+                        <span className="max-w-0 opacity-0 group-hover/btn:max-w-[70px] group-hover/btn:opacity-100 group-hover/btn:ml-1.5 transition-all duration-300 text-xs sm:text-sm font-semibold uppercase tracking-wider whitespace-nowrap overflow-hidden">
+                          Donate
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -1192,9 +1195,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenDonateModal, onNavig
                         </span>
                       </div>
 
-                      {/* Mobile Donate Button: Heart Icon Only */}
-                      <div className="absolute bottom-2 inset-x-2">
-                        <span className="inline-flex items-center justify-center w-full bg-[#da8a24] text-white py-1.5 px-2 rounded-xl shadow-md transition">
+                      {/* Mobile Donate Button: Bottom-Right Corner Heart Shape Only (No extra space) */}
+                      <div className="absolute bottom-2 right-2 z-20">
+                        <span className="w-8 h-8 rounded-full bg-[#da8a24] text-white flex items-center justify-center shadow-md">
                           <Heart className="w-4 h-4 fill-white text-white" />
                         </span>
                       </div>

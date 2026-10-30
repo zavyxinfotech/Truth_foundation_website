@@ -183,8 +183,8 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
       {enabled && !isDismissed && isPopupVisible && (
         <div className="flex flex-col items-end">
           {isTyping ? (
-            /* Automatic Typing Indicator Bubble - Light Frosted Transparent */
-            <div className="bg-white/80 backdrop-blur-xl text-slate-800 px-3.5 py-2 rounded-2xl shadow-xl flex items-center gap-2 border border-white/60 text-xs transition-all">
+            /* Automatic Typing Indicator Bubble - Transparent, No Color, No Borders, No Shadows */
+            <div className="bg-transparent text-slate-800 px-2 py-1.5 flex items-center gap-2 border-0 shadow-none text-xs transition-all">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -199,15 +199,15 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
               </span>
             </div>
           ) : (
-            /* Popup Notification Message Card - Vertical Rectangle with Transparent Frosted Light Theme */
-            <div className="bg-white/80 backdrop-blur-xl text-slate-800 p-3 rounded-2xl shadow-2xl border border-white/60 w-[185px] xs:w-[200px] sm:w-[210px] relative transition-all duration-300 flex flex-col items-center text-center">
+            /* Popup Notification Message Card - Transparent Background, No Color, No Borders, No Shadows */
+            <div className="bg-transparent text-slate-800 p-2.5 border-0 shadow-none w-[180px] xs:w-[195px] sm:w-[205px] relative transition-all duration-300 flex flex-col items-center text-center">
               {/* Dismiss Button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsDismissed(true);
                 }}
-                className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-200/50 transition cursor-pointer"
+                className="absolute top-0 right-0 text-slate-400 hover:text-slate-700 p-1 rounded-full transition cursor-pointer"
                 title="Dismiss notification"
                 aria-label="Dismiss notification"
               >
@@ -215,8 +215,8 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
               </button>
 
               {/* Vertical Stack: Donor Avatar, Name, Location & Verified Check */}
-              <div className="flex flex-col items-center mt-1 mb-2">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-white font-bold text-xs flex items-center justify-center shadow-sm mb-1.5">
+              <div className="flex flex-col items-center mt-0.5 mb-1.5">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-white font-bold text-xs flex items-center justify-center shadow-sm mb-1">
                   {initials}
                 </div>
                 <div className="flex items-center gap-1 justify-center max-w-[150px]">
@@ -228,12 +228,12 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
                 </p>
               </div>
 
-              {/* Middle Section: Cause & Amount in Light Color Theme */}
-              <div className="w-full bg-slate-50/90 rounded-xl p-2 mb-2.5 border border-slate-200/70 text-center flex flex-col items-center gap-1">
+              {/* Middle Section: Cause & Amount - Transparent, No Color, No Borders, No Shadows */}
+              <div className="w-full bg-transparent p-1.5 mb-2 border-0 shadow-none text-center flex flex-col items-center gap-0.5">
                 <div className="text-[11px] text-slate-600 leading-tight">
-                  Donated for <span className="text-[#da8a24] font-medium block truncate max-w-[160px]">{cause}</span>
+                  Donated for <span className="text-[#da8a24] font-medium block truncate max-w-[155px]">{cause}</span>
                 </div>
-                <span className="inline-block mt-0.5 px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold text-xs">
+                <span className="inline-block mt-0.5 px-2 py-0.5 rounded-md text-emerald-700 font-bold text-xs">
                   ₹{amount.toLocaleString('en-IN')}
                 </span>
               </div>
@@ -241,7 +241,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
               {/* Bottom Row: Interactive "Add your donation" CTA button */}
               <button
                 onClick={handleDonateClick}
-                className="w-full py-1.5 px-2 bg-gradient-to-r from-[#da8a24] to-[#f59e0b] hover:from-[#c77a1e] hover:to-[#da8a24] text-white text-[11px] font-bold rounded-xl shadow-sm transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer border-0 uppercase tracking-wider"
+                className="w-full py-1.5 px-2 bg-gradient-to-r from-[#da8a24] to-[#f59e0b] hover:from-[#c77a1e] hover:to-[#da8a24] text-white text-[11px] font-bold rounded-xl shadow-md transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer border-0 uppercase tracking-wider"
               >
                 <Heart className="w-3 h-3 fill-white text-white" />
                 <span className="truncate">{ctaText}</span>
