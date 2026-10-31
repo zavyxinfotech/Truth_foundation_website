@@ -13,7 +13,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-1',
     donor_name: 'Karthik Raja',
     amount: 1500,
-    cause: 'Special Meals for 15 Children',
+    cause: 'Diwali Special Feast & Sweets',
     location: 'Chennai',
     time_ago: 'Just now',
     cta_text: 'Donate'
@@ -22,7 +22,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-2',
     donor_name: 'Priya Sundaram',
     amount: 750,
-    cause: 'Senior Care & Daily Medicines',
+    cause: 'Diwali Sweets for Senior Elders',
     location: 'Tambaram',
     time_ago: '1 min ago',
     cta_text: 'Donate'
@@ -31,7 +31,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-3',
     donor_name: 'Ananya Sharma',
     amount: 2500,
-    cause: 'Monthly Education Kit & Books',
+    cause: 'Diwali New Clothes for Orphan Kids',
     location: 'Anna Nagar',
     time_ago: 'Just now',
     cta_text: 'Donate'
@@ -40,7 +40,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-4',
     donor_name: 'Vignesh Kumar',
     amount: 1000,
-    cause: 'Daily Nutritious Breakfast for Kids',
+    cause: 'Diwali Sparklers & Sweets Box',
     location: 'Thiruvallur',
     time_ago: '2 mins ago',
     cta_text: 'Donate'
@@ -49,7 +49,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-5',
     donor_name: 'Meera Krishnan',
     amount: 5000,
-    cause: 'Special Needs Therapy & Care',
+    cause: 'Diwali Celebration Kit for 20 Kids',
     location: 'Adyar',
     time_ago: 'Just now',
     cta_text: 'Donate'
@@ -58,7 +58,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-6',
     donor_name: 'Rajesh Natarajan',
     amount: 3000,
-    cause: 'Emergency Shelter & Bedding Provisions',
+    cause: 'Diwali New Dress & Care for Elders',
     location: 'Velachery',
     time_ago: '3 mins ago',
     cta_text: 'Donate'
@@ -67,7 +67,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-7',
     donor_name: 'Divya & Arun',
     amount: 1200,
-    cause: 'Sunday Feast for Orphan Children',
+    cause: 'Diwali Festive Lunch for Children',
     location: 'Redhills',
     time_ago: 'Just now',
     cta_text: 'Donate'
@@ -76,7 +76,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     id: 'pop-8',
     donor_name: 'Sangeetha R.',
     amount: 800,
-    cause: 'Fresh Fruits & Wholesome Diet',
+    cause: 'Diwali Sweets & Snacks for Kids',
     location: 'Mylapore',
     time_ago: '4 mins ago',
     cta_text: 'Donate'
@@ -184,13 +184,13 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
         <div className="flex flex-col items-end">
           {isTyping ? (
             /* Automatic Typing Indicator Bubble - Transparent, No Color, No Borders, No Shadows */
-            <div className="bg-transparent text-slate-800 px-2 py-1.5 flex items-center gap-2 border-0 shadow-none text-xs transition-all">
+            <div className="bg-white/60 backdrop-blur-md text-slate-800 px-3 py-1.5 rounded-full border border-slate-200/80 shadow-xs flex items-center gap-2 text-xs transition-all mb-1">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span className="text-slate-600 text-[11px] font-medium tracking-wide">
-                Someone is donating...
+              <span className="text-slate-700 text-[11px] font-medium tracking-wide">
+                Someone is donating for Diwali...
               </span>
               <span className="flex items-center gap-1 ml-0.5">
                 <span className="w-1.5 h-1.5 bg-[#da8a24] rounded-full animate-bounce [animation-delay:-0.3s]"></span>
@@ -199,15 +199,15 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
               </span>
             </div>
           ) : (
-            /* Popup Notification Message Card - Transparent Background, No Color, No Borders, No Shadows */
-            <div className="bg-black/20 text-slate-800 p-2.5 border-0 shadow-none w-[180px] xs:w-[195px] sm:w-[205px] backdrop-blur-md relative transition-all duration-300 flex flex-col items-center text-center">
+            /* Popup Notification Message Card - Translucent Glass Background with Rounded Border */
+            <div className="bg-white/70 backdrop-blur-md text-slate-800 p-3 rounded-2xl border border-slate-200/90 shadow-md w-[190px] xs:w-[205px] sm:w-[215px] relative transition-all duration-300 flex flex-col items-center text-center">
               {/* Dismiss Button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsDismissed(true);
                 }}
-                className="absolute top-0 right-0 text-slate-400 hover:text-slate-700 p-1 rounded-full transition cursor-pointer"
+                className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 p-0.5 rounded-full transition cursor-pointer"
                 title="Dismiss notification"
                 aria-label="Dismiss notification"
               >
@@ -216,35 +216,35 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
 
               {/* Vertical Stack: Donor Avatar, Name, Location & Verified Check */}
               <div className="flex flex-col items-center mt-0.5 mb-1.5">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-white font-bold text-xs flex items-center justify-center shadow-sm mb-1">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#da8a24] to-[#f59e0b] text-white font-bold text-xs flex items-center justify-center shadow-xs mb-1">
                   {initials}
                 </div>
-                <div className="flex items-center gap-1 justify-center max-w-[150px]">
-                  <span className="font-semibold text-[#0a2240] text-xs truncate">{donorName}</span>
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0 fill-emerald-100" />
+                <div className="flex items-center gap-1 justify-center max-w-[155px]">
+                  <span className="font-bold text-slate-900 text-xs truncate">{donorName}</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 fill-emerald-100" />
                 </div>
-                <p className="text-[10px] text-slate-500">
-                  {location} • <span className="text-emerald-600 font-medium">{timeAgo}</span>
+                <p className="text-[10px] text-slate-500 font-medium">
+                  {location} • <span className="text-emerald-700 font-semibold">{timeAgo}</span>
                 </p>
               </div>
 
-              {/* Middle Section: Cause & Amount - Transparent, No Color, No Borders, No Shadows */}
-              <div className="w-full bg-transparent p-1.5 mb-2 border-0 shadow-none text-center flex flex-col items-center gap-0.5">
+              {/* Middle Section: Cause & Amount */}
+              <div className="w-full bg-slate-50/60 rounded-xl p-1.5 mb-2 border border-slate-200/50 text-center flex flex-col items-center gap-0.5">
                 <div className="text-[11px] text-slate-600 leading-tight">
-                  Donated for <span className="text-[#da8a24] font-medium block truncate max-w-[155px]">{cause}</span>
+                  Donated for <span className="text-[#c77a1e] font-bold block truncate max-w-[165px]">{cause}</span>
                 </div>
                 <span className="inline-block mt-0.5 px-2 py-0.5 rounded-md text-emerald-700 font-bold text-xs">
                   ₹{amount.toLocaleString('en-IN')}
                 </span>
               </div>
 
-              {/* Bottom Row: Interactive "Add your donation" CTA button */}
+              {/* Bottom Row: Interactive "Donate" CTA button */}
               <button
                 onClick={handleDonateClick}
-                className="w-full py-1.5 px-2 bg-gradient-to-r from-[#da8a24] to-[#f59e0b] hover:from-[#c77a1e] hover:to-[#da8a24] text-white text-[11px] font-bold rounded-xl shadow-md transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer border-0 uppercase tracking-wider"
+                className="w-full py-1.5 px-2 bg-gradient-to-r from-[#da8a24] to-[#f59e0b] hover:from-[#c77a1e] hover:to-[#da8a24] text-white text-[11px] font-bold rounded-xl shadow-xs transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer border-0 uppercase tracking-wider"
               >
                 <Heart className="w-3 h-3 fill-white text-white" />
-                <span className="truncate">{ctaText}</span>
+                <span>Donate</span>
               </button>
             </div>
           )}
