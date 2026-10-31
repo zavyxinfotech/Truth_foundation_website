@@ -16,7 +16,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Special Meals for 15 Children',
     location: 'Chennai',
     time_ago: 'Just now',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   },
   {
     id: 'pop-2',
@@ -25,7 +25,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Senior Care & Daily Medicines',
     location: 'Tambaram',
     time_ago: '1 min ago',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   },
   {
     id: 'pop-3',
@@ -34,7 +34,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Monthly Education Kit & Books',
     location: 'Anna Nagar',
     time_ago: 'Just now',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   },
   {
     id: 'pop-4',
@@ -43,7 +43,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Daily Nutritious Breakfast for Kids',
     location: 'Thiruvallur',
     time_ago: '2 mins ago',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   },
   {
     id: 'pop-5',
@@ -52,7 +52,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Special Needs Therapy & Care',
     location: 'Adyar',
     time_ago: 'Just now',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   },
   {
     id: 'pop-6',
@@ -61,7 +61,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Emergency Shelter & Bedding Provisions',
     location: 'Velachery',
     time_ago: '3 mins ago',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   },
   {
     id: 'pop-7',
@@ -70,7 +70,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Sunday Feast for Orphan Children',
     location: 'Redhills',
     time_ago: 'Just now',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   },
   {
     id: 'pop-8',
@@ -79,7 +79,7 @@ const DEFAULT_POPUPS: DynamicDonationPopup[] = [
     cause: 'Fresh Fruits & Wholesome Diet',
     location: 'Mylapore',
     time_ago: '4 mins ago',
-    cta_text: 'Add your donation'
+    cta_text: 'Donate'
   }
 ];
 
@@ -153,7 +153,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
   const cause = currentPopup.cause || 'Nutritious Meals & Care';
   const location = currentPopup.location || 'Chennai';
   const timeAgo = currentPopup.time_ago || 'Just now';
-  const ctaText = currentPopup.cta_text || 'Add your donation';
+  const ctaText = (!currentPopup.cta_text || currentPopup.cta_text.toLowerCase().includes('add your donation')) ? 'Donate' : currentPopup.cta_text;
 
   // Extract initials for donor avatar
   const initials = donorName
