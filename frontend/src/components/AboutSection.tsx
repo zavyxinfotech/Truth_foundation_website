@@ -70,15 +70,15 @@ export const AboutSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: 'easeOut' }}
-                className="flex flex-col items-start space-y-2.5 p-0 bg-transparent border-0 shadow-none text-left"
+                className="flex flex-col items-center text-center space-y-2.5 p-0 bg-transparent border-0 shadow-none md:items-start md:text-left"
               >
                 {/* Icon Badge */}
-                <div className="w-12 h-12 rounded-xl bg-[#da8a24]/10 text-[#da8a24] flex items-center justify-center shrink-0 border-0 shadow-none">
+                <div className="w-12 h-12 rounded-xl bg-transparent text-[#da8a24] flex items-center justify-center shrink-0 border-0 shadow-none">
                   <Icon className="w-6 h-6 text-[#da8a24]" />
                 </div>
 
                 {/* Big Countable Number */}
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#da8a24] tracking-tight">
+                <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#da8a24] tracking-tight">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} repeatOnScroll={true} />
                 </div>
 

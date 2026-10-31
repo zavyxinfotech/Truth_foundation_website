@@ -200,7 +200,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenDonate
             </div>
           ) : (
             /* Popup Notification Message Card - Transparent Background, No Color, No Borders, No Shadows */
-            <div className="bg-transparent text-slate-800 p-2.5 border-0 shadow-none w-[180px] xs:w-[195px] sm:w-[205px] relative transition-all duration-300 flex flex-col items-center text-center">
+            <div className="bg-black/20 text-slate-800 p-2.5 border-0 shadow-none w-[180px] xs:w-[195px] sm:w-[205px] backdrop-blur-md relative transition-all duration-300 flex flex-col items-center text-center">
               {/* Dismiss Button */}
               <button
                 onClick={(e) => {
