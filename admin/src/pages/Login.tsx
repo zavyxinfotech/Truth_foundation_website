@@ -9,7 +9,7 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
-  const [email, setEmail] = useState('zavyxindia@gmail.com');
+  const [email, setEmail] = useState('sharaswapna30@gmail.com');
   const [password, setPassword] = useState('Truth@2026');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -123,7 +123,7 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         {/* Credentials helper pill */}
         <div className="mt-8 pt-6 border-t border-slate-800 text-center">
           <p className="text-[11px] text-slate-400">
-            Registered Superadmin: <span className="text-[#da8a24] font-mono">zavyxindia@gmail.com</span>
+            Registered Superadmin: <span className="text-[#da8a24] font-mono">sharaswapna30@gmail.com</span>
           </p>
         </div>
 

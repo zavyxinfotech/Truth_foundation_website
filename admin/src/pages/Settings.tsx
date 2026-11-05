@@ -62,7 +62,7 @@ export const Settings: React.FC<SettingsProps> = ({ user }) => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
           <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800">
             <span className="text-[11px] text-slate-400 block mb-1">Administrator Email</span>
-            <span className="text-xs font-semibold text-white font-mono break-all">{user?.email || 'zavyxindia@gmail.com'}</span>
+            <span className="text-xs font-semibold text-white font-mono break-all">{user?.email || 'sharaswapna30@gmail.com'}</span>
           </div>
 
           <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800">

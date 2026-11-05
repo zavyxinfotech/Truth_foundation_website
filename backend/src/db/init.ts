@@ -100,7 +100,7 @@ export async function initDatabase() {
     console.log('✔ Table "site_content" ready');
 
     // Seed default admin user
-    const adminEmail = process.env.ADMIN_EMAIL || 'zavyxindia@gmail.com';
+    const adminEmail = process.env.ADMIN_EMAIL || 'sharaswapna30@gmail.com';
     const adminPassword = process.env.ADMIN_PASSWORD || 'Truth@2026';
 
     const checkAdmin = await query('SELECT id FROM admin_users WHERE email = $1', [adminEmail]);
