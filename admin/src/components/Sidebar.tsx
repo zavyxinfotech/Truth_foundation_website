@@ -128,14 +128,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </button>
               <div className="pt-2 text-center border-t border-slate-800/40">
           <p className="text-[10px] text-slate-500">
-            Developed by{' '}
+            Developed with <span className="text-red-500">❤️</span> by{' '}
             <a
               href="https://zavyx.in"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-[#da8a24] hover:underline font-semibold"
             >
-              Zavyx InfoTech
+              ZAVYX InfoTech
             </a>
           </p>
         </div>
