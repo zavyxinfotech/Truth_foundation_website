@@ -152,40 +152,63 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
               </button>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs min-w-[480px]">
-                <thead>
-                  <tr className="border-b border-slate-800/40 text-slate-400 font-semibold uppercase tracking-wider">
-                    <th className="pb-3">Donor</th>
-                    <th className="pb-3">Amount</th>
-                    <th className="pb-3">Frequency</th>
-                    <th className="pb-3">Receipt</th>
-                    <th className="pb-3 text-right">Date</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800/40">
-                  {recentDonations.map((d) => (
-                    <tr key={d.id} className="hover:bg-slate-800/20 transition">
-                      <td className="py-3 font-medium text-white">{d.donor_name}</td>
-                      <td className="py-3 font-semibold text-emerald-400">
+            <>
+              {/* Mobile Recent Donations Cards */}
+              <div className="block sm:hidden divide-y divide-slate-800/40">
+                {recentDonations.map((d) => (
+                  <div key={d.id} className="py-2.5 first:pt-0 last:pb-0 flex items-center justify-between gap-2 text-xs">
+                    <div className="min-w-0">
+                      <div className="font-medium text-white truncate">{d.donor_name}</div>
+                      <div className="text-[10px] text-slate-400 font-mono mt-0.5">{d.receipt_number || '-'}</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="font-semibold text-emerald-400">
                         ₹{parseFloat(String(d.amount)).toLocaleString('en-IN')}
-                      </td>
-                      <td className="py-3">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${
-                          d.frequency === 'Monthly' ? 'bg-indigo-500/10 text-indigo-300' : 'bg-slate-800 text-slate-300'
-                        }`}>
-                          {d.frequency}
-                        </span>
-                      </td>
-                      <td className="py-3 font-mono text-slate-400 text-[11px]">{d.receipt_number || '-'}</td>
-                      <td className="py-3 text-right text-slate-400">
+                      </div>
+                      <div className="text-[10px] text-slate-500">
                         {new Date(d.created_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })}
-                      </td>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop Recent Donations Table */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="w-full text-left text-xs min-w-[480px]">
+                  <thead>
+                    <tr className="border-b border-slate-800/40 text-slate-400 font-semibold uppercase tracking-wider">
+                      <th className="pb-3 whitespace-nowrap">Donor</th>
+                      <th className="pb-3 whitespace-nowrap">Amount</th>
+                      <th className="pb-3 whitespace-nowrap">Frequency</th>
+                      <th className="pb-3 whitespace-nowrap">Receipt</th>
+                      <th className="pb-3 text-right whitespace-nowrap">Date</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/40">
+                    {recentDonations.map((d) => (
+                      <tr key={d.id} className="hover:bg-slate-800/20 transition">
+                        <td className="py-3 font-medium text-white whitespace-nowrap">{d.donor_name}</td>
+                        <td className="py-3 font-semibold text-emerald-400 whitespace-nowrap">
+                          ₹{parseFloat(String(d.amount)).toLocaleString('en-IN')}
+                        </td>
+                        <td className="py-3 whitespace-nowrap">
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${
+                            d.frequency === 'Monthly' ? 'bg-indigo-500/10 text-indigo-300' : 'bg-slate-800 text-slate-300'
+                          }`}>
+                            {d.frequency}
+                          </span>
+                        </td>
+                        <td className="py-3 font-mono text-slate-400 text-[11px] whitespace-nowrap">{d.receipt_number || '-'}</td>
+                        <td className="py-3 text-right text-slate-400 whitespace-nowrap">
+                          {new Date(d.created_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
         </div>
 

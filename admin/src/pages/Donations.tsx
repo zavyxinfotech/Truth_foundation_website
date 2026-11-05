@@ -197,77 +197,154 @@ export const Donations: React.FC = () => {
             <p>No donation records match the filter.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs min-w-[760px]">
-              <thead className="bg-slate-900/70 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
-                <tr>
-                  <th className="py-3.5 px-4">Receipt #</th>
-                  <th className="py-3.5 px-4">Donor Name</th>
-                  <th className="py-3.5 px-4">Contact</th>
-                  <th className="py-3.5 px-4">Amount</th>
-                  <th className="py-3.5 px-4">Frequency</th>
-                  <th className="py-3.5 px-4">80G PAN</th>
-                  <th className="py-3.5 px-4">Status</th>
-                  <th className="py-3.5 px-4">Date</th>
-                  <th className="py-3.5 px-4 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/60">
-                {donations.map((d) => (
-                  <tr key={d.id} className="hover:bg-slate-800/30 transition">
-                    <td className="py-3.5 px-4 font-mono font-medium text-[#da8a24] text-[11px]">
-                      {d.receipt_number || `TF-${d.id}`}
-                    </td>
-                    <td className="py-3.5 px-4 font-semibold text-white">
-                      {d.donor_name}
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-300">
-                      <div>{d.email}</div>
-                      {d.phone && <div className="text-[10px] text-slate-500">{d.phone}</div>}
-                    </td>
-                    <td className="py-3.5 px-4 font-bold text-emerald-400">
-                      ₹{parseFloat(String(d.amount)).toLocaleString('en-IN')}
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${
-                        d.frequency === 'Monthly' ? 'bg-indigo-500/10 text-indigo-300' : 'bg-slate-800 text-slate-300'
+          <>
+            {/* MOBILE VIEW: Responsive Cards for Mobile Screens */}
+            <div className="block md:hidden divide-y divide-slate-800/70">
+              {donations.map((d) => (
+                <div key={d.id} className="p-3.5 space-y-2.5">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <div className="font-bold text-white text-sm truncate">{d.donor_name}</div>
+                      <div className="font-mono text-[11px] text-[#da8a24] font-medium mt-0.5">
+                        {d.receipt_number || `TF-${d.id}`}
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="font-extrabold text-emerald-400 text-sm">
+                        ₹{parseFloat(String(d.amount)).toLocaleString('en-IN')}
+                      </div>
+                      <span className="inline-block mt-0.5 px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                        {d.status}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-xs bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80">
+                    <div className="min-w-0">
+                      <span className="text-slate-500 block text-[10px] font-medium">Email</span>
+                      <a href={`mailto:${d.email}`} className="text-sky-400 hover:underline truncate block font-medium">
+                        {d.email}
+                      </a>
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-slate-500 block text-[10px] font-medium">Phone</span>
+                      {d.phone ? (
+                        <a href={`tel:${d.phone}`} className="text-emerald-400 hover:underline truncate block font-medium">
+                          {d.phone}
+                        </a>
+                      ) : (
+                        <span className="text-slate-600 font-medium">-</span>
+                      )}
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10px] font-medium">Frequency</span>
+                      <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-semibold mt-0.5 ${
+                        d.frequency === 'Monthly' ? 'bg-indigo-500/15 text-indigo-300' : 'bg-slate-800 text-slate-300'
                       }`}>
                         {d.frequency}
                       </span>
-                    </td>
-                    <td className="py-3.5 px-4 font-mono text-[11px]">
-                      {d.pan_number ? (
-                        <span className="text-slate-300">{d.pan_number}</span>
-                      ) : (
-                        <span className="text-slate-600">-</span>
-                      )}
-                    </td>
-                    <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                        {d.status}
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10px] font-medium">80G PAN</span>
+                      <span className="font-mono text-slate-300 font-semibold block mt-0.5">
+                        {d.pan_number || '-'}
                       </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-400 text-[11px]">
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs text-slate-400 pt-0.5">
+                    <span className="text-[11px]">
                       {new Date(d.created_at).toLocaleDateString('en-IN', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric'
                       })}
-                    </td>
-                    <td className="py-3.5 px-4 text-right">
-                      <button
-                        onClick={() => handleDelete(d.id)}
-                        className="text-red-400/80 hover:text-red-400 p-1 hover:bg-red-500/10 rounded transition cursor-pointer"
-                        title="Delete Record"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </td>
+                    </span>
+                    <button
+                      onClick={() => handleDelete(d.id)}
+                      className="text-red-400 hover:text-red-300 px-2.5 py-1 rounded-lg bg-red-500/10 hover:bg-red-500/20 transition flex items-center gap-1 text-xs font-semibold cursor-pointer"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* DESKTOP / TABLET VIEW: Full Data Table with whitespace-nowrap */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-left text-xs min-w-[760px]">
+                <thead className="bg-slate-900/70 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+                  <tr>
+                    <th className="py-3.5 px-4 whitespace-nowrap">Receipt #</th>
+                    <th className="py-3.5 px-4 whitespace-nowrap">Donor Name</th>
+                    <th className="py-3.5 px-4 whitespace-nowrap">Contact</th>
+                    <th className="py-3.5 px-4 whitespace-nowrap">Amount</th>
+                    <th className="py-3.5 px-4 whitespace-nowrap">Frequency</th>
+                    <th className="py-3.5 px-4 whitespace-nowrap">80G PAN</th>
+                    <th className="py-3.5 px-4 whitespace-nowrap">Status</th>
+                    <th className="py-3.5 px-4 whitespace-nowrap">Date</th>
+                    <th className="py-3.5 px-4 text-right whitespace-nowrap">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-slate-800/60">
+                  {donations.map((d) => (
+                    <tr key={d.id} className="hover:bg-slate-800/30 transition">
+                      <td className="py-3.5 px-4 font-mono font-medium text-[#da8a24] text-[11px] whitespace-nowrap">
+                        {d.receipt_number || `TF-${d.id}`}
+                      </td>
+                      <td className="py-3.5 px-4 font-semibold text-white whitespace-nowrap">
+                        {d.donor_name}
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-300">
+                        <div className="whitespace-nowrap">{d.email}</div>
+                        {d.phone && <div className="text-[10px] text-slate-500 whitespace-nowrap">{d.phone}</div>}
+                      </td>
+                      <td className="py-3.5 px-4 font-bold text-emerald-400 whitespace-nowrap">
+                        ₹{parseFloat(String(d.amount)).toLocaleString('en-IN')}
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap">
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${
+                          d.frequency === 'Monthly' ? 'bg-indigo-500/10 text-indigo-300' : 'bg-slate-800 text-slate-300'
+                        }`}>
+                          {d.frequency}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-4 font-mono text-[11px] whitespace-nowrap">
+                        {d.pan_number ? (
+                          <span className="text-slate-300">{d.pan_number}</span>
+                        ) : (
+                          <span className="text-slate-600">-</span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          {d.status}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-400 text-[11px] whitespace-nowrap">
+                        {new Date(d.created_at).toLocaleDateString('en-IN', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </td>
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                        <button
+                          onClick={() => handleDelete(d.id)}
+                          className="text-red-400/80 hover:text-red-400 p-1 hover:bg-red-500/10 rounded transition cursor-pointer"
+                          title="Delete Record"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </div>
 
