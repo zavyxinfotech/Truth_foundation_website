@@ -166,7 +166,7 @@ export const Gallery: React.FC = () => {
       return url.replace('/video/upload/', '/video/upload/so_2,w_800,c_fill,q_auto,f_jpg/');
     }
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
-    return `http://localhost:5173/src/${url.replace(/^\/?/, '')}`;
+    return `https://truthfoundation.org.in/${url.replace(/^\/?/, '')}`;
   };
 
   return (

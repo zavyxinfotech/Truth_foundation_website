@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
   Search,
+  Copy,
+  Check,
   Download,
   Plus,
   Trash2,
@@ -17,6 +19,15 @@ export const Donations: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [frequencyFilter, setFrequencyFilter] = useState<'All' | 'One-time' | 'Monthly'>('All');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [copiedPhoneId, setCopiedPhoneId] = useState<number | null>(null);
+
+  const handleCopyPhone = (id: number, phone?: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (!phone) return;
+    navigator.clipboard.writeText(phone);
+    setCopiedPhoneId(id);
+    setTimeout(() => setCopiedPhoneId(null), 2000);
+  };
   const [submitting, setSubmitting] = useState(false);
 
   // New donation form state
@@ -229,11 +240,28 @@ export const Donations: React.FC = () => {
                     <div className="min-w-0">
                       <span className="text-slate-500 block text-[10px] font-medium">Phone</span>
                       {d.phone ? (
-                        <a href={`tel:${d.phone}`} className="text-emerald-400 hover:underline truncate block font-medium">
-                          {d.phone}
-                        </a>
+                        <div className="flex items-center gap-1.5 mt-0.5">
+                          <a href={`tel:${d.phone}`} className="text-xs font-semibold text-emerald-400 hover:underline truncate">
+                            {d.phone}
+                          </a>
+                          <button
+                            type="button"
+                            onClick={(e) => handleCopyPhone(d.id, d.phone, e)}
+                            className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800/80 transition cursor-pointer shrink-0"
+                            title="Copy phone number"
+                          >
+                            {copiedPhoneId === d.id ? (
+                              <Check className="w-3.5 h-3.5 text-emerald-400" />
+                            ) : (
+                              <Copy className="w-3.5 h-3.5 text-slate-400" />
+                            )}
+                          </button>
+                          {copiedPhoneId === d.id && (
+                            <span className="text-[9px] text-emerald-400 font-bold shrink-0">Copied</span>
+                          )}
+                        </div>
                       ) : (
-                        <span className="text-slate-600 font-medium">-</span>
+                        <span className="text-slate-600 font-medium text-xs">-</span>
                       )}
                     </div>
                     <div>
@@ -297,9 +325,32 @@ export const Donations: React.FC = () => {
                       <td className="py-3.5 px-4 font-semibold text-white whitespace-nowrap">
                         {d.donor_name}
                       </td>
-                      <td className="py-3.5 px-4 text-slate-300">
-                        <div className="whitespace-nowrap">{d.email}</div>
-                        {d.phone && <div className="text-[10px] text-slate-500 whitespace-nowrap">{d.phone}</div>}
+                      <td className="py-3.5 px-4 text-slate-300 whitespace-nowrap">
+                        <div className="text-xs text-sky-400 font-medium">{d.email}</div>
+                        {d.phone ? (
+                          <div className="flex items-center gap-1.5 mt-1">
+                            <a href={`tel:${d.phone}`} className="text-xs font-semibold text-emerald-400 hover:underline">
+                              {d.phone}
+                            </a>
+                            <button
+                              type="button"
+                              onClick={(e) => handleCopyPhone(d.id, d.phone, e)}
+                              className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+                              title="Copy phone number"
+                            >
+                              {copiedPhoneId === d.id ? (
+                                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                              ) : (
+                                <Copy className="w-3.5 h-3.5 text-slate-400 hover:text-emerald-400" />
+                              )}
+                            </button>
+                            {copiedPhoneId === d.id && (
+                              <span className="text-[10px] text-emerald-400 font-bold">Copied!</span>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="text-slate-600 text-xs">-</span>
+                        )}
                       </td>
                       <td className="py-3.5 px-4 font-bold text-emerald-400 whitespace-nowrap">
                         ₹{parseFloat(String(d.amount)).toLocaleString('en-IN')}
