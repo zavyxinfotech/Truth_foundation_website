@@ -107,7 +107,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Bottom Actions: View Public Website & Logout */}
       <div className="p-4 border-t border-slate-800/80 space-y-2">
         <a
-          href="http://localhost:5173"
+          href="https://truthfoundation.org.in"
           target="_blank"
           rel="noreferrer"
           className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/40 transition"
@@ -126,6 +126,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <LogOut className="w-4 h-4" />
           <span>Sign Out</span>
         </button>
+              <div className="pt-2 text-center border-t border-slate-800/40">
+          <p className="text-[10px] text-slate-500">
+            Developed by{' '}
+            <a
+              href="https://zavyx.in"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#da8a24] hover:underline font-semibold"
+            >
+              Zavyx InfoTech
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

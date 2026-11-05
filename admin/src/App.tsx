@@ -121,7 +121,23 @@ export const App: React.FC = () => {
           {currentTab === 'gallery' && <Gallery />}
           {currentTab === 'inquiries' && <Inquiries />}
           {currentTab === 'settings' && <Settings user={user} />}
-        </main>
+                </main>
+
+        {/* Global Footer */}
+        <footer className="px-4 sm:px-8 py-3.5 border-t border-slate-800/60 bg-[#071b34]/40 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>© {new Date().getFullYear()} Truth Foundation Trust • All rights reserved</span>
+          <span>
+            Developed by{' '}
+            <a
+              href="https://zavyx.in"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#da8a24] hover:underline font-semibold"
+            >
+              Zavyx InfoTech
+            </a>
+          </span>
+        </footer>
       </div>
     </div>
   );

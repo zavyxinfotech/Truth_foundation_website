@@ -127,6 +127,19 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           </p>
         </div>
 
+              <div className="mt-4 text-center">
+          <p className="text-[11px] text-slate-500">
+            Developed with ❤️ by{' '}
+            <a
+              href="https://zavyx.in"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#da8a24] hover:underline font-semibold"
+            >
+              Zavyx InfoTech
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
